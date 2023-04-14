@@ -1,0 +1,392 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.20.1.final using JasperReports Library version 6.20.1-7584acb244139816654f64e2fd57a00d3e31921e  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Commitment" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="f9d63406-6e0f-4659-8f27-7b645383c674">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="New Data Adapter"/>
+	<subDataset name="Commitment" uuid="b3d1a532-106f-4299-a8f9-db2f04c8377a">
+		<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="New Data Adapter"/>
+		<queryString language="SQL">
+			<![CDATA[select * from product_config]]>
+		</queryString>
+		<field name="product_id" class="java.lang.Long">
+			<property name="com.jaspersoft.studio.field.name" value="product_id"/>
+			<property name="com.jaspersoft.studio.field.label" value="product_id"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="product_config"/>
+		</field>
+		<field name="product_type" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.name" value="product_type"/>
+			<property name="com.jaspersoft.studio.field.label" value="product_type"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="product_config"/>
+		</field>
+		<field name="profile_name" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.name" value="profile_name"/>
+			<property name="com.jaspersoft.studio.field.label" value="profile_name"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="product_config"/>
+		</field>
+	</subDataset>
+	<queryString language="SQL">
+		<![CDATA[select * from product_config]]>
+	</queryString>
+	<field name="product_id" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.name" value="product_id"/>
+		<property name="com.jaspersoft.studio.field.label" value="product_id"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="product_config"/>
+	</field>
+	<field name="product_type" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="product_type"/>
+		<property name="com.jaspersoft.studio.field.label" value="product_type"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="product_config"/>
+	</field>
+	<field name="profile_name" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="profile_name"/>
+		<property name="com.jaspersoft.studio.field.label" value="profile_name"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="product_config"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="460" splitType="Stretch">
+			<componentElement>
+				<reportElement positionType="Float" x="-12" y="0" width="522" height="410" uuid="7fab8245-2444-4266-aeda-c3617e78fa61"/>
+				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Vertical">
+					<datasetRun subDataset="Commitment" uuid="8a8cdf25-8bfe-4dd3-bc4a-635c2069cdb0">
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:listContents height="410" width="522">
+						<staticText>
+							<reportElement x="42" y="55" width="100" height="20" uuid="289973b5-8cfa-4a03-9548-46ebaa31c809"/>
+							<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="5">
+								<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Left" verticalAlignment="Middle"/>
+							<text><![CDATA[Nps Applicant Name]]></text>
+						</staticText>
+						<textField>
+							<reportElement x="153" y="55" width="100" height="20" uuid="2e9dbeba-3c4f-4f5a-b6e1-dde6e2a4aab4"/>
+							<box topPadding="0" leftPadding="7" bottomPadding="0" rightPadding="5">
+								<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle"/>
+							<textFieldExpression><![CDATA[$F{profile_name}]]></textFieldExpression>
+						</textField>
+						<staticText>
+							<reportElement x="290" y="55" width="100" height="20" uuid="c43753d0-c6c9-46f0-9a42-d90879f74a3f"/>
+							<box>
+								<topPen lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Left" verticalAlignment="Top"/>
+							<text><![CDATA[Nps Amount]]></text>
+						</staticText>
+						<textField>
+							<reportElement x="389" y="55" width="100" height="20" uuid="91651436-67ed-4ec4-a56e-ffa8f5d02b2b"/>
+							<box>
+								<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle"/>
+							<textFieldExpression><![CDATA[$F{profile_name}]]></textFieldExpression>
+						</textField>
+						<staticText>
+							<reportElement x="44" y="108" width="100" height="20" uuid="a2def482-b283-4ea0-ae2d-6dfb800ddf3c"/>
+							<box leftPadding="0"/>
+							<textElement textAlignment="Left" verticalAlignment="Top"/>
+							<text><![CDATA[Nps Amount]]></text>
+						</staticText>
+						<textField>
+							<reportElement x="153" y="108" width="100" height="20" uuid="a8a4733d-60bd-4a13-aa7d-ebc2ae34b281"/>
+							<box>
+								<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle"/>
+							<textFieldExpression><![CDATA[$F{profile_name}]]></textFieldExpression>
+						</textField>
+						<staticText>
+							<reportElement x="291" y="109" width="100" height="20" uuid="e642338b-3ef7-4bc7-878e-fab20aa72405"/>
+							<box>
+								<topPen lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Left" verticalAlignment="Top"/>
+							<text><![CDATA[loc amt]]></text>
+						</staticText>
+						<staticText>
+							<reportElement x="44" y="139" width="100" height="20" uuid="937f6b7c-0cf0-44ad-ae8a-550556245830"/>
+							<box leftPadding="0"/>
+							<textElement textAlignment="Left" verticalAlignment="Top"/>
+							<text><![CDATA[Bank Name loc]]></text>
+						</staticText>
+						<textField>
+							<reportElement x="154" y="139" width="100" height="20" uuid="236f4f93-7ea1-4448-ab44-e7ed1bd13061"/>
+							<box>
+								<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle"/>
+							<textFieldExpression><![CDATA[$F{profile_name}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement x="389" y="109" width="100" height="20" uuid="72566489-0e5b-4a64-bcf9-f84407e7bbfd"/>
+							<box>
+								<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle"/>
+							<textFieldExpression><![CDATA[$F{profile_name}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement x="389" y="139" width="100" height="20" uuid="5a30c57e-a262-4be2-969d-1d8001dc0355"/>
+							<box>
+								<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle"/>
+							<textFieldExpression><![CDATA[$F{profile_name}]]></textFieldExpression>
+						</textField>
+						<staticText>
+							<reportElement x="44" y="231" width="100" height="20" uuid="8e41808d-4888-4e9f-a684-74016ec13035"/>
+							<box leftPadding="0"/>
+							<textElement textAlignment="Left" verticalAlignment="Top"/>
+							<text><![CDATA[car insurance duration]]></text>
+						</staticText>
+						<staticText>
+							<reportElement x="292" y="201" width="100" height="20" uuid="378f8520-88d3-4d4d-bd72-1636dc5d47c6"/>
+							<box>
+								<topPen lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Left" verticalAlignment="Top"/>
+							<text><![CDATA[car insurance amt]]></text>
+						</staticText>
+						<staticText>
+							<reportElement x="290" y="139" width="100" height="20" uuid="c72f01ef-cea6-40b9-88f2-ea0dedd7a448"/>
+							<box>
+								<topPen lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Left" verticalAlignment="Top"/>
+							<text><![CDATA[loc expiry date]]></text>
+						</staticText>
+						<textField>
+							<reportElement x="153" y="201" width="100" height="20" uuid="1a1a0fc4-3a41-4f17-b8f6-4dedeb9b97d2"/>
+							<box>
+								<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle"/>
+							<textFieldExpression><![CDATA[$F{profile_name}]]></textFieldExpression>
+						</textField>
+						<staticText>
+							<reportElement x="291" y="170" width="100" height="20" uuid="0137117d-9c06-45d5-bb39-e7f7db53c7b2"/>
+							<box>
+								<topPen lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Left" verticalAlignment="Top"/>
+							<text><![CDATA[life insurance amt]]></text>
+						</staticText>
+						<staticText>
+							<reportElement x="43" y="170" width="100" height="20" uuid="a3cbf2a3-c9e8-40be-9bc5-9b2f34e2a287"/>
+							<box leftPadding="0"/>
+							<textElement textAlignment="Left" verticalAlignment="Top"/>
+							<text><![CDATA[insurance type]]></text>
+						</staticText>
+						<textField>
+							<reportElement x="154" y="170" width="100" height="20" uuid="aa197ac6-b189-4f2a-b768-0db0215dcf54"/>
+							<box>
+								<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle"/>
+							<textFieldExpression><![CDATA[$F{profile_name}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement x="390" y="170" width="100" height="20" uuid="e83a1179-6e64-4bbe-a164-7e94cd984005"/>
+							<box>
+								<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle"/>
+							<textFieldExpression><![CDATA[$F{profile_name}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement x="154" y="231" width="100" height="20" uuid="bd5ade90-4c3f-45ae-8d8e-ebc170f3e019"/>
+							<box>
+								<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle"/>
+							<textFieldExpression><![CDATA[$F{profile_name}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement x="390" y="201" width="100" height="20" uuid="6eba7918-f827-4d76-bf3c-302ff7176c34"/>
+							<box>
+								<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle"/>
+							<textFieldExpression><![CDATA[$F{profile_name}]]></textFieldExpression>
+						</textField>
+						<staticText>
+							<reportElement x="44" y="201" width="100" height="20" uuid="5bbc992e-54ed-446f-87e4-c522d6a3ce98"/>
+							<box leftPadding="0"/>
+							<textElement textAlignment="Left" verticalAlignment="Top"/>
+							<text><![CDATA[life insurance duration]]></text>
+						</staticText>
+						<staticText>
+							<reportElement x="291" y="321" width="100" height="20" uuid="f3219e25-972c-4c68-bc31-72c9966c3ffc"/>
+							<textElement textAlignment="Left" verticalAlignment="Top"/>
+							<text><![CDATA[Term insurance duration]]></text>
+						</staticText>
+						<staticText>
+							<reportElement x="44" y="320" width="100" height="20" uuid="90c86382-8110-473a-9642-03430e7438ab"/>
+							<box leftPadding="0"/>
+							<textElement textAlignment="Left" verticalAlignment="Top"/>
+							<text><![CDATA[Term insurance amt]]></text>
+						</staticText>
+						<staticText>
+							<reportElement x="291" y="261" width="100" height="20" uuid="25b8cace-fef5-4f46-bb74-5f0854e9c040"/>
+							<textElement textAlignment="Left" verticalAlignment="Top"/>
+							<text><![CDATA[health insurance duration]]></text>
+						</staticText>
+						<textField>
+							<reportElement x="153" y="289" width="100" height="20" uuid="531a0cca-bb9f-4489-83fe-106cb50a4b2d"/>
+							<box>
+								<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle"/>
+							<textFieldExpression><![CDATA[$F{profile_name}]]></textFieldExpression>
+						</textField>
+						<staticText>
+							<reportElement x="43" y="261" width="100" height="20" uuid="ad9d0312-4048-430c-aa67-3c4da4aeebce"/>
+							<box leftPadding="0"/>
+							<textElement textAlignment="Left" verticalAlignment="Top"/>
+							<text><![CDATA[health insurance amt]]></text>
+						</staticText>
+						<textField>
+							<reportElement x="390" y="317" width="100" height="20" uuid="f7db8e4e-ed8a-4d45-80b4-2f55e64ff206"/>
+							<box>
+								<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle"/>
+							<textFieldExpression><![CDATA[$F{profile_name}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement x="154" y="261" width="100" height="20" uuid="608fb37d-13df-4677-9df2-088fe11e4907"/>
+							<box>
+								<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle"/>
+							<textFieldExpression><![CDATA[$F{profile_name}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement x="154" y="320" width="100" height="20" uuid="066a8738-a272-4167-a282-f6b583ead119"/>
+							<box>
+								<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Center"/>
+							<textFieldExpression><![CDATA[$F{profile_name}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement x="389" y="261" width="100" height="20" uuid="5674fe54-2991-4983-a735-853b3b8c6965"/>
+							<box>
+								<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle"/>
+							<textFieldExpression><![CDATA[$F{profile_name}]]></textFieldExpression>
+						</textField>
+						<staticText>
+							<reportElement x="44" y="289" width="100" height="20" uuid="a9368dc3-e7bf-4294-b9ee-9b5deac3910f"/>
+							<box leftPadding="0"/>
+							<textElement textAlignment="Left" verticalAlignment="Top"/>
+							<text><![CDATA[Twowheeler insurance amt]]></text>
+						</staticText>
+						<staticText>
+							<reportElement x="24" y="19" width="480" height="20" uuid="09173402-bba7-4e2a-9f8d-de189800009b"/>
+							<box>
+								<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Top">
+								<font size="14" isBold="true"/>
+							</textElement>
+							<text><![CDATA[Commitments]]></text>
+						</staticText>
+						<staticText>
+							<reportElement x="291" y="290" width="100" height="20" uuid="e54a77f7-9450-4b34-ad4f-27e1f7d27f14"/>
+							<textElement textAlignment="Left" verticalAlignment="Top"/>
+							<text><![CDATA[Twowheeler insurance duration]]></text>
+						</staticText>
+						<textField>
+							<reportElement x="390" y="286" width="100" height="20" uuid="4a4c8f74-dbae-4b38-8558-79d404ea5ee8"/>
+							<box>
+								<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle"/>
+							<textFieldExpression><![CDATA[$F{profile_name}]]></textFieldExpression>
+						</textField>
+					</jr:listContents>
+				</jr:list>
+			</componentElement>
+		</band>
+	</detail>
+</jasperReport>

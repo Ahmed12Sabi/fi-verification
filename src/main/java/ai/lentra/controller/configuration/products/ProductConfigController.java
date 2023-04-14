@@ -25,7 +25,7 @@ public class ProductConfigController {
 		return productsService.saveProduct(productsDTO);
 	}
 
-	@PatchMapping("/product_config")
+	@PutMapping("/product_config")
 	public ResponseEntity<ResponseDTO> updateRole( @RequestBody ProductsDTO productsDTO) throws ResourceNotFoundException, DuplicateResourceException {
 
 		return productsService.updateProduct(productsDTO);

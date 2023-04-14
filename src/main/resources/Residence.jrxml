@@ -1,0 +1,846 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.20.1.final using JasperReports Library version 6.20.1-7584acb244139816654f64e2fd57a00d3e31921e  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Residence" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="40" bottomMargin="40" uuid="fe3ba773-a688-4f18-b429-34edd9969f1f">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="New Data Adapter"/>
+	<subDataset name="Residence" uuid="b82acaf2-1a16-412b-a295-a2ac8c655e27">
+		<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="New Data Adapter"/>
+		<queryString language="SQL">
+			<![CDATA[select * from product_config]]>
+		</queryString>
+		<field name="product_id" class="java.lang.Long">
+			<property name="com.jaspersoft.studio.field.name" value="product_id"/>
+			<property name="com.jaspersoft.studio.field.label" value="product_id"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="product_config"/>
+		</field>
+		<field name="product_type" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.name" value="product_type"/>
+			<property name="com.jaspersoft.studio.field.label" value="product_type"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="product_config"/>
+		</field>
+		<field name="profile_name" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.name" value="profile_name"/>
+			<property name="com.jaspersoft.studio.field.label" value="profile_name"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="product_config"/>
+		</field>
+	</subDataset>
+	<queryString language="SQL">
+		<![CDATA[select * from product_config]]>
+	</queryString>
+	<field name="product_id" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.name" value="product_id"/>
+		<property name="com.jaspersoft.studio.field.label" value="product_id"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="product_config"/>
+	</field>
+	<field name="product_type" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="product_type"/>
+		<property name="com.jaspersoft.studio.field.label" value="product_type"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="product_config"/>
+	</field>
+	<field name="profile_name" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="profile_name"/>
+		<property name="com.jaspersoft.studio.field.label" value="profile_name"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="product_config"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="762" splitType="Stretch">
+			<componentElement>
+				<reportElement x="10" y="0" width="534" height="762" uuid="4d5ba225-a7e6-4427-892d-f8c33390bcc1"/>
+				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Vertical">
+					<datasetRun subDataset="Residence" uuid="fa00e960-ac5d-458a-8789-fe9730be4c52">
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:listContents height="762" width="534">
+						<staticText>
+							<reportElement x="25" y="55" width="100" height="20" uuid="289973b5-8cfa-4a03-9548-46ebaa31c809"/>
+							<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="5">
+								<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Left" verticalAlignment="Middle"/>
+							<text><![CDATA[Residence Category]]></text>
+						</staticText>
+						<textField>
+							<reportElement x="136" y="55" width="100" height="20" uuid="2e9dbeba-3c4f-4f5a-b6e1-dde6e2a4aab4"/>
+							<box topPadding="0" leftPadding="7" bottomPadding="0" rightPadding="5">
+								<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle"/>
+							<textFieldExpression><![CDATA[$F{profile_name}]]></textFieldExpression>
+						</textField>
+						<staticText>
+							<reportElement x="273" y="55" width="100" height="20" uuid="c43753d0-c6c9-46f0-9a42-d90879f74a3f"/>
+							<box>
+								<topPen lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Left" verticalAlignment="Top"/>
+							<text><![CDATA[Residence Type]]></text>
+						</staticText>
+						<textField>
+							<reportElement x="372" y="55" width="100" height="20" uuid="91651436-67ed-4ec4-a56e-ffa8f5d02b2b"/>
+							<box>
+								<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle"/>
+							<textFieldExpression><![CDATA[$F{profile_name}]]></textFieldExpression>
+						</textField>
+						<staticText>
+							<reportElement x="27" y="84" width="100" height="20" uuid="a2def482-b283-4ea0-ae2d-6dfb800ddf3c"/>
+							<box leftPadding="0"/>
+							<textElement textAlignment="Left" verticalAlignment="Top"/>
+							<text><![CDATA[Ownership Type]]></text>
+						</staticText>
+						<textField>
+							<reportElement x="136" y="84" width="100" height="20" uuid="a8a4733d-60bd-4a13-aa7d-ebc2ae34b281"/>
+							<box>
+								<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle"/>
+							<textFieldExpression><![CDATA[$F{profile_name}]]></textFieldExpression>
+						</textField>
+						<staticText>
+							<reportElement x="274" y="85" width="100" height="20" uuid="e642338b-3ef7-4bc7-878e-fab20aa72405"/>
+							<box>
+								<topPen lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Left" verticalAlignment="Top"/>
+							<text><![CDATA[No of Storey]]></text>
+						</staticText>
+						<staticText>
+							<reportElement x="27" y="115" width="100" height="20" uuid="937f6b7c-0cf0-44ad-ae8a-550556245830"/>
+							<box leftPadding="0"/>
+							<textElement textAlignment="Left" verticalAlignment="Top"/>
+							<text><![CDATA[Living With]]></text>
+						</staticText>
+						<textField>
+							<reportElement x="137" y="115" width="100" height="20" uuid="236f4f93-7ea1-4448-ab44-e7ed1bd13061"/>
+							<box>
+								<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle"/>
+							<textFieldExpression><![CDATA[$F{profile_name}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement x="372" y="85" width="100" height="20" uuid="72566489-0e5b-4a64-bcf9-f84407e7bbfd"/>
+							<box>
+								<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle"/>
+							<textFieldExpression><![CDATA[$F{profile_name}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement x="372" y="115" width="100" height="20" uuid="5a30c57e-a262-4be2-969d-1d8001dc0355"/>
+							<box>
+								<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle"/>
+							<textFieldExpression><![CDATA[$F{profile_name}]]></textFieldExpression>
+						</textField>
+						<staticText>
+							<reportElement x="27" y="207" width="100" height="20" uuid="8e41808d-4888-4e9f-a684-74016ec13035"/>
+							<box leftPadding="0"/>
+							<textElement textAlignment="Left" verticalAlignment="Top"/>
+							<text><![CDATA[Name Plate Visible]]></text>
+						</staticText>
+						<staticText>
+							<reportElement x="275" y="177" width="100" height="20" uuid="378f8520-88d3-4d4d-bd72-1636dc5d47c6"/>
+							<box>
+								<topPen lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Left" verticalAlignment="Top"/>
+							<text><![CDATA[Property Interior]]></text>
+						</staticText>
+						<staticText>
+							<reportElement x="273" y="115" width="100" height="20" uuid="c72f01ef-cea6-40b9-88f2-ea0dedd7a448"/>
+							<box>
+								<topPen lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Left" verticalAlignment="Top"/>
+							<text><![CDATA[Classification]]></text>
+						</staticText>
+						<textField>
+							<reportElement x="136" y="177" width="100" height="20" uuid="1a1a0fc4-3a41-4f17-b8f6-4dedeb9b97d2"/>
+							<box>
+								<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle"/>
+							<textFieldExpression><![CDATA[$F{profile_name}]]></textFieldExpression>
+						</textField>
+						<staticText>
+							<reportElement x="274" y="146" width="100" height="20" uuid="0137117d-9c06-45d5-bb39-e7f7db53c7b2"/>
+							<box>
+								<topPen lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Left" verticalAlignment="Top"/>
+							<text><![CDATA[Property Age]]></text>
+						</staticText>
+						<staticText>
+							<reportElement x="26" y="146" width="100" height="20" uuid="a3cbf2a3-c9e8-40be-9bc5-9b2f34e2a287"/>
+							<box leftPadding="0"/>
+							<textElement textAlignment="Left" verticalAlignment="Top"/>
+							<text><![CDATA[House Condition]]></text>
+						</staticText>
+						<textField>
+							<reportElement x="137" y="146" width="100" height="20" uuid="aa197ac6-b189-4f2a-b768-0db0215dcf54"/>
+							<box>
+								<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle"/>
+							<textFieldExpression><![CDATA[$F{profile_name}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement x="373" y="146" width="100" height="20" uuid="e83a1179-6e64-4bbe-a164-7e94cd984005"/>
+							<box>
+								<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle"/>
+							<textFieldExpression><![CDATA[$F{profile_name}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement x="137" y="207" width="100" height="20" uuid="bd5ade90-4c3f-45ae-8d8e-ebc170f3e019"/>
+							<box>
+								<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle"/>
+							<textFieldExpression><![CDATA[$F{profile_name}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement x="373" y="177" width="100" height="20" uuid="6eba7918-f827-4d76-bf3c-302ff7176c34"/>
+							<box>
+								<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle"/>
+							<textFieldExpression><![CDATA[$F{profile_name}]]></textFieldExpression>
+						</textField>
+						<staticText>
+							<reportElement x="27" y="177" width="100" height="20" uuid="5bbc992e-54ed-446f-87e4-c522d6a3ce98"/>
+							<box leftPadding="0"/>
+							<textElement textAlignment="Left" verticalAlignment="Top"/>
+							<text><![CDATA[Property Make Type]]></text>
+						</staticText>
+						<staticText>
+							<reportElement x="274" y="297" width="100" height="20" uuid="f3219e25-972c-4c68-bc31-72c9966c3ffc"/>
+							<textElement textAlignment="Left" verticalAlignment="Top"/>
+							<text><![CDATA[Residency]]></text>
+						</staticText>
+						<staticText>
+							<reportElement x="27" y="296" width="100" height="20" uuid="90c86382-8110-473a-9642-03430e7438ab"/>
+							<box leftPadding="0"/>
+							<textElement textAlignment="Left" verticalAlignment="Top"/>
+							<text><![CDATA[Community Dominated]]></text>
+						</staticText>
+						<staticText>
+							<reportElement x="274" y="237" width="100" height="20" uuid="25b8cace-fef5-4f46-bb74-5f0854e9c040"/>
+							<textElement textAlignment="Left" verticalAlignment="Top"/>
+							<text><![CDATA[Appliances Total Value]]></text>
+						</staticText>
+						<textField>
+							<reportElement x="136" y="265" width="100" height="20" uuid="531a0cca-bb9f-4489-83fe-106cb50a4b2d"/>
+							<box>
+								<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle"/>
+							<textFieldExpression><![CDATA[$F{profile_name}]]></textFieldExpression>
+						</textField>
+						<staticText>
+							<reportElement x="26" y="237" width="100" height="20" uuid="ad9d0312-4048-430c-aa67-3c4da4aeebce"/>
+							<box leftPadding="0"/>
+							<textElement textAlignment="Left" verticalAlignment="Top"/>
+							<text><![CDATA[Appliances]]></text>
+						</staticText>
+						<textField>
+							<reportElement x="373" y="293" width="100" height="20" uuid="f7db8e4e-ed8a-4d45-80b4-2f55e64ff206"/>
+							<box>
+								<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle"/>
+							<textFieldExpression><![CDATA[$F{profile_name}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement x="137" y="237" width="100" height="20" uuid="608fb37d-13df-4677-9df2-088fe11e4907"/>
+							<box>
+								<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle"/>
+							<textFieldExpression><![CDATA[$F{profile_name}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement x="137" y="296" width="100" height="20" uuid="066a8738-a272-4167-a282-f6b583ead119"/>
+							<box>
+								<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Center"/>
+							<textFieldExpression><![CDATA[$F{profile_name}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement x="372" y="237" width="100" height="20" uuid="5674fe54-2991-4983-a735-853b3b8c6965"/>
+							<box>
+								<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle"/>
+							<textFieldExpression><![CDATA[$F{profile_name}]]></textFieldExpression>
+						</textField>
+						<staticText>
+							<reportElement x="27" y="265" width="100" height="20" uuid="a9368dc3-e7bf-4294-b9ee-9b5deac3910f"/>
+							<box leftPadding="0"/>
+							<textElement textAlignment="Left" verticalAlignment="Top"/>
+							<text><![CDATA[Commute Options]]></text>
+						</staticText>
+						<staticText>
+							<reportElement x="7" y="19" width="465" height="20" uuid="09173402-bba7-4e2a-9f8d-de189800009b"/>
+							<box>
+								<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Top">
+								<font size="14" isBold="true"/>
+							</textElement>
+							<text><![CDATA[Residence]]></text>
+						</staticText>
+						<staticText>
+							<reportElement x="274" y="266" width="100" height="20" uuid="e54a77f7-9450-4b34-ad4f-27e1f7d27f14"/>
+							<textElement textAlignment="Left" verticalAlignment="Top"/>
+							<text><![CDATA[Neighbourhood Type]]></text>
+						</staticText>
+						<textField>
+							<reportElement x="373" y="262" width="100" height="20" uuid="4a4c8f74-dbae-4b38-8558-79d404ea5ee8"/>
+							<box>
+								<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle"/>
+							<textFieldExpression><![CDATA[$F{profile_name}]]></textFieldExpression>
+						</textField>
+						<staticText>
+							<reportElement x="28" y="505" width="100" height="20" uuid="8497c12d-72c8-4508-bf5a-db773fe6ecaa"/>
+							<box leftPadding="0"/>
+							<textElement textAlignment="Left" verticalAlignment="Top"/>
+							<text><![CDATA[Residence Landmark]]></text>
+						</staticText>
+						<textField>
+							<reportElement x="374" y="417" width="100" height="20" uuid="1923d28f-7734-4ce2-af35-ae317475e231"/>
+							<box>
+								<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle"/>
+							<textFieldExpression><![CDATA[$F{profile_name}]]></textFieldExpression>
+						</textField>
+						<staticText>
+							<reportElement x="274" y="355" width="100" height="20" uuid="0f16b852-caa7-4c1b-9ae3-24c0ef4d50cc"/>
+							<box>
+								<topPen lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Left" verticalAlignment="Top"/>
+							<text><![CDATA[Distance from Location]]></text>
+						</staticText>
+						<textField>
+							<reportElement x="374" y="502" width="100" height="20" uuid="2596f5d5-7731-43d9-a01a-29d5cebc8ef3"/>
+							<box>
+								<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle"/>
+							<textFieldExpression><![CDATA[$F{profile_name}]]></textFieldExpression>
+						</textField>
+						<staticText>
+							<reportElement x="28" y="355" width="100" height="20" uuid="5d61751b-c24f-485f-9f30-c9b7fb61abdf"/>
+							<box leftPadding="0"/>
+							<textElement textAlignment="Left" verticalAlignment="Top"/>
+							<text><![CDATA[Months of Stay]]></text>
+						</staticText>
+						<staticText>
+							<reportElement x="27" y="386" width="100" height="20" uuid="25678b7a-8663-471d-8fd1-928e7c2a3ed6"/>
+							<box leftPadding="0"/>
+							<textElement textAlignment="Left" verticalAlignment="Top"/>
+							<text><![CDATA[Negative Location]]></text>
+						</staticText>
+						<staticText>
+							<reportElement x="276" y="417" width="100" height="20" uuid="07d9157a-6f44-4dc6-adcf-946b9e38c773"/>
+							<box>
+								<topPen lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Left" verticalAlignment="Top"/>
+							<text><![CDATA[Address Proof Id]]></text>
+						</staticText>
+						<textField>
+							<reportElement x="138" y="447" width="100" height="20" uuid="a5f0741e-ecd1-4423-beb8-9d994593d034"/>
+							<box>
+								<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle"/>
+							<textFieldExpression><![CDATA[$F{profile_name}]]></textFieldExpression>
+						</textField>
+						<staticText>
+							<reportElement x="275" y="386" width="100" height="20" uuid="539567cf-7570-4cfb-86c5-f18c11040535"/>
+							<box>
+								<topPen lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Left" verticalAlignment="Top"/>
+							<text><![CDATA[Monthly Amortization]]></text>
+						</staticText>
+						<textField>
+							<reportElement x="373" y="477" width="100" height="20" uuid="9532d7db-d0ca-40e3-b091-30fd7f062a53"/>
+							<box>
+								<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle"/>
+							<textFieldExpression><![CDATA[$F{profile_name}]]></textFieldExpression>
+						</textField>
+						<staticText>
+							<reportElement x="275" y="446" width="88" height="20" uuid="1a8a826a-d9a1-449b-8e31-6be68ea96b46"/>
+							<box leftPadding="0"/>
+							<textElement textAlignment="Left" verticalAlignment="Top"/>
+							<text><![CDATA[Landline No]]></text>
+						</staticText>
+						<textField>
+							<reportElement x="373" y="325" width="100" height="20" uuid="ba49bc3c-c533-4c9b-a89c-6b16256938f6"/>
+							<box>
+								<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle"/>
+							<textFieldExpression><![CDATA[$F{profile_name}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement x="137" y="505" width="100" height="20" uuid="73b0ea56-f653-4023-9c43-8f9c6d844bd0"/>
+							<box>
+								<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle"/>
+							<textFieldExpression><![CDATA[$F{profile_name}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement x="373" y="355" width="100" height="20" uuid="02a6a915-03d7-4aa5-be63-67ba6f2e26e5"/>
+							<box>
+								<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle"/>
+							<textFieldExpression><![CDATA[$F{profile_name}]]></textFieldExpression>
+						</textField>
+						<staticText>
+							<reportElement x="275" y="325" width="100" height="20" uuid="18cf296a-b0d7-4e0f-993f-e0045fa67d13"/>
+							<box>
+								<topPen lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Left" verticalAlignment="Top"/>
+							<text><![CDATA[Year of Stay]]></text>
+						</staticText>
+						<staticText>
+							<reportElement x="28" y="417" width="100" height="20" uuid="e535d0d8-7e97-49de-a4be-bcb855f73001"/>
+							<box leftPadding="0"/>
+							<textElement textAlignment="Left" verticalAlignment="Top"/>
+							<text><![CDATA[Rent Per month]]></text>
+						</staticText>
+						<textField>
+							<reportElement x="137" y="324" width="100" height="20" uuid="46062f0d-c99b-4b2a-ab20-12da1af478eb"/>
+							<box>
+								<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle"/>
+							<textFieldExpression><![CDATA[$F{profile_name}]]></textFieldExpression>
+						</textField>
+						<staticText>
+							<reportElement x="28" y="447" width="100" height="20" uuid="1e2fbea5-a4fa-4999-9725-cbd00e0c8330"/>
+							<box leftPadding="0"/>
+							<textElement textAlignment="Left" verticalAlignment="Top"/>
+							<text><![CDATA[Owned by]]></text>
+						</staticText>
+						<textField>
+							<reportElement x="138" y="477" width="100" height="20" uuid="d74189e0-65fb-4172-adb5-3302ff88d93d"/>
+							<box>
+								<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle"/>
+							<textFieldExpression><![CDATA[$F{profile_name}]]></textFieldExpression>
+						</textField>
+						<staticText>
+							<reportElement x="27" y="477" width="100" height="20" uuid="f7eb26ca-eeb3-402f-ab59-8534b879bd87"/>
+							<box leftPadding="0"/>
+							<textElement textAlignment="Left" verticalAlignment="Top"/>
+							<text><![CDATA[Mortagagor Name]]></text>
+						</staticText>
+						<textField>
+							<reportElement x="374" y="446" width="100" height="20" uuid="2bc2a809-d2e0-47ad-99e3-81c22881f45e"/>
+							<box>
+								<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Center"/>
+							<textFieldExpression><![CDATA[$F{profile_name}]]></textFieldExpression>
+						</textField>
+						<staticText>
+							<reportElement x="275" y="506" width="100" height="20" uuid="7337564e-3988-4865-8e68-a2d61c2b4e80"/>
+							<textElement textAlignment="Left" verticalAlignment="Top"/>
+							<text><![CDATA[Pers Met]]></text>
+						</staticText>
+						<textField>
+							<reportElement x="138" y="386" width="100" height="20" uuid="f44781de-a97b-4714-8690-94c5fbd713b9"/>
+							<box>
+								<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle"/>
+							<textFieldExpression><![CDATA[$F{profile_name}]]></textFieldExpression>
+						</textField>
+						<staticText>
+							<reportElement x="275" y="477" width="100" height="20" uuid="b7b4c023-482b-4dc1-ac9e-eb7f5129c20e"/>
+							<textElement textAlignment="Left" verticalAlignment="Top"/>
+							<text><![CDATA[Rented from]]></text>
+						</staticText>
+						<textField>
+							<reportElement x="137" y="417" width="100" height="20" uuid="43a4a40d-27a2-44ce-bf05-097a6b96056d"/>
+							<box>
+								<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle"/>
+							<textFieldExpression><![CDATA[$F{profile_name}]]></textFieldExpression>
+						</textField>
+						<staticText>
+							<reportElement x="28" y="324" width="100" height="20" uuid="81f5ddd2-f9af-4165-a4ed-65793f00bba4"/>
+							<box leftPadding="0"/>
+							<textElement textAlignment="Left" verticalAlignment="Top"/>
+							<text><![CDATA[Country]]></text>
+						</staticText>
+						<textField>
+							<reportElement x="374" y="386" width="100" height="20" uuid="64161686-8c67-4847-81ee-ce04d9e31d6a"/>
+							<box>
+								<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle"/>
+							<textFieldExpression><![CDATA[$F{profile_name}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement x="138" y="355" width="100" height="20" uuid="5b429df6-465a-4da2-84c4-4429cde86854"/>
+							<box>
+								<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle"/>
+							<textFieldExpression><![CDATA[$F{profile_name}]]></textFieldExpression>
+						</textField>
+						<staticText>
+							<reportElement x="30" y="533" width="83" height="20" uuid="94055292-77d9-4be8-aacd-cfd12a49bb8c"/>
+							<textElement textAlignment="Left" verticalAlignment="Middle"/>
+							<text><![CDATA[Address Line 1]]></text>
+						</staticText>
+						<staticText>
+							<reportElement x="30" y="612" width="83" height="20" uuid="5d3bb0c8-69ba-4423-b7f3-14ff45cda8fb"/>
+							<textElement textAlignment="Left" verticalAlignment="Middle"/>
+							<text><![CDATA[Address Line 4]]></text>
+						</staticText>
+						<staticText>
+							<reportElement x="30" y="585" width="83" height="20" uuid="a55c09fd-88a8-4e15-838f-8cdb4e12d087"/>
+							<textElement textAlignment="Left" verticalAlignment="Middle"/>
+							<text><![CDATA[Address Line 3]]></text>
+						</staticText>
+						<textField>
+							<reportElement x="136" y="559" width="336" height="20" uuid="6523e248-259e-4ec3-8aff-88dde0653614"/>
+							<box>
+								<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle"/>
+							<textFieldExpression><![CDATA[$F{profile_name}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement x="136" y="612" width="337" height="20" uuid="62dc3139-20a0-466c-b619-bc308c750017"/>
+							<box>
+								<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle"/>
+							<textFieldExpression><![CDATA[$F{profile_name}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement x="136" y="585" width="337" height="20" uuid="22ba2a3a-0daa-477b-afe4-97cc85b30ccb"/>
+							<box>
+								<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle"/>
+							<textFieldExpression><![CDATA[$F{profile_name}]]></textFieldExpression>
+						</textField>
+						<staticText>
+							<reportElement x="30" y="559" width="83" height="20" uuid="babf5da4-bec5-4af5-a0b7-d546ce19f0cf"/>
+							<textElement textAlignment="Left" verticalAlignment="Middle"/>
+							<text><![CDATA[Address Line 2]]></text>
+						</staticText>
+						<textField>
+							<reportElement x="136" y="533" width="336" height="20" uuid="59a1cc2f-7c2a-4915-ba65-d55de094d8a5"/>
+							<box>
+								<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle"/>
+							<textFieldExpression><![CDATA[$F{profile_name}]]></textFieldExpression>
+						</textField>
+						<staticText>
+							<reportElement x="29" y="672" width="100" height="20" uuid="3a35a24e-cee9-4649-902d-2d5aba3e6b01"/>
+							<box leftPadding="0"/>
+							<textElement textAlignment="Left" verticalAlignment="Top"/>
+							<text><![CDATA[Pincode]]></text>
+						</staticText>
+						<staticText>
+							<reportElement x="276" y="641" width="100" height="20" uuid="bc39ed74-d756-4302-ab63-6f4843ae8d38"/>
+							<box>
+								<topPen lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Left" verticalAlignment="Top"/>
+							<text><![CDATA[State]]></text>
+						</staticText>
+						<textField>
+							<reportElement x="138" y="672" width="100" height="20" uuid="bc2606a7-599e-458e-8983-8138c2a0c55e"/>
+							<box>
+								<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle"/>
+							<textFieldExpression><![CDATA[$F{profile_name}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement x="375" y="672" width="100" height="20" uuid="942f843a-c25f-4bbb-a6c8-ea177e40d58e"/>
+							<box>
+								<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle"/>
+							<textFieldExpression><![CDATA[$F{profile_name}]]></textFieldExpression>
+						</textField>
+						<staticText>
+							<reportElement x="29" y="727" width="100" height="20" uuid="5697fdcf-20a5-4548-b6a2-a74f3dd6bd5e"/>
+							<box leftPadding="0"/>
+							<textElement textAlignment="Left" verticalAlignment="Top"/>
+							<text><![CDATA[Mail Delivery Status]]></text>
+						</staticText>
+						<textField>
+							<reportElement x="139" y="641" width="100" height="20" uuid="aa11e2b6-f89f-4a50-b0f5-6b158418439d"/>
+							<box>
+								<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle"/>
+							<textFieldExpression><![CDATA[$F{profile_name}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement x="375" y="641" width="100" height="20" uuid="dde2bb3e-0a0d-4d95-a249-fffccb6c62e2"/>
+							<box>
+								<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle"/>
+							<textFieldExpression><![CDATA[$F{profile_name}]]></textFieldExpression>
+						</textField>
+						<staticText>
+							<reportElement x="28" y="641" width="100" height="20" uuid="0ad4301b-177d-4d21-9292-f32e6f262c29"/>
+							<box leftPadding="0"/>
+							<textElement textAlignment="Left" verticalAlignment="Top"/>
+							<text><![CDATA[City]]></text>
+						</staticText>
+						<staticText>
+							<reportElement x="277" y="672" width="100" height="20" uuid="3dba9712-6979-4205-a321-631df545b0e3"/>
+							<box>
+								<topPen lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Left" verticalAlignment="Top"/>
+							<text><![CDATA[Country Code]]></text>
+						</staticText>
+						<textField>
+							<reportElement x="139" y="727" width="100" height="20" uuid="ce31bef4-fa9f-4d6e-81a0-2554296eb4e1"/>
+							<box>
+								<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle"/>
+							<textFieldExpression><![CDATA[$F{profile_name}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement x="375" y="700" width="100" height="20" uuid="e95af3d6-acb1-452b-bf7a-fc719d7011d4"/>
+							<box>
+								<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle"/>
+							<textFieldExpression><![CDATA[$F{profile_name}]]></textFieldExpression>
+						</textField>
+						<staticText>
+							<reportElement x="29" y="700" width="100" height="20" uuid="acd42b22-5db6-4f62-a5fe-1ade58fc4ce7"/>
+							<box leftPadding="0"/>
+							<textElement textAlignment="Left" verticalAlignment="Top"/>
+							<text><![CDATA[Latitude]]></text>
+						</staticText>
+						<textField>
+							<reportElement x="138" y="700" width="100" height="20" uuid="d44fce08-5de3-45f2-a72a-d91e32c366e2"/>
+							<box>
+								<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle"/>
+							<textFieldExpression><![CDATA[$F{profile_name}]]></textFieldExpression>
+						</textField>
+						<staticText>
+							<reportElement x="277" y="700" width="100" height="20" uuid="762c06f8-010a-42dd-8512-a85c75e84040"/>
+							<box>
+								<topPen lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Left" verticalAlignment="Top"/>
+							<text><![CDATA[Latitude]]></text>
+						</staticText>
+					</jr:listContents>
+				</jr:list>
+			</componentElement>
+		</band>
+	</detail>
+</jasperReport>

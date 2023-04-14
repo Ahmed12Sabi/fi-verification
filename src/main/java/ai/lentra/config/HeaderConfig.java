@@ -1,9 +1,12 @@
 package ai.lentra.config;
 
 import ai.lentra.dto.HeadersDTO;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
 
 @Configuration
+@PropertySource("classpath:configuration.properties")
 public class HeaderConfig {
 
 
@@ -19,4 +22,6 @@ public class HeaderConfig {
         headersDTO.setApplicantType(applicantType);
         return headersDTO;
     }
+    @Value("${spring.configuration.scheduler}")
+    public static String scheduler;
 }

@@ -12,4 +12,7 @@ public interface SummaryRepository extends JpaRepository<Summary,Long> {
             "e.office_transportation_cost,e.cable_net_bill_amt,e.broadband_bill_amt,e.water_bill_amt," +
             "e.score, e.applicant_id , e.avg_fuel_cost FROM vms_db.expenses_fi e where e.applicant_id = ?1", nativeQuery = true)
     Optional<Expenses> findByAppId(Integer appId);
+
+    @Query(value = "delete from application_details a where a.created_on  < now() - interval '2 month'", nativeQuery = true)
+    void delete2MonthsData();
 }

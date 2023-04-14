@@ -16,4 +16,7 @@ public interface ResidenceRepository extends JpaRepository<ResidenceDetails,Long
             "r.owned_by,r.mortagagor_name,r.rented_from,r.residence_landmark,r.pers_met,r.community_dominated," +
             "r.property_make_type,r.score,r.applicant_id from vms_db.residence_fi r WHERE r.applicant_id =?1",nativeQuery = true)
     Optional<ResidenceDetails> findByAppId(Long residenceId);
+
+    @Query(value = "delete from application_details a where a.created_on  < now() - interval '2 month'", nativeQuery = true)
+    void delete2MonthsData();
 }

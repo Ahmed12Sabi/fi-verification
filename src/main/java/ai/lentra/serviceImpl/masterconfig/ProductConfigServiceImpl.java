@@ -38,15 +38,15 @@ public class ProductConfigServiceImpl implements ProductsConfigService {
             }
             Optional<ProductConfigEntity> optionalRole = Optional.ofNullable(repository.findByProductType(productsDTO.getProductType()));
             if (optionalRole.isPresent()) {
-                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(getResponse(403,"This Product Already mapped with Another Profile ","ERROR"));
+                return ResponseEntity.status(HttpStatus.FORBIDDEN).body(getResponse(403,"This Product Already mapped with Another Profile ","ERROR"));
             }
             ObjectMapper objectMapper = new ObjectMapper();
             ProductConfigEntity products = objectMapper.convertValue(productsDTO, ProductConfigEntity.class);
 
             repository.save(products);
-            return ResponseEntity.status(HttpStatus.CREATED).body(getResponse(201,"Role has been added successfully ","CREATED"));
+            return ResponseEntity.status(HttpStatus.CREATED).body(getResponse(201,"Product has been added successfully ","CREATED"));
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(getResponse(500,"Role already mapped ","ERROR"));
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(getResponse(500,"Error in Adding Product ","ERROR"));
         }
     }
 
@@ -57,15 +57,24 @@ public class ProductConfigServiceImpl implements ProductsConfigService {
             try{
                 if(productsDTO.getProductType().trim().isEmpty() || productsDTO.getProfileName().trim().isEmpty()  ){
                    
-                    return ResponseEntity.status(HttpStatus.NOT_FOUND).body(getResponse(404,"Role name / Vms role name should not be blank ","ERROR"));
+                    return ResponseEntity.status(HttpStatus.FORBIDDEN).body(getResponse(403,"Product Type / Profile name should not be blank ","ERROR"));
                 }}
 
             catch (Exception e){
-                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(getResponse(404,"Role name / Vms role name should not be null ","ERROR"));
+                return ResponseEntity.status(HttpStatus.FORBIDDEN).body(getResponse(403,"Product Type / Profile name should not be null ","ERROR"));
             }
+
+            Optional<ProductConfigEntity> optionalProduct = Optional.ofNullable(repository.findByProductTypeAndProfileNameAndProductIdNotIn(productsDTO.getProductType(),productsDTO.getProfileName(),productsDTO.getProductId()));
+            if (optionalProduct.isPresent()) {
+                return ResponseEntity.status(HttpStatus.FORBIDDEN).body(getResponse(403,"This Product Already mapped with Same Profile ","ERROR"));
+            }
+            /*Optional<ProductConfigEntity> duplicateRole = Optional.ofNullable(repository.findByProductTypeAndProfileName(productsDTO.getProductType(),productsDTO.getProfileName()));
+            if (duplicateRole.isPresent()) {
+                return ResponseEntity.status(HttpStatus.FORBIDDEN).body(getResponse(403,"This Product Already mapped with Another Profile ","ERROR"));
+            }*/
             Optional<ProductConfigEntity> optionalRole = Optional.ofNullable(repository.findByProductId(productsDTO.getProductId()));
             if (!optionalRole.isPresent()) {
-                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(getResponse(404,"Role Not Found ","ERROR"));
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(getResponse(404,"Product Not Found ","ERROR"));
             }
             ProductConfigEntity existingProducts = optionalRole.get();
             if (productsDTO.getProductType() != null) {
@@ -77,9 +86,9 @@ public class ProductConfigServiceImpl implements ProductsConfigService {
             
 
             repository.save(existingProducts);
-            return ResponseEntity.status(HttpStatus.CREATED).body(getResponse(201,"Role has been updated successfully ","CREATED"));
+            return ResponseEntity.status(HttpStatus.OK).body(getResponse(200,"Product has been updated successfully ","CREATED"));
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(getResponse(500,"error while updating role config ","ERROR"));
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(getResponse(500,"error while updating Product config ","ERROR"));
         }
     }
 
@@ -91,7 +100,7 @@ public class ProductConfigServiceImpl implements ProductsConfigService {
             // return  repository.findAll() ; //ResponseEntity.status(HttpStatus.OK).body(a.getData());
            return ( productsEntity == null ? ResponseEntity.status(HttpStatus.NOT_FOUND).body(getResponse(404," no results" ,"ERROR")) : ResponseEntity.status(HttpStatus.OK).body(productsEntity));
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(getResponse(500,"error while fetching role config data","ERROR"));
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(getResponse(500,"error while fetching Product config data","ERROR"));
         }
     }
 
@@ -99,7 +108,7 @@ public class ProductConfigServiceImpl implements ProductsConfigService {
     public ResponseEntity<Object> getProduct(Long productId ) throws ResourceNotFoundException, DuplicateResourceException
     {
         ProductConfigEntity productsEntity = repository.findByProductId(productId);
-        return (productsEntity == null ? ResponseEntity.status(HttpStatus.NOT_FOUND).body(getResponse(404,"Role Not Found " ,"ERROR")) : ResponseEntity.status(HttpStatus.OK).body(productsEntity));
+        return (productsEntity == null ? ResponseEntity.status(HttpStatus.NOT_FOUND).body(getResponse(404,"Product Not Found " ,"ERROR")) : ResponseEntity.status(HttpStatus.OK).body(productsEntity));
     }
 
 }

@@ -1,0 +1,646 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.20.1.final using JasperReports Library version 6.20.1-7584acb244139816654f64e2fd57a00d3e31921e  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Family_details" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="bea73ca4-979c-45a1-b904-e85976485883">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="New Data Adapter"/>
+	<subDataset name="FamilyDetails" uuid="d3289a5a-20fb-4ab0-a6a3-370852a1c58e">
+		<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="New Data Adapter"/>
+		<queryString language="SQL">
+			<![CDATA[select * from product_config]]>
+		</queryString>
+		<field name="product_id" class="java.lang.Long">
+			<property name="com.jaspersoft.studio.field.name" value="product_id"/>
+			<property name="com.jaspersoft.studio.field.label" value="product_id"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="product_config"/>
+		</field>
+		<field name="product_type" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.name" value="product_type"/>
+			<property name="com.jaspersoft.studio.field.label" value="product_type"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="product_config"/>
+		</field>
+		<field name="profile_name" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.name" value="profile_name"/>
+			<property name="com.jaspersoft.studio.field.label" value="profile_name"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="product_config"/>
+		</field>
+	</subDataset>
+	<queryString language="SQL">
+		<![CDATA[select * from product_config]]>
+	</queryString>
+	<field name="product_id" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.name" value="product_id"/>
+		<property name="com.jaspersoft.studio.field.label" value="product_id"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="product_config"/>
+	</field>
+	<field name="product_type" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="product_type"/>
+		<property name="com.jaspersoft.studio.field.label" value="product_type"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="product_config"/>
+	</field>
+	<field name="profile_name" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="profile_name"/>
+		<property name="com.jaspersoft.studio.field.label" value="profile_name"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="product_config"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="730" splitType="Stretch">
+			<componentElement>
+				<reportElement x="10" y="-30" width="530" height="700" uuid="205dd22b-43d4-45ba-93a6-b6ebee9bcf25"/>
+				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Vertical">
+					<datasetRun subDataset="FamilyDetails" uuid="e489f2a1-c5d8-4ec3-8c18-b3b48f9e853d">
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:listContents height="700" width="530">
+						<staticText>
+							<reportElement x="27" y="50" width="100" height="20" uuid="01b0972f-0379-4f84-b6c2-b49447c9cc82"/>
+							<textElement textAlignment="Left" verticalAlignment="Middle"/>
+							<text><![CDATA[No of Dependants]]></text>
+						</staticText>
+						<textField>
+							<reportElement x="125" y="50" width="100" height="20" uuid="eb4c481a-ce28-492f-a3ac-598aa49431ae"/>
+							<box>
+								<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle"/>
+							<textFieldExpression><![CDATA[$F{profile_name}]]></textFieldExpression>
+						</textField>
+						<staticText>
+							<reportElement x="28" y="81" width="100" height="20" uuid="26080130-2097-4212-9b6b-60b34107a434"/>
+							<textElement textAlignment="Left" verticalAlignment="Middle"/>
+							<text><![CDATA[No of Minors]]></text>
+						</staticText>
+						<textField>
+							<reportElement x="125" y="81" width="100" height="20" uuid="a651e511-d2d6-4a0c-9b0d-1586097572c9"/>
+							<box>
+								<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle"/>
+							<textFieldExpression><![CDATA[$F{profile_name}]]></textFieldExpression>
+						</textField>
+						<staticText>
+							<reportElement x="28" y="112" width="100" height="20" uuid="f1cd9a2c-cfcb-4805-bb3c-34f4b30b57ce"/>
+							<textElement textAlignment="Left" verticalAlignment="Middle"/>
+							<text><![CDATA[Spouse First Name]]></text>
+						</staticText>
+						<textField>
+							<reportElement x="126" y="112" width="100" height="20" uuid="fbe397d7-46d8-415e-9351-979eea731f93"/>
+							<box>
+								<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle"/>
+							<textFieldExpression><![CDATA[$F{profile_name}]]></textFieldExpression>
+						</textField>
+						<staticText>
+							<reportElement x="281" y="111" width="100" height="20" uuid="6fc02724-897d-4fdc-8160-94f24af08973"/>
+							<textElement textAlignment="Left" verticalAlignment="Middle"/>
+							<text><![CDATA[Spouse Mid Name]]></text>
+						</staticText>
+						<staticText>
+							<reportElement x="280" y="50" width="100" height="20" uuid="b9041a5c-1319-46d0-b464-ef7e83a6c258"/>
+							<textElement textAlignment="Left" verticalAlignment="Middle"/>
+							<text><![CDATA[Child Educatiol Level]]></text>
+						</staticText>
+						<textField>
+							<reportElement x="379" y="50" width="100" height="20" uuid="ef827468-a44c-4ffb-bc62-988d0715cf03"/>
+							<box>
+								<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle"/>
+							<textFieldExpression><![CDATA[$F{profile_name}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement x="379" y="111" width="100" height="20" uuid="2eceb61c-6ec3-4985-a8b9-19ca644083d0"/>
+							<box>
+								<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle"/>
+							<textFieldExpression><![CDATA[$F{profile_name}]]></textFieldExpression>
+						</textField>
+						<staticText>
+							<reportElement x="280" y="141" width="100" height="20" uuid="48e5dabe-8219-4d4b-83e5-093aeb63aa57"/>
+							<textElement textAlignment="Left" verticalAlignment="Middle"/>
+							<text><![CDATA[Spouse Alias]]></text>
+						</staticText>
+						<textField>
+							<reportElement x="379" y="141" width="100" height="20" uuid="1f888d2a-d62b-4916-b136-418011ba0a12"/>
+							<box>
+								<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle"/>
+							<textFieldExpression><![CDATA[$F{profile_name}]]></textFieldExpression>
+						</textField>
+						<staticText>
+							<reportElement x="28" y="19" width="468" height="20" uuid="c631f8f1-b592-44c5-adc3-e81b79c21afe"/>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font size="14" isBold="true"/>
+							</textElement>
+							<text><![CDATA[Family Details]]></text>
+						</staticText>
+						<textField>
+							<reportElement x="127" y="141" width="100" height="20" uuid="effcaea3-da2e-4add-9c18-f823b04b2123"/>
+							<box>
+								<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle"/>
+							<textFieldExpression><![CDATA[$F{profile_name}]]></textFieldExpression>
+						</textField>
+						<staticText>
+							<reportElement x="28" y="141" width="100" height="20" uuid="0f33c66c-4472-44f4-9343-268856487124"/>
+							<textElement textAlignment="Left" verticalAlignment="Middle"/>
+							<text><![CDATA[Spouse Last Name]]></text>
+						</staticText>
+						<staticText>
+							<reportElement x="283" y="170" width="100" height="20" uuid="24f097ff-5077-4bdb-b795-3fc35f8a3955"/>
+							<textElement textAlignment="Left" verticalAlignment="Middle"/>
+							<text><![CDATA[Spouse Birth Date]]></text>
+						</staticText>
+						<textField>
+							<reportElement x="126" y="201" width="100" height="20" uuid="ae926015-068b-485e-8cdb-1125635a9320"/>
+							<box>
+								<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle"/>
+							<textFieldExpression><![CDATA[$F{profile_name}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement x="379" y="201" width="100" height="20" uuid="f7bc9bbc-0a5d-4bd8-81df-c3403c197fa6"/>
+							<box>
+								<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle"/>
+							<textFieldExpression><![CDATA[$F{profile_name}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement x="380" y="231" width="100" height="20" uuid="acf15b98-d92e-459d-a66e-dd9ffabc64ca"/>
+							<box>
+								<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle"/>
+							<textFieldExpression><![CDATA[$F{profile_name}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement x="382" y="170" width="100" height="20" uuid="8e396f72-3e6a-4919-9db5-839244d0eca1"/>
+							<box>
+								<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle"/>
+							<textFieldExpression><![CDATA[$F{profile_name}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement x="127" y="232" width="100" height="20" uuid="9232564a-7846-4661-bfd4-9648f6a6cc97"/>
+							<box>
+								<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle"/>
+							<textFieldExpression><![CDATA[$F{profile_name}]]></textFieldExpression>
+						</textField>
+						<staticText>
+							<reportElement x="282" y="201" width="100" height="20" uuid="832ed2c9-9a83-4704-a43d-7700b793f6ec"/>
+							<textElement textAlignment="Left" verticalAlignment="Middle"/>
+							<text><![CDATA[Spouse Religion]]></text>
+						</staticText>
+						<staticText>
+							<reportElement x="29" y="201" width="100" height="20" uuid="80d8f4a6-9f0d-43f0-a114-9f5a289358a7"/>
+							<textElement textAlignment="Left" verticalAlignment="Middle"/>
+							<text><![CDATA[Spouse Age]]></text>
+						</staticText>
+						<staticText>
+							<reportElement x="282" y="231" width="100" height="20" uuid="e857f7b9-464f-46cd-bd0e-b8aeea1cddd8"/>
+							<textElement textAlignment="Left" verticalAlignment="Middle"/>
+							<text><![CDATA[Spouse Working]]></text>
+						</staticText>
+						<textField>
+							<reportElement x="128" y="170" width="100" height="20" uuid="184f1931-7c80-42f3-a734-521075f48638"/>
+							<box>
+								<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle"/>
+							<textFieldExpression><![CDATA[$F{profile_name}]]></textFieldExpression>
+						</textField>
+						<staticText>
+							<reportElement x="29" y="232" width="100" height="20" uuid="4ae234ba-184f-4c47-840c-72a62a0e2924"/>
+							<textElement textAlignment="Left" verticalAlignment="Middle"/>
+							<text><![CDATA[Entity Confirmation Spouse]]></text>
+						</staticText>
+						<staticText>
+							<reportElement x="29" y="170" width="100" height="20" uuid="e05da484-5b2e-4c37-bfc0-d1579f7aa318"/>
+							<textElement textAlignment="Left" verticalAlignment="Middle"/>
+							<text><![CDATA[Spouse Suffix]]></text>
+						</staticText>
+						<staticText>
+							<reportElement x="28" y="260" width="100" height="20" uuid="f0332dcc-a029-4560-b3e9-72126a2e2c59"/>
+							<textElement textAlignment="Left" verticalAlignment="Middle"/>
+							<text><![CDATA[Spouse Occupation]]></text>
+						</staticText>
+						<textField>
+							<reportElement x="126" y="260" width="100" height="20" uuid="d6f345d2-b1f8-4b0b-9263-35318423e727"/>
+							<box>
+								<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle"/>
+							<textFieldExpression><![CDATA[$F{profile_name}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement x="126" y="436" width="100" height="20" uuid="e0763e4e-c7f7-4e95-9232-8839a931e053"/>
+							<box>
+								<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle"/>
+							<textFieldExpression><![CDATA[$F{profile_name}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement x="382" y="346" width="100" height="20" uuid="264ba931-19aa-4e4d-b14f-8da1c1b81eff"/>
+							<box>
+								<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle"/>
+							<textFieldExpression><![CDATA[$F{profile_name}]]></textFieldExpression>
+						</textField>
+						<staticText>
+							<reportElement x="29" y="377" width="100" height="20" uuid="cc3572d9-3e95-4858-9469-0e44a1ba9826"/>
+							<textElement textAlignment="Left" verticalAlignment="Middle"/>
+							<text><![CDATA[Father Age]]></text>
+						</staticText>
+						<textField>
+							<reportElement x="128" y="346" width="100" height="20" uuid="aa8ab972-a906-4bc5-87db-a2b5760b8c64"/>
+							<box>
+								<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle"/>
+							<textFieldExpression><![CDATA[$F{profile_name}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement x="379" y="287" width="100" height="20" uuid="216f030e-647c-45a9-8fb1-cd60e13cab0d"/>
+							<box>
+								<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle"/>
+							<textFieldExpression><![CDATA[$F{profile_name}]]></textFieldExpression>
+						</textField>
+						<staticText>
+							<reportElement x="281" y="287" width="100" height="20" uuid="cb7ce24c-a924-4bd7-90c6-0d0c661791e0"/>
+							<textElement textAlignment="Left" verticalAlignment="Middle"/>
+							<text><![CDATA[Father Mid Name]]></text>
+						</staticText>
+						<textField>
+							<reportElement x="126" y="377" width="100" height="20" uuid="3c045b35-0df4-48b2-bb8f-52ba3d91ab77"/>
+							<box>
+								<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle"/>
+							<textFieldExpression><![CDATA[$F{profile_name}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement x="379" y="377" width="100" height="20" uuid="67a459fb-7ad7-431b-bbe5-b39de49fb1d7"/>
+							<box>
+								<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle"/>
+							<textFieldExpression><![CDATA[$F{profile_name}]]></textFieldExpression>
+						</textField>
+						<staticText>
+							<reportElement x="283" y="346" width="100" height="20" uuid="cc484efb-7d97-40bc-94e2-d311ea2006af"/>
+							<textElement textAlignment="Left" verticalAlignment="Middle"/>
+							<text><![CDATA[Father Birth Date]]></text>
+						</staticText>
+						<textField>
+							<reportElement x="379" y="317" width="100" height="20" uuid="a06aee3c-5d1f-4208-8cfd-8225987cfd1e"/>
+							<box>
+								<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle"/>
+							<textFieldExpression><![CDATA[$F{profile_name}]]></textFieldExpression>
+						</textField>
+						<staticText>
+							<reportElement x="29" y="408" width="100" height="20" uuid="4cf22255-247e-4a55-a6c4-3a93dff6d81e"/>
+							<textElement textAlignment="Left" verticalAlignment="Middle"/>
+							<text><![CDATA[Entity Confirmation Father]]></text>
+						</staticText>
+						<staticText>
+							<reportElement x="28" y="288" width="100" height="20" uuid="9241fbe7-7be4-4622-a9b2-9cc6350b1ecd"/>
+							<textElement textAlignment="Left" verticalAlignment="Middle"/>
+							<text><![CDATA[Father First Name]]></text>
+						</staticText>
+						<textField>
+							<reportElement x="126" y="288" width="100" height="20" uuid="50f42824-73eb-4298-9525-7e08931b27ea"/>
+							<box>
+								<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle"/>
+							<textFieldExpression><![CDATA[$F{profile_name}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement x="380" y="407" width="100" height="20" uuid="397f462a-d950-4d4c-b292-1218fe65286e"/>
+							<box>
+								<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle"/>
+							<textFieldExpression><![CDATA[$F{profile_name}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement x="127" y="317" width="100" height="20" uuid="415272f0-6c81-45c7-af5b-0a7bf98ba63f"/>
+							<box>
+								<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle"/>
+							<textFieldExpression><![CDATA[$F{profile_name}]]></textFieldExpression>
+						</textField>
+						<staticText>
+							<reportElement x="28" y="317" width="100" height="20" uuid="8cdb1927-9e11-409d-894d-63fa1dd81546"/>
+							<textElement textAlignment="Left" verticalAlignment="Middle"/>
+							<text><![CDATA[Father Last Name]]></text>
+						</staticText>
+						<staticText>
+							<reportElement x="28" y="436" width="100" height="20" uuid="d0156f87-6e18-40a4-b775-7373886824e6"/>
+							<textElement textAlignment="Left" verticalAlignment="Middle"/>
+							<text><![CDATA[Father Occupation]]></text>
+						</staticText>
+						<staticText>
+							<reportElement x="280" y="317" width="100" height="20" uuid="2e4e9f03-c143-445d-82e6-e0799fdfe945"/>
+							<textElement textAlignment="Left" verticalAlignment="Middle"/>
+							<text><![CDATA[Father Alias]]></text>
+						</staticText>
+						<staticText>
+							<reportElement x="282" y="377" width="100" height="20" uuid="0e092410-76f9-4aa3-a915-56624779654a"/>
+							<textElement textAlignment="Left" verticalAlignment="Middle"/>
+							<text><![CDATA[Father  Religion]]></text>
+						</staticText>
+						<staticText>
+							<reportElement x="29" y="346" width="100" height="20" uuid="068a885d-3894-4f2e-8759-730e90b0ece9"/>
+							<textElement textAlignment="Left" verticalAlignment="Middle"/>
+							<text><![CDATA[Father Suffix]]></text>
+						</staticText>
+						<textField>
+							<reportElement x="127" y="408" width="100" height="20" uuid="4c4e8918-f41c-4b89-8914-4cde927dc720"/>
+							<box>
+								<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle"/>
+							<textFieldExpression><![CDATA[$F{profile_name}]]></textFieldExpression>
+						</textField>
+						<staticText>
+							<reportElement x="282" y="407" width="100" height="20" uuid="36775082-b1ce-4a48-9d21-a5848d20fd5b"/>
+							<textElement textAlignment="Left" verticalAlignment="Middle"/>
+							<text><![CDATA[Father Working]]></text>
+						</staticText>
+						<staticText>
+							<reportElement x="282" y="553" width="100" height="20" uuid="7e92aaf3-26b1-4cb5-bd7d-108b9e9397a6"/>
+							<textElement textAlignment="Left" verticalAlignment="Middle"/>
+							<text><![CDATA[Mother  Religion]]></text>
+						</staticText>
+						<staticText>
+							<reportElement x="28" y="612" width="100" height="20" uuid="e6a5404b-7508-479c-8762-fb5a63e35248"/>
+							<textElement textAlignment="Left" verticalAlignment="Middle"/>
+							<text><![CDATA[Mother Occupation]]></text>
+						</staticText>
+						<textField>
+							<reportElement x="379" y="493" width="100" height="20" uuid="0e4e33a0-7fa1-4c23-8dc0-449682d839c9"/>
+							<box>
+								<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle"/>
+							<textFieldExpression><![CDATA[$F{profile_name}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement x="379" y="463" width="100" height="20" uuid="e5f22ae5-ac8d-4073-ba7b-350e67d89871"/>
+							<box>
+								<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle"/>
+							<textFieldExpression><![CDATA[$F{profile_name}]]></textFieldExpression>
+						</textField>
+						<staticText>
+							<reportElement x="28" y="464" width="100" height="20" uuid="eddede9d-52ef-46a5-b92a-304dde4db4b9"/>
+							<textElement textAlignment="Left" verticalAlignment="Middle"/>
+							<text><![CDATA[Mother First Name]]></text>
+						</staticText>
+						<textField>
+							<reportElement x="379" y="553" width="100" height="20" uuid="43e69def-5542-4476-bff6-93a1f4173ad7"/>
+							<box>
+								<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle"/>
+							<textFieldExpression><![CDATA[$F{profile_name}]]></textFieldExpression>
+						</textField>
+						<staticText>
+							<reportElement x="281" y="463" width="100" height="20" uuid="e790d0a6-a3a1-4da6-ac3e-63a0d9c308d3"/>
+							<textElement textAlignment="Left" verticalAlignment="Middle"/>
+							<text><![CDATA[Mother Mid Name]]></text>
+						</staticText>
+						<staticText>
+							<reportElement x="29" y="522" width="100" height="20" uuid="e5dcebee-db1c-454b-b531-6d485efcbaac"/>
+							<textElement textAlignment="Left" verticalAlignment="Middle"/>
+							<text><![CDATA[Mother Suffix]]></text>
+						</staticText>
+						<staticText>
+							<reportElement x="282" y="583" width="100" height="20" uuid="c651f7ec-923a-4583-bc20-3cfa0b926599"/>
+							<textElement textAlignment="Left" verticalAlignment="Middle"/>
+							<text><![CDATA[Mother Working]]></text>
+						</staticText>
+						<staticText>
+							<reportElement x="29" y="553" width="100" height="20" uuid="3002a0fd-e5c8-46f8-b0a7-40780f715d38"/>
+							<textElement textAlignment="Left" verticalAlignment="Middle"/>
+							<text><![CDATA[Mother Age]]></text>
+						</staticText>
+						<textField>
+							<reportElement x="382" y="522" width="100" height="20" uuid="f545ee12-01a0-4d01-b61d-f8c607c03b67"/>
+							<box>
+								<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle"/>
+							<textFieldExpression><![CDATA[$F{profile_name}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement x="380" y="583" width="100" height="20" uuid="30b58a4d-40ba-476c-9e14-ee5ce501286d"/>
+							<box>
+								<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle"/>
+							<textFieldExpression><![CDATA[$F{profile_name}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement x="127" y="493" width="100" height="20" uuid="ebe06702-fe22-470c-8987-321671fef55e"/>
+							<box>
+								<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle"/>
+							<textFieldExpression><![CDATA[$F{profile_name}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement x="128" y="522" width="100" height="20" uuid="d9afa004-9cd7-417a-9fd5-df4f772f9f39"/>
+							<box>
+								<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle"/>
+							<textFieldExpression><![CDATA[$F{profile_name}]]></textFieldExpression>
+						</textField>
+						<staticText>
+							<reportElement x="29" y="584" width="100" height="20" uuid="cdc7b15e-aea7-4b59-8975-91b425695234"/>
+							<textElement textAlignment="Left" verticalAlignment="Middle"/>
+							<text><![CDATA[Entity Confirmation Mother]]></text>
+						</staticText>
+						<staticText>
+							<reportElement x="28" y="493" width="100" height="20" uuid="2cf1faba-e324-40ea-8194-192b5a64c387"/>
+							<textElement textAlignment="Left" verticalAlignment="Middle"/>
+							<text><![CDATA[Mother Last Name]]></text>
+						</staticText>
+						<textField>
+							<reportElement x="126" y="553" width="100" height="20" uuid="654cde92-3545-47bf-857f-04c46608b4c5"/>
+							<box>
+								<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle"/>
+							<textFieldExpression><![CDATA[$F{profile_name}]]></textFieldExpression>
+						</textField>
+						<staticText>
+							<reportElement x="280" y="493" width="100" height="20" uuid="1a12b042-df55-4af5-bd93-bfd46146428f"/>
+							<textElement textAlignment="Left" verticalAlignment="Middle"/>
+							<text><![CDATA[Mother Alias]]></text>
+						</staticText>
+						<textField>
+							<reportElement x="127" y="584" width="100" height="20" uuid="3b2f29d4-cb1b-4d5d-9b14-246b96beb063"/>
+							<box>
+								<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle"/>
+							<textFieldExpression><![CDATA[$F{profile_name}]]></textFieldExpression>
+						</textField>
+						<staticText>
+							<reportElement x="283" y="522" width="100" height="20" uuid="bc11a744-a5a3-434a-9dbc-9eb02f506cc6"/>
+							<textElement textAlignment="Left" verticalAlignment="Middle"/>
+							<text><![CDATA[Mother Birth Date]]></text>
+						</staticText>
+						<textField>
+							<reportElement x="126" y="464" width="100" height="20" uuid="e21eb853-5f9a-47ea-87a4-4677ec447c6b"/>
+							<box>
+								<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle"/>
+							<textFieldExpression><![CDATA[$F{profile_name}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement x="126" y="612" width="100" height="20" uuid="9a3f537f-5175-4271-879a-1fc5d8bf3ef0"/>
+							<box>
+								<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle"/>
+							<textFieldExpression><![CDATA[$F{profile_name}]]></textFieldExpression>
+						</textField>
+					</jr:listContents>
+				</jr:list>
+			</componentElement>
+		</band>
+	</detail>
+</jasperReport>
