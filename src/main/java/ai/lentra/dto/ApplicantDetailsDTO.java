@@ -22,7 +22,7 @@ import java.util.Date;
 public class ApplicantDetailsDTO{
 	private long applicantId;
 	private Summary summary;
-	private ContactDetailsDTO commitments;
+	private CommitmentDTO commitments;
 	private FamilyDetailsDTO familyDetails;
 	private EmploymentDetailsDTO officeSelfEmployment;
 	private ContactDetailsDTO contactInformation;

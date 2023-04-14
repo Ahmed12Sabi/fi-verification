@@ -13,7 +13,6 @@ import ai.lentra.modal.vehicle_info.VehicleDetailsHistory;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
 import java.util.Date;
 
 @Entity
@@ -52,7 +51,7 @@ public class ApplicantDetailsHistory {
     @JoinColumn(name = "vehicle_details_history", referencedColumnName = "id")
     private VehicleDetailsHistory vehicleDetailsHistory;
     private String id;
-    @NotBlank(message = "applicant type is required")
+    //    @NotBlank(message = "applicant type is required")
     private String applicantType;
     private String applicantName;
     private String applicantCategory;

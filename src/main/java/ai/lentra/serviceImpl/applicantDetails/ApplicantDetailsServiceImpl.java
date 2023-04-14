@@ -56,8 +56,8 @@ public class ApplicantDetailsServiceImpl implements ApplicantDetailsService {
             applicantDetailsDTO.getContactInformation().setApplicantId(applicantId);
         if (applicantDetailsDTO.getExpenses()!=null)
             applicantDetailsDTO.getExpenses().setApplicantId(applicantId);
-        if (applicantDetailsDTO.getCommitments()!=null)
-            applicantDetailsDTO.getCommitments().setApplicantId(applicantId);
+//        if (applicantDetailsDTO.getCommitments()!=null)
+//            applicantDetailsDTO.getCommitments().setApplicantId(applicantId);
         if (applicantDetailsDTO.getResidences()!=null)
             applicantDetailsDTO.getResidences().setApplicantId(applicantId);
         if (applicantDetailsDTO.getSummary()!=null)
@@ -83,12 +83,14 @@ public class ApplicantDetailsServiceImpl implements ApplicantDetailsService {
             applicantDetailsRepository.save(tempDetails);
             historyRepository.save(tempDetailsHistory);
             VerificationStatusDTO statusDTO= new VerificationStatusDTO();
-            statusDTO.setApplicationId(headers.getApplicationId());
-            statusDTO.setStatus(applicantDetails.getStatus());
-            statusDTO.setVerificationStage("COMPLETED");
-            statusDTO.setBranchName(headers.getBranchName());
-            statusDTO.setVerificationStatus(applicantDetails.getUserStatus());
-            verificationStatusService.updateVerificationStatus(statusDTO,headers);
+            if(headers.getApplicationId()!=null) {
+                statusDTO.setApplicationId(headers.getApplicationId());
+                statusDTO.setStatus(applicantDetails.getStatus());
+                statusDTO.setVerificationStage("COMPLETED");
+                statusDTO.setBranchName(headers.getBranchName());
+                statusDTO.setVerificationStatus(applicantDetails.getUserStatus());
+                verificationStatusService.updateVerificationStatus(statusDTO, headers);
+            }
             return  new ResponseEntity<>(applicantDetails,HttpStatus.OK);
 
         }else {

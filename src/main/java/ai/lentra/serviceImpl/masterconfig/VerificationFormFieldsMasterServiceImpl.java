@@ -5,15 +5,12 @@ import ai.lentra.modal.masterconfig.VerificationFormFieldMaster;
 import ai.lentra.repository.masterconfig.VerificationFormFieldMasterRepository;
 import ai.lentra.service.masterconfig.VerificationFormFieldsMasterService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 
-import static ai.lentra.commons.ResponeGen.getResponse;
 @Service
 @Transactional
 public class VerificationFormFieldsMasterServiceImpl implements VerificationFormFieldsMasterService {
@@ -36,7 +33,6 @@ public class VerificationFormFieldsMasterServiceImpl implements VerificationForm
             responseList.add(response);
         });
 return responseList;
-//        return (master == null ? ResponseEntity.status(HttpStatus.NOT_FOUND).body(getResponse(404,"Master Details Not Found for " ,"ERROR")) : ResponseEntity.status(HttpStatus.OK).body(responseList));
 
     }
 

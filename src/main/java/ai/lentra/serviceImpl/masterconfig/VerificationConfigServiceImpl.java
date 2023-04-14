@@ -1,13 +1,9 @@
 package ai.lentra.serviceImpl.masterconfig;
 
 import ai.lentra.commons.JsonUtils1;
-import ai.lentra.dto.ExpensesDto;
 import ai.lentra.dto.masterconfig.MasterVerificationConfigurationDto;
-import ai.lentra.dto.masterconfig.VerificationFormConfigDto;
 import ai.lentra.dto.masterconfig.VerificationFormFieldsConfigDto;
 import ai.lentra.dto.responses.ResponseDTO;
-import ai.lentra.modal.contact_info.ContactDetails;
-import ai.lentra.modal.expenses.Expenses;
 import ai.lentra.modal.masterconfig.MasterVerificationConfiguration;
 import ai.lentra.modal.masterconfig.VerificationConfig;
 import ai.lentra.modal.masterconfig.VerificationFormConfig;
@@ -39,30 +35,20 @@ public class VerificationConfigServiceImpl implements VerificationConfigService 
     VerificationFormFieldsConfigRepository repository;
     @Autowired
     MasterVerificationConfigurationRepository masterRepository;
+
+//    @Autowired
+//    ConfigurationRepository configurationRepository;
     @Autowired
     ProductService productService;
 
     @Override
     public ResponseEntity<ResponseDTO>  addFields(VerificationFormFieldsConfigDto verificationFormFieldsConfigDto) throws ConstraintViolationException {
         VerificationFormFieldsConfig verificationFormFieldsConfig = createConfigObject(verificationFormFieldsConfigDto);
-//        MasterVerificationConfiguration masterVerificationConfiguration = jsonUtils.mapper().convertValue(verificationFormFieldsConfigDto.getMasterVerificationConfiguration(), MasterVerificationConfiguration.class);
-//        VerificationFormConfig verificationFormConfig = jsonUtils.mapper().convertValue(verificationFormFieldsConfigDto.getVerificationFormConfig(), VerificationFormConfig.class);
-//        VerificationConfig verificationConfig = new VerificationConfig();
-//        verificationConfig.setVDescription(verificationFormFieldsConfigDto.getVerificationFormConfig().getVerificationConfig().getVDescription());
-//        verificationConfig.setVId(verificationFormFieldsConfigDto.getVerificationFormConfig().getVerificationConfig().getVId());
-//        verificationConfig.setMasterVerificationConfiguration(masterVerificationConfiguration);
-//        verificationFormFieldsConfig.setMasterVerificationConfiguration(masterVerificationConfiguration);
-//        verificationFormFieldsConfig.setVerificationFormConfig(verificationFormConfig);
-//        verificationFormFieldsConfig.getVerificationFormConfig().setVerificationConfig(verificationConfig);
-//        return ResponseEntity.status(HttpStatus.CREATED).body(repository.save(verificationFormFieldsConfig));
-        try{
-            System.out.println("BEFORE SAVE");
+    try{
             repository.save(verificationFormFieldsConfig);
-            System.out.println("AFTER SAVE");
 
             return ResponseEntity.status(HttpStatus.CREATED).body(getSuccessResponse(201,"Verification Config form fields has been added successfully ","CREATED",verificationFormFieldsConfig ));
         } catch (Exception e) {
-            System.out.println("ERROR");
             e.printStackTrace();
 
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(getResponse(500,"error while adding config form fields","ERROR"));
@@ -74,7 +60,7 @@ public class VerificationConfigServiceImpl implements VerificationConfigService 
         MasterVerificationConfiguration master = new MasterVerificationConfiguration();
         VerificationFormConfig verificationFormConfig = new VerificationFormConfig();
         VerificationConfig verificationConfig = new VerificationConfig();
-        //Set Matser Date
+        //Set Matser Data
         master.setId(verificationFormFieldsConfigDto.getMasterVerificationConfiguration().getId());
         if(verificationFormFieldsConfigDto.getMasterVerificationConfiguration().isRetrigerVerification()) {
             master.setRetrigerVerification(verificationFormFieldsConfigDto.getMasterVerificationConfiguration().isRetrigerVerification());
@@ -97,7 +83,9 @@ public class VerificationConfigServiceImpl implements VerificationConfigService 
        // verificationFormConfig.setFormName(verificationFormFieldsConfigDto.getVerificationFormConfig().getFormName());
         verificationFormConfig.setFormId(verificationFormFieldsConfigDto.getVerificationFormConfig().getFormId());
       //  verificationFormConfig.setMasterVerificationConfiguration(master);
-      //  verificationFormConfig.setVerificationConfig(verificationConfig);
+        verificationFormConfig.setVerificationConfig(verificationConfig);
+        verificationFormConfig.setFormName(verificationFormFieldsConfigDto.getVerificationFormConfig().getFormName());
+        verificationFormConfig.setFormDescription(verificationFormFieldsConfigDto.getVerificationFormConfig().getFormDescription());
 
         verificationFormFieldsConfig.setVerificationFormConfig(verificationFormConfig);
         verificationFormFieldsConfig.setMasterVerificationConfiguration(master);
@@ -172,8 +160,15 @@ public class VerificationConfigServiceImpl implements VerificationConfigService 
                master.stream()
                        .map(add -> jsonUtils.mapper().convertValue(add, MasterVerificationConfigurationDto.class)).collect(Collectors.toList());
 
-return masterDto;
+                return masterDto;
 //        return ResponseEntity.status(HttpStatus.OK).body(getSuccessResponse(200,"Master Verification Config Details loaded successfully","SUCCESS",masterDto ));
+    }
+
+    @Override
+    public List<VerificationFormFieldsConfig> getAllConfig() {
+List<VerificationFormFieldsConfig> list= repository.findCrossJoin();
+//        Configuration config = new Configuration()
+        return list;
     }
 
 }

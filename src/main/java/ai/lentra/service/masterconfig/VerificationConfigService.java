@@ -1,7 +1,6 @@
 package ai.lentra.service.masterconfig;
 
 import ai.lentra.dto.masterconfig.MasterVerificationConfigurationDto;
-import ai.lentra.dto.masterconfig.VerificationFormConfigDto;
 import ai.lentra.dto.masterconfig.VerificationFormFieldsConfigDto;
 import ai.lentra.dto.responses.ResponseDTO;
 import ai.lentra.modal.masterconfig.VerificationFormFieldsConfig;
@@ -18,4 +17,6 @@ public interface VerificationConfigService {
     ResponseEntity<ResponseDTO>  updateFields(VerificationFormFieldsConfigDto verificationFormFieldsConfigDto);
 
     List<MasterVerificationConfigurationDto>  getVerificationType(Integer institutionId, String productType, String profile);
+
+    List<VerificationFormFieldsConfig> getAllConfig();
 }
