@@ -1,4 +1,5 @@
 /*
+
 package ai.lentra.controller.configuration.scoring;
 
 import ai.lentra.dto.ScoreConfig.ScoreConfigDTO;
@@ -16,7 +17,7 @@ import javax.persistence.EntityNotFoundException;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/config")
+@RequestMapping(value = "/score-configs")
 public class ScoreConfigController {
 
     private static final Logger logger =  LoggerFactory.getLogger(ScoreConfigController.class);
@@ -25,7 +26,7 @@ public class ScoreConfigController {
     private ScoreConfigService scoreConfigService;
 
     @Operation(summary = "Get all residence")
-    @GetMapping(value = "/master_score_fields")
+    @GetMapping(value = "/get-all-score")
     public ResponseEntity<List<ScoreConfigDTO>> getAllScoringFields() throws ResourceNotFoundException {
         logger.info("Started API call to get all Scoring fields");
         List<ScoreConfigDTO>  scoreConfigDTOList=scoreConfigService.getAllFieldScoreFields();
@@ -39,11 +40,12 @@ public class ScoreConfigController {
     }
 
     @Operation(summary = "Update Single score Fields")
-    @PutMapping(value = "/master_score_fields")
+    @PutMapping(value = "/update-score-coonfig")
     public ResponseEntity<?> updateScoreFields( @RequestBody ScoreConfigDTO scoreConfigDTO)  {
         logger.info("Started API call to update scoring details  ...");
              scoreConfigService.updateScoreFields(scoreConfigDTO);
         return  new ResponseEntity<>("updated successfully ",HttpStatus.OK);
     }
 }
+
 */

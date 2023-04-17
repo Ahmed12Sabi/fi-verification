@@ -12,12 +12,12 @@ import java.util.List;
 
 @RestController
 @Validated
-@RequestMapping(value = "/configs")
+@RequestMapping(value = "/verification-master-form-fields-configs")
 public class MasterConfigController {
 
     @Autowired
     VerificationFormFieldsMasterService verificationFormFieldsMasterService;
-    @GetMapping("/verification_master_form_fields_config")
+    @GetMapping("")
     public List<VerificationFormFieldResponse> getMasterFields() {
 
         return verificationFormFieldsMasterService.getAllMasters();

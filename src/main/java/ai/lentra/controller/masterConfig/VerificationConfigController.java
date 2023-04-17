@@ -16,7 +16,7 @@ import java.util.List;
 
 @RestController
 @Validated
-@RequestMapping(value = "/configs/verification_master_configs")
+@RequestMapping(value = "/master-configurations")
 public class VerificationConfigController {
 
     @Autowired

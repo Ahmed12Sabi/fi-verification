@@ -24,21 +24,20 @@ public class ReportParsingController {
     @Autowired
     private ReportParsingService reportParsingService;
 
-    @PostMapping(value="" , consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public ResponseEntity<?> uploadFilesOnline(@RequestHeader(value="institution_id", required = true) Integer institutionId,
+    @PostMapping(value="{institutionId}" , consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public ResponseEntity<?> uploadFilesOnline(@PathVariable Integer institutionId,
                                                          @RequestBody MultipartFile file) throws IOException {
 
 
         return reportParsingService.uploadReport(file, institutionId);
     }
 
-    @GetMapping("/{institutionId}")
+    @GetMapping("{institutionId}")
     public ResponseEntity<?> getCsv(
             @RequestHeader(name = "Content-Disposition") final String fileName,
 
             @RequestHeader(name = "Content-Type") final String mediaType,
             @PathVariable Integer institutionId) {
-        System.out.println(institutionId+"Institute");
         List<String> fields = reportConfigService.findByInstitute(institutionId);
         final InputStreamResource resource = new InputStreamResource( downloadReportService.load(fields));
        return ResponseEntity.ok()
