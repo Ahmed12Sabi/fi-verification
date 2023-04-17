@@ -8,18 +8,18 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/reports/config")
+@RequestMapping("/report-configs")
 public class ReportConfigController {
     @Autowired
     private ReportConfigService reportConfigService;
 
-    @GetMapping("/get/{institutionId}")
+    @GetMapping("/{institutionId}")
     public List<ReportConfig> getConfig(
             @PathVariable Integer institutionId) {
     return reportConfigService.findByInstituteAll(institutionId);
     }
 
-    @PostMapping("/save")
+    @PostMapping("")
     public List<ReportConfig> saveConfig(
             @RequestHeader (value = "Content-Type", required = true) String contentType,
                                       @RequestBody List<ReportConfig> reportConfig) {
