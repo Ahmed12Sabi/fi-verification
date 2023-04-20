@@ -17,7 +17,7 @@ public class OfflineVerificationController {
     @Autowired
     OfflineVerificationService offlineVerificationService;
     @GetMapping("/download-pdf")
-    public HttpServletResponse getOffLinePDF(HttpServletResponse response) throws Exception{
+    public String getOffLinePDF(HttpServletResponse response) throws Exception{
 
     return offlineVerificationService.getOffLinePDF(response);
     }

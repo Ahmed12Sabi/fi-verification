@@ -34,7 +34,7 @@ public class RoleConfigServiceImpl implements RolesConfigService {
     @Override
     public ResponseEntity<ResponseDTO> saveRole(RolesDTO rolesDTO, Locale locale) throws ResourceNotFoundException, DuplicateResourceException
     {
-        try{
+//        try{
             try{
             if(rolesDTO.getRoleName().trim().isEmpty() || rolesDTO.getVmsRoleName().trim().isEmpty() || ( rolesDTO.getStatus() == null) ){
                 if(rolesDTO.getStatus() == null ){
@@ -65,9 +65,9 @@ public class RoleConfigServiceImpl implements RolesConfigService {
 
 
             return ResponseEntity.status(HttpStatus.CREATED).body(getResponse(201,"Role has been added successfully ","CREATED"));
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(getResponse(500,"Role already mapped ","ERROR"));
-        }
+//        } catch (Exception e) {
+//            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(getResponse(500,"Role already mapped ","ERROR"));
+//        }
     }
 
     @Override

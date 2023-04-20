@@ -26,7 +26,7 @@ import java.util.*;
 public class OfflineVerificationServiceImpl implements OfflineVerificationService {
     @Autowired
     public DataSource dataSource;
-    public HttpServletResponse getOffLinePDF(HttpServletResponse response) throws Exception {
+    public HttpServletResponse getOffLinePDF1(HttpServletResponse response) throws Exception {
         String sourceFileName = ResourceUtils.getFile("/home/afroze/git/lentra/target/classes/"+ "OffLineFiFormsPDF.jasper").getAbsolutePath();
         // creating our list of beans
 
@@ -42,7 +42,7 @@ public class OfflineVerificationServiceImpl implements OfflineVerificationServic
         return response;
     }
     //for temporary void method added
-    public void getOffLineHTML(HttpServletResponse response) throws Exception {
+    public String getOffLinePDF(HttpServletResponse response) throws Exception {
 
         Configuration cfg = new Configuration();
 
@@ -86,7 +86,7 @@ public class OfflineVerificationServiceImpl implements OfflineVerificationServic
         }finally {
             fileWriter.close();
         }
-
+    return "success";
     }
 
     }

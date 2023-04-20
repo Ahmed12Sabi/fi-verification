@@ -4,5 +4,5 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 public interface OfflineVerificationService {
-    public HttpServletResponse getOffLinePDF(HttpServletResponse response) throws Exception;
+    public String getOffLinePDF(HttpServletResponse response) throws Exception;
 }
