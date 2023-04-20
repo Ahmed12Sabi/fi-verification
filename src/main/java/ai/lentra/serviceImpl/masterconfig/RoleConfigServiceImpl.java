@@ -38,12 +38,12 @@ public class RoleConfigServiceImpl implements RolesConfigService {
             try{
             if(rolesDTO.getRoleName().trim().isEmpty() || rolesDTO.getVmsRoleName().trim().isEmpty() || ( rolesDTO.getStatus() == null) ){
                 if(rolesDTO.getStatus() == null ){
-                    return ResponseEntity.status(HttpStatus.NOT_FOUND).body(getResponse(404,"Status should not be null / empty ","ERROR"));
+                    return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(getResponse(400,"Status should not be null / empty ","ERROR"));
                 }
-                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(getResponse(404,"Role name / Vms role name should not be blank ","ERROR"));
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(getResponse(400,"Role name / Vms role name should not be blank ","ERROR"));
             }}
             catch (Exception e){
-                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(getResponse(404,"Role name / Vms role name should not be null ","ERROR"));
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(getResponse(400,"Role name / Vms role name should not be null ","ERROR"));
             }
             Long role = repository.countByRoleNameAndVmsRoleName(rolesDTO.getRoleName(),rolesDTO.getVmsRoleName());
             ObjectMapper objectMapper = new ObjectMapper();
@@ -77,12 +77,12 @@ public class RoleConfigServiceImpl implements RolesConfigService {
             try{
                 if(rolesDTO.getRoleName().trim().isEmpty() || rolesDTO.getVmsRoleName().trim().isEmpty() || ( rolesDTO.getStatus() == null) ){
                     if(rolesDTO.getStatus() == null ){
-                        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(getResponse(404,"Status should not be null / empty ","ERROR"));
+                        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(getResponse(400,"Status should not be null / empty ","ERROR"));
                     }
-                    return ResponseEntity.status(HttpStatus.NOT_FOUND).body(getResponse(404,"Role name / Vms role name should not be blank ","ERROR"));
+                    return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(getResponse(400,"Role name / Vms role name should not be blank ","ERROR"));
                 }}
             catch (Exception e){
-                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(getResponse(404,"Role name / Vms role name should not be null ","ERROR"));
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(getResponse(400,"Role name / Vms role name should not be null ","ERROR"));
             }
             Optional<RolesEntity> optionalRole = Optional.ofNullable(repository.findByRoleId(rolesDTO.getRoleId()));
             if (!optionalRole.isPresent()) {
@@ -114,14 +114,11 @@ public class RoleConfigServiceImpl implements RolesConfigService {
                 List<RolesEntity> optionalDuplicates = repository.findAllByRoleName(rolesDTO.getRoleName());
                 for(RolesEntity optionalDuplicat : optionalDuplicates) {
                     Optional<RolesEntity> optional = Optional.ofNullable(optionalDuplicat);
-                    if ((vmsRoleCount > 0 && optional.get().getVmsRoleName().substring(3, 10).equalsIgnoreCase(rolesDTO.getVmsRoleName().substring(3, 10)))) {
-                        repository.save(existingRoles);
-                    } else if ((vmsRoleCount > 0 && !(optional.get().getVmsRoleName().substring(3, 10).equalsIgnoreCase(rolesDTO.getVmsRoleName().substring(3, 10))))) {
+                    if ((vmsRoleCount > 0 && !(optional.get().getVmsRoleName().substring(3, 10).equalsIgnoreCase(rolesDTO.getVmsRoleName().substring(3, 10))))) {
                         return ResponseEntity.status(HttpStatus.FORBIDDEN).body(getResponse(403, "Role is not mapping to related VMS role", "ERROR"));
-                    } else {
-                        repository.save(existingRoles);
-                      }
                     }
+                    }
+                repository.save(existingRoles);
                 }
             }
 

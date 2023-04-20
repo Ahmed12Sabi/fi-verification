@@ -19,25 +19,26 @@ import ai.lentra.exceptions.ResourceNotFoundException;
 public class ProductConfigController {
 	@Autowired
 	ProductsConfigService productsService;
-	@PostMapping("")
-	public ResponseEntity<ResponseDTO> saveRole( @RequestBody ProductsDTO productsDTO) throws ResourceNotFoundException, DuplicateResourceException {
 
+	@PostMapping("/product-config")
+	public ResponseEntity<ResponseDTO> saveRole( @RequestBody ProductsDTO productsDTO) throws ResourceNotFoundException, DuplicateResourceException {
+		System.out.printf("from controller");
 		return productsService.saveProduct(productsDTO);
 	}
 
-	@PutMapping("")
+	@PutMapping("/product-config")
 	public ResponseEntity<ResponseDTO> updateRole( @RequestBody ProductsDTO productsDTO) throws ResourceNotFoundException, DuplicateResourceException {
 
 		return productsService.updateProduct(productsDTO);
 	}
 
-	@GetMapping("")
+	@GetMapping("/products")
 	public ResponseEntity<Object>getAllproducts() throws ResourceNotFoundException, DuplicateResourceException {
 
 		return productsService.getAllProducts();
 	}
 
-	@GetMapping("/{productId}")
+	@GetMapping("/product-config/{productId}")
 	public ResponseEntity<Object> getRole(@PathVariable Long productId) throws ResourceNotFoundException, DuplicateResourceException {
 
 		return productsService.getProduct(productId);

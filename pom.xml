@@ -17,19 +17,19 @@
 		<java.version>11</java.version>
 	</properties>
 
-<!--	<repositories>-->
-<!--		<repository>-->
-<!--			<id>internal.release.artifactory</id>-->
-<!--			<name>Internal Artifactory release repo</name>-->
-<!--			<url>https://artifactory.serviceurl.in/repository/maven-releases/</url>-->
-<!--		</repository>-->
+	<repositories>
+		<repository>
+			<id>internal.release.artifactory</id>
+			<name>Internal Artifactory release repo</name>
+			<url>https://artifactory.serviceurl.in/repository/maven-releases/</url>
+		</repository>
 
-<!--		<repository>-->
-<!--			<id>internal.snapshot.artifactory</id>-->
-<!--			<name>Internal Artifactory snapshot repo</name>-->
-<!--			<url>https://artifactory.serviceurl.in/repository/maven-snapshots/</url>-->
-<!--		</repository>-->
-<!--	</repositories>-->
+		<repository>
+			<id>internal.snapshot.artifactory</id>
+			<name>Internal Artifactory snapshot repo</name>
+			<url>https://artifactory.serviceurl.in/repository/maven-snapshots/</url>
+		</repository>
+	</repositories>
 
 	<dependencies>
 		<dependency>
@@ -50,20 +50,20 @@
 			<version>1.3.2</version>
 		</dependency>
 
-<!--		Platform commons from lentr-->
-<!--		<dependency>-->
-<!--			<groupId>ai.lentra</groupId>-->
-<!--			<artifactId>platform-commons</artifactId>-->
-<!--			<classifier>tests</classifier>-->
-<!--			<type>test-jar</type>-->
-<!--			<scope>test</scope>-->
-<!--			<version>0.5-SNAPSHOT</version>-->
-<!--		</dependency>-->
-<!--		<dependency>-->
-<!--			<groupId>ai.lentra</groupId>-->
-<!--			<artifactId>platform-commons</artifactId>-->
-<!--			<version>0.5-SNAPSHOT</version>-->
-<!--		</dependency>-->
+		<!-- Platform commons from lentr -->
+		<dependency>
+			<groupId>ai.lentra</groupId>
+			<artifactId>platform-commons</artifactId>
+			<classifier>tests</classifier>
+			<type>test-jar</type>
+			<scope>test</scope>
+			<version>0.5-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>ai.lentra</groupId>
+			<artifactId>platform-commons</artifactId>
+			<version>0.5-SNAPSHOT</version>
+		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
@@ -148,6 +148,7 @@
 			<artifactId>poi-ooxml</artifactId>
 			<version>3.9</version>
 		</dependency>
+
     </dependencies>
 
 	<build>

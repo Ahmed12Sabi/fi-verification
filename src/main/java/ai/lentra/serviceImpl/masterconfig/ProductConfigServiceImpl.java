@@ -31,10 +31,10 @@ public class ProductConfigServiceImpl implements ProductsConfigService {
             try{
             if(productsDTO.getProductType().trim().isEmpty() || productsDTO.getProfileName().trim().isEmpty()  ){
                
-                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(getResponse(404,"Product Type / Profile name should not be blank ","ERROR"));
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(getResponse(400,"Product Type / Profile name should not be blank ","ERROR"));
             }}
             catch (Exception e){
-                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(getResponse(404,"Product Type / Profile name  should not be null ","ERROR"));
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(getResponse(400,"Product Type / Profile name  should not be null ","ERROR"));
             }
             Optional<ProductConfigEntity> optionalRole = Optional.ofNullable(repository.findByProductType(productsDTO.getProductType()));
             if (optionalRole.isPresent()) {
@@ -57,11 +57,11 @@ public class ProductConfigServiceImpl implements ProductsConfigService {
             try{
                 if(productsDTO.getProductType().trim().isEmpty() || productsDTO.getProfileName().trim().isEmpty()  ){
                    
-                    return ResponseEntity.status(HttpStatus.FORBIDDEN).body(getResponse(403,"Product Type / Profile name should not be blank ","ERROR"));
+                    return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(getResponse(400,"Product Type / Profile name should not be blank ","ERROR"));
                 }}
 
             catch (Exception e){
-                return ResponseEntity.status(HttpStatus.FORBIDDEN).body(getResponse(403,"Product Type / Profile name should not be null ","ERROR"));
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(getResponse(400,"Product Type / Profile name should not be null ","ERROR"));
             }
 
             Optional<ProductConfigEntity> optionalProduct = Optional.ofNullable(repository.findByProductTypeAndProfileNameAndProductIdNotIn(productsDTO.getProductType(),productsDTO.getProfileName(),productsDTO.getProductId()));

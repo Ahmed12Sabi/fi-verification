@@ -22,6 +22,6 @@ public class HeaderConfig {
         headersDTO.setApplicantType(applicantType);
         return headersDTO;
     }
-    @Value("${spring.configuration.scheduler}")
-    public static String scheduler;
+/*    @Value("${spring.configuration.scheduler}")
+    public static String scheduler;*/
 }
