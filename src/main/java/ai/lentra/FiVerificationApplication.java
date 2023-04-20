@@ -22,7 +22,7 @@ import java.io.IOException;
 import java.util.*;
 
 @SpringBootApplication
-//@Transactional
+@Transactional
 @EnableScheduling
 public class FiVerificationApplication {
 
