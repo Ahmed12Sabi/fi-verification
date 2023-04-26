@@ -1,14 +1,12 @@
 package ai.lentra.modal.summary;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import lombok.Data;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.time.Instant;
 import java.util.Date;
 
-@Data
 @Entity
 
 @JsonIgnoreProperties(ignoreUnknown = true)

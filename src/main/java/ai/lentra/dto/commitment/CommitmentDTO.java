@@ -3,9 +3,7 @@ package ai.lentra.dto.commitment;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+
 
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
@@ -15,9 +13,7 @@ import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 
-@ToString
-@Setter
-@Getter
+
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class CommitmentDTO {
     @Id
@@ -84,7 +80,165 @@ public class CommitmentDTO {
     @JsonProperty("bank_name_loc")
     private String bank_name_loc;
 
+    public Integer getCommitmentId() {
+        return commitmentId;
+    }
 
+    public void setCommitmentId(Integer commitmentId) {
+        this.commitmentId = commitmentId;
+    }
+
+    public String getInsurance_type() {
+        return insurance_type;
+    }
+
+    public void setInsurance_type(String insurance_type) {
+        this.insurance_type = insurance_type;
+    }
+
+    public String getLife_insurance_amt() {
+        return life_insurance_amt;
+    }
+
+    public void setLife_insurance_amt(String life_insurance_amt) {
+        this.life_insurance_amt = life_insurance_amt;
+    }
+
+    public String getLife_insurance_duration() {
+        return life_insurance_duration;
+    }
+
+    public void setLife_insurance_duration(String life_insurance_duration) {
+        this.life_insurance_duration = life_insurance_duration;
+    }
+
+    public String getCar_insurance_amt() {
+        return car_insurance_amt;
+    }
+
+    public void setCar_insurance_amt(String car_insurance_amt) {
+        this.car_insurance_amt = car_insurance_amt;
+    }
+
+    public String getCar_insurance_duration() {
+        return car_insurance_duration;
+    }
+
+    public void setCar_insurance_duration(String car_insurance_duration) {
+        this.car_insurance_duration = car_insurance_duration;
+    }
+
+    public String getHealth_insurance_amt() {
+        return health_insurance_amt;
+    }
+
+    public void setHealth_insurance_amt(String health_insurance_amt) {
+        this.health_insurance_amt = health_insurance_amt;
+    }
+
+    public String getHealth_insurance_duration() {
+        return health_insurance_duration;
+    }
+
+    public void setHealth_insurance_duration(String health_insurance_duration) {
+        this.health_insurance_duration = health_insurance_duration;
+    }
+
+    public String getTwoWheeler_insurance_amt() {
+        return twoWheeler_insurance_amt;
+    }
+
+    public void setTwoWheeler_insurance_amt(String twoWheeler_insurance_amt) {
+        this.twoWheeler_insurance_amt = twoWheeler_insurance_amt;
+    }
+
+    public String getTwoWheeler_insurance_duration() {
+        return twoWheeler_insurance_duration;
+    }
+
+    public void setTwoWheeler_insurance_duration(String twoWheeler_insurance_duration) {
+        this.twoWheeler_insurance_duration = twoWheeler_insurance_duration;
+    }
+
+    public String getHome_insurance_amt() {
+        return home_insurance_amt;
+    }
+
+    public void setHome_insurance_amt(String home_insurance_amt) {
+        this.home_insurance_amt = home_insurance_amt;
+    }
+
+    public String getHome_insurance_duration() {
+        return home_insurance_duration;
+    }
+
+    public void setHome_insurance_duration(String home_insurance_duration) {
+        this.home_insurance_duration = home_insurance_duration;
+    }
+
+    public String getTerm_insurance_amt() {
+        return term_insurance_amt;
+    }
+
+    public void setTerm_insurance_amt(String term_insurance_amt) {
+        this.term_insurance_amt = term_insurance_amt;
+    }
+
+    public String getTerm_insurance_duration() {
+        return term_insurance_duration;
+    }
+
+    public void setTerm_insurance_duration(String term_insurance_duration) {
+        this.term_insurance_duration = term_insurance_duration;
+    }
+
+    public String getLoc_amt() {
+        return loc_amt;
+    }
+
+    public void setLoc_amt(String loc_amt) {
+        this.loc_amt = loc_amt;
+    }
+
+    public String getLoc_expiry_date() {
+        return loc_expiry_date;
+    }
+
+    public void setLoc_expiry_date(String loc_expiry_date) {
+        this.loc_expiry_date = loc_expiry_date;
+    }
+
+    public String getNps_applicant_name() {
+        return nps_applicant_name;
+    }
+
+    public void setNps_applicant_name(String nps_applicant_name) {
+        this.nps_applicant_name = nps_applicant_name;
+    }
+
+    public String getNps_amt() {
+        return nps_amt;
+    }
+
+    public void setNps_amt(String nps_amt) {
+        this.nps_amt = nps_amt;
+    }
+
+    public String getNps_duration() {
+        return nps_duration;
+    }
+
+    public void setNps_duration(String nps_duration) {
+        this.nps_duration = nps_duration;
+    }
+
+    public String getBank_name_loc() {
+        return bank_name_loc;
+    }
+
+    public void setBank_name_loc(String bank_name_loc) {
+        this.bank_name_loc = bank_name_loc;
+    }
 }
 
 

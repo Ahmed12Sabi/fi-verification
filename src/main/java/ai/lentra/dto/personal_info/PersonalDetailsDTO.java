@@ -2,14 +2,13 @@ package ai.lentra.dto.personal_info;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import lombok.Data;
 
 import javax.validation.constraints.DecimalMax;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.Pattern;
 import java.math.BigDecimal;
 
-@Data
+
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class PersonalDetailsDTO {
@@ -53,5 +52,173 @@ public class PersonalDetailsDTO {
 	private BigDecimal incomePeriod;
 	private String dateTimeEndorsed;
 	@Pattern(regexp = "^([0-2][0-9]|(3)[0-1])(\\/)(((0)[0-9])|((1)[0-2]))(\\/)\\d{4}$", message = "Invalid date format. Please use the format DD/MM/YYYY")
-private String dateInspected;
+	private String dateInspected;
+
+	public long getApplicantId() {
+		return applicantId;
+	}
+
+	public void setApplicantId(long applicantId) {
+		this.applicantId = applicantId;
+	}
+
+	public int getPersRefId() {
+		return persRefId;
+	}
+
+	public void setPersRefId(int persRefId) {
+		this.persRefId = persRefId;
+	}
+
+	public boolean isLoanTakenEarlier() {
+		return loanTakenEarlier;
+	}
+
+	public void setLoanTakenEarlier(boolean loanTakenEarlier) {
+		this.loanTakenEarlier = loanTakenEarlier;
+	}
+
+	public String getCitizenship() {
+		return citizenship;
+	}
+
+	public void setCitizenship(String citizenship) {
+		this.citizenship = citizenship;
+	}
+
+	public String getBirthDate() {
+		return birthDate;
+	}
+
+	public void setBirthDate(String birthDate) {
+		this.birthDate = birthDate;
+	}
+
+	public String getReligion() {
+		return religion;
+	}
+
+	public void setReligion(String religion) {
+		this.religion = religion;
+	}
+
+	public String getMartialStatus() {
+		return martialStatus;
+	}
+
+	public void setMartialStatus(String martialStatus) {
+		this.martialStatus = martialStatus;
+	}
+
+	public boolean isPoliticallyExposed() {
+		return politicallyExposed;
+	}
+
+	public void setPoliticallyExposed(boolean politicallyExposed) {
+		this.politicallyExposed = politicallyExposed;
+	}
+
+	public String getEducationLevel() {
+		return educationLevel;
+	}
+
+	public void setEducationLevel(String educationLevel) {
+		this.educationLevel = educationLevel;
+	}
+
+	public int getAge() {
+		return age;
+	}
+
+	public void setAge(int age) {
+		this.age = age;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	public String getAlias() {
+		return alias;
+	}
+
+	public void setAlias(String alias) {
+		this.alias = alias;
+	}
+
+	public String getMiddleName() {
+		return middleName;
+	}
+
+	public void setMiddleName(String middleName) {
+		this.middleName = middleName;
+	}
+
+	public String getSuffix() {
+		return suffix;
+	}
+
+	public void setSuffix(String suffix) {
+		this.suffix = suffix;
+	}
+
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public BigDecimal getIncome() {
+		return income;
+	}
+
+	public void setIncome(BigDecimal income) {
+		this.income = income;
+	}
+
+	public String getCivilStatus() {
+		return civilStatus;
+	}
+
+	public void setCivilStatus(String civilStatus) {
+		this.civilStatus = civilStatus;
+	}
+
+	public String getIncomeSource() {
+		return incomeSource;
+	}
+
+	public void setIncomeSource(String incomeSource) {
+		this.incomeSource = incomeSource;
+	}
+
+	public BigDecimal getIncomePeriod() {
+		return incomePeriod;
+	}
+
+	public void setIncomePeriod(BigDecimal incomePeriod) {
+		this.incomePeriod = incomePeriod;
+	}
+
+	public String getDateTimeEndorsed() {
+		return dateTimeEndorsed;
+	}
+
+	public void setDateTimeEndorsed(String dateTimeEndorsed) {
+		this.dateTimeEndorsed = dateTimeEndorsed;
+	}
+
+	public String getDateInspected() {
+		return dateInspected;
+	}
+
+	public void setDateInspected(String dateInspected) {
+		this.dateInspected = dateInspected;
+	}
 }

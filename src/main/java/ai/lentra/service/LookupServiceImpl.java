@@ -18,7 +18,7 @@ public class LookupServiceImpl implements LookupService {
     public ResponseEntity newSimCardType(SimCardType simCardType)
     {
         if (simCardType!=null) {
-            simCardType.setActive(true);
+          //  simCardType.setActive(true);
             simCardTypeRepository.save(simCardType);
             ResponseDTO responseDTO = new ResponseDTO();
             responseDTO.setStatus("Success");

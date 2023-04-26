@@ -1,8 +1,10 @@
 package ai.lentra.controller.masterConfig;
 
+import ai.lentra.dto.masterconfig.MasterConfigResponse;
 import ai.lentra.dto.masterconfig.VerificationFormFieldsConfigDto;
 import ai.lentra.dto.responses.ResponseDTO;
 
+import ai.lentra.modal.masterconfig.MasterVerificationConfiguration;
 import ai.lentra.modal.masterconfig.VerificationFormFieldsConfig;
 import ai.lentra.service.masterconfig.VerificationConfigService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,19 +29,19 @@ public class VerificationConfigController {
                                                          @RequestHeader(value="user_name",required = true) String userName ,
                                                          @RequestHeader(value="institution_id",required = true) Integer institutionId,
                                                          @RequestHeader(value="role_type",required = true) String roleType ,
-                                                         @RequestBody @Valid VerificationFormFieldsConfigDto verificationFormFieldsConfigDto) throws ConstraintViolationException {
+                                                         @RequestBody @Valid List<MasterVerificationConfiguration> verificationFormFieldsConfigDto) throws ConstraintViolationException {
         return verificationConfigService.addFields( verificationFormFieldsConfigDto);
 
     }
 
     @GetMapping("")
-    public List<VerificationFormFieldsConfigDto>  getFieldsConfig(@RequestHeader(value="Content-Type",required = true) String contentType  ,
-                                                                  @RequestHeader(value="token",required = false) String token,
-                                                                  @RequestHeader(value="user_name",required = true) String userName ,
-                                                                  @RequestHeader(value="institution_id",required = true) Integer institutionId,
-                                                                  @RequestHeader(value="role_type",required = true) String roleType ) {
+    public List<MasterVerificationConfiguration> getFieldsConfig(@RequestHeader(value="Content-Type",required = true) String contentType  ,
+                                                                 @RequestHeader(value="token",required = false) String token,
 
-        return verificationConfigService.getAll( );
+                                                                 @RequestHeader(value="institution_id",required = true) Integer institutionId
+                                                                 ) {
+
+              return verificationConfigService.getAll( institutionId);
 
     }
 

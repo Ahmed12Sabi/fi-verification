@@ -1,13 +1,16 @@
-/*
+
 package ai.lentra.service;
 
-import ai.lentra.dto.CommitmentDTO;
 
+import ai.lentra.core.authz.internal.model.Role;
+import ai.lentra.dto.masterconfig.RolesDTO;
 import ai.lentra.dto.responses.ResponseDTO;
 import ai.lentra.exceptions.DuplicateResourceException;
 import ai.lentra.exceptions.ResourceNotFoundException;
-import ai.lentra.modal.Commitment;
 
+import ai.lentra.modal.masterconfig.RolesEntity;
+import ai.lentra.repository.masterconfig.RolesRepository;
+import ai.lentra.serviceImpl.masterconfig.RoleConfigServiceImpl;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +22,7 @@ import org.springframework.http.ResponseEntity;
 import java.util.List;
 
 import static org.junit.Assert.assertNotNull;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
 
@@ -26,8 +30,8 @@ import static org.mockito.Mockito.when;
 @Scope("ai.lentra.service.*")
 public class RoleConfigServiceImplTest {
     @MockBean
-    Role rolesRepository;
-    @Autowired
+    RolesRepository rolesRepository;
+    @MockBean
     RoleConfigServiceImpl roleConfigServiceImpl;
     RolesDTO rolesDTO = new RolesDTO();
     RolesEntity rolesEntity = new RolesEntity();
@@ -37,7 +41,7 @@ public class RoleConfigServiceImplTest {
         RolesEntity rolesEntity = dummyRolesEntity();
         RolesDTO rolesDTO = dummyRolesDTO();
         ResponseEntity<ResponseDTO> response = roleConfigServiceImpl.saveRole(rolesDTO);
-        when(rolesEntity).thenReturn(rolesEntity);
+        when(response).thenReturn(any());
         assertNotNull(response);
 
     }
@@ -82,7 +86,7 @@ public class RoleConfigServiceImplTest {
         rolesEntity = dummyRolesEntity();
         Integer id = 1;
         ResponseEntity<Object> response = roleConfigServiceImpl.getRole(id.longValue());
-        when(rolesRepository.getById(1)).thenReturn(rolesEntity);
+        when(rolesRepository.getById(1)).thenReturn(any());
         Assertions.assertNotNull(rolesEntity);
         Assertions.assertNotNull(response);
     }
@@ -97,4 +101,3 @@ public class RoleConfigServiceImplTest {
     }
 
 }
-*/

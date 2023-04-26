@@ -1,20 +1,17 @@
 package ai.lentra.dto.masterconfig;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import lombok.Data;
-
-import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-@Data
+
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class VerificationFormFieldsConfigDto {
     @NotNull(message = "Field id should not be null")
     private long fieldId;
-    private MasterVerificationConfigurationDto masterVerificationConfiguration;
-    private VerificationFormConfigDto verificationFormConfig;
+//    private MasterVerificationConfigurationDto masterVerificationConfiguration;
+//    private VerificationFormConfigDto verificationFormConfig;
     @Size(min = 2, max = 50, message = " Field name should have 2 to 50 characters")
     @NotNull(message = "Field Name should not be null")
     private String fieldName;

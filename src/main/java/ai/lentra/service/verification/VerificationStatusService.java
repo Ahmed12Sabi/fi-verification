@@ -53,10 +53,10 @@ public class VerificationStatusService {
         verifierDetailsCopy.setInstitutionId(headers.getInstitutionId());
         verifierDetailsCopy.setBranchName(headers.getBranchName());
         verifierDetailsCopy.setUsername(headers.getUsername());
-        verifierDetailsCopy.setMInspectedBy(headers.getUsername());
-        verifierDetailsCopy.setMInspectedDate(new Date());
+        verifierDetailsCopy.setmAssignedBy(headers.getUsername());
+        verifierDetailsCopy.setmInspectedDate(new Date());
         verifierDetailsCopy.setApplicationType(headers.getApplicationType());
-        verifierDetailsCopy.setMAssignedTo(headers.getUsername());
+        verifierDetailsCopy.setmAssignedTo(headers.getUsername());
         VerifierDetails tempVerifierDetails= verifierDetailsRepository.save(verifierDetailsCopy);
         if(tempVerifierDetails!=null)
         {

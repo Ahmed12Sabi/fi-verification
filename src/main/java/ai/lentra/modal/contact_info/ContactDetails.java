@@ -2,22 +2,19 @@ package ai.lentra.modal.contact_info;
 
 import ai.lentra.modal.lookups.SimCardType;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import lombok.Data;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
 @Entity
-@Data
-
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Embeddable
 public class ContactDetails {
-
     @Id
-    @Column(name = "applicant_id", nullable = false)
     @GeneratedValue(strategy = GenerationType.AUTO)
+ private long id;
+
+    @Column(name = "applicant_id")
     private long applicantId;
     @Pattern(regexp = "^\\d{10,13}$",message = "Mobile number should contain 10 to 13 digits only")
     private String mobileNumber;
@@ -39,5 +36,91 @@ public class ContactDetails {
     private boolean contDomainCheck;
     private boolean registeredWithBank;
 
+    public long getId() {
+        return id;
+    }
 
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public long getApplicantId() {
+        return applicantId;
+    }
+
+    public void setApplicantId(long applicantId) {
+        this.applicantId = applicantId;
+    }
+
+    public String getMobileNumber() {
+        return mobileNumber;
+    }
+
+    public void setMobileNumber(String mobileNumber) {
+        this.mobileNumber = mobileNumber;
+    }
+
+    public String getPersonalEmail() {
+        return personalEmail;
+    }
+
+    public void setPersonalEmail(String personalEmail) {
+        this.personalEmail = personalEmail;
+    }
+
+    public String getSimType() {
+        return simType;
+    }
+
+    public void setSimType(String simType) {
+        this.simType = simType;
+    }
+
+    public boolean isMobileNumberVerified() {
+        return mobileNumberVerified;
+    }
+
+    public void setMobileNumberVerified(boolean mobileNumberVerified) {
+        this.mobileNumberVerified = mobileNumberVerified;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public boolean isPhoneNumberVerified() {
+        return phoneNumberVerified;
+    }
+
+    public void setPhoneNumberVerified(boolean phoneNumberVerified) {
+        this.phoneNumberVerified = phoneNumberVerified;
+    }
+
+    public boolean isPersonalEmailVerified() {
+        return personalEmailVerified;
+    }
+
+    public void setPersonalEmailVerified(boolean personalEmailVerified) {
+        this.personalEmailVerified = personalEmailVerified;
+    }
+
+    public boolean isContDomainCheck() {
+        return contDomainCheck;
+    }
+
+    public void setContDomainCheck(boolean contDomainCheck) {
+        this.contDomainCheck = contDomainCheck;
+    }
+
+    public boolean isRegisteredWithBank() {
+        return registeredWithBank;
+    }
+
+    public void setRegisteredWithBank(boolean registeredWithBank) {
+        this.registeredWithBank = registeredWithBank;
+    }
 }

@@ -1,12 +1,9 @@
 package ai.lentra.modal.lookups;
-
-import lombok.Data;
-
 import javax.persistence.*;
 import javax.validation.constraints.Pattern;
 
 @Entity
-@Data
+
 public class SimCardType {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

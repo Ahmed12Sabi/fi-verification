@@ -1,13 +1,15 @@
-/*
+
 package ai.lentra.service;
 
-import ai.lentra.dto.configuration.ProductsDTO;
+import ai.lentra.dto.masterconfig.ProductsDTO;
 import ai.lentra.dto.responses.ResponseDTO;
 import ai.lentra.exceptions.DuplicateResourceException;
 import ai.lentra.exceptions.ResourceNotFoundException;
-import ai.lentra.modal.configuration.ProductConfigEntity;
+import ai.lentra.modal.masterconfig.ProductConfigEntity;
+import ai.lentra.repository.masterconfig.ProductConfigRepository;
 import ai.lentra.repository.verification_type.ProductRepository;
-import ai.lentra.serviceImpl.configuration.roles.RoleConfigServiceImpl;
+import ai.lentra.serviceImpl.masterconfig.ProductConfigServiceImpl;
+import ai.lentra.serviceImpl.masterconfig.RoleConfigServiceImpl;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,9 +28,10 @@ import static org.mockito.Mockito.when;
 @Scope("ai.lentra.service.*")
 public class ProductConfigServiceImplTest {
     @MockBean
-    ProductRepository productsRepository;
-    @Autowired
-    RoleConfigServiceImpl roleConfigServiceImpl;
+    ProductConfigRepository productsRepository;
+    @MockBean
+    ProductConfigServiceImpl productConfigServiceImpl;
+
     ProductsDTO productsDTO = new ProductsDTO();
     ProductConfigEntity productsEntity = new ProductConfigEntity();
 
@@ -36,7 +39,7 @@ public class ProductConfigServiceImplTest {
     public void saveRoleTest() throws ResourceNotFoundException, DuplicateResourceException {
         ProductConfigEntity productsEntity = dummyProductConfigEntity();
         ProductsDTO productsDTO = dummyProductsDTO();
-        ResponseEntity<ResponseDTO> response = roleConfigServiceImpl.saveRole(productsDTO);
+        ResponseEntity<ResponseDTO> response = productConfigServiceImpl.saveProduct(productsDTO);
         when(productsEntity).thenReturn(productsEntity);
         assertNotNull(response);
 
@@ -45,34 +48,33 @@ public class ProductConfigServiceImplTest {
     public void updateRoleTest()  throws ResourceNotFoundException, DuplicateResourceException{
         ProductConfigEntity productsEntity = dummyProductConfigEntity();
         ProductsDTO productsDTO = updateDummyProductsDTO();
-        ResponseEntity<ResponseDTO> response = roleConfigServiceImpl.saveRole(productsDTO);
+        ResponseEntity<ResponseDTO> response = productConfigServiceImpl.saveProduct(productsDTO);
         when(productsEntity).thenReturn(productsEntity);
         assertNotNull(response);
 
     }
     public ProductsDTO dummyProductsDTO() {
         ProductsDTO productsDTO = new ProductsDTO();
-        productsDTO.setRoleName("TMI");
-        productsDTO.setVmsRoleName("TM");
-        productsDTO.setStatus(true);
+        productsDTO.setProductType("HL");
+        productsDTO.setProfileName("Profile1");
+        productsDTO.setInstituteId("1");
         return productsDTO;
     }
 
     public ProductsDTO updateDummyProductsDTO() {
         ProductsDTO productsDTO = new ProductsDTO();
-        productsDTO.setRoleId(1);
-        productsDTO.setRoleName("TMI");
-        productsDTO.setVmsRoleName("TM");
-        productsDTO.setStatus(true);
+        productsDTO.setProductType("HL");
+        productsDTO.setProfileName("Profile1");
+        productsDTO.setInstituteId("1");
         return productsDTO;
     }
 
     public ProductConfigEntity dummyProductConfigEntity() {
-        ProductsDTO productsDTO = new ProductsDTO();
-        productsEntity.setRoleName(productsDTO.getRoleName());
-        productsEntity.setVmsRoleName(productsDTO.getVmsRoleName());
-        productsEntity.setStatus(productsDTO.getStatus());
-        productsRepository.save(productsEntity);
+        ProductConfigEntity productsDTO = new ProductConfigEntity();
+        productsDTO.setProductType(productsDTO.getProductType());
+        productsDTO.setProfileName(productsDTO.getProfileName());
+        productsDTO.setInstituteId(productsDTO.getInstituteId());
+        productsRepository.save(productsDTO);
         return productsEntity;
 
     }
@@ -81,7 +83,7 @@ public class ProductConfigServiceImplTest {
     public void getRoleTest() throws ResourceNotFoundException, DuplicateResourceException {
         productsEntity = dummyProductConfigEntity();
         Integer id = 1;
-        ResponseEntity<Object> response = roleConfigServiceImpl.getRole(id.longValue());
+        ResponseEntity<Object> response = productConfigServiceImpl.getProduct(id.longValue());
         when(productsRepository.getById(1)).thenReturn(productsEntity);
         Assertions.assertNotNull(productsEntity);
         Assertions.assertNotNull(response);
@@ -97,4 +99,4 @@ public class ProductConfigServiceImplTest {
     }
 
 }
-*/
+

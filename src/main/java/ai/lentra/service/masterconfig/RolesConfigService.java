@@ -10,7 +10,7 @@ import org.springframework.http.ResponseEntity;
 import java.util.Locale;
 
 public interface RolesConfigService {
-    public ResponseEntity<ResponseDTO> saveRole(RolesDTO rolesDTO, Locale locale) throws ResourceNotFoundException, DuplicateResourceException;
+    ResponseEntity<ResponseDTO> saveRole(RolesDTO rolesDTO) throws ResourceNotFoundException, DuplicateResourceException;
 
     public ResponseEntity<ResponseDTO> updateRole(RolesDTO rolesDTO) throws ResourceNotFoundException, DuplicateResourceException;
 

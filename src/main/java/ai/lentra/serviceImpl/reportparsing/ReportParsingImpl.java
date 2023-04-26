@@ -23,10 +23,7 @@ import ai.lentra.service.reportparsing.ReportParsingService;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.xssf.usermodel.XSSFSheet;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -54,7 +51,7 @@ public class ReportParsingImpl implements ReportParsingService {
 
     @Autowired
     private ApplicantDetailsRepository applicantDetailsRepository;
-    private static final List<String> ALLOWED_DOCUMENT_TYPES = Arrays.asList("csv", "xlsx");
+    private static final List<String> ALLOWED_DOCUMENT_TYPES = Arrays.asList("csv");
 
     @Override
     public ResponseEntity<?> uploadReport(MultipartFile file, Integer institutionId) {
@@ -81,57 +78,10 @@ public class ReportParsingImpl implements ReportParsingService {
             }).collect(Collectors.toList());
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errros);
         } else {
-            if (fileExtension.equals("csv"))
                 return saveAllCSV(file, fileName, institutionId);
-            else
-                return saveAllExcel(file, fileName, institutionId);
-//            return ResponseEntity.ok("File has beenuploaded successfully.");
+
         }
 
-    }
-
-    private ResponseEntity<?> saveAllExcel(MultipartFile file1, String fileName, Integer institutionId) {
-
-        ResponseDTO response = new ResponseDTO();
-
-        try {
-            XSSFWorkbook wb = new XSSFWorkbook(file1.getInputStream());
-            XSSFSheet sheet = wb.getSheetAt(0);     //creating a Sheet object to retrieve object
-            Iterator<Row> itr = sheet.iterator();    //iterating over excel file
-            Row headerRow = itr.next();
-
-//            Row headerRow = sheet.getRow(0);
-            Iterator<Cell> headerItr = headerRow.cellIterator();
-            List<String> headerList = new ArrayList<>();
-            while (headerItr.hasNext()) {
-                Cell cell = headerItr.next();
-                headerList.add(cell.getStringCellValue());
-            }
-            if (checkValidFile(headerList, institutionId)) {
-                response.setCode("400");
-                response.setMessage("File Not Valid");
-                response.setStatus("");
-                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
-            }
-            while (itr.hasNext()) {
-                Row row = itr.next();
-                int index = (int) headerList.indexOf("applicantId");
-
-                ApplicantDetails applicantsDetails = applicantDetailsRepository.findByApplicantId((long) row.getCell(index).getNumericCellValue());
-                if (applicantsDetails != null) {
-                    response.setCode("400");
-                    response.setMessage("AppicationId Already exists");
-                    response.setStatus("");
-//                    return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
-                } else {
-                    Row row1 = itr.next();
-                   return setExceData(row1, headerList);
-                }
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
     }
 
 
@@ -191,449 +141,6 @@ public class ReportParsingImpl implements ReportParsingService {
                         ));
     }
 
-    private  ResponseEntity<ResponseDTO>  setExceData(Row row1, List<String> headerList) {
-        PersonalDetailsDTO personalDetailsDTO = new PersonalDetailsDTO();
-        int index = headerList.indexOf("applicantId");
-        int appId= (int) row1.getCell(index).getNumericCellValue();
-        if (headerList.contains("applicantId")) {
-            index = headerList.indexOf("applicantId");
-            personalDetailsDTO.setApplicantId((long) row1.getCell(index).getNumericCellValue());
-        }
-        if (headerList.contains("applicantId")) {
-            index = headerList.indexOf("applicantId");
-            personalDetailsDTO.setApplicantId(Integer.valueOf(row1.getCell(index).getStringCellValue()));
-            appId = Integer.valueOf(row1.getCell(index).getStringCellValue());
-        }
-        if (headerList.contains("persRefId")) {
-            index = headerList.indexOf("persRefId");
-            personalDetailsDTO.setPersRefId(Integer.parseInt(row1.getCell(index).getStringCellValue()));
-        }
-        if (headerList.contains("loanTakenEarlier")) {
-            index = headerList.indexOf("loanTakenEarlier");
-            personalDetailsDTO.setLoanTakenEarlier(Boolean.parseBoolean(row1.getCell(index).getStringCellValue()));
-        }
-        if (headerList.contains("citizenship")) {
-            index = headerList.indexOf("citizenship");
-            personalDetailsDTO.setCitizenship(row1.getCell(index).getStringCellValue());
-        }
-        if (headerList.contains("birthDate")) {
-            index = headerList.indexOf("birthDate");
-            personalDetailsDTO.setBirthDate(row1.getCell(index).getStringCellValue());
-        }
-        if (headerList.contains("religion")) {
-            index = headerList.indexOf("religion");
-            personalDetailsDTO.setReligion(row1.getCell(index).getStringCellValue());
-        }
-        if (headerList.contains("martialStatus")) {
-            index = headerList.indexOf("martialStatus");
-            personalDetailsDTO.setMartialStatus(row1.getCell(index).getStringCellValue());
-        }
-        if (headerList.contains("politicallyExposed")) {
-            index = headerList.indexOf("politicallyExposed");
-            personalDetailsDTO.setPoliticallyExposed(Boolean.parseBoolean(row1.getCell(index).getStringCellValue()));
-        }
-
-        if (headerList.contains("educationLevel")) {
-            index = headerList.indexOf("educationLevel");
-            personalDetailsDTO.setEducationLevel(row1.getCell(index).getStringCellValue());
-        }
-        if (headerList.contains("lastName")) {
-            index = headerList.indexOf("lastName");
-            personalDetailsDTO.setLastName(row1.getCell(index).getStringCellValue());
-        }
-        if (headerList.contains("alias")) {
-            index = headerList.indexOf("alias");
-            personalDetailsDTO.setAlias(row1.getCell(index).getStringCellValue());
-        }
-        if (headerList.contains("middleName")) {
-            index = headerList.indexOf("middleName");
-            personalDetailsDTO.setMiddleName(row1.getCell(index).getStringCellValue());
-        }
-        if (headerList.contains("suffix")) {
-            index = headerList.indexOf("suffix");
-            personalDetailsDTO.setSuffix(row1.getCell(index).getStringCellValue());
-        }
-        if (headerList.contains("firstName")) {
-            index = headerList.indexOf("firstName");
-            personalDetailsDTO.setFirstName(row1.getCell(index).getStringCellValue());
-        }
-        if (headerList.contains("income")) {
-            index = headerList.indexOf("income");
-            personalDetailsDTO.setIncome(new BigDecimal(row1.getCell(index).getNumericCellValue()));
-        }
-        if (headerList.contains("civilStatus")) {
-            index = headerList.indexOf("civilStatus");
-            personalDetailsDTO.setCivilStatus(row1.getCell(index).getStringCellValue());
-        }
-        if (headerList.contains("incomeSource")) {
-            index = headerList.indexOf("incomeSource");
-            personalDetailsDTO.setIncomeSource(row1.getCell(index).getStringCellValue());
-        }
-        if (headerList.contains("incomePeriod")) {
-            index = headerList.indexOf("incomePeriod");
-            personalDetailsDTO.setIncomePeriod(new BigDecimal(row1.getCell(index).getNumericCellValue()));
-        }
-        if (headerList.contains("dateTimeEndorsed")) {
-            index = headerList.indexOf("dateTimeEndorsed");
-            personalDetailsDTO.setDateTimeEndorsed(row1.getCell(index).getStringCellValue());
-        }
-        if (headerList.contains("dateInspected")) {
-            index = headerList.indexOf("dateInspected");
-            personalDetailsDTO.setDateInspected(row1.getCell(index).getStringCellValue());
-        }
-
-        //Contact Details
-        ContactDetailsDTO contactDetailsDTO = new ContactDetailsDTO();
-        contactDetailsDTO.setApplicantId(appId);
-        if (headerList.contains("applicantId")) {
-            index = headerList.indexOf("applicantId");
-            contactDetailsDTO.setApplicantId(Long.parseLong(row1.getCell(index).getStringCellValue()));
-        }
-        if (headerList.contains("mobileNumber")) {
-            index = headerList.indexOf("mobileNumber");
-            contactDetailsDTO.setMobileNumber(row1.getCell(index).getStringCellValue());
-        }
-        if (headerList.contains("personalEmail")) {
-            index = headerList.indexOf("personalEmail");
-            contactDetailsDTO.setPersonalEmail(row1.getCell(index).getStringCellValue());
-        }
-        if (headerList.contains("simType")) {
-            index = headerList.indexOf("simType");
-            contactDetailsDTO.setSimType(row1.getCell(index).getStringCellValue());
-        }
-        if (headerList.contains("mobileNumberVerified")) {
-            index = headerList.indexOf("mobileNumberVerified");
-            contactDetailsDTO.setMobileNumberVerified(Boolean.parseBoolean(row1.getCell(index).getStringCellValue()));
-        }
-        if (headerList.contains("phoneNumber")) {
-            index = headerList.indexOf("phoneNumber");
-            contactDetailsDTO.setPhoneNumber(row1.getCell(index).getStringCellValue());
-        }
-        if (headerList.contains("phoneNumberVerified")) {
-            index = headerList.indexOf("phoneNumberVerified");
-            contactDetailsDTO.setPhoneNumberVerified(Boolean.parseBoolean(row1.getCell(index).getStringCellValue()));
-        }
-        if (headerList.contains("personalEmailVerified")) {
-            index = headerList.indexOf("personalEmailVerified");
-            contactDetailsDTO.setPersonalEmailVerified(Boolean.parseBoolean(row1.getCell(index).getStringCellValue()));
-        }
-        if (headerList.contains("domainCheck")) {
-            index = headerList.indexOf("domainCheck");
-            contactDetailsDTO.setDomainCheck(Boolean.parseBoolean(row1.getCell(index).getStringCellValue()));
-        }
-        if (headerList.contains("registeredWithBank")) {
-            index = headerList.indexOf("registeredWithBank");
-            contactDetailsDTO.setRegisteredWithBank(Boolean.parseBoolean(row1.getCell(index).getStringCellValue()));
-        }
-        //Expenses details
-        ExpensesDTO expensesDto = new ExpensesDTO();
-        expensesDto.setApplicantId(appId);
-
-        if (headerList.contains("applicantId")) {
-            index = headerList.indexOf("applicantId");
-            expensesDto.setApplicantId(Integer.valueOf(row1.getCell(index).getStringCellValue()));
-        }
-        if (headerList.contains("otherExp")) {
-            index = headerList.indexOf("otherExp");
-            expensesDto.setOtherExpenses((row1.getCell(index).getStringCellValue()));
-        }
-        if (headerList.contains("collegeFeesAmt")) {
-            index = headerList.indexOf("collegeFeesAmt");
-            expensesDto.setCollegeFeesAmt(Integer.parseInt((row1.getCell(index).getStringCellValue())));
-        }
-        if (headerList.contains("schoolFeesAmt")) {
-            index = headerList.indexOf("schoolFeesAmt");
-            expensesDto.setSchoolFeesAmt(Integer.parseInt(row1.getCell(index).getStringCellValue()));
-        }
-        if (headerList.contains("electricBillAmt")) {
-            index = headerList.indexOf("electricBillAmt");
-            expensesDto.setElectricBillAmt(Integer.parseInt(row1.getCell(index).getStringCellValue()));
-        }
-        if (headerList.contains("officeTransportationCost")) {
-            index = headerList.indexOf("officeTransportationCost");
-            expensesDto.setOfficeTransportationCost(Integer.parseInt((row1.getCell(index).getStringCellValue())));
-        }
-        if (headerList.contains("cableNetBillAmt")) {
-            index = headerList.indexOf("cableNetBillAmt");
-            expensesDto.setCableNetBillAmt(Integer.parseInt((row1.getCell(index).getStringCellValue())));
-        }
-        if (headerList.contains("broadbandBillAmt")) {
-            index = headerList.indexOf("broadbandBillAmt");
-            expensesDto.setBroadbandBillAmt(Integer.parseInt((row1.getCell(index).getStringCellValue())));
-        }
-        if (headerList.contains("avgFuelCost")) {
-            index = headerList.indexOf("avgFuelCost");
-            expensesDto.setAvgFuelCost(Integer.valueOf(row1.getCell(index).getStringCellValue()));
-        }
-        if (headerList.contains("waterBillAmt")) {
-            index = headerList.indexOf("waterBillAmt");
-            expensesDto.setWaterBillAmt(Integer.parseInt((row1.getCell(index).getStringCellValue())));
-        }
-
-        FamilyDetailsDTO familyDetailsDTO = new FamilyDetailsDTO();
-        familyDetailsDTO.setApplicantId(appId);
-
-        if (headerList.contains("numberOfDependents")) {
-            index = headerList.indexOf("numberOfDependents");
-            familyDetailsDTO.setNumberOfDependents(Integer.parseInt((row1.getCell(index).getStringCellValue())));
-        }
-        if (headerList.contains("motherMidName")) {
-            index = headerList.indexOf("motherMidName");
-            familyDetailsDTO.setMotherMidName(row1.getCell(index).getStringCellValue());
-        }
-        if (headerList.contains("entityConfirmationMother")) {
-            index = headerList.indexOf("entityConfirmationMother");
-            familyDetailsDTO.setEntityConfirmationMother(Boolean.parseBoolean(((row1.getCell(index).getStringCellValue()))));
-        }
-        if (headerList.contains("motherAge")) {
-            index = headerList.indexOf("motherAge");
-            familyDetailsDTO.setMotherAge(Integer.parseInt(row1.getCell(index).getStringCellValue()));
-        }
-        if (headerList.contains("motherFirstName")) {
-            index = headerList.indexOf("motherFirstName");
-            familyDetailsDTO.setMotherFirstName(row1.getCell(index).getStringCellValue());
-        }
-        if (headerList.contains("motherLastName")) {
-            index = headerList.indexOf("motherLastName");
-            familyDetailsDTO.setMotherLastName(row1.getCell(index).getStringCellValue());
-        }
-        if (headerList.contains("fatherMidName")) {
-            index = headerList.indexOf("fatherMidName");
-            familyDetailsDTO.setFatherMidName(row1.getCell(index).getStringCellValue());
-        }
-        if (headerList.contains("fatherFirstName")) {
-            index = headerList.indexOf("fatherFirstName");
-            familyDetailsDTO.setFatherFirstName(row1.getCell(index).getStringCellValue());
-        }
-        if (headerList.contains("fatherAge")) {
-            index = headerList.indexOf("fatherAge");
-            familyDetailsDTO.setFatherAge(Integer.parseInt(row1.getCell(index).getStringCellValue()));
-        }
-        if (headerList.contains("fatherReligion")) {
-            index = headerList.indexOf("fatherReligion");
-            familyDetailsDTO.setFatherReligion(row1.getCell(index).getStringCellValue());
-        }
-        if (headerList.contains("fatherLastName")) {
-            index = headerList.indexOf("fatherLastName");
-            familyDetailsDTO.setFatherLastName(row1.getCell(index).getStringCellValue());
-        }
-        if (headerList.contains("entityConfirmationFather")) {
-            index = headerList.indexOf("entityConfirmationFather");
-            familyDetailsDTO.setEntityConfirmationFather(Boolean.parseBoolean(row1.getCell(index).getStringCellValue()));
-        }
-        if (headerList.contains("numberOfMinor")) {
-            index = headerList.indexOf("numberOfMinor");
-            familyDetailsDTO.setNumberOfMinor(Integer.parseInt(row1.getCell(index).getStringCellValue()));
-        }
-        if (headerList.contains("childEducationLevel")) {
-            index = headerList.indexOf("childEducationLevel");
-            familyDetailsDTO.setChildEducationLevel(row1.getCell(index).getStringCellValue());
-        }
-        if (headerList.contains("spouseWorking")) {
-            index = headerList.indexOf("spouseWorking");
-            familyDetailsDTO.setSpouseWorking(Boolean.parseBoolean(row1.getCell(index).getStringCellValue()));
-        }
-        if (headerList.contains("spouseLastName")) {
-            index = headerList.indexOf("spouseLastName");
-            familyDetailsDTO.setSpouseLastName(row1.getCell(index).getStringCellValue());
-        }
-        if (headerList.contains("spouseOccupation")) {
-            index = headerList.indexOf("spouseOccupation");
-            familyDetailsDTO.setSpouseOccupation(row1.getCell(index).getStringCellValue());
-        }
-        if (headerList.contains("spouseAge")) {
-            index = headerList.indexOf("spouseAge");
-            familyDetailsDTO.setSpouseAge(Integer.parseInt(row1.getCell(index).getStringCellValue()));
-        }
-        if (headerList.contains("entityConfirmationSpouse")) {
-            index = headerList.indexOf("entityConfirmationSpouse");
-            familyDetailsDTO.setEntityConfirmationSpouse(Boolean.parseBoolean(row1.getCell(index).getStringCellValue()));
-        }
-        if (headerList.contains("spouseReligion")) {
-            index = headerList.indexOf("spouseReligion");
-            familyDetailsDTO.setSpouseReligion(row1.getCell(index).getStringCellValue());
-        }
-        if (headerList.contains("spouseMidName")) {
-            index = headerList.indexOf("spouseMidName");
-            familyDetailsDTO.setSpouseMidName(row1.getCell(index).getStringCellValue());
-        }
-        if (headerList.contains("spouseSuffix")) {
-            index = headerList.indexOf("spouseSuffix");
-            familyDetailsDTO.setSpouseSuffix(row1.getCell(index).getStringCellValue());
-        }
-        if (headerList.contains("spouseAlias")) {
-            index = headerList.indexOf("spouseAlias");
-            familyDetailsDTO.setSpouseAlias(row1.getCell(index).getStringCellValue());
-        }
-        if (headerList.contains("spouseBirthdate")) {
-            index = headerList.indexOf("spouseBirthdate");
-            familyDetailsDTO.setSpouseBirthdate(row1.getCell(index).getStringCellValue());
-        }
-        if (headerList.contains("spouseFirstName")) {
-            index = headerList.indexOf("spouseFirstName");
-            familyDetailsDTO.setSpouseFirstName(row1.getCell(index).getStringCellValue());
-        }
-
-        Summary summary = new Summary();
-        summary.setApplicantId(appId);
-        if (headerList.contains("sumRefId")) {
-            index = headerList.indexOf("sumRefId");
-            summary.setSumRefId(Integer.valueOf(row1.getCell(index).getStringCellValue()));
-        }
-        if (headerList.contains("otherFindings")) {
-            index = headerList.indexOf("otherFindings");
-            summary.setOtherFindings(Integer.valueOf(row1.getCell(index).getStringCellValue()))   ;
-        }
-        if (headerList.contains("finalScore")) {
-            index = headerList.indexOf("finalScore");
-            summary.setFinalScore(Integer.valueOf(row1.getCell(index).getStringCellValue()));
-        }
-        if (headerList.contains("remark")) {
-            index = headerList.indexOf("remark");
-            summary.setRemark(row1.getCell(index).getStringCellValue());
-        }
-        if (headerList.contains("remarkDateTime")) {
-            index = headerList.indexOf("remarkDateTime");
-            summary.setRemarkDateTime(new Date(row1.getCell(index).getStringCellValue()));
-        }
-        if (headerList.contains("preparedBy")) {
-            index = headerList.indexOf("preparedBy");
-            summary.setPreparedBy(row1.getCell(index).getStringCellValue());
-        }
-        if (headerList.contains("dateAndTimePerformed")) {
-            index = headerList.indexOf("dateAndTimePerformed");
-            summary.setDateAndTimePerformed(new Date(row1.getCell(index).getStringCellValue()));
-        }
-        if (headerList.contains("reviewedBy")) {
-            index = headerList.indexOf("reviewedBy");
-            summary.setReviewedBy(row1.getCell(index).getStringCellValue());
-        }
-        if (headerList.contains("agencyName")) {
-            index = headerList.indexOf("agencyName");
-            summary.setAgencyName(row1.getCell(index).getStringCellValue());
-        }  if (headerList.contains("sumScore")) {
-            index = headerList.indexOf("sumScore");
-            summary.setSumScore(Integer.valueOf(row1.getCell(index).getStringCellValue()));
-        }
-
-        //Set Vehicle details Data
-        VehicleDetailsDTO vehicleDetails = new VehicleDetailsDTO();
-        vehicleDetails.setApplicantId(appId);
-        if (headerList.contains("numberOfVehiclesOwned")) {
-            index = headerList.indexOf("numberOfVehiclesOwned");
-            vehicleDetails.setNumberOfVehiclesOwned(Integer.valueOf(row1.getCell(index).getStringCellValue()));
-        }
-        if (headerList.contains("bikeRegistrationNumber")) {
-            index = headerList.indexOf("bikeRegistrationNumber");
-            vehicleDetails.setBikeRegistrationNumber(Integer.valueOf(row1.getCell(index).getStringCellValue()));
-        } if (headerList.contains("manufactureYearCar")) {
-            index = headerList.indexOf("manufactureYearCar");
-            vehicleDetails.setManufactureYearCar(Integer.valueOf(row1.getCell(index).getStringCellValue()));
-        } if (headerList.contains("bikeManufactureName")) {
-            index = headerList.indexOf("bikeManufactureName");
-            vehicleDetails.setBikeManufactureName((row1.getCell(index).getStringCellValue()));
-        } if (headerList.contains("carHypothecatedTo")) {
-            index = headerList.indexOf("carHypothecatedTo");
-            vehicleDetails.setCarHypothecatedTo((row1.getCell(index).getStringCellValue()));
-        } if (headerList.contains("carRegistrationNumber")) {
-            index = headerList.indexOf("carRegistrationNumber");
-            vehicleDetails.setCarRegistrationNumber(Integer.valueOf(row1.getCell(index).getStringCellValue()));
-        } if (headerList.contains("withParkingSpace")) {
-            index = headerList.indexOf("withParkingSpace");
-            vehicleDetails.setWithParkingSpace(Boolean.parseBoolean(row1.getCell(index).getStringCellValue()));
-        } if (headerList.contains("carOwnershipType")) {
-            index = headerList.indexOf("carOwnershipType");
-            vehicleDetails.setCarOwnershipType((row1.getCell(index).getStringCellValue()));
-        } if (headerList.contains("manufactureYearTwoWheeler")) {
-            index = headerList.indexOf("manufactureYearTwoWheeler");
-            vehicleDetails.setManufactureYearTwoWheeler(Integer.valueOf(row1.getCell(index).getStringCellValue()));
-        } if (headerList.contains("twoWheelerModel")) {
-            index = headerList.indexOf("twoWheelerModel");
-            vehicleDetails.setTwoWheelerModel(row1.getCell(index).getStringCellValue());
-        }
-        if (headerList.contains("carIssuingAuthority")) {
-            index = headerList.indexOf("carIssuingAuthority");
-            vehicleDetails.setCarIssuingAuthority(row1.getCell(index).getStringCellValue());
-        }
-        if (headerList.contains("carManufactureName")) {
-            index = headerList.indexOf("carManufactureName");
-            vehicleDetails.setCarManufactureName(row1.getCell(index).getStringCellValue());
-        }
-        if (headerList.contains("bikeOwnershipType")) {
-            index = headerList.indexOf("bikeOwnershipType");
-            vehicleDetails.setBikeOwnershipType(row1.getCell(index).getStringCellValue());
-        }
-        if (headerList.contains("financedFromDateCar")) {
-            index = headerList.indexOf("financedFromDateCar");
-            vehicleDetails.setFinancedFromDateCar(row1.getCell(index).getStringCellValue());
-        }
-        if (headerList.contains("carFuelType")) {
-            index = headerList.indexOf("carFuelType");
-            vehicleDetails.setCarFuelType(row1.getCell(index).getStringCellValue());
-        }
-        if (headerList.contains("bikeHypothecatedTo")) {
-            index = headerList.indexOf("bikeHypothecatedTo");
-            vehicleDetails.setBikeHypothecatedTo(row1.getCell(index).getStringCellValue());
-        }
-        if (headerList.contains("carSeatingCapacity")) {
-            index = headerList.indexOf("carSeatingCapacity");
-            vehicleDetails.setCarSeatingCapacity(Integer.parseInt(row1.getCell(index).getStringCellValue()));
-        }
-        if (headerList.contains("bikeIssuingAuthority")) {
-            index = headerList.indexOf("bikeIssuingAuthority");
-            vehicleDetails.setBikeIssuingAuthority(row1.getCell(index).getStringCellValue());
-        }
-        if (headerList.contains("vehicleType")) {
-            index = headerList.indexOf("vehicleType");
-            vehicleDetails.setVehicleType(row1.getCell(index).getStringCellValue());
-        }
-        if (headerList.contains("carModel")) {
-            index = headerList.indexOf("carModel");
-            vehicleDetails.setCarModel(row1.getCell(index).getStringCellValue());
-        }
-
-        if (headerList.contains("financedFromDateBike")) {
-            index = headerList.indexOf("financedFromDateBike");
-            vehicleDetails.setFinancedFromDateBike(row1.getCell(index).getStringCellValue());
-        }
-
-
-
-
-
-
-
-
-        CommitmentDTO commitmentDTO = new CommitmentDTO();
-
-        ResidenceDetailsDTO residenceDto = new ResidenceDetailsDTO();
-        residenceDto.setApplicant_id(appId);
-        EmploymentDetailsDTO officeSelfEmploymentDto = new EmploymentDetailsDTO();
-        officeSelfEmploymentDto.setApplicantId(appId);
-
-
-        ApplicantDetailsDTO applicantDetails = new ApplicantDetailsDTO();
-        applicantDetails.setApplicantId(appId);
-        applicantDetails.setPersonalDetails(personalDetailsDTO);
-        applicantDetails.setContactInformation(contactDetailsDTO);
-        applicantDetails.setExpenses(expensesDto);
-        applicantDetails.setFamilyDetails(familyDetailsDTO);
-        applicantDetails.setSummary(summary);
-        applicantDetails.setVehicle(vehicleDetails);
-        applicantDetails.setResidences(residenceDto);
-        applicantDetails.setCommitments(commitmentDTO);
-        applicantDetails.setOfficeSelfEmployment(officeSelfEmploymentDto);
-        applicantDetailsService.saveApplicantDetails(Long.valueOf(headerList.indexOf("applicantId")), applicantDetails, new HeadersDTO());
-//        applicantDetailsRepository.save(applicantDetails);
-        ResponseDTO response = new ResponseDTO();
-        response.setData(applicantDetails);
-        response.setStatus("200");
-        response.setMessage("File Uploaded Successfully");
-        response.setCode(HttpStatus.OK.toString());
-        return ResponseEntity.status(HttpStatus.OK).body(response);
-
-
-    }
 
     private ResponseEntity<ResponseDTO> saveApplicantDetails(CSVRecord csvRecords, List<String> headerList) {
         PersonalDetailsDTO personalDetailsDTO = new PersonalDetailsDTO();
@@ -1036,22 +543,81 @@ public class ReportParsingImpl implements ReportParsingService {
             index = headerList.indexOf("financedFromDateBike");
             vehicleDetails.setFinancedFromDateBike(csvRecords.get(index));
         }
-
-
-
-
-
-
-
-
         CommitmentDTO commitmentDTO = new CommitmentDTO();
+        commitmentDTO.setCommitmentId(appId);
+        if (headerList.contains("insurance_type")) {
+            index = headerList.indexOf("insurance_type");
+            commitmentDTO.setInsurance_type(csvRecords.get(index));
+        }
+        if (headerList.contains("life_insurance_amt")) {
+            index = headerList.indexOf("life_insurance_amt");
+            commitmentDTO.setLife_insurance_amt(csvRecords.get(index));
+        }
+        if (headerList.contains("life_insurance_duration")) {
+            index = headerList.indexOf("life_insurance_duration");
+            commitmentDTO.setLife_insurance_duration(csvRecords.get(index));
+        }
+        if (headerList.contains("car_insurance_amt")) {
+            index = headerList.indexOf("car_insurance_amt");
+            commitmentDTO.setCar_insurance_amt(csvRecords.get(index));
+        }
+        if (headerList.contains("car_insurance_duration")) {
+            index = headerList.indexOf("car_insurance_duration");
+            commitmentDTO.setCar_insurance_duration(csvRecords.get(index));
+        }
+        if (headerList.contains("health_insurance_amt")) {
+            index = headerList.indexOf("health_insurance_amt");
+            commitmentDTO.setHealth_insurance_amt(csvRecords.get(index));
+        }
+        if (headerList.contains("health_insurance_duration")) {
+            index = headerList.indexOf("health_insurance_duration");
+            commitmentDTO.setHealth_insurance_duration(csvRecords.get(index));
+        }
+        if (headerList.contains("twoWheeler_insurance_amt")) {
+            index = headerList.indexOf("twoWheeler_insurance_amt");
+            commitmentDTO.setTerm_insurance_amt(csvRecords.get(index));
+        }
+        if (headerList.contains("term_insurance_duration")) {
+            index = headerList.indexOf("term_insurance_duration");
+            commitmentDTO.setTwoWheeler_insurance_duration(csvRecords.get(index));
+        }
+        if (headerList.contains("home_insurance_amt")) {
+            index = headerList.indexOf("home_insurance_amt");
+            commitmentDTO.setHome_insurance_amt(csvRecords.get(index));
+        }
+        if (headerList.contains("home_insurance_duration")) {
+            index = headerList.indexOf("home_insurance_duration");
+            commitmentDTO.setHome_insurance_duration(csvRecords.get(index));
+        }
+        if (headerList.contains("loc_amt")) {
+            index = headerList.indexOf("loc_amt");
+            commitmentDTO.setLoc_amt(csvRecords.get(index));
+        }
+        if (headerList.contains("loc_expiry_date")) {
+            index = headerList.indexOf("loc_expiry_date");
+            commitmentDTO.setLoc_expiry_date(csvRecords.get(index));
+        }
+        if (headerList.contains("nps_applicant_name")) {
+            index = headerList.indexOf("nps_applicant_name");
+            commitmentDTO.setNps_applicant_name(csvRecords.get(index));
+        }
+        if (headerList.contains("nps_amt")) {
+            index = headerList.indexOf("nps_amt");
+            commitmentDTO.setNps_amt(csvRecords.get(index));
+        }
+        if (headerList.contains("nps_duration")) {
+            index = headerList.indexOf("nps_duration");
+            commitmentDTO.setNps_duration(csvRecords.get(index));
+        }
+        if (headerList.contains("bank_name_loc")) {
+            index = headerList.indexOf("bank_name_loc");
+            commitmentDTO.setBank_name_loc(csvRecords.get(index));
+        }
 
         ResidenceDetailsDTO residenceDto = new ResidenceDetailsDTO();
         residenceDto.setApplicant_id(appId);
         EmploymentDetailsDTO officeSelfEmploymentDto = new EmploymentDetailsDTO();
         officeSelfEmploymentDto.setApplicantId(appId);
-
-
         ApplicantDetailsDTO applicantDetails = new ApplicantDetailsDTO();
         applicantDetails.setApplicantId(appId);
         applicantDetails.setPersonalDetails(personalDetailsDTO);
@@ -1067,10 +633,9 @@ public class ReportParsingImpl implements ReportParsingService {
 //        applicantDetailsRepository.save(applicantDetails);
         ResponseDTO response = new ResponseDTO();
         response.setData(applicantDetails);
-        response.setStatus("200");
+        response.setStatus("201");
         response.setMessage("File Uploaded Successfully");
-        response.setCode(HttpStatus.OK.toString());
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
+        response.setCode(HttpStatus.CREATED.toString());
+        return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
-
 }

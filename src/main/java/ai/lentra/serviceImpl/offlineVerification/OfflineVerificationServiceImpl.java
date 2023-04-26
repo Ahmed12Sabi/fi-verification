@@ -1,93 +1,78 @@
 package ai.lentra.serviceImpl.offlineVerification;
 
+import ai.lentra.dto.offlineVerification.DataFields;
 import ai.lentra.dto.offlineVerification.OffileInputDataDTO;
-
-import ai.lentra.dto.offlineVerification.ValueExampleObject;
+import ai.lentra.modal.ApplicationDetails;
+import ai.lentra.modal.masterconfig.*;
+import ai.lentra.repository.applicationDetails.ApplicationRepository;
+import ai.lentra.repository.masterconfig.MasterVerificationConfigurationRepository;
+import ai.lentra.repository.masterconfig.ProductConfigRepository;
+import ai.lentra.repository.masterconfig.VerificationFormConfigRepository;
+import ai.lentra.repository.masterconfig.VerificationFormFieldsConfigRepository;
 import ai.lentra.service.offlineVerification.OfflineVerificationService;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
-import freemarker.template.TemplateExceptionHandler;
-import freemarker.template.Version;
-import net.sf.jasperreports.engine.JasperExportManager;
-import net.sf.jasperreports.engine.JasperFillManager;
-import net.sf.jasperreports.engine.JasperPrint;
-import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
-import org.springframework.stereotype.Service;
-import org.springframework.util.ResourceUtils;
 
-import javax.servlet.http.HttpServletResponse;
-import javax.sql.DataSource;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.ui.freemarker.FreeMarkerTemplateUtils;
+import javax.servlet.http.HttpServletRequest;
 import java.io.*;
 import java.util.*;
+import com.itextpdf.html2pdf.HtmlConverter;
 
 @Service
 public class OfflineVerificationServiceImpl implements OfflineVerificationService {
     @Autowired
-    public DataSource dataSource;
-    public HttpServletResponse getOffLinePDF1(HttpServletResponse response) throws Exception {
-        String sourceFileName = ResourceUtils.getFile("/home/afroze/git/lentra/target/classes/"+ "OffLineFiFormsPDF.jasper").getAbsolutePath();
-        // creating our list of beans
+    private Configuration config;
+    @Autowired
+    ApplicationRepository applicationRepository;
+    @Autowired
+    MasterVerificationConfigurationRepository masterVerificationConfigurationRepository;
+    @Autowired
+    ProductConfigRepository productConfigRepository;
+    @Autowired
+    VerificationFormConfigRepository verificationFormConfigRepository;
+    @Autowired
+    VerificationFormFieldsConfigRepository verificationFormFieldsConfigRepository;
+    public String getOffLinePDF(HttpServletRequest request) throws Exception {
+        String instituteId = "1";
+        String product = "HL";
+        Template template = config.getTemplate("offlineVerificationHtml.ftl");
+        StringBuilder html = new StringBuilder();
+        html.append("<html> <body>");
+        html.append("<style>  th, td { border:1px solid black; } </style>");
+        ApplicationDetails appl = applicationRepository.getByInsIdAndProductType(instituteId, product);
+        ProductConfigEntity pce = productConfigRepository.getByInstituteIdAndProductType(instituteId, product);
+        List<MasterVerificationConfiguration> mvc = masterVerificationConfigurationRepository.findByProfileName(pce.getProfileName());
 
-        final Map<String, Object> parameters = new HashMap<>();
-        parameters.put("id", "1");
-        parameters.put("subReportPath", "/home/afroze/git/lentra/target/classes/");
-        JasperPrint jasperPrint = JasperFillManager.fillReport(sourceFileName,parameters,dataSource.getConnection());
-        final String filePath = "/home/afroze/git/lentra/target/classes/";
-        JasperExportManager.exportReportToPdfFile(jasperPrint, filePath + "Employee_report.pdf");
-        // JasperExportManager.exportReportToPdfStream(jasperPrint, response.getOutputStream());
-        response.setContentType("application/pdf");
-        response.addHeader("Content-Disposition", "inline; filename=jasper.pdf;");
-        return response;
-    }
-    //for temporary void method added
-    public String getOffLinePDF(HttpServletResponse response) throws Exception {
+        for (MasterVerificationConfiguration singleMvc : mvc) {
+            List<MasterVerificationConfiguration> subProfiles = masterVerificationConfigurationRepository.findBySubProfileName(singleMvc.getSubProfileName());
+            for (MasterVerificationConfiguration subProfile : subProfiles) {
+                List<VerificationFormConfig> forms = verificationFormConfigRepository.getBySubProfileName(subProfile.getSubProfileName());
+                for (VerificationFormConfig form : forms) {
+                    if (!form.isHidden()) {
 
-        Configuration cfg = new Configuration();
+                        html.append("<h2><center> "+form.getFormName() +" </center></h2>");
+                        List<VerificationFormFieldsConfig> fields = verificationFormFieldsConfigRepository.getByFormFields(form.getFormId());
+                        for (VerificationFormFieldsConfig field : fields) {
+                            if (!field.isHidden()) {
+                               // dataFields.setDataFields(Arrays.asList(new DataFields(field.getFieldName(), "Afroze")));
+                                html.append(FreeMarkerTemplateUtils.processTemplateIntoString(template, new OffileInputDataDTO(Arrays.asList(new DataFields(field.getFieldName(), "Afroze")))));
+                            }
+                        }
+                    }
+                }
+            }
 
-        // Where do we load the templates from:
-        cfg.setClassForTemplateLoading(OfflineVerificationServiceImpl.class, "templates");
-
-        // Some other recommended settings:
-        cfg.setIncompatibleImprovements(new Version(2, 3, 20));
-        cfg.setDefaultEncoding("UTF-8");
-        cfg.setLocale(Locale.US);
-        cfg.setTemplateExceptionHandler(TemplateExceptionHandler.RETHROW_HANDLER);
-        Map<String, Object> input = new HashMap<String, Object>();
-
-        input.put("title", "Vogella example");
-
-        input.put("exampleObject", new ValueExampleObject("Java object", "me"));
-
-        List<ValueExampleObject> systems = new ArrayList<ValueExampleObject>();
-        systems.add(new ValueExampleObject("Android", "Google"));
-        systems.add(new ValueExampleObject("iOS States", "Apple"));
-        systems.add(new ValueExampleObject("Ubuntu", "Canonical"));
-        systems.add(new ValueExampleObject("Windows7", "Microsoft"));
-        input.put("systems", systems);
-
-        // 2.2. Get the template
-
-        Template template = cfg.getTemplate("helloworld.ftl");
-
-        // 2.3. Generate the output
-
-        // Write output to the console
-        Writer consoleWriter = new OutputStreamWriter(System.out);
-        template.process(input, consoleWriter);
-
-        // For the sake of example, also write output into a file:
-        Writer fileWriter = new FileWriter(new File("output.html"));
-        try {
-            template.process(input, fileWriter);
-        }catch(Exception e){
-
-        }finally {
-            fileWriter.close();
         }
-    return "success";
+       // html.append(" Hello ");
+        html.append("</html> </body>");
+        OutputStream os =new FileOutputStream("/home/afroze/Downloads/offlineVerification.pdf");
+        HtmlConverter.convertToPdf(String.valueOf(html), os);
+
+        return "SuccessFully Pdf downloaded";
+    }
     }
 
-    }
 

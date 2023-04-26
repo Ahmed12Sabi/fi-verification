@@ -31,7 +31,7 @@ public class ReportConfigServiceImpl implements ReportConfigService {
                 fields.addAll(reportConfigFieldsRepository.findByReportId(c.getId())));
         List<String> fieldNames = new ArrayList<String>();
         for (ReportConfigFields field: fields) {
-         fieldNames.add(   field.getFields());
+         fieldNames.add(field.getFields());
         }
         return fieldNames;
     }

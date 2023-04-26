@@ -1,12 +1,11 @@
 package ai.lentra.dto.masterconfig;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import lombok.Data;
 
 import javax.persistence.Id;
 import javax.validation.constraints.Size;
 
-@Data
+
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class VerificationFormMasterDto {
 
@@ -17,4 +16,28 @@ public class VerificationFormMasterDto {
     @Size(min = 2, max = 50, message = " Form description should have 2 to 50 characters")
 
     private String formDescription;
+
+    public long getFormId() {
+        return formId;
+    }
+
+    public void setFormId(long formId) {
+        this.formId = formId;
+    }
+
+    public String getFormName() {
+        return formName;
+    }
+
+    public void setFormName(String formName) {
+        this.formName = formName;
+    }
+
+    public String getFormDescription() {
+        return formDescription;
+    }
+
+    public void setFormDescription(String formDescription) {
+        this.formDescription = formDescription;
+    }
 }

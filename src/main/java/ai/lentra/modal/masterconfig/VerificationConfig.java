@@ -1,25 +1,26 @@
 package ai.lentra.modal.masterconfig;
-
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import lombok.Data;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.List;
 
 @Entity
-@Data
-
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Embeddable
 public class VerificationConfig
 {
     @Id
     @NotNull(message = "v_id should not be null")
-
     @Column(name = "v_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long vId;
-    @OneToOne(cascade = CascadeType.ALL)
+//    @OneToOne(cascade = CascadeType.ALL)
+@JsonIgnore
+    @ManyToOne
+    @JoinColumn(name = "m_id", referencedColumnName = "id")
     private MasterVerificationConfiguration masterVerificationConfiguration;
 
     @NotNull(message = "verification type should not be null")
@@ -30,4 +31,40 @@ public class VerificationConfig
     @Size(min = 2, max = 50, message = "verification description should have 2 to 50 characters")
 
     private String vDescription;
+    @OneToMany
+   // @JoinColumn(name = "form_id", referencedColumnName = "form_id")
+
+    private List<VerificationFormConfig> verificationFormConfig;
+
+    public long getvId() {
+        return vId;
+    }
+
+    public void setvId(long vId) {
+        this.vId = vId;
+    }
+
+    public String getvType() {
+        return vType;
+    }
+
+    public void setvType(String vType) {
+        this.vType = vType;
+    }
+
+    public String getvDescription() {
+        return vDescription;
+    }
+
+    public void setvDescription(String vDescription) {
+        this.vDescription = vDescription;
+    }
+
+    public List<VerificationFormConfig> getVerificationFormConfig() {
+        return verificationFormConfig;
+    }
+
+    public void setVerificationFormConfig(List<VerificationFormConfig> verificationFormConfig) {
+        this.verificationFormConfig = verificationFormConfig;
+    }
 }

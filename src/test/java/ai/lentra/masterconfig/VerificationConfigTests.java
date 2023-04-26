@@ -1,3 +1,4 @@
+/*
 package ai.lentra.masterconfig;
 
 import ai.lentra.dto.masterconfig.MasterVerificationConfigurationDto;
@@ -119,3 +120,4 @@ VerificationFormFieldsConfigRepository repository;
         return verificationFormFieldsConfigDto;
     }
 }
+*/

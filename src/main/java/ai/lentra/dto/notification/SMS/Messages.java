@@ -1,9 +1,7 @@
 package ai.lentra.dto.notification.SMS;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import lombok.Data;
 
-@Data
 @JsonIgnoreProperties(ignoreUnknown = true)
 
 public class Messages {

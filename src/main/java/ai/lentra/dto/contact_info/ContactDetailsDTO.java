@@ -1,12 +1,10 @@
 package ai.lentra.dto.contact_info;
 
-import ai.lentra.modal.lookups.SimCardType;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import lombok.Data;
 import javax.validation.constraints.*;
 
-@Data
+
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class ContactDetailsDTO {
@@ -32,5 +30,83 @@ public class ContactDetailsDTO {
     private boolean domainCheck;
     private boolean registeredWithBank;
 
+    public long getApplicantId() {
+        return applicantId;
+    }
 
+    public void setApplicantId(long applicantId) {
+        this.applicantId = applicantId;
+    }
+
+    public String getMobileNumber() {
+        return mobileNumber;
+    }
+
+    public void setMobileNumber(String mobileNumber) {
+        this.mobileNumber = mobileNumber;
+    }
+
+    public String getPersonalEmail() {
+        return personalEmail;
+    }
+
+    public void setPersonalEmail(String personalEmail) {
+        this.personalEmail = personalEmail;
+    }
+
+    public String getSimType() {
+        return simType;
+    }
+
+    public void setSimType(String simType) {
+        this.simType = simType;
+    }
+
+    public boolean isMobileNumberVerified() {
+        return mobileNumberVerified;
+    }
+
+    public void setMobileNumberVerified(boolean mobileNumberVerified) {
+        this.mobileNumberVerified = mobileNumberVerified;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public boolean isPhoneNumberVerified() {
+        return phoneNumberVerified;
+    }
+
+    public void setPhoneNumberVerified(boolean phoneNumberVerified) {
+        this.phoneNumberVerified = phoneNumberVerified;
+    }
+
+    public boolean isPersonalEmailVerified() {
+        return personalEmailVerified;
+    }
+
+    public void setPersonalEmailVerified(boolean personalEmailVerified) {
+        this.personalEmailVerified = personalEmailVerified;
+    }
+
+    public boolean isDomainCheck() {
+        return domainCheck;
+    }
+
+    public void setDomainCheck(boolean domainCheck) {
+        this.domainCheck = domainCheck;
+    }
+
+    public boolean isRegisteredWithBank() {
+        return registeredWithBank;
+    }
+
+    public void setRegisteredWithBank(boolean registeredWithBank) {
+        this.registeredWithBank = registeredWithBank;
+    }
 }

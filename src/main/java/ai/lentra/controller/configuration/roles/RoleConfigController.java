@@ -17,32 +17,32 @@ import java.util.Locale;
 
 @Validated
 @RestController
-@RequestMapping(value = "/roles")
+@RequestMapping(value = "/role-config")
 public class RoleConfigController {
 
 
 	@Autowired
 	RolesConfigService rolesService;
-	@PostMapping("/role-config")
+	@PostMapping("")
 	public ResponseEntity<ResponseDTO> saveRole( @RequestBody RolesDTO rolesDTO,
 												 @RequestHeader(name = "Accept-Language",required=false) Locale locale) throws ResourceNotFoundException, DuplicateResourceException {
 
-		return rolesService.saveRole(rolesDTO,locale);
+		return rolesService.saveRole(rolesDTO);
 	}
 
-	@PutMapping("/role-config")
+	@PutMapping("")
 	public ResponseEntity<ResponseDTO> updateRole( @RequestBody RolesDTO rolesDTO,@RequestHeader(name = "Accept-Language",required=false)  Locale locale)throws ResourceNotFoundException, DuplicateResourceException  {
 
 		return rolesService.updateRole(rolesDTO);
 	}
 
-	@GetMapping("/role-config")
+	@GetMapping("")
 	public ResponseEntity<Object>getAllRoles() throws ResourceNotFoundException, DuplicateResourceException {
 
 		return rolesService.getAllRoles();
 	}
 
-	@GetMapping("/role-config/{applicantId}")
+	@GetMapping("/{applicantId}")
 	public ResponseEntity<Object> getRole(@PathVariable Long applicantId ,@RequestHeader(name = "Accept-Language",required=false) Locale locale)  throws ResourceNotFoundException, DuplicateResourceException {
 
 		return rolesService.getRole(applicantId);

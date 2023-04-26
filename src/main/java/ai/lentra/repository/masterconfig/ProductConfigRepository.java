@@ -13,4 +13,5 @@ public interface ProductConfigRepository extends JpaRepository<ProductConfigEnti
     ProductConfigEntity findByProductTypeAndProfileNameAndProductIdNotIn(String productType,String profileName, Long id);
 
     ProductConfigEntity findByProductTypeAndProfileName(String productType, String profile);
+    ProductConfigEntity  getByInstituteIdAndProductType(String instituteId,String product);
 }

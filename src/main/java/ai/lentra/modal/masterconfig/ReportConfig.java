@@ -1,18 +1,16 @@
 package ai.lentra.modal.masterconfig;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import lombok.Data;
 
 import javax.persistence.*;
 import java.util.List;
 
-@Data
 @Entity
 @Embeddable
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ReportConfig {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     private String formName;
@@ -25,8 +23,37 @@ public class ReportConfig {
 //    @OneToMany(cascade = CascadeType.ALL,mappedBy="reportConfig")
     @OneToMany
     @JoinColumn(name = "f_id", referencedColumnName = "id")
-
-//    @JoinTable(name = "report_config_fields")
     private List<ReportConfigFields> fields;
 
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public String getFormName() {
+        return formName;
+    }
+
+    public void setFormName(String formName) {
+        this.formName = formName;
+    }
+
+    public Integer getInstituteId() {
+        return instituteId;
+    }
+
+    public void setInstituteId(Integer instituteId) {
+        this.instituteId = instituteId;
+    }
+
+    public List<ReportConfigFields> getFields() {
+        return fields;
+    }
+
+    public void setFields(List<ReportConfigFields> fields) {
+        this.fields = fields;
+    }
 }

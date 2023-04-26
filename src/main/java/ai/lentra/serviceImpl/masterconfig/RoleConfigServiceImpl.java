@@ -2,6 +2,7 @@ package ai.lentra.serviceImpl.masterconfig;
 
 
 
+//import ai.lentra.core.i18n.api.I18nHelper;
 import ai.lentra.dto.masterconfig.RolesDTO;
 import ai.lentra.dto.responses.ResponseDTO;
 import ai.lentra.exceptions.DuplicateResourceException;
@@ -9,6 +10,7 @@ import ai.lentra.exceptions.ResourceNotFoundException;
 import ai.lentra.modal.masterconfig.RolesEntity;
 import ai.lentra.repository.masterconfig.RolesRepository;
 import ai.lentra.service.masterconfig.RolesConfigService;
+import ai.lentra.utils.Level;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
@@ -32,7 +34,7 @@ public class RoleConfigServiceImpl implements RolesConfigService {
     MessageSource messageSource;
 
     @Override
-    public ResponseEntity<ResponseDTO> saveRole(RolesDTO rolesDTO, Locale locale) throws ResourceNotFoundException, DuplicateResourceException
+    public ResponseEntity<ResponseDTO> saveRole(RolesDTO rolesDTO) throws ResourceNotFoundException, DuplicateResourceException
     {
 //        try{
             try{
@@ -43,14 +45,15 @@ public class RoleConfigServiceImpl implements RolesConfigService {
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(getResponse(400,"Role name / Vms role name should not be blank ","ERROR"));
             }}
             catch (Exception e){
-                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(getResponse(400,"Role name / Vms role name should not be null ","ERROR"));
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(getResponse(400, e.getMessage(), "ERROR"));
             }
             Long role = repository.countByRoleNameAndVmsRoleName(rolesDTO.getRoleName(),rolesDTO.getVmsRoleName());
             ObjectMapper objectMapper = new ObjectMapper();
             RolesEntity roles = objectMapper.convertValue(rolesDTO, RolesEntity.class);
+        Level level = Level.LOW;
             if (role > 0) {
-                return ResponseEntity.status(HttpStatus.FORBIDDEN).body(getResponse(403,messageSource.getMessage("role_already_mapped",null,locale),"ERROR"));
-                //return ResponseEntity.status(HttpStatus.FORBIDDEN).body(getResponse(403,"This Role Already mapped ","ERROR"));
+               // return ResponseEntity.status(HttpStatus.FORBIDDEN).body(getResponse(403, I18nHelper.msg(level,"role_already_mapped"),"ERROR"));
+                return ResponseEntity.status(HttpStatus.FORBIDDEN).body(getResponse(403,"This Role Already mapped ","ERROR"));
             }else if(role == 0){
                 Long vmsRoleCount =repository.countByRoleName(rolesDTO.getRoleName());
                 Optional<RolesEntity> optionalDuplicate = Optional.ofNullable(repository.findByRoleName(rolesDTO.getRoleName()));

@@ -47,7 +47,7 @@ public class ScoreConfigServiceImpl implements ScoreConfigService {
             scoreDto.setStatus(row.getStatus());
             scoreDto.setScId(row.getScId());
             scoreDto.setScoreName(row.getScoreName());
-            scoreDto.setIsScoring(row.getIsScoring());
+            scoreDto.setScoring(row.getScoring());
             scoreDto.setScoreValue(scoreRow.getScoreValue());
             scoreDto.setMinRange(scoreRow.getMinRange());
             scoreDto.setMaxRange(scoreRow.getMaxRange());

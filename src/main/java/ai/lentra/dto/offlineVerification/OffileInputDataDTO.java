@@ -1,23 +1,31 @@
 package ai.lentra.dto.offlineVerification;
 
+import java.util.List;
+
 public class OffileInputDataDTO {
 
-    String name;
-    String color;
+    private String Header;
+    private List<DataFields> dataFields;
 
-    public String getName() {
-        return name;
-    }
-    public void setName(String name) {
-        this.name = name;
+    public String getHeader() {
+        return Header;
     }
 
-    public String getColor() {
-        return color;
+    public void setHeader(String header) {
+        Header = header;
     }
 
-    public void setColor(String color) {
-        this.color = color;
+    public List<DataFields> getDataFields() {
+        return dataFields;
+    }
+
+    public void setDataFields(List<DataFields> dataFields) {
+        this.dataFields = dataFields;
+    }
+
+    public OffileInputDataDTO( List<DataFields> dataFields) {
+
+        this.dataFields = dataFields;
     }
 }
 

@@ -1,20 +1,17 @@
 package ai.lentra.modal.expenses;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.Data;
-
 import javax.persistence.*;
 import java.math.BigDecimal;
 
-@Data
 @Entity
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Embeddable
 public class Expenses{
 	@Id
-	@Column(name = "applicant_id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private long id;
+	@Column(name = "applicant_id")
 
 	private long applicantId;
 
@@ -48,8 +45,99 @@ public class Expenses{
 	@Column(name = "exp_score")
 	private BigDecimal expScore;
 
+	public long getId() {
+		return id;
+	}
 
+	public void setId(long id) {
+		this.id = id;
+	}
 
+	public long getApplicantId() {
+		return applicantId;
+	}
 
+	public void setApplicantId(long applicantId) {
+		this.applicantId = applicantId;
+	}
 
+	public BigDecimal getOtherExp() {
+		return otherExp;
+	}
+
+	public void setOtherExp(BigDecimal otherExp) {
+		this.otherExp = otherExp;
+	}
+
+	public BigDecimal getCollegeFeesAmt() {
+		return collegeFeesAmt;
+	}
+
+	public void setCollegeFeesAmt(BigDecimal collegeFeesAmt) {
+		this.collegeFeesAmt = collegeFeesAmt;
+	}
+
+	public BigDecimal getSchoolFeesAmt() {
+		return schoolFeesAmt;
+	}
+
+	public void setSchoolFeesAmt(BigDecimal schoolFeesAmt) {
+		this.schoolFeesAmt = schoolFeesAmt;
+	}
+
+	public BigDecimal getElectricBillAmt() {
+		return electricBillAmt;
+	}
+
+	public void setElectricBillAmt(BigDecimal electricBillAmt) {
+		this.electricBillAmt = electricBillAmt;
+	}
+
+	public BigDecimal getOfficeTransportationCost() {
+		return officeTransportationCost;
+	}
+
+	public void setOfficeTransportationCost(BigDecimal officeTransportationCost) {
+		this.officeTransportationCost = officeTransportationCost;
+	}
+
+	public BigDecimal getCableNetBillAmt() {
+		return cableNetBillAmt;
+	}
+
+	public void setCableNetBillAmt(BigDecimal cableNetBillAmt) {
+		this.cableNetBillAmt = cableNetBillAmt;
+	}
+
+	public BigDecimal getBroadbandBillAmt() {
+		return broadbandBillAmt;
+	}
+
+	public void setBroadbandBillAmt(BigDecimal broadbandBillAmt) {
+		this.broadbandBillAmt = broadbandBillAmt;
+	}
+
+	public BigDecimal getAvgFuelCost() {
+		return avgFuelCost;
+	}
+
+	public void setAvgFuelCost(BigDecimal avgFuelCost) {
+		this.avgFuelCost = avgFuelCost;
+	}
+
+	public BigDecimal getWaterBillAmt() {
+		return waterBillAmt;
+	}
+
+	public void setWaterBillAmt(BigDecimal waterBillAmt) {
+		this.waterBillAmt = waterBillAmt;
+	}
+
+	public BigDecimal getExpScore() {
+		return expScore;
+	}
+
+	public void setExpScore(BigDecimal expScore) {
+		this.expScore = expScore;
+	}
 }

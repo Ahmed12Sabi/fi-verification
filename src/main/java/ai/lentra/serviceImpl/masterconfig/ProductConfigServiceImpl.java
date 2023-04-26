@@ -83,7 +83,15 @@ public class ProductConfigServiceImpl implements ProductsConfigService {
             if (productsDTO.getProfileName() != null) {
                 existingProducts.setProfileName(productsDTO.getProfileName());
             }
-            
+            if (productsDTO.getInstituteId() != null) {
+                existingProducts.setInstituteId(productsDTO.getInstituteId());
+            }if (productsDTO.getMandatory() != null) {
+                existingProducts.setMandatory(productsDTO.getMandatory());
+            }if (productsDTO.getDataPopulated() != null) {
+                existingProducts.setDataPopulated(productsDTO.getDataPopulated());
+            }if (productsDTO.getWaiverAllowed() != null) {
+                existingProducts.setWaiverAllowed(productsDTO.getWaiverAllowed());
+            }
 
             repository.save(existingProducts);
             return ResponseEntity.status(HttpStatus.OK).body(getResponse(200,"Product has been updated successfully ","CREATED"));

@@ -2,7 +2,6 @@ package ai.lentra.modal.residence;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import lombok.Data;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -10,7 +9,6 @@ import java.sql.Timestamp;
 import java.time.Instant;
 import java.util.Date;
 
-@Data
 @Entity
 
 @JsonIgnoreProperties(ignoreUnknown = true)

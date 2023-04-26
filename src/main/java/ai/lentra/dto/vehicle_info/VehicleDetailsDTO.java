@@ -2,13 +2,9 @@ package ai.lentra.dto.vehicle_info;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import lombok.Data;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.Pattern;
-
-
-@Data
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class VehicleDetailsDTO {
@@ -76,4 +72,180 @@ public class VehicleDetailsDTO {
     @Pattern(regexp = "^([0-2][0-9]|(3)[0-1])(\\/)(((0)[0-9])|((1)[0-2]))(\\/)\\d{4}$", message = "Invalid date format. Please use the format DD/MM/YYYY")
 
     private String financedFromDateBike;
+
+    public long getApplicantId() {
+        return applicantId;
+    }
+
+    public void setApplicantId(long applicantId) {
+        this.applicantId = applicantId;
+    }
+
+    public int getNumberOfVehiclesOwned() {
+        return numberOfVehiclesOwned;
+    }
+
+    public void setNumberOfVehiclesOwned(int numberOfVehiclesOwned) {
+        this.numberOfVehiclesOwned = numberOfVehiclesOwned;
+    }
+
+    public int getBikeRegistrationNumber() {
+        return bikeRegistrationNumber;
+    }
+
+    public void setBikeRegistrationNumber(int bikeRegistrationNumber) {
+        this.bikeRegistrationNumber = bikeRegistrationNumber;
+    }
+
+    public int getManufactureYearCar() {
+        return manufactureYearCar;
+    }
+
+    public void setManufactureYearCar(int manufactureYearCar) {
+        this.manufactureYearCar = manufactureYearCar;
+    }
+
+    public String getBikeManufactureName() {
+        return bikeManufactureName;
+    }
+
+    public void setBikeManufactureName(String bikeManufactureName) {
+        this.bikeManufactureName = bikeManufactureName;
+    }
+
+    public String getCarHypothecatedTo() {
+        return carHypothecatedTo;
+    }
+
+    public void setCarHypothecatedTo(String carHypothecatedTo) {
+        this.carHypothecatedTo = carHypothecatedTo;
+    }
+
+    public int getCarRegistrationNumber() {
+        return carRegistrationNumber;
+    }
+
+    public void setCarRegistrationNumber(int carRegistrationNumber) {
+        this.carRegistrationNumber = carRegistrationNumber;
+    }
+
+    public boolean isWithParkingSpace() {
+        return withParkingSpace;
+    }
+
+    public void setWithParkingSpace(boolean withParkingSpace) {
+        this.withParkingSpace = withParkingSpace;
+    }
+
+    public String getCarOwnershipType() {
+        return carOwnershipType;
+    }
+
+    public void setCarOwnershipType(String carOwnershipType) {
+        this.carOwnershipType = carOwnershipType;
+    }
+
+    public int getManufactureYearTwoWheeler() {
+        return manufactureYearTwoWheeler;
+    }
+
+    public void setManufactureYearTwoWheeler(int manufactureYearTwoWheeler) {
+        this.manufactureYearTwoWheeler = manufactureYearTwoWheeler;
+    }
+
+    public String getTwoWheelerModel() {
+        return twoWheelerModel;
+    }
+
+    public void setTwoWheelerModel(String twoWheelerModel) {
+        this.twoWheelerModel = twoWheelerModel;
+    }
+
+    public String getCarIssuingAuthority() {
+        return carIssuingAuthority;
+    }
+
+    public void setCarIssuingAuthority(String carIssuingAuthority) {
+        this.carIssuingAuthority = carIssuingAuthority;
+    }
+
+    public String getCarManufactureName() {
+        return carManufactureName;
+    }
+
+    public void setCarManufactureName(String carManufactureName) {
+        this.carManufactureName = carManufactureName;
+    }
+
+    public String getBikeOwnershipType() {
+        return bikeOwnershipType;
+    }
+
+    public void setBikeOwnershipType(String bikeOwnershipType) {
+        this.bikeOwnershipType = bikeOwnershipType;
+    }
+
+    public String getFinancedFromDateCar() {
+        return financedFromDateCar;
+    }
+
+    public void setFinancedFromDateCar(String financedFromDateCar) {
+        this.financedFromDateCar = financedFromDateCar;
+    }
+
+    public String getCarFuelType() {
+        return carFuelType;
+    }
+
+    public void setCarFuelType(String carFuelType) {
+        this.carFuelType = carFuelType;
+    }
+
+    public String getBikeHypothecatedTo() {
+        return bikeHypothecatedTo;
+    }
+
+    public void setBikeHypothecatedTo(String bikeHypothecatedTo) {
+        this.bikeHypothecatedTo = bikeHypothecatedTo;
+    }
+
+    public int getCarSeatingCapacity() {
+        return carSeatingCapacity;
+    }
+
+    public void setCarSeatingCapacity(int carSeatingCapacity) {
+        this.carSeatingCapacity = carSeatingCapacity;
+    }
+
+    public String getBikeIssuingAuthority() {
+        return bikeIssuingAuthority;
+    }
+
+    public void setBikeIssuingAuthority(String bikeIssuingAuthority) {
+        this.bikeIssuingAuthority = bikeIssuingAuthority;
+    }
+
+    public String getVehicleType() {
+        return vehicleType;
+    }
+
+    public void setVehicleType(String vehicleType) {
+        this.vehicleType = vehicleType;
+    }
+
+    public String getCarModel() {
+        return carModel;
+    }
+
+    public void setCarModel(String carModel) {
+        this.carModel = carModel;
+    }
+
+    public String getFinancedFromDateBike() {
+        return financedFromDateBike;
+    }
+
+    public void setFinancedFromDateBike(String financedFromDateBike) {
+        this.financedFromDateBike = financedFromDateBike;
+    }
 }

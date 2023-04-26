@@ -18,7 +18,7 @@ public class VerificationFormFieldsMasterServiceImpl implements VerificationForm
    VerificationFormFieldMasterRepository repository;
     @Override
     public List<VerificationFormFieldResponse> getAllMasters() {
-        List<VerificationFormFieldMaster> master = repository.findAll();
+        List<VerificationFormFieldMaster> master = repository.findAllMasters();
         List<VerificationFormFieldResponse> responseList = new ArrayList<>();
         master.stream().forEach((k) -> {
             VerificationFormFieldResponse response = new VerificationFormFieldResponse();
@@ -27,7 +27,7 @@ public class VerificationFormFieldsMasterServiceImpl implements VerificationForm
             response.setHidden(k.isHidden());
             response.setRequired(k.isRequired());
             response.setStatus(k.isStatus());
-            response.setVType(k.getFieldType());
+            response.setvType(k.getFieldType());
             response.setFormId(k.getVerificationFormMaster().getFormId());
             response.setFormName(k.getVerificationFormMaster().getFormName());
             responseList.add(response);

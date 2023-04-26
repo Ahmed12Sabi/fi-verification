@@ -1,13 +1,12 @@
 package ai.lentra.dto.lookups;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import lombok.Data;
+
 
 import javax.persistence.*;
 import javax.validation.constraints.Pattern;
 
 
-@Data
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class SimCardType {
 
@@ -17,6 +16,27 @@ public class SimCardType {
     private String type;
     private boolean isActive;
 
+    public long getId() {
+        return id;
+    }
 
+    public void setId(long id) {
+        this.id = id;
+    }
 
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public boolean isActive() {
+        return isActive;
+    }
+
+    public void setActive(boolean active) {
+        isActive = active;
+    }
 }
