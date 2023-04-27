@@ -1,10 +1,9 @@
 package ai.lentra.service.personal_details;
 
-import ai.lentra.dto.personal_info.PersonalDetailsDTO;
+import ai.lentra.dto.personalInfo.PersonalDetailsDTO;
 import ai.lentra.exceptions.DuplicateResourceException;
 import ai.lentra.exceptions.InvalidInputException;
 import ai.lentra.exceptions.ResourceNotFoundException;
-import ai.lentra.modal.personal_info.PersonalDetails;
 import org.springframework.http.ResponseEntity;
 
 public interface PersonalDetailService {

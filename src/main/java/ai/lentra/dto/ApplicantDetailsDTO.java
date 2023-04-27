@@ -1,17 +1,17 @@
 package ai.lentra.dto;
 
 import ai.lentra.dto.commitment.CommitmentDTO;
-import ai.lentra.dto.contact_info.ContactDetailsDTO;
-import ai.lentra.dto.employment_info.EmploymentDetailsDTO;
+import ai.lentra.dto.contactInfo.ContactDetailsDTO;
+import ai.lentra.dto.employmentInfo.EmploymentDetailsDTO;
 import ai.lentra.dto.expenses.ExpensesDTO;
-import ai.lentra.dto.famil_info.FamilyDetailsDTO;
-import ai.lentra.dto.personal_info.PersonalDetailsDTO;
+import ai.lentra.dto.familyInfo.FamilyDetailsDTO;
+import ai.lentra.dto.personalInfo.PersonalDetailsDTO;
 import ai.lentra.dto.residence.ResidenceDetailsDTO;
-import ai.lentra.dto.vehicle_info.VehicleDetailsDTO;
+import ai.lentra.dto.vehicleInfo.VehicleDetailsDTO;
 import ai.lentra.modal.summary.Summary;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import javax.validation.constraints.NotBlank;
+
 import java.util.Date;
 
 

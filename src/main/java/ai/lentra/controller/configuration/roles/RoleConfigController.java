@@ -2,13 +2,12 @@ package ai.lentra.controller.configuration.roles;
 
 
 
-import ai.lentra.dto.masterconfig.RolesDTO;
+import ai.lentra.dto.masterConfig.RolesDTO;
 import ai.lentra.dto.responses.ResponseDTO;
 import ai.lentra.exceptions.DuplicateResourceException;
 import ai.lentra.exceptions.ResourceNotFoundException;
 import ai.lentra.service.masterconfig.RolesConfigService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.MessageSource;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;

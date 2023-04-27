@@ -1,10 +1,9 @@
 package ai.lentra.service.contactInformation;
 
-import ai.lentra.dto.contact_info.ContactDetailsDTO;
+import ai.lentra.dto.contactInfo.ContactDetailsDTO;
 import ai.lentra.dto.responses.ResponseDTO;
 import ai.lentra.exceptions.DuplicateResourceException;
 import ai.lentra.exceptions.ResourceNotFoundException;
-import ai.lentra.modal.contact_info.ContactDetails;
 import org.springframework.http.ResponseEntity;
 
 public interface ContactFormService {

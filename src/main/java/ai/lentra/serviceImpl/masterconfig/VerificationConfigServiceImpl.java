@@ -1,8 +1,8 @@
 package ai.lentra.serviceImpl.masterconfig;
 
 import ai.lentra.commons.JsonUtils1;
-import ai.lentra.dto.masterconfig.MasterVerificationConfigurationDto;
-import ai.lentra.dto.masterconfig.VerificationFormFieldsConfigDto;
+import ai.lentra.dto.masterConfig.MasterVerificationConfigurationDto;
+import ai.lentra.dto.masterConfig.VerificationFormFieldsConfigDto;
 import ai.lentra.dto.responses.ResponseDTO;
 import ai.lentra.modal.masterconfig.MasterVerificationConfiguration;
 import ai.lentra.modal.masterconfig.VerificationConfig;
@@ -23,11 +23,7 @@ import javax.transaction.Transactional;
 import javax.validation.ConstraintViolationException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
-
-import static ai.lentra.commons.ResponeGen.getResponse;
-import static ai.lentra.commons.ResponeGen.getSuccessResponse;
 
 @Service
 @Transactional

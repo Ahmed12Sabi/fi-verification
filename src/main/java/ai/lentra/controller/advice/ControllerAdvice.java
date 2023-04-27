@@ -21,7 +21,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static ai.lentra.config.dbconfig.ResponseConfig.responseGen;
+import static ai.lentra.config.dbConfig.ResponseConfig.responseGen;
 
 @RestControllerAdvice
 public class ControllerAdvice {

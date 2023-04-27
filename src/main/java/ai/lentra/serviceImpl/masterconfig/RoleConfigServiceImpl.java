@@ -3,7 +3,9 @@ package ai.lentra.serviceImpl.masterconfig;
 
 
 //import ai.lentra.core.i18n.api.I18nHelper;
-import ai.lentra.dto.masterconfig.RolesDTO;
+import ai.lentra.config.I18nMessageKeys;
+import ai.lentra.core.i18n.api.I18nHelper;
+import ai.lentra.dto.masterConfig.RolesDTO;
 import ai.lentra.dto.responses.ResponseDTO;
 import ai.lentra.exceptions.DuplicateResourceException;
 import ai.lentra.exceptions.ResourceNotFoundException;
@@ -52,8 +54,8 @@ public class RoleConfigServiceImpl implements RolesConfigService {
             RolesEntity roles = objectMapper.convertValue(rolesDTO, RolesEntity.class);
         Level level = Level.LOW;
             if (role > 0) {
-               // return ResponseEntity.status(HttpStatus.FORBIDDEN).body(getResponse(403, I18nHelper.msg(level,"role_already_mapped"),"ERROR"));
-                return ResponseEntity.status(HttpStatus.FORBIDDEN).body(getResponse(403,"This Role Already mapped ","ERROR"));
+                return ResponseEntity.status(HttpStatus.FORBIDDEN).body(getResponse(403, I18nHelper.msg(I18nMessageKeys.role_already_mapped),"ERROR"));
+
             }else if(role == 0){
                 Long vmsRoleCount =repository.countByRoleName(rolesDTO.getRoleName());
                 Optional<RolesEntity> optionalDuplicate = Optional.ofNullable(repository.findByRoleName(rolesDTO.getRoleName()));

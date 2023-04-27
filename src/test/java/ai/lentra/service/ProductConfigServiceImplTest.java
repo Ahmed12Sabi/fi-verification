@@ -1,18 +1,15 @@
 
 package ai.lentra.service;
 
-import ai.lentra.dto.masterconfig.ProductsDTO;
+import ai.lentra.dto.masterConfig.ProductsDTO;
 import ai.lentra.dto.responses.ResponseDTO;
 import ai.lentra.exceptions.DuplicateResourceException;
 import ai.lentra.exceptions.ResourceNotFoundException;
 import ai.lentra.modal.masterconfig.ProductConfigEntity;
 import ai.lentra.repository.masterconfig.ProductConfigRepository;
-import ai.lentra.repository.verification_type.ProductRepository;
 import ai.lentra.serviceImpl.masterconfig.ProductConfigServiceImpl;
-import ai.lentra.serviceImpl.masterconfig.RoleConfigServiceImpl;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.Scope;

@@ -1,6 +1,6 @@
 package ai.lentra.serviceImpl.vehicleDetails;
 
-import ai.lentra.dto.vehicle_info.VehicleDetailsDTO;
+import ai.lentra.dto.vehicleInfo.VehicleDetailsDTO;
 import ai.lentra.dto.responses.ResponseDTO;
 import ai.lentra.exceptions.DuplicateResourceException;
 import ai.lentra.exceptions.InvalidInputException;

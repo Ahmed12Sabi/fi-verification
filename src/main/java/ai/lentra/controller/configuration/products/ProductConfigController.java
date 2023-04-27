@@ -2,7 +2,7 @@ package ai.lentra.controller.configuration.products;
 
 
 
-import ai.lentra.dto.masterconfig.ProductsDTO;
+import ai.lentra.dto.masterConfig.ProductsDTO;
 import ai.lentra.service.masterconfig.ProductsConfigService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

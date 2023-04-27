@@ -1,6 +1,6 @@
 package ai.lentra.serviceImpl.personal_details;
 
-import ai.lentra.dto.personal_info.PersonalDetailsDTO;
+import ai.lentra.dto.personalInfo.PersonalDetailsDTO;
 import ai.lentra.dto.responses.ResponseDTO;
 import ai.lentra.exceptions.DuplicateResourceException;
 import ai.lentra.exceptions.InvalidInputException;

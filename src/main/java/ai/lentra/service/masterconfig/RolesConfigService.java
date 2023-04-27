@@ -1,13 +1,11 @@
 package ai.lentra.service.masterconfig;
 
 
-import ai.lentra.dto.masterconfig.RolesDTO;
+import ai.lentra.dto.masterConfig.RolesDTO;
 import ai.lentra.dto.responses.ResponseDTO;
 import ai.lentra.exceptions.DuplicateResourceException;
 import ai.lentra.exceptions.ResourceNotFoundException;
 import org.springframework.http.ResponseEntity;
-
-import java.util.Locale;
 
 public interface RolesConfigService {
     ResponseEntity<ResponseDTO> saveRole(RolesDTO rolesDTO) throws ResourceNotFoundException, DuplicateResourceException;

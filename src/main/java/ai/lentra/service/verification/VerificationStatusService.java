@@ -16,7 +16,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Date;
 
-import static ai.lentra.config.dbconfig.ResponseConfig.responseGen;
+import static ai.lentra.config.dbConfig.ResponseConfig.responseGen;
 
 @Service
 public class VerificationStatusService {

@@ -3,20 +3,15 @@ package ai.lentra.config;
 import ai.lentra.core.config.api.tenantconfig.Config;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import static ai.lentra.config.dbconfig.ConfigKeys.DO_FORM_CLEANUP;
+import static ai.lentra.config.dbConfig.ConfigKeys.DO_FORM_CLEANUP;
 
 public class SchedularConfig implements Config {
 
-    @JsonProperty("auto_close")
-    private Boolean autoClose;
-
-    @JsonProperty("auto_close_duration")
-    private String autoCloseDuration;
 
     @JsonProperty("batch_job_execution_frequency")
     private String batchJobCronExpr;
 
-    public Boolean getAutoClose() {
+  /*  public Boolean getAutoClose() {
         return autoClose;
     }
 
@@ -31,7 +26,7 @@ public class SchedularConfig implements Config {
     public void setAutoCloseDuration(String autoCloseDuration) {
         this.autoCloseDuration = autoCloseDuration;
     }
-
+*/
     public String getBatchJobCronExpr() {
         return batchJobCronExpr;
     }

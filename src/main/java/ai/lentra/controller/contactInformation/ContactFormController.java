@@ -1,6 +1,6 @@
 package ai.lentra.controller.contactInformation;
 
-import ai.lentra.dto.contact_info.ContactDetailsDTO;
+import ai.lentra.dto.contactInfo.ContactDetailsDTO;
 import ai.lentra.dto.responses.ResponseDTO;
 import ai.lentra.exceptions.DuplicateResourceException;
 import ai.lentra.exceptions.ResourceNotFoundException;

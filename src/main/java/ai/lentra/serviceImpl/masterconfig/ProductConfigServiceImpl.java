@@ -1,6 +1,6 @@
 package ai.lentra.serviceImpl.masterconfig;
 
-import ai.lentra.dto.masterconfig.ProductsDTO;
+import ai.lentra.dto.masterConfig.ProductsDTO;
 import ai.lentra.dto.responses.ResponseDTO;
 import ai.lentra.exceptions.DuplicateResourceException;
 import ai.lentra.exceptions.ResourceNotFoundException;

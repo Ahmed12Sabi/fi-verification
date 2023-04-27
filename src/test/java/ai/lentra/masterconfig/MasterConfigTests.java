@@ -1,9 +1,6 @@
 package ai.lentra.masterconfig;
 
-import ai.lentra.dto.masterconfig.VerificationFormFieldResponse;
 
-
-import ai.lentra.dto.masterconfig.VerificationFormFieldsConfigDto;
 import ai.lentra.modal.masterconfig.VerificationFormFieldsConfig;
 import ai.lentra.repository.masterconfig.VerificationFormFieldsConfigRepository;
 import ai.lentra.service.masterconfig.VerificationConfigService;
@@ -12,8 +9,6 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
 
 

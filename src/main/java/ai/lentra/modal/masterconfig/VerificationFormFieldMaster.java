@@ -1,6 +1,5 @@
 package ai.lentra.modal.masterconfig;
 
-import ai.lentra.dto.masterconfig.VerificationFormMasterDto;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;

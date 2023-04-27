@@ -1,6 +1,6 @@
 package ai.lentra.controller.masterConfig;
 
-import ai.lentra.dto.masterconfig.VerificationFormFieldResponse;
+import ai.lentra.dto.masterConfig.VerificationFormFieldResponse;
 import ai.lentra.modal.masterconfig.VerificationFormFieldMaster;
 import ai.lentra.service.masterconfig.VerificationFormFieldsMasterService;
 import org.springframework.beans.factory.annotation.Autowired;

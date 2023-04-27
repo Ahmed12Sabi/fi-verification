@@ -1,8 +1,7 @@
 package ai.lentra.service.masterconfig;
 
-import ai.lentra.dto.masterconfig.MasterConfigResponse;
-import ai.lentra.dto.masterconfig.MasterVerificationConfigurationDto;
-import ai.lentra.dto.masterconfig.VerificationFormFieldsConfigDto;
+import ai.lentra.dto.masterConfig.MasterVerificationConfigurationDto;
+import ai.lentra.dto.masterConfig.VerificationFormFieldsConfigDto;
 import ai.lentra.dto.responses.ResponseDTO;
 import ai.lentra.modal.masterconfig.MasterVerificationConfiguration;
 import ai.lentra.modal.masterconfig.VerificationFormFieldsConfig;

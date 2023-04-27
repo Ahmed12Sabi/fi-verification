@@ -19,7 +19,7 @@ import java.sql.Timestamp;
 import java.time.Instant;
 import java.util.stream.Collectors;
 
-import static ai.lentra.config.dbconfig.ResponseConfig.responseGen;
+import static ai.lentra.config.dbConfig.ResponseConfig.responseGen;
 
 
 @Service

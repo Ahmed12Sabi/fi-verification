@@ -8,6 +8,7 @@ import javax.persistence.*;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,6 +35,43 @@ public class MasterVerificationConfiguration {
     private String subProfileName;
     private long institutionId;
     private boolean eSign;
+    private ZonedDateTime create_on;
+    private String created_by;
+
+    public ZonedDateTime getCreate_on() {
+        return create_on;
+    }
+
+    public void setCreate_on(ZonedDateTime create_on) {
+        this.create_on = create_on;
+    }
+
+    public String getCreated_by() {
+        return created_by;
+    }
+
+    public void setCreated_by(String created_by) {
+        this.created_by = created_by;
+    }
+
+    public ZonedDateTime getModified_on() {
+        return modified_on;
+    }
+
+    public void setModified_on(ZonedDateTime modified_on) {
+        this.modified_on = modified_on;
+    }
+
+    public String getModified_by() {
+        return modified_by;
+    }
+
+    public void setModified_by(String modified_by) {
+        this.modified_by = modified_by;
+    }
+
+    private ZonedDateTime modified_on;
+    private String modified_by;
     @OneToMany
 //    @JoinColumn(name = "v_id", referencedColumnName = "v_id")
     private List<VerificationConfig> verificationConfig ;
