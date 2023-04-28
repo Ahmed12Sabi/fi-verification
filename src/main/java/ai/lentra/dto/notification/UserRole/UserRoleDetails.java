@@ -3,11 +3,6 @@ package ai.lentra.dto.notification.UserRole;
 
 public class UserRoleDetails {
     private long id;
-    private String username;
-    private String role;
-    private String mailId;
-    private long mobile;
-    private long instituteId;
 
     public long getId() {
         return id;
@@ -56,4 +51,10 @@ public class UserRoleDetails {
     public void setInstituteId(long instituteId) {
         this.instituteId = instituteId;
     }
+
+    private String username;
+    private String role;
+    private String mailId;
+    private long mobile;
+    private long instituteId;
 }

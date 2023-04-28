@@ -14,8 +14,9 @@ public class SummaryDTO {
 	private String dateAndTimePerformed;
 	private String remarkDateTime;
 	private String reviewedBy;
-	private int remark;
+	private String remark;
 	private String otherFindings;
+	private String finalReviewStatus;
 
 	public long getApplicantId() {
 		return applicantId;
@@ -81,11 +82,11 @@ public class SummaryDTO {
 		this.reviewedBy = reviewedBy;
 	}
 
-	public int getRemark() {
+	public String getRemark() {
 		return remark;
 	}
 
-	public void setRemark(int remark) {
+	public void setRemark(String remark) {
 		this.remark = remark;
 	}
 
@@ -95,5 +96,13 @@ public class SummaryDTO {
 
 	public void setOtherFindings(String otherFindings) {
 		this.otherFindings = otherFindings;
+	}
+
+	public String getFinalReviewStatus() {
+		return finalReviewStatus;
+	}
+
+	public void setFinalReviewStatus(String finalReviewStatus) {
+		this.finalReviewStatus = finalReviewStatus;
 	}
 }

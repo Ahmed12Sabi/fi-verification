@@ -1,14 +1,9 @@
 package ai.lentra.modal.responses;
 
-
 import org.springframework.http.HttpStatus;
 
 
 public class ResponseDTO {
-    private String Status;
-    private HttpStatus code;
-    private String message;
-
     public String getStatus() {
         return Status;
     }
@@ -32,4 +27,9 @@ public class ResponseDTO {
     public void setMessage(String message) {
         this.message = message;
     }
+
+    private String Status;
+    private HttpStatus code;
+    private String message;
+
 }

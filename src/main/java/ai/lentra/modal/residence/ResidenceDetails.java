@@ -2,11 +2,9 @@ package ai.lentra.modal.residence;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Date;
-
 
 @Entity
 
@@ -14,148 +12,33 @@ import java.util.Date;
 @Embeddable
 public class ResidenceDetails{
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
+//	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "applicant_id")
 	private long applicantId;
-	@Column(name = "residence_category")
+	
 
-	private Long residenceCategory;
+	private String residenceCategory;
 
-	@Column(name = "ownership_type")
+	
 
-	private Long ownershipType;
+	private String ownershipType;
 
-	@Column(name = "living_with")
+	
 
 	private String livingWIth;
 
-	@Column(name = "residence_type")
-	private Long residenceType;
+	
+	private String residenceType;
 
-	@Column(name = "res_no_of_storey")
-	private Long resNoOfStorey;
+	
+	private String resNoOfStorey;
 
-	@Column(name = "classification")
-	private Long classification;
+	
+	private String classification;
 
-	@Column(name = "house_condition")
-	private Long houseCondition;
+	
+	private String houseCondition;
 
-	@Column(name = "property_make_type")
-	private Long propertyMAkeType;
-
-	@Column(name = "property_interior")
-	private Long propertyInterior;
-
-	@Column(name = "name_plate_visible")
-	private boolean namePlateVisible;
-
-	@Column(name = "appliances")
-	private Long appliances;
-
-	@Column(name = "appliances_total_value")
-	private BigDecimal appliancesTotalValue;
-
-	@Column(name = "commute_options")
-	private Long commuteOptions;
-
-	@Column(name = "neighbourhood_type")
-	private Long neighbourhoodType;
-
-	@Column(name = "community_dominated")
-	private boolean communityDominated;
-
-	@Column(name = "residency")
-	private Long residency;
-
-	@Column(name = "country")
-	private Long country;
-
-	@Column(name = "years_of_stay")
-	private Long yearsOfStay;
-
-	@Column(name = "months_of_stay")
-	private Long monthsOfStay;
-
-	@Column(name = "distance_from_address_to_actual_loaction")
-	private Long distanceFromAddressToActualLoaction;
-
-	@Column(name = "res_negative_location")
-	private boolean ResNegativeLocation;
-	@Column(name = "monthly_amortization")
-	private BigDecimal monthlyAmortization;
-
-	@Column(name = "rent_per_month")
-	private Long rentPerMonth;
-
-	@Column(name = "landline_num")
-	private Long landlineNum;
-
-	@Column(name = "address_line_1")
-	private String addressLine1;
-
-	@Column(name = "address_line_2")
-	private String addressLine2;
-	@Column(name = "address_line_3")
-	private String addressLine3;
-	@Column(name = "address_line_4")
-	private String addressLine4;
-
-	@Column(name = "city")
-	private String city;
-
-	@Column(name = "state")
-	private String state;
-
-	@Column(name = "pincode")
-	private String pincode;
-
-	@Column(name = "country_code")
-	private Long country_code;
-
-	@Column(name = "lattitue")
-	private Long lattitue;
-
-	@Column(name = "longitude")
-	private Long longitude;
-
-	@Column(name = "mail_delivery_status")
-	private boolean mailDeliveryStatus;
-
-	@Column(name = "address_proof_id")
-	private Long addressProofId;
-
-	@Column(name = "property_age")
-	private Long propertyAge;
-
-	@Column(name = "owned_by")
-	private String ownedBy;
-
-	@Column(name = "mortagagor_name")
-	private String mortagagorName;
-
-	@Column(name = "rented_from")
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
-
-	private Date rentedFrom;
-
-	@Column(name = "residence_landmark")
-	private String residenceLandmark;
-
-	@Column(name = "pers_met")
-	private String persMet;
-
-	@Column(name = "res_score")
-	private BigDecimal ResScore;
-
-	public long getId() {
-		return id;
-	}
-
-	public void setId(long id) {
-		this.id = id;
-	}
 
 	public long getApplicantId() {
 		return applicantId;
@@ -165,19 +48,19 @@ public class ResidenceDetails{
 		this.applicantId = applicantId;
 	}
 
-	public Long getResidenceCategory() {
+	public String getResidenceCategory() {
 		return residenceCategory;
 	}
 
-	public void setResidenceCategory(Long residenceCategory) {
+	public void setResidenceCategory(String residenceCategory) {
 		this.residenceCategory = residenceCategory;
 	}
 
-	public Long getOwnershipType() {
+	public String getOwnershipType() {
 		return ownershipType;
 	}
 
-	public void setOwnershipType(Long ownershipType) {
+	public void setOwnershipType(String ownershipType) {
 		this.ownershipType = ownershipType;
 	}
 
@@ -189,51 +72,51 @@ public class ResidenceDetails{
 		this.livingWIth = livingWIth;
 	}
 
-	public Long getResidenceType() {
+	public String getResidenceType() {
 		return residenceType;
 	}
 
-	public void setResidenceType(Long residenceType) {
+	public void setResidenceType(String residenceType) {
 		this.residenceType = residenceType;
 	}
 
-	public Long getResNoOfStorey() {
+	public String getResNoOfStorey() {
 		return resNoOfStorey;
 	}
 
-	public void setResNoOfStorey(Long resNoOfStorey) {
+	public void setResNoOfStorey(String resNoOfStorey) {
 		this.resNoOfStorey = resNoOfStorey;
 	}
 
-	public Long getClassification() {
+	public String getClassification() {
 		return classification;
 	}
 
-	public void setClassification(Long classification) {
+	public void setClassification(String classification) {
 		this.classification = classification;
 	}
 
-	public Long getHouseCondition() {
+	public String getHouseCondition() {
 		return houseCondition;
 	}
 
-	public void setHouseCondition(Long houseCondition) {
+	public void setHouseCondition(String houseCondition) {
 		this.houseCondition = houseCondition;
 	}
 
-	public Long getPropertyMAkeType() {
-		return propertyMAkeType;
+	public String getPropertyMakeType() {
+		return propertyMakeType;
 	}
 
-	public void setPropertyMAkeType(Long propertyMAkeType) {
-		this.propertyMAkeType = propertyMAkeType;
+	public void setPropertyMakeType(String propertyMakeType) {
+		this.propertyMakeType = propertyMakeType;
 	}
 
-	public Long getPropertyInterior() {
+	public String getPropertyInterior() {
 		return propertyInterior;
 	}
 
-	public void setPropertyInterior(Long propertyInterior) {
+	public void setPropertyInterior(String propertyInterior) {
 		this.propertyInterior = propertyInterior;
 	}
 
@@ -245,11 +128,11 @@ public class ResidenceDetails{
 		this.namePlateVisible = namePlateVisible;
 	}
 
-	public Long getAppliances() {
+	public String getAppliances() {
 		return appliances;
 	}
 
-	public void setAppliances(Long appliances) {
+	public void setAppliances(String appliances) {
 		this.appliances = appliances;
 	}
 
@@ -261,19 +144,19 @@ public class ResidenceDetails{
 		this.appliancesTotalValue = appliancesTotalValue;
 	}
 
-	public Long getCommuteOptions() {
+	public String getCommuteOptions() {
 		return commuteOptions;
 	}
 
-	public void setCommuteOptions(Long commuteOptions) {
+	public void setCommuteOptions(String commuteOptions) {
 		this.commuteOptions = commuteOptions;
 	}
 
-	public Long getNeighbourhoodType() {
+	public String getNeighbourhoodType() {
 		return neighbourhoodType;
 	}
 
-	public void setNeighbourhoodType(Long neighbourhoodType) {
+	public void setNeighbourhoodType(String neighbourhoodType) {
 		this.neighbourhoodType = neighbourhoodType;
 	}
 
@@ -285,19 +168,19 @@ public class ResidenceDetails{
 		this.communityDominated = communityDominated;
 	}
 
-	public Long getResidency() {
+	public String getResidency() {
 		return residency;
 	}
 
-	public void setResidency(Long residency) {
+	public void setResidency(String residency) {
 		this.residency = residency;
 	}
 
-	public Long getCountry() {
+	public String getCountry() {
 		return country;
 	}
 
-	public void setCountry(Long country) {
+	public void setCountry(String country) {
 		this.country = country;
 	}
 
@@ -445,19 +328,19 @@ public class ResidenceDetails{
 		this.mailDeliveryStatus = mailDeliveryStatus;
 	}
 
-	public Long getAddressProofId() {
+	public String getAddressProofId() {
 		return addressProofId;
 	}
 
-	public void setAddressProofId(Long addressProofId) {
+	public void setAddressProofId(String addressProofId) {
 		this.addressProofId = addressProofId;
 	}
 
-	public Long getPropertyAge() {
+	public String getPropertyAge() {
 		return propertyAge;
 	}
 
-	public void setPropertyAge(Long propertyAge) {
+	public void setPropertyAge(String propertyAge) {
 		this.propertyAge = propertyAge;
 	}
 
@@ -508,4 +391,113 @@ public class ResidenceDetails{
 	public void setResScore(BigDecimal resScore) {
 		ResScore = resScore;
 	}
+
+	private String propertyMakeType;
+
+	
+	private String propertyInterior;
+
+	
+	private boolean namePlateVisible;
+
+	
+	private String appliances;
+
+	
+	private BigDecimal appliancesTotalValue;
+
+	
+	private String commuteOptions;
+
+	
+	private String neighbourhoodType;
+
+	
+	private boolean communityDominated;
+
+	
+	private String residency;
+
+	
+	private String country;
+
+	
+	private Long yearsOfStay;
+
+	
+	private Long monthsOfStay;
+
+	
+	private Long distanceFromAddressToActualLoaction;
+
+	
+	private boolean ResNegativeLocation;
+	
+	private BigDecimal monthlyAmortization;
+
+	
+	private Long rentPerMonth;
+
+	
+	private Long landlineNum;
+
+	
+	private String addressLine1;
+
+	
+	private String addressLine2;
+	
+	private String addressLine3;
+	
+	private String addressLine4;
+
+	
+	private String city;
+
+	
+	private String state;
+
+	
+	private String pincode;
+
+	
+	private Long country_code;
+
+	
+	private Long lattitue;
+
+	
+	private Long longitude;
+
+	
+	private boolean mailDeliveryStatus;
+
+	
+	private String addressProofId;
+
+	
+	private String propertyAge;
+
+	
+	private String ownedBy;
+
+	
+	private String mortagagorName;
+
+	
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
+
+	private Date rentedFrom;
+
+	
+	private String residenceLandmark;
+
+	
+	private String persMet;
+
+	
+	private BigDecimal ResScore;
+
+
+
 }

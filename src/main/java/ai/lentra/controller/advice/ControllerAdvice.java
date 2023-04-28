@@ -1,6 +1,6 @@
 package ai.lentra.controller.advice;
 
-import ai.lentra.dto.ResponseDto;
+import ai.lentra.dto.responses.ResponseDto;
 import ai.lentra.dto.responses.ResponseDTO;
 import ai.lentra.exceptions.*;
 import org.apache.tomcat.util.http.fileupload.impl.FileSizeLimitExceededException;
@@ -8,7 +8,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.MissingPathVariableException;
 import org.springframework.web.bind.MissingRequestHeaderException;
+import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -21,13 +23,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static ai.lentra.config.dbConfig.ResponseConfig.responseGen;
+import static ai.lentra.commons.ResponseUtils.responseGen;
 
 @RestControllerAdvice
-public class ControllerAdvice {
+public class ControllerAdvice  {
 //    to handle the file upload exceptions
     @ExceptionHandler(MaxUploadSizeExceededException.class)
     public ResponseEntity<ResponseDTO> handleMaxUploadSizeExceededException(MaxUploadSizeExceededException exc) {
+
         ResponseDTO responseDTO = new ResponseDTO();
         responseDTO.setCode("400");
         responseDTO.setStatus("Upload Failed ");
@@ -37,6 +40,8 @@ public class ControllerAdvice {
     //to handle the dto validation errors
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<List<ResponseDTO>> handleValidationExceptions(MethodArgumentNotValidException ex) {
+
+
         List<ResponseDTO> responseDTOs = new ArrayList<>();
         Map<String, String> errorMapping = new HashMap<>();
         ResponseDTO errorResponse= new ResponseDTO();
@@ -55,6 +60,8 @@ public class ControllerAdvice {
     //to handle FileSizeLimitExceededException
     @ExceptionHandler(FileSizeLimitExceededException.class)
     public ResponseEntity<ResponseDTO> handleFileSizeLimitExceededException(FileSizeLimitExceededException exc) {
+
+
         ResponseDTO responseDTO = new ResponseDTO();
         responseDTO.setCode("400");
         responseDTO.setStatus("Upload Failed ");
@@ -86,6 +93,8 @@ public class ControllerAdvice {
     @ResponseStatus(HttpStatus.CONFLICT)
     @ExceptionHandler(DuplicateResourceException.class)
     public ResponseEntity<ResponseDTO> handleDuplicateResource(DuplicateResourceException exc) {
+
+
         ResponseDTO responseDTO = new ResponseDTO();
         responseDTO.setCode("409");
         responseDTO.setStatus("Duplicate Request");
@@ -95,6 +104,8 @@ public class ControllerAdvice {
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(DateTimeParseException.class)
     public ResponseEntity<ResponseDTO> handleDateTimeParse(DateTimeParseException exc) {
+
+
         ResponseDTO responseDTO = new ResponseDTO();
         responseDTO.setCode("400");
         responseDTO.setStatus("Invalid Input");
@@ -104,6 +115,8 @@ public class ControllerAdvice {
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(InvalidInputException.class)
     public ResponseEntity<ResponseDTO> handleInvalidInput(InvalidInputException exc) {
+
+
         ResponseDTO responseDTO = new ResponseDTO();
         responseDTO.setCode("400");
         responseDTO.setStatus("Invalid Input");
@@ -113,6 +126,8 @@ public class ControllerAdvice {
 
     @ExceptionHandler(CurrencyNotFoundException.class)
     public ResponseEntity<ResponseDto> handleCurrencyExceptions(CurrencyNotFoundException ex) {
+
+
         List<ResponseDto> responseDTOs = new ArrayList<>();
         Map<String, String> errorMapping = new HashMap<>();
         ResponseDto errorResponse= new ResponseDto();
@@ -126,6 +141,7 @@ public class ControllerAdvice {
 
     @ExceptionHandler(ResidenceException.class)
     public ResponseEntity<ResponseDto> handleResidenceExceptions(CurrencyNotFoundException ex) {
+
         List<ResponseDto> responseDTOs = new ArrayList<>();
         Map<String, String> errorMapping = new HashMap<>();
         ResponseDto errorResponse= new ResponseDto();
@@ -136,6 +152,13 @@ public class ControllerAdvice {
 
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
     }
+    @ExceptionHandler(MissingServletRequestParameterException.class)
+    public ResponseEntity<ResponseDTO> handleResidenceExceptions(MissingServletRequestParameterException ex) {
+
+
+
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(responseGen(ex.getLocalizedMessage(), "Invalid Request Parameters","400"));
+    }
 
 
 
@@ -143,6 +166,11 @@ public class ControllerAdvice {
     @ExceptionHandler(MissingRequestHeaderException.class)
     public ResponseEntity<ResponseDTO> handleDateTimeParse(MissingRequestHeaderException exc) {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(responseGen(exc.getMessage(),"FAILED", "400"));
+    }
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(MissingPathVariableException.class)
+    public ResponseEntity<ResponseDTO> handleDateTimeParse(MissingPathVariableException exc) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(responseGen(exc.getMessage(),"Invalid Request                         ", "400"));
     }
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
@@ -163,5 +191,7 @@ public class ControllerAdvice {
 
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(responseDTOs);
     }
+
+
 
 }

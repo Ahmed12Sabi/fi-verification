@@ -5,45 +5,16 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import javax.persistence.*;
 import java.math.BigDecimal;
 
-
-//@Entity
 @Entity
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Embeddable
 public class PersonalDetails{
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
 	@Column(name = "applicant_id")
+//	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long applicantId;
 	private int persRefId;
 	private boolean loanTakenEarlier;
-	private String citizenship;
-	private String birthDate;
-	private String religion;
-	private String martialStatus;
-	private boolean politicallyExposed;
-	private String educationLevel;
-	private int age;
-	private String lastName;
-	private String alias;
-	private String middleName;
-	private String suffix;
-	private String firstName;
-	private BigDecimal income;
-	private String civilStatus;
-	private String incomeSource;
-	private BigDecimal incomePeriod;
-	private String dateTimeEndorsed;
-	private String dateInspected;
-
-	public long getId() {
-		return id;
-	}
-
-	public void setId(long id) {
-		this.id = id;
-	}
 
 	public long getApplicantId() {
 		return applicantId;
@@ -123,6 +94,14 @@ public class PersonalDetails{
 
 	public void setAge(int age) {
 		this.age = age;
+	}
+
+	public String getPrefix() {
+		return prefix;
+	}
+
+	public void setPrefix(String prefix) {
+		this.prefix = prefix;
 	}
 
 	public String getLastName() {
@@ -212,4 +191,24 @@ public class PersonalDetails{
 	public void setDateInspected(String dateInspected) {
 		this.dateInspected = dateInspected;
 	}
+
+	private String citizenship;
+	private String birthDate;
+	private String religion;
+	private String martialStatus;
+	private boolean politicallyExposed;
+	private String educationLevel;
+	private int age;
+	private String prefix;
+	private String lastName;
+	private String alias;
+	private String middleName;
+	private String suffix;
+	private String firstName;
+	private BigDecimal income;
+	private String civilStatus;
+	private String incomeSource;
+	private BigDecimal incomePeriod;
+	private String dateTimeEndorsed;
+	private String dateInspected;
 }

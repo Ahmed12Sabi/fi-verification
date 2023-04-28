@@ -17,19 +17,16 @@ public class LongPollingController {
     LongPollingEventSimulator simulator;
     @GetMapping("/test")
     DeferredResult<String> addNotificationToQueue(String username, String message){
-        username="abc";
-        message="demo msg";
-        Long timeOutInMilliSec = 1000L;
+        Long timeOutInMilliSec = 100000L;
         String timeOutResp = "Time Out.";
         DeferredResult<String> deferredResult = new DeferredResult<>(timeOutInMilliSec,timeOutResp);
-        String finalUsername = username;
         CompletableFuture.runAsync(()->{
             try {
                 //Long pooling task;If task is not completed within 100 sec timeout response retrun for this request
                 // Add paused http requests to event queue
-                simulator.getPollingQueue().add(new LongPollingSession(finalUsername, deferredResult));
+                simulator.getPollingQueue().add(new LongPollingSession(username, deferredResult));
 //                saveNotification(username,message);
-                getNotifications(finalUsername);
+                getNotifications(username);
                 TimeUnit.SECONDS.sleep(10);
                 //set result after completing task to return response to client
                 deferredResult.setResult("Task Finished");
@@ -40,11 +37,7 @@ public class LongPollingController {
     }
     //First savecall save notification to save in db
     //Meassge will be from in app .properties file
-
-    @GetMapping("/saveNotification")
     public String saveNotification( String username, String message) {
-        username="abc";
-                message="demo msg";
         simulator.simulateIncomingNotification(username, message);
         return "Simulating event for username Id: " + username;
     }

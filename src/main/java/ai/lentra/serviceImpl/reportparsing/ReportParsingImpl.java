@@ -1,24 +1,25 @@
 package ai.lentra.serviceImpl.reportparsing;
 
-import ai.lentra.dto.ApplicantDetailsDTO;
-import ai.lentra.dto.HeadersDTO;
+
+import ai.lentra.dto.applicant.ApplicantDetailsDTO;
 import ai.lentra.dto.commitment.CommitmentDTO;
-import ai.lentra.dto.contactInfo.ContactDetailsDTO;
-import ai.lentra.dto.employmentInfo.EmploymentDetailsDTO;
+import ai.lentra.dto.contact_info.ContactDetailsDTO;
+import ai.lentra.dto.employment_info.EmploymentDetailsDTO;
 import ai.lentra.dto.expenses.ExpensesDTO;
-import ai.lentra.dto.familyInfo.FamilyDetailsDTO;
-import ai.lentra.dto.personalInfo.PersonalDetailsDTO;
+import ai.lentra.dto.famil_info.FamilyDetailsDTO;
+import ai.lentra.dto.headers.HeadersDTO;
+import ai.lentra.dto.personal_info.PersonalDetailsDTO;
 import ai.lentra.dto.residence.ResidenceDetailsDTO;
 import ai.lentra.dto.responses.ResponseDTO;
-import ai.lentra.dto.vehicleInfo.VehicleDetailsDTO;
-import ai.lentra.modal.ApplicantDetails;
+import ai.lentra.dto.vehicle_info.VehicleDetailsDTO;
+import ai.lentra.modal.applicant_details.ApplicantDetails;
 import ai.lentra.modal.masterconfig.ReportConfig;
 import ai.lentra.modal.masterconfig.ReportConfigFields;
 import ai.lentra.modal.summary.Summary;
-import ai.lentra.repository.applicantDetails.ApplicantDetailsRepository;
+import ai.lentra.repository.applicant.ApplicantDetailsRepository;
 import ai.lentra.repository.masterconfig.ReportConfigFieldsRepository;
 import ai.lentra.repository.masterconfig.ReportConfigRepository;
-import ai.lentra.service.applicantDetails.ApplicantDetailsService;
+import ai.lentra.service.ApplicantDetailsService;
 import ai.lentra.service.reportparsing.ReportParsingService;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
@@ -101,7 +102,7 @@ public class ReportParsingImpl implements ReportParsingService {
             int appId = headerList.indexOf("applicantId");
 
             for (CSVRecord csvRecord : csvRecords) {
-                ApplicantDetails applicantsDetails = applicantDetailsRepository.findByApplicantId(Long.valueOf(csvRecord.get(appId)));
+                Optional<ApplicantDetails> applicantsDetails = applicantDetailsRepository.findByApplicantId(Long.valueOf(csvRecord.get(appId)));
                 if (applicantsDetails != null) {
                     response.setCode("400");
                     response.setMessage("AppicationId Already exists");
@@ -286,35 +287,35 @@ public class ReportParsingImpl implements ReportParsingService {
         }
         if (headerList.contains("collegeFeesAmt")) {
             index = headerList.indexOf("collegeFeesAmt");
-            expensesDto.setCollegeFeesAmt(Integer.parseInt((csvRecords.get(index))));
+            expensesDto.setCollegeFeesAmt(BigDecimal.valueOf(Integer.parseInt((csvRecords.get(index)))));
         }
         if (headerList.contains("schoolFeesAmt")) {
             index = headerList.indexOf("schoolFeesAmt");
-            expensesDto.setSchoolFeesAmt(Integer.parseInt(csvRecords.get(index)));
+            expensesDto.setSchoolFeesAmt(BigDecimal.valueOf(Long.parseLong(csvRecords.get(index))));
         }
         if (headerList.contains("electricBillAmt")) {
             index = headerList.indexOf("electricBillAmt");
-            expensesDto.setElectricBillAmt(Integer.parseInt(csvRecords.get(index)));
+            expensesDto.setElectricBillAmt(BigDecimal.valueOf(Long.parseLong(csvRecords.get(index))));
         }
         if (headerList.contains("officeTransportationCost")) {
             index = headerList.indexOf("officeTransportationCost");
-            expensesDto.setOfficeTransportationCost(Integer.parseInt((csvRecords.get(index))));
+            expensesDto.setOfficeTransportationCost(BigDecimal.valueOf(Long.parseLong((csvRecords.get(index)))));
         }
         if (headerList.contains("cableNetBillAmt")) {
             index = headerList.indexOf("cableNetBillAmt");
-            expensesDto.setCableNetBillAmt(Integer.parseInt((csvRecords.get(index))));
+            expensesDto.setCableNetBillAmt(BigDecimal.valueOf(Long.parseLong((csvRecords.get(index)))));
         }
         if (headerList.contains("broadbandBillAmt")) {
             index = headerList.indexOf("broadbandBillAmt");
-            expensesDto.setBroadbandBillAmt(Integer.parseInt((csvRecords.get(index))));
+            expensesDto.setBroadbandBillAmt(BigDecimal.valueOf(Long.parseLong((csvRecords.get(index)))));
         }
         if (headerList.contains("avgFuelCost")) {
             index = headerList.indexOf("avgFuelCost");
-            expensesDto.setAvgFuelCost(Integer.valueOf(csvRecords.get(index)));
+            expensesDto.setAvgFuelCost(BigDecimal.valueOf(Integer.valueOf(csvRecords.get(index))));
         }
         if (headerList.contains("waterBillAmt")) {
             index = headerList.indexOf("waterBillAmt");
-            expensesDto.setWaterBillAmt(Integer.parseInt((csvRecords.get(index))));
+            expensesDto.setWaterBillAmt(BigDecimal.valueOf(Long.parseLong((csvRecords.get(index)))));
         }
 
         FamilyDetailsDTO familyDetailsDTO = new FamilyDetailsDTO();
@@ -615,7 +616,7 @@ public class ReportParsingImpl implements ReportParsingService {
         }
 
         ResidenceDetailsDTO residenceDto = new ResidenceDetailsDTO();
-        residenceDto.setApplicant_id(appId);
+        residenceDto.setApplicantId(appId);
         EmploymentDetailsDTO officeSelfEmploymentDto = new EmploymentDetailsDTO();
         officeSelfEmploymentDto.setApplicantId(appId);
         ApplicantDetailsDTO applicantDetails = new ApplicantDetailsDTO();
@@ -625,9 +626,9 @@ public class ReportParsingImpl implements ReportParsingService {
         applicantDetails.setExpenses(expensesDto);
         applicantDetails.setFamilyDetails(familyDetailsDTO);
         applicantDetails.setSummary(summary);
-        applicantDetails.setVehicle(vehicleDetails);
+        applicantDetails.setVehicleDetails(vehicleDetails);
         applicantDetails.setResidences(residenceDto);
-        applicantDetails.setCommitments(commitmentDTO);
+        applicantDetails.setCommitmentDTO(commitmentDTO);
         applicantDetails.setOfficeSelfEmployment(officeSelfEmploymentDto);
         applicantDetailsService.saveApplicantDetails(Long.valueOf(headerList.indexOf("applicantId")), applicantDetails, new HeadersDTO());
 //        applicantDetailsRepository.save(applicantDetails);

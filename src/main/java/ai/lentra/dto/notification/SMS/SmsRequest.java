@@ -6,10 +6,6 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 public class SmsRequest {
 
-    private String sCallbackUrl;
-    private String[] aVendors;//vendor as "lentra"
-    private RequestData odata;
-
     public String getsCallbackUrl() {
         return sCallbackUrl;
     }
@@ -33,4 +29,9 @@ public class SmsRequest {
     public void setOdata(RequestData odata) {
         this.odata = odata;
     }
+
+    private String sCallbackUrl;
+    private String[] aVendors;//vendor as "lentra"
+    private RequestData odata;
+
 }

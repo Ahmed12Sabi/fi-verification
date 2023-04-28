@@ -1,20 +1,12 @@
 package ai.lentra.modal.applicant_details;
 
 
+
 import javax.persistence.*;
 
 
 @Entity
 public class ApplicantsAddress {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "address_id")
-    private long id;
-    private String addressType;
-    private long applicantId;
-    private String applicationId;
-    private String address;
-
     public long getId() {
         return id;
     }
@@ -54,4 +46,13 @@ public class ApplicantsAddress {
     public void setAddress(String address) {
         this.address = address;
     }
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "address_id")
+    private long id;
+    private String addressType;
+    private long applicantId;
+    private String applicationId;
+    private String address;
 }

@@ -3,20 +3,21 @@ package ai.lentra.dto.expenses;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
+import java.math.BigDecimal;
+
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class ExpensesDTO {
-
 	private long applicantId;
-	private int officeTransportationCost;
-	private int electricBillAmt;
-	private int cableNetBillAmt;
-	private int waterBillAmt;
-	private int broadbandBillAmt;
-	private int avgFuelCost;
+	private BigDecimal officeTransportationCost;
+	private BigDecimal electricBillAmt;
+	private BigDecimal cableNetBillAmt;
+	private BigDecimal waterBillAmt;
+	private BigDecimal broadbandBillAmt;
+	private BigDecimal avgFuelCost;
 	private String otherExpenses;
-	private int schoolFeesAmt;
-	private int collegeFeesAmt;
+	private BigDecimal schoolFeesAmt;
+	private BigDecimal collegeFeesAmt;
 
 	public long getApplicantId() {
 		return applicantId;
@@ -26,51 +27,51 @@ public class ExpensesDTO {
 		this.applicantId = applicantId;
 	}
 
-	public int getOfficeTransportationCost() {
+	public BigDecimal getOfficeTransportationCost() {
 		return officeTransportationCost;
 	}
 
-	public void setOfficeTransportationCost(int officeTransportationCost) {
+	public void setOfficeTransportationCost(BigDecimal officeTransportationCost) {
 		this.officeTransportationCost = officeTransportationCost;
 	}
 
-	public int getElectricBillAmt() {
+	public BigDecimal getElectricBillAmt() {
 		return electricBillAmt;
 	}
 
-	public void setElectricBillAmt(int electricBillAmt) {
+	public void setElectricBillAmt(BigDecimal electricBillAmt) {
 		this.electricBillAmt = electricBillAmt;
 	}
 
-	public int getCableNetBillAmt() {
+	public BigDecimal getCableNetBillAmt() {
 		return cableNetBillAmt;
 	}
 
-	public void setCableNetBillAmt(int cableNetBillAmt) {
+	public void setCableNetBillAmt(BigDecimal cableNetBillAmt) {
 		this.cableNetBillAmt = cableNetBillAmt;
 	}
 
-	public int getWaterBillAmt() {
+	public BigDecimal getWaterBillAmt() {
 		return waterBillAmt;
 	}
 
-	public void setWaterBillAmt(int waterBillAmt) {
+	public void setWaterBillAmt(BigDecimal waterBillAmt) {
 		this.waterBillAmt = waterBillAmt;
 	}
 
-	public int getBroadbandBillAmt() {
+	public BigDecimal getBroadbandBillAmt() {
 		return broadbandBillAmt;
 	}
 
-	public void setBroadbandBillAmt(int broadbandBillAmt) {
+	public void setBroadbandBillAmt(BigDecimal broadbandBillAmt) {
 		this.broadbandBillAmt = broadbandBillAmt;
 	}
 
-	public int getAvgFuelCost() {
+	public BigDecimal getAvgFuelCost() {
 		return avgFuelCost;
 	}
 
-	public void setAvgFuelCost(int avgFuelCost) {
+	public void setAvgFuelCost(BigDecimal avgFuelCost) {
 		this.avgFuelCost = avgFuelCost;
 	}
 
@@ -82,19 +83,19 @@ public class ExpensesDTO {
 		this.otherExpenses = otherExpenses;
 	}
 
-	public int getSchoolFeesAmt() {
+	public BigDecimal getSchoolFeesAmt() {
 		return schoolFeesAmt;
 	}
 
-	public void setSchoolFeesAmt(int schoolFeesAmt) {
+	public void setSchoolFeesAmt(BigDecimal schoolFeesAmt) {
 		this.schoolFeesAmt = schoolFeesAmt;
 	}
 
-	public int getCollegeFeesAmt() {
+	public BigDecimal getCollegeFeesAmt() {
 		return collegeFeesAmt;
 	}
 
-	public void setCollegeFeesAmt(int collegeFeesAmt) {
+	public void setCollegeFeesAmt(BigDecimal collegeFeesAmt) {
 		this.collegeFeesAmt = collegeFeesAmt;
 	}
 }

@@ -15,7 +15,7 @@ import ai.lentra.config.SchedularConfig;
 import static ai.lentra.config.dbConfig.ConfigKeys.DO_FORM_CLEANUP;
 
 @Component
-public class FormCleanUpController  implements JobInterface
+public class FormCleanUpController implements JobInterface
  {
 
     private final Logger logger = LoggerFactory.getLogger(FormCleanUpController.class);
@@ -40,7 +40,7 @@ public class FormCleanUpController  implements JobInterface
     public JobFunction getJobFunction() {
         return (context -> {
             logger.info("Executing Do form clean up..."); 
-           // formCleanUpService.doFormCleanUp();
+            formCleanUpService.doFormCleanUp();
             logger.info("Executing Do form clean up.....Done.");
         });
     }

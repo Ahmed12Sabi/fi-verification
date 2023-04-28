@@ -5,7 +5,6 @@ import javax.persistence.Embeddable;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
-
 @Entity
 @Embeddable
 public class UserRoleDetails {
@@ -14,8 +13,6 @@ public class UserRoleDetails {
     private String username;
     private String role;
     private String mailId;
-    private long mobile;
-    private long instituteId;
 
     public long getId() {
         return id;
@@ -64,4 +61,7 @@ public class UserRoleDetails {
     public void setInstituteId(long instituteId) {
         this.instituteId = instituteId;
     }
+
+    private long mobile;
+    private long instituteId;
 }

@@ -1,10 +1,9 @@
 package ai.lentra.dto.notification.EMAIL;
 
-public class AttachmentFileDocuments {
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-    private String sContent;
-    private String sFileName;
-    private String sMediaType;
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class AttachmentFileDocuments {
 
     public String getsContent() {
         return sContent;
@@ -29,4 +28,8 @@ public class AttachmentFileDocuments {
     public void setsMediaType(String sMediaType) {
         this.sMediaType = sMediaType;
     }
+
+    private String sContent;
+    private String sFileName;
+    private String sMediaType;
 }

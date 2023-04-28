@@ -13,6 +13,8 @@ public class ErrorMessage {
 
     public static final String INVALID_VALUE = "Not a valid value for";
 
+    public static final String NOT_FOUND = "NOT_FOUND";
+
 
 
 

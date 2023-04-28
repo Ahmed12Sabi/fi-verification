@@ -2,9 +2,9 @@ package ai.lentra.serviceImpl.offlineVerification;
 
 import ai.lentra.dto.offlineVerification.DataFields;
 import ai.lentra.dto.offlineVerification.OffileInputDataDTO;
-import ai.lentra.modal.ApplicationDetails;
+import ai.lentra.modal.application.ApplicationDetails;
 import ai.lentra.modal.masterconfig.*;
-import ai.lentra.repository.applicationDetails.ApplicationRepository;
+import ai.lentra.repository.allocation.ApplicationRepository;
 import ai.lentra.repository.masterconfig.MasterVerificationConfigurationRepository;
 import ai.lentra.repository.masterconfig.ProductConfigRepository;
 import ai.lentra.repository.masterconfig.VerificationFormConfigRepository;
@@ -14,6 +14,7 @@ import freemarker.template.Configuration;
 import freemarker.template.Template;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.freemarker.FreeMarkerTemplateUtils;
 import javax.servlet.http.HttpServletRequest;
@@ -25,6 +26,9 @@ import com.itextpdf.html2pdf.HtmlConverter;
 public class OfflineVerificationServiceImpl implements OfflineVerificationService {
     @Autowired
     private Configuration config;
+
+    @Autowired
+    JdbcTemplate jdbcTemplate;
     @Autowired
     ApplicationRepository applicationRepository;
     @Autowired
@@ -36,6 +40,7 @@ public class OfflineVerificationServiceImpl implements OfflineVerificationServic
     @Autowired
     VerificationFormFieldsConfigRepository verificationFormFieldsConfigRepository;
     public String getOffLinePDF(HttpServletRequest request) throws Exception {
+        Long applicant_id=1L;
         String instituteId = "1";
         String product = "HL";
         Template template = config.getTemplate("offlineVerificationHtml.ftl");
@@ -57,8 +62,8 @@ public class OfflineVerificationServiceImpl implements OfflineVerificationServic
                         List<VerificationFormFieldsConfig> fields = verificationFormFieldsConfigRepository.getByFormFields(form.getFormId());
                         for (VerificationFormFieldsConfig field : fields) {
                             if (!field.isHidden()) {
-                               // dataFields.setDataFields(Arrays.asList(new DataFields(field.getFieldName(), "Afroze")));
-                                html.append(FreeMarkerTemplateUtils.processTemplateIntoString(template, new OffileInputDataDTO(Arrays.asList(new DataFields(field.getFieldName(), "Afroze")))));
+                               // dataFields.setDataFields(Arrays.asList(new DataFields(field.getFieldName(), findValue(findById(field.getFieldId())) )));
+                                html.append(FreeMarkerTemplateUtils.processTemplateIntoString(template, new OffileInputDataDTO(Arrays.asList(new DataFields(field.getFieldName(), findValue(findById(field.getFieldId(),applicant_id )) )))));
                             }
                         }
                     }
@@ -73,6 +78,18 @@ public class OfflineVerificationServiceImpl implements OfflineVerificationServic
 
         return "SuccessFully Pdf downloaded";
     }
+
+   // @Override
+    public String findById(Long id, Long applicant_id) {
+        return jdbcTemplate.queryForObject(
+                "select * from books where field_id = ? limit 1",
+                new Object[]{id},
+                (rs, rowNum) ->
+                        ("select "+rs.getString("field_name")+" from "+ rs.getString("field_table") +" where applicant_id = "+applicant_id+"  limit 1"));
     }
 
+    public String findValue(String value) {
+        return jdbcTemplate.queryForObject( value,(rs, rowNum) ->(rs.getString(0)));
+    }
+}
 

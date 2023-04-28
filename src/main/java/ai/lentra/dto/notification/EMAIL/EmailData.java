@@ -1,17 +1,11 @@
 package ai.lentra.dto.notification.EMAIL;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import java.util.HashSet;
 import java.util.Set;
-
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class EmailData {
-    private String[] aBCCReceiver;//
-    private String[] aCCReceiver;//
-    private String[] aReceiver;//Fetch from UserROleController
-    private String sMessage;// fetch from email.Propertis
-    private String sSubject;// fetch from email.properties
-
-    private Set<AttachmentFileDocuments> aAttachmentFileDocuments = new HashSet<AttachmentFileDocuments>();
-
     public String[] getaBCCReceiver() {
         return aBCCReceiver;
     }
@@ -59,4 +53,12 @@ public class EmailData {
     public void setaAttachmentFileDocuments(Set<AttachmentFileDocuments> aAttachmentFileDocuments) {
         this.aAttachmentFileDocuments = aAttachmentFileDocuments;
     }
+
+    private String[] aBCCReceiver;//
+    private String[] aCCReceiver;//
+    private String[] aReceiver;//Fetch from UserROleController
+    private String sMessage;// fetch from email.Propertis
+    private String sSubject;// fetch from email.properties
+
+    private Set<AttachmentFileDocuments> aAttachmentFileDocuments = new HashSet<AttachmentFileDocuments>();
 }

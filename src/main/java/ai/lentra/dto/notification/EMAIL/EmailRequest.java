@@ -5,10 +5,6 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @JsonIgnoreProperties(ignoreUnknown = true)
 
 public class EmailRequest {
-    private  String[] aVendors;//"lentra"
-    private  String sCallbackUrl;//"demo callbackurl
-    private EmailData oData;
-
     public String[] getaVendors() {
         return aVendors;
     }
@@ -32,4 +28,9 @@ public class EmailRequest {
     public void setoData(EmailData oData) {
         this.oData = oData;
     }
+
+    private  String[] aVendors;//"lentra"
+
+    private  String sCallbackUrl;//"demo callbackurl
+    private EmailData oData;
 }

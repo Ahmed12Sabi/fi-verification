@@ -8,9 +8,6 @@ import java.util.Set;
 @JsonIgnoreProperties(ignoreUnknown = true)
 
 public class RequestData {
-    private String sRequestType;//req type is "transmission"
-    private Set<Messages> amessages = new HashSet<Messages>();
-
     public String getsRequestType() {
         return sRequestType;
     }
@@ -26,4 +23,7 @@ public class RequestData {
     public void setAmessages(Set<Messages> amessages) {
         this.amessages = amessages;
     }
+
+    private String sRequestType;//req type is "transmission"
+    private Set<Messages> amessages = new HashSet<Messages>();
 }

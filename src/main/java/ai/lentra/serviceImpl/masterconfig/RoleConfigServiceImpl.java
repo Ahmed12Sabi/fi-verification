@@ -14,6 +14,8 @@ import ai.lentra.repository.masterconfig.RolesRepository;
 import ai.lentra.service.masterconfig.RolesConfigService;
 import ai.lentra.utils.Level;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.http.HttpStatus;
@@ -29,6 +31,7 @@ import static ai.lentra.commons.ResponeGen.getResponse;
 @Service
 public class RoleConfigServiceImpl implements RolesConfigService {
 
+    private final Logger logger = LoggerFactory.getLogger(RoleConfigServiceImpl.class);
     @Autowired
     RolesRepository repository;
 
@@ -38,16 +41,16 @@ public class RoleConfigServiceImpl implements RolesConfigService {
     @Override
     public ResponseEntity<ResponseDTO> saveRole(RolesDTO rolesDTO) throws ResourceNotFoundException, DuplicateResourceException
     {
-//        try{
             try{
             if(rolesDTO.getRoleName().trim().isEmpty() || rolesDTO.getVmsRoleName().trim().isEmpty() || ( rolesDTO.getStatus() == null) ){
                 if(rolesDTO.getStatus() == null ){
-                    return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(getResponse(400,"Status should not be null / empty ","ERROR"));
+                    return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(getResponse(400,I18nHelper.msg(I18nMessageKeys.status_not_null),"ERROR"));
                 }
-                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(getResponse(400,"Role name / Vms role name should not be blank ","ERROR"));
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(getResponse(400,I18nHelper.msg(I18nMessageKeys.name_role_not_null),"ERROR"));
             }}
             catch (Exception e){
-                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(getResponse(400, e.getMessage(), "ERROR"));
+                logger.info(" saveRole : "+e.getMessage());
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(getResponse(400,I18nHelper.msg(I18nMessageKeys.something_went_wrong) , "ERROR"));
             }
             Long role = repository.countByRoleNameAndVmsRoleName(rolesDTO.getRoleName(),rolesDTO.getVmsRoleName());
             ObjectMapper objectMapper = new ObjectMapper();
@@ -70,9 +73,7 @@ public class RoleConfigServiceImpl implements RolesConfigService {
 
 
             return ResponseEntity.status(HttpStatus.CREATED).body(getResponse(201,"Role has been added successfully ","CREATED"));
-//        } catch (Exception e) {
-//            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(getResponse(500,"Role already mapped ","ERROR"));
-//        }
+
     }
 
     @Override

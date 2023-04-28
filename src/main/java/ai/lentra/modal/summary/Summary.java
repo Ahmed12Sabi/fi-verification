@@ -2,6 +2,7 @@ package ai.lentra.modal.summary;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -12,59 +13,9 @@ import java.util.Date;
 @Embeddable
 public class Summary{
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-
-	private  long id;
-	
 	@Column(name = "applicant_id")
 	private long applicantId;
-	@Column(name = "ref_id")
-
 	private Integer sumRefId;
-
-	@Column(name = "other_findings")
-
-	private Integer otherFindings;
-
-	@Column(name = "final_score")
-
-	private Integer finalScore;
-
-	@Column(name = "remark")
-
-	private String remark;
-
-	@Column(name = "remark_date_time")
-
-	private Date remarkDateTime;
-
-	@Column(name = "prepared_by")
-
-	private String preparedBy;
-
-	@Column(name = "date_and_time_performed")
-
-	private Date dateAndTimePerformed;
-
-	@Column(name = "reviewed_by")
-
-	private String reviewedBy;
-
-	@Column(name = "agency_name")
-
-	private String agencyName;
-
-	@Column(name = "sum_score")
-
-	private Integer sumScore;
-
-	public long getId() {
-		return id;
-	}
-
-	public void setId(long id) {
-		this.id = id;
-	}
 
 	public long getApplicantId() {
 		return applicantId;
@@ -153,4 +104,23 @@ public class Summary{
 	public void setSumScore(Integer sumScore) {
 		this.sumScore = sumScore;
 	}
+
+	public String getFinalReviewStatus() {
+		return finalReviewStatus;
+	}
+
+	public void setFinalReviewStatus(String finalReviewStatus) {
+		this.finalReviewStatus = finalReviewStatus;
+	}
+
+	private Integer otherFindings;
+	private Integer finalScore;
+	private String remark;
+	private Date remarkDateTime;
+	private String preparedBy;
+	private Date dateAndTimePerformed;
+	private String reviewedBy;
+	private String agencyName;
+	private Integer sumScore;
+	private String finalReviewStatus;
 }

@@ -1,9 +1,9 @@
 package ai.lentra.modal.employment_info;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
+
 
 @Entity
 
@@ -11,124 +11,10 @@ import javax.persistence.*;
 @Embeddable
 public class OfficeSelfEmployment {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-private long id;
+
+//	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "applicant_id")
-
 	private long applicantId;
-
-	@Column(name = "out_of_geo_limit")
-	private boolean outOfGeoLimit;
-
-	@Column(name = "metro_location")
-	private boolean metroLocation;
-
-	@Column(name = "offc_negative_location")
-	private boolean offcNegativeLocation;
-
-	@Column(name = "office_construction")
-	private Integer office_construction;
-	@Column(name = "office_area")
-	private Integer officeArea;
-	@Column(name = "office_exterior")
-	private Integer officeExterior;
-	@Column(name = "office_interior")
-	private Integer officeInterior;
-	@Column(name = "offc_no_of_storey")
-	private Integer offcNoOfStorey;
-	@Column(name = "ease_of_office_location")
-	private Integer easeOfOfficeLocation;
-
-	@Column(name = "items_sighted_in_office")
-	private Integer itemsSightedInOffice;
-	@Column(name = "no_of_emplyees")
-	private Integer noOfEmplyees;
-
-	@Column(name = "employment_type")
-	private Integer employmentType;
-	@Column(name = "designation")
-	private Integer designation;
-
-	@Column(name = "company_type")
-	private Integer company_type;
-
-	@Column(name = "job_domain")
-	private Integer jobDomain;
-
-	@Column(name = "last_month_salary")
-	private Integer last_monthSalary;
-
-	@Column(name = "nature_of_business")
-	private Integer natureOfBusiness;
-
-	@Column(name = "avg_monthly_turn_over")
-	private Integer avgMonthlyTurnOver;
-
-	@Column(name = "business_board_sighted")
-	private boolean businessBoardSighted;
-
-	@Column(name = "office_email_verified")
-	private boolean officeEmailVerified;
-
-	@Column(name = "entry_allowed_in_office")
-	private boolean entryAllowedInOffice;
-
-	@Column(name = "off_domain_check")
-	private boolean offDomainCheck;
-
-	@Column(name = "office_name")
-	private String officeName;
-
-	@Column(name = "office_telephone_no")
-	private Integer officeTelephoneNo;
-	@Column(name = "extension_no")
-	private Integer extensionNo;
-
-	@Column(name = "office_email")
-	private String officeEmail;
-	@Column(name = "office_address_line_1")
-	private String officeAddressLine1;
-
-	@Column(name = "office_address_line_2")
-	private String officeAddressLine2;
-
-	@Column(name = "office_address_line_3")
-	private String officeAddressLine3;
-
-	@Column(name = "office_address_line_4")
-	private String officeAddressLine4;
-
-	@Column(name = "office_address_pincode")
-	private String officeAddressPincode;
-
-	@Column(name = "office_address_city")
-	private String officeAddressCity;
-
-	@Column(name = "office_address_state")
-	private String office_address_state;
-
-	@Column(name = "office_address_country")
-	private Integer officeAddressCountry;
-
-	@Column(name = "office_city_code")
-	private String officeCityCode;
-
-	@Column(name = "employee_code")
-	private String employeeCode;
-
-	@Column(name = "business_activity_sighted")
-	private String businessActivitySighted;
-
-	@Column(name = "office_locality")
-	private Integer officeLocality;
-
-	public long getId() {
-		return id;
-	}
-
-	public void setId(long id) {
-		this.id = id;
-	}
 
 	public long getApplicantId() {
 		return applicantId;
@@ -162,12 +48,12 @@ private long id;
 		this.offcNegativeLocation = offcNegativeLocation;
 	}
 
-	public Integer getOffice_construction() {
-		return office_construction;
+	public String getOfficeConstruction() {
+		return officeConstruction;
 	}
 
-	public void setOffice_construction(Integer office_construction) {
-		this.office_construction = office_construction;
+	public void setOfficeConstruction(String officeConstruction) {
+		this.officeConstruction = officeConstruction;
 	}
 
 	public Integer getOfficeArea() {
@@ -178,43 +64,43 @@ private long id;
 		this.officeArea = officeArea;
 	}
 
-	public Integer getOfficeExterior() {
+	public String getOfficeExterior() {
 		return officeExterior;
 	}
 
-	public void setOfficeExterior(Integer officeExterior) {
+	public void setOfficeExterior(String officeExterior) {
 		this.officeExterior = officeExterior;
 	}
 
-	public Integer getOfficeInterior() {
+	public String getOfficeInterior() {
 		return officeInterior;
 	}
 
-	public void setOfficeInterior(Integer officeInterior) {
+	public void setOfficeInterior(String officeInterior) {
 		this.officeInterior = officeInterior;
 	}
 
-	public Integer getOffcNoOfStorey() {
+	public String getOffcNoOfStorey() {
 		return offcNoOfStorey;
 	}
 
-	public void setOffcNoOfStorey(Integer offcNoOfStorey) {
+	public void setOffcNoOfStorey(String offcNoOfStorey) {
 		this.offcNoOfStorey = offcNoOfStorey;
 	}
 
-	public Integer getEaseOfOfficeLocation() {
+	public String getEaseOfOfficeLocation() {
 		return easeOfOfficeLocation;
 	}
 
-	public void setEaseOfOfficeLocation(Integer easeOfOfficeLocation) {
+	public void setEaseOfOfficeLocation(String easeOfOfficeLocation) {
 		this.easeOfOfficeLocation = easeOfOfficeLocation;
 	}
 
-	public Integer getItemsSightedInOffice() {
+	public String getItemsSightedInOffice() {
 		return itemsSightedInOffice;
 	}
 
-	public void setItemsSightedInOffice(Integer itemsSightedInOffice) {
+	public void setItemsSightedInOffice(String itemsSightedInOffice) {
 		this.itemsSightedInOffice = itemsSightedInOffice;
 	}
 
@@ -226,35 +112,35 @@ private long id;
 		this.noOfEmplyees = noOfEmplyees;
 	}
 
-	public Integer getEmploymentType() {
+	public String getEmploymentType() {
 		return employmentType;
 	}
 
-	public void setEmploymentType(Integer employmentType) {
+	public void setEmploymentType(String employmentType) {
 		this.employmentType = employmentType;
 	}
 
-	public Integer getDesignation() {
+	public String getDesignation() {
 		return designation;
 	}
 
-	public void setDesignation(Integer designation) {
+	public void setDesignation(String designation) {
 		this.designation = designation;
 	}
 
-	public Integer getCompany_type() {
+	public String getCompany_type() {
 		return company_type;
 	}
 
-	public void setCompany_type(Integer company_type) {
+	public void setCompany_type(String company_type) {
 		this.company_type = company_type;
 	}
 
-	public Integer getJobDomain() {
+	public String getJobDomain() {
 		return jobDomain;
 	}
 
-	public void setJobDomain(Integer jobDomain) {
+	public void setJobDomain(String jobDomain) {
 		this.jobDomain = jobDomain;
 	}
 
@@ -266,11 +152,11 @@ private long id;
 		this.last_monthSalary = last_monthSalary;
 	}
 
-	public Integer getNatureOfBusiness() {
+	public String getNatureOfBusiness() {
 		return natureOfBusiness;
 	}
 
-	public void setNatureOfBusiness(Integer natureOfBusiness) {
+	public void setNatureOfBusiness(String natureOfBusiness) {
 		this.natureOfBusiness = natureOfBusiness;
 	}
 
@@ -322,11 +208,11 @@ private long id;
 		this.officeName = officeName;
 	}
 
-	public Integer getOfficeTelephoneNo() {
+	public Long getOfficeTelephoneNo() {
 		return officeTelephoneNo;
 	}
 
-	public void setOfficeTelephoneNo(Integer officeTelephoneNo) {
+	public void setOfficeTelephoneNo(Long officeTelephoneNo) {
 		this.officeTelephoneNo = officeTelephoneNo;
 	}
 
@@ -402,11 +288,11 @@ private long id;
 		this.office_address_state = office_address_state;
 	}
 
-	public Integer getOfficeAddressCountry() {
+	public String getOfficeAddressCountry() {
 		return officeAddressCountry;
 	}
 
-	public void setOfficeAddressCountry(Integer officeAddressCountry) {
+	public void setOfficeAddressCountry(String officeAddressCountry) {
 		this.officeAddressCountry = officeAddressCountry;
 	}
 
@@ -434,11 +320,114 @@ private long id;
 		this.businessActivitySighted = businessActivitySighted;
 	}
 
-	public Integer getOfficeLocality() {
+	public String getOfficeLocality() {
 		return officeLocality;
 	}
 
-	public void setOfficeLocality(Integer officeLocality) {
+	public void setOfficeLocality(String officeLocality) {
 		this.officeLocality = officeLocality;
 	}
+
+	private boolean outOfGeoLimit;
+
+	private boolean metroLocation;
+
+	private boolean offcNegativeLocation;
+	private String officeConstruction;
+
+	private Integer officeArea;
+	
+	private String officeExterior;
+	
+	private String officeInterior;
+	
+	private String offcNoOfStorey;
+	
+	private String easeOfOfficeLocation;
+
+	
+	private String itemsSightedInOffice;
+	
+	private Integer noOfEmplyees;
+
+	
+	private String employmentType;
+	
+	private String designation;
+
+	
+	private String company_type;
+
+	
+	private String jobDomain;
+
+	
+	private Integer last_monthSalary;
+
+	
+	private String natureOfBusiness;
+
+	
+	private Integer avgMonthlyTurnOver;
+
+	
+	private boolean businessBoardSighted;
+
+	
+	private boolean officeEmailVerified;
+
+	
+	private boolean entryAllowedInOffice;
+
+	
+	private boolean offDomainCheck;
+
+	
+	private String officeName;
+
+	
+	private Long officeTelephoneNo;
+	
+	private Integer extensionNo;
+
+	
+	private String officeEmail;
+	
+	private String officeAddressLine1;
+
+	
+	private String officeAddressLine2;
+
+	
+	private String officeAddressLine3;
+
+	
+	private String officeAddressLine4;
+
+	
+	private String officeAddressPincode;
+
+	
+	private String officeAddressCity;
+
+	
+	private String office_address_state;
+
+	
+	private String officeAddressCountry;
+
+	
+	private String officeCityCode;
+
+	
+	private String employeeCode;
+
+	
+	private String businessActivitySighted;
+
+	
+	private String officeLocality;
+
+
+
 }

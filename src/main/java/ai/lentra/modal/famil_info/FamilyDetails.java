@@ -10,8 +10,6 @@ import javax.persistence.*;
 @Embeddable
 public class FamilyDetails{
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-private long id;
 	@Column(name = "applicant_id")
 	private long applicantId;
 	private int numberOfDependents;
@@ -20,35 +18,6 @@ private long id;
 	private int motherAge;
 	private String motherFirstName;
 	private String motherLastName;
-	private String motherReligion;
-	private String fatherMidName;
-	private String fatherFirstName;
-	private int fatherAge;
-	private String fatherReligion;
-	private String fatherLastName;
-	private boolean entityConfirmationFather;
-	private int numberOfMinor;
-	private String childEducationLevel;
-	private boolean spouseWorking;
-	private String spouseLastName;
-	private String spouseOccupation;
-	private int spouseAge;
-	private boolean entityConfirmationSpouse;
-	private String spouseReligion;
-	private String spouseCitizenship;
-	private String spouseMidName;
-	private String spouseSuffix;
-	private String spouseAlias;
-	private String spouseBirthdate;
-	private String spouseFirstName;
-
-	public long getId() {
-		return id;
-	}
-
-	public void setId(long id) {
-		this.id = id;
-	}
 
 	public long getApplicantId() {
 		return applicantId;
@@ -273,4 +242,31 @@ private long id;
 	public void setSpouseFirstName(String spouseFirstName) {
 		this.spouseFirstName = spouseFirstName;
 	}
+
+	private String motherReligion;
+	private String fatherMidName;
+	private String fatherFirstName;
+	private int fatherAge;
+	private String fatherReligion;
+	private String fatherLastName;
+	private boolean entityConfirmationFather;
+	private int numberOfMinor;
+	private String childEducationLevel;
+	private boolean spouseWorking;
+	private String spouseLastName;
+	private String spouseOccupation;
+	private int spouseAge;
+	private boolean entityConfirmationSpouse;
+	private String spouseReligion;
+	private String spouseCitizenship;
+	private String spouseMidName;
+	private String spouseSuffix;
+	private String spouseAlias;
+	private String spouseBirthdate;
+	private String spouseFirstName;
+
+
+
+    //
+
 }

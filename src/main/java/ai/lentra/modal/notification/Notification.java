@@ -1,9 +1,9 @@
 package ai.lentra.modal.notification;
 
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
-
 @Embeddable
 @Entity
 public class Notification implements Serializable {
@@ -13,11 +13,6 @@ public class Notification implements Serializable {
     private Long notificationId;
 
     private Date timestamp;
-
-
-    private String username;
-
-    private String notificationPayload;
 
     public Long getNotificationId() {
         return notificationId;
@@ -50,4 +45,9 @@ public class Notification implements Serializable {
     public void setNotificationPayload(String notificationPayload) {
         this.notificationPayload = notificationPayload;
     }
+
+    private String username;
+
+    private String notificationPayload;
+
 }

@@ -1,20 +1,24 @@
 package ai.lentra.modal.contact_info;
 
-import ai.lentra.modal.lookups.SimCardType;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import javax.persistence.*;
-import javax.validation.constraints.NotNull;
+
+
+import javax.persistence.Column;
+import javax.persistence.Embeddable;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.validation.constraints.Pattern;
 
 @Entity
+
+
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Embeddable
 public class ContactDetails {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
- private long id;
 
-    @Column(name = "applicant_id")
+    @Id
+    @Column(name = "applicant_id", nullable = false)
+//    @GeneratedValue(strategy = GenerationType.AUTO)
     private long applicantId;
     @Pattern(regexp = "^\\d{10,13}$",message = "Mobile number should contain 10 to 13 digits only")
     private String mobileNumber;
@@ -36,13 +40,6 @@ public class ContactDetails {
     private boolean contDomainCheck;
     private boolean registeredWithBank;
 
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
 
     public long getApplicantId() {
         return applicantId;

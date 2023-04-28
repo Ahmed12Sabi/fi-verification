@@ -1,6 +1,5 @@
 package ai.lentra.controller.scheduler;
 
-import ai.lentra.config.HeaderConfig;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.scheduling.Trigger;

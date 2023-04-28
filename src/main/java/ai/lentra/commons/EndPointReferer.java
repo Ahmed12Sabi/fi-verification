@@ -29,4 +29,11 @@ public class EndPointReferer {
     public static final String OFFICE_UDATE="/officeUpdate";
 
 
+
+    public static final String APPLICATION_DETAILS="/application-details";
+    public static final String VERIFICATION="/verifications";
+    public static final String ALLOCATION="/branch";
+//    public static final String
+
+
 }

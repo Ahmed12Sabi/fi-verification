@@ -1,11 +1,10 @@
 package ai.lentra.dto.responses;
 
-import org.springframework.http.HttpStatus;
 
 public class ResponseDTO {
     private String Status;
     private String code;
-    private String message;
+
     private Object data;
 
     public String getStatus() {
@@ -31,6 +30,8 @@ public class ResponseDTO {
     public void setMessage(String message) {
         this.message = message;
     }
+
+    private String message;
 
     public Object getData() {
         return data;

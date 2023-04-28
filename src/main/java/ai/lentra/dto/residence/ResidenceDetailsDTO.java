@@ -4,98 +4,16 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
+
 import java.math.BigDecimal;
 import java.util.Date;
+
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class ResidenceDetailsDTO {
 	private long applicantId;
-		private Long id;
-		private BigDecimal residenceCategory;
-		private BigDecimal ownershipType;
 
-		private BigDecimal propertyAge;
-
-		private String livingWIth;
-
-		private BigDecimal residenceType;
-
-		private BigDecimal ResNoOfStorey;
-
-		private BigDecimal classification;
-
-		private BigDecimal houseCondition;
-
-		private BigDecimal propertyMAkeType;
-
-		private BigDecimal propertyInterior;
-
-		private boolean namePlateVisible;
-
-		private BigDecimal appliances;
-
-		private BigDecimal appliancesTotalValue;
-
-		private BigDecimal commuteOptions;
-
-		private BigDecimal neighbourhoodType;
-
-		private boolean communityDominated;
-
-		private BigDecimal residency;
-
-		private BigDecimal country;
-
-		private BigDecimal yearsOfStay;
-
-		private BigDecimal monthsOfStay;
-
-		private BigDecimal distanceFromAddressToActualLoaction;
-
-		private boolean negativeLocation;
-		private BigDecimal monthlyAmortization;
-
-		private BigDecimal rentPerMonth;
-
-		private BigDecimal landlineNum;
-
-		private String addressLine1;
-
-		private String addressLine2;
-		private String addressLine3;
-		private String addressLine4;
-
-		private String city;
-
-		private String state;
-
-		private String pincode;
-
-		private BigDecimal country_code;
-
-		private BigDecimal lattitue;
-
-		private BigDecimal longitude;
-
-		private boolean mailDeliveryStatus;
-
-		private BigDecimal addressProofId;
-
-		private String ownedBy;
-
-		private String mortagagorName;
-
-		@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
-
-	private Date rentedFrom;
-
-
-		private String residenceLandmark;
-
-		private Integer applicant_id;
-
-		private String persMet;
 
 	public long getApplicantId() {
 		return applicantId;
@@ -105,36 +23,20 @@ public class ResidenceDetailsDTO {
 		this.applicantId = applicantId;
 	}
 
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public BigDecimal getResidenceCategory() {
+	public String getResidenceCategory() {
 		return residenceCategory;
 	}
 
-	public void setResidenceCategory(BigDecimal residenceCategory) {
+	public void setResidenceCategory(String residenceCategory) {
 		this.residenceCategory = residenceCategory;
 	}
 
-	public BigDecimal getOwnershipType() {
+	public String getOwnershipType() {
 		return ownershipType;
 	}
 
-	public void setOwnershipType(BigDecimal ownershipType) {
+	public void setOwnershipType(String ownershipType) {
 		this.ownershipType = ownershipType;
-	}
-
-	public BigDecimal getPropertyAge() {
-		return propertyAge;
-	}
-
-	public void setPropertyAge(BigDecimal propertyAge) {
-		this.propertyAge = propertyAge;
 	}
 
 	public String getLivingWIth() {
@@ -145,51 +47,51 @@ public class ResidenceDetailsDTO {
 		this.livingWIth = livingWIth;
 	}
 
-	public BigDecimal getResidenceType() {
+	public String getResidenceType() {
 		return residenceType;
 	}
 
-	public void setResidenceType(BigDecimal residenceType) {
+	public void setResidenceType(String residenceType) {
 		this.residenceType = residenceType;
 	}
 
-	public BigDecimal getResNoOfStorey() {
-		return ResNoOfStorey;
+	public String getResNoOfStorey() {
+		return resNoOfStorey;
 	}
 
-	public void setResNoOfStorey(BigDecimal resNoOfStorey) {
-		ResNoOfStorey = resNoOfStorey;
+	public void setResNoOfStorey(String resNoOfStorey) {
+		this.resNoOfStorey = resNoOfStorey;
 	}
 
-	public BigDecimal getClassification() {
+	public String getClassification() {
 		return classification;
 	}
 
-	public void setClassification(BigDecimal classification) {
+	public void setClassification(String classification) {
 		this.classification = classification;
 	}
 
-	public BigDecimal getHouseCondition() {
+	public String getHouseCondition() {
 		return houseCondition;
 	}
 
-	public void setHouseCondition(BigDecimal houseCondition) {
+	public void setHouseCondition(String houseCondition) {
 		this.houseCondition = houseCondition;
 	}
 
-	public BigDecimal getPropertyMAkeType() {
-		return propertyMAkeType;
+	public String getPropertyMakeType() {
+		return propertyMakeType;
 	}
 
-	public void setPropertyMAkeType(BigDecimal propertyMAkeType) {
-		this.propertyMAkeType = propertyMAkeType;
+	public void setPropertyMakeType(String propertyMakeType) {
+		this.propertyMakeType = propertyMakeType;
 	}
 
-	public BigDecimal getPropertyInterior() {
+	public String getPropertyInterior() {
 		return propertyInterior;
 	}
 
-	public void setPropertyInterior(BigDecimal propertyInterior) {
+	public void setPropertyInterior(String propertyInterior) {
 		this.propertyInterior = propertyInterior;
 	}
 
@@ -201,11 +103,11 @@ public class ResidenceDetailsDTO {
 		this.namePlateVisible = namePlateVisible;
 	}
 
-	public BigDecimal getAppliances() {
+	public String getAppliances() {
 		return appliances;
 	}
 
-	public void setAppliances(BigDecimal appliances) {
+	public void setAppliances(String appliances) {
 		this.appliances = appliances;
 	}
 
@@ -217,19 +119,19 @@ public class ResidenceDetailsDTO {
 		this.appliancesTotalValue = appliancesTotalValue;
 	}
 
-	public BigDecimal getCommuteOptions() {
+	public String getCommuteOptions() {
 		return commuteOptions;
 	}
 
-	public void setCommuteOptions(BigDecimal commuteOptions) {
+	public void setCommuteOptions(String commuteOptions) {
 		this.commuteOptions = commuteOptions;
 	}
 
-	public BigDecimal getNeighbourhoodType() {
+	public String getNeighbourhoodType() {
 		return neighbourhoodType;
 	}
 
-	public void setNeighbourhoodType(BigDecimal neighbourhoodType) {
+	public void setNeighbourhoodType(String neighbourhoodType) {
 		this.neighbourhoodType = neighbourhoodType;
 	}
 
@@ -241,52 +143,52 @@ public class ResidenceDetailsDTO {
 		this.communityDominated = communityDominated;
 	}
 
-	public BigDecimal getResidency() {
+	public String getResidency() {
 		return residency;
 	}
 
-	public void setResidency(BigDecimal residency) {
+	public void setResidency(String residency) {
 		this.residency = residency;
 	}
 
-	public BigDecimal getCountry() {
+	public String getCountry() {
 		return country;
 	}
 
-	public void setCountry(BigDecimal country) {
+	public void setCountry(String country) {
 		this.country = country;
 	}
 
-	public BigDecimal getYearsOfStay() {
+	public Long getYearsOfStay() {
 		return yearsOfStay;
 	}
 
-	public void setYearsOfStay(BigDecimal yearsOfStay) {
+	public void setYearsOfStay(Long yearsOfStay) {
 		this.yearsOfStay = yearsOfStay;
 	}
 
-	public BigDecimal getMonthsOfStay() {
+	public Long getMonthsOfStay() {
 		return monthsOfStay;
 	}
 
-	public void setMonthsOfStay(BigDecimal monthsOfStay) {
+	public void setMonthsOfStay(Long monthsOfStay) {
 		this.monthsOfStay = monthsOfStay;
 	}
 
-	public BigDecimal getDistanceFromAddressToActualLoaction() {
+	public Long getDistanceFromAddressToActualLoaction() {
 		return distanceFromAddressToActualLoaction;
 	}
 
-	public void setDistanceFromAddressToActualLoaction(BigDecimal distanceFromAddressToActualLoaction) {
+	public void setDistanceFromAddressToActualLoaction(Long distanceFromAddressToActualLoaction) {
 		this.distanceFromAddressToActualLoaction = distanceFromAddressToActualLoaction;
 	}
 
-	public boolean isNegativeLocation() {
-		return negativeLocation;
+	public boolean isResNegativeLocation() {
+		return ResNegativeLocation;
 	}
 
-	public void setNegativeLocation(boolean negativeLocation) {
-		this.negativeLocation = negativeLocation;
+	public void setResNegativeLocation(boolean resNegativeLocation) {
+		ResNegativeLocation = resNegativeLocation;
 	}
 
 	public BigDecimal getMonthlyAmortization() {
@@ -297,19 +199,19 @@ public class ResidenceDetailsDTO {
 		this.monthlyAmortization = monthlyAmortization;
 	}
 
-	public BigDecimal getRentPerMonth() {
+	public Long getRentPerMonth() {
 		return rentPerMonth;
 	}
 
-	public void setRentPerMonth(BigDecimal rentPerMonth) {
+	public void setRentPerMonth(Long rentPerMonth) {
 		this.rentPerMonth = rentPerMonth;
 	}
 
-	public BigDecimal getLandlineNum() {
+	public Long getLandlineNum() {
 		return landlineNum;
 	}
 
-	public void setLandlineNum(BigDecimal landlineNum) {
+	public void setLandlineNum(Long landlineNum) {
 		this.landlineNum = landlineNum;
 	}
 
@@ -369,27 +271,27 @@ public class ResidenceDetailsDTO {
 		this.pincode = pincode;
 	}
 
-	public BigDecimal getCountry_code() {
+	public Long getCountry_code() {
 		return country_code;
 	}
 
-	public void setCountry_code(BigDecimal country_code) {
+	public void setCountry_code(Long country_code) {
 		this.country_code = country_code;
 	}
 
-	public BigDecimal getLattitue() {
+	public Long getLattitue() {
 		return lattitue;
 	}
 
-	public void setLattitue(BigDecimal lattitue) {
+	public void setLattitue(Long lattitue) {
 		this.lattitue = lattitue;
 	}
 
-	public BigDecimal getLongitude() {
+	public Long getLongitude() {
 		return longitude;
 	}
 
-	public void setLongitude(BigDecimal longitude) {
+	public void setLongitude(Long longitude) {
 		this.longitude = longitude;
 	}
 
@@ -401,12 +303,20 @@ public class ResidenceDetailsDTO {
 		this.mailDeliveryStatus = mailDeliveryStatus;
 	}
 
-	public BigDecimal getAddressProofId() {
+	public String getAddressProofId() {
 		return addressProofId;
 	}
 
-	public void setAddressProofId(BigDecimal addressProofId) {
+	public void setAddressProofId(String addressProofId) {
 		this.addressProofId = addressProofId;
+	}
+
+	public String getPropertyAge() {
+		return propertyAge;
+	}
+
+	public void setPropertyAge(String propertyAge) {
+		this.propertyAge = propertyAge;
 	}
 
 	public String getOwnedBy() {
@@ -441,14 +351,6 @@ public class ResidenceDetailsDTO {
 		this.residenceLandmark = residenceLandmark;
 	}
 
-	public Integer getApplicant_id() {
-		return applicant_id;
-	}
-
-	public void setApplicant_id(Integer applicant_id) {
-		this.applicant_id = applicant_id;
-	}
-
 	public String getPersMet() {
 		return persMet;
 	}
@@ -456,4 +358,144 @@ public class ResidenceDetailsDTO {
 	public void setPersMet(String persMet) {
 		this.persMet = persMet;
 	}
+
+	public BigDecimal getResScore() {
+		return ResScore;
+	}
+
+	public void setResScore(BigDecimal resScore) {
+		ResScore = resScore;
+	}
+
+	private String residenceCategory;
+
+
+
+	private String ownershipType;
+
+
+
+	private String livingWIth;
+
+
+	private String residenceType;
+
+
+	private String resNoOfStorey;
+
+
+	private String classification;
+
+
+	private String houseCondition;
+
+
+	private String propertyMakeType;
+
+
+	private String propertyInterior;
+
+
+	private boolean namePlateVisible;
+
+
+	private String appliances;
+
+
+	private BigDecimal appliancesTotalValue;
+
+
+	private String commuteOptions;
+
+
+	private String neighbourhoodType;
+
+
+	private boolean communityDominated;
+
+
+	private String residency;
+
+
+	private String country;
+
+
+	private Long yearsOfStay;
+
+
+	private Long monthsOfStay;
+
+
+	private Long distanceFromAddressToActualLoaction;
+
+
+	private boolean ResNegativeLocation;
+
+	private BigDecimal monthlyAmortization;
+
+
+	private Long rentPerMonth;
+
+
+	private Long landlineNum;
+
+
+	private String addressLine1;
+
+
+	private String addressLine2;
+
+	private String addressLine3;
+
+	private String addressLine4;
+
+
+	private String city;
+
+
+	private String state;
+
+
+	private String pincode;
+
+
+	private Long country_code;
+
+
+	private Long lattitue;
+
+
+	private Long longitude;
+
+
+	private boolean mailDeliveryStatus;
+
+
+	private String addressProofId;
+
+
+	private String propertyAge;
+
+
+	private String ownedBy;
+
+
+	private String mortagagorName;
+
+
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
+
+	private Date rentedFrom;
+
+
+	private String residenceLandmark;
+
+
+	private String persMet;
+
+
+	private BigDecimal ResScore;
+
+
+
 }

@@ -1,14 +1,6 @@
 package ai.lentra.serviceImpl.scheduler;
 
-import ai.lentra.repository.FamilyDetailsRepository;
-import ai.lentra.repository.commitment.CommitmentsRepository;
-import ai.lentra.repository.contactInformation.ContactFormRepository;
-import ai.lentra.repository.expenses.ExpensesRepository;
-import ai.lentra.repository.officeDetails.OfficeSelfEmploymentRepository;
-import ai.lentra.repository.personal_details.PersonalDetailsRepository;
-import ai.lentra.repository.residence.ResidenceRepository;
-import ai.lentra.repository.summary.SummaryRepository;
-import ai.lentra.repository.vehicleDetails.VehicleDetailsRepository;
+import ai.lentra.repository.froms.*;
 import ai.lentra.service.scheduler.FormCleanUpService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,9 +22,7 @@ public class FormCleanUpServiceImpl implements FormCleanUpService {
     VehicleDetailsRepository vehicleRepository;
     @Autowired
     CommitmentsRepository commitmentsRepository;
-    /* for family details
-    @Autowired
-    VehicleDetailsRepository vehicleRepository;*/
+
     @Autowired
     OfficeSelfEmploymentRepository officeSelfEmploymentRepository;
     @Autowired
