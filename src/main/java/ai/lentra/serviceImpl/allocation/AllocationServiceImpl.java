@@ -3,6 +3,7 @@ import ai.lentra.commons.NotificationUtils;
 import ai.lentra.commons.TokenAuth;
 import ai.lentra.controller.notification.EmailController;
 import ai.lentra.controller.notification.SMSController;
+import ai.lentra.controller.verificationType.VerificationTypeController;
 import ai.lentra.dto.allocation.AssignResponse;
 import ai.lentra.dto.notification.SMS.Messages;
 import ai.lentra.exceptions.ResourceNotFoundException;
@@ -16,6 +17,8 @@ import ai.lentra.repository.allocation.VerificationRepository;
 import ai.lentra.repository.allocation.VerifierRepository;
 import ai.lentra.repository.applicant.ApplicantDetailsRepository;
 import ai.lentra.service.allocation.AllocationService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -32,6 +35,7 @@ import static ai.lentra.commons.FiIdGen.genFiId;
 
 @Service
 public class AllocationServiceImpl implements AllocationService {
+    private final Logger logger = LoggerFactory.getLogger(AllocationServiceImpl.class);
  @Autowired
  VerificationRepository verificationRepository;
  @Autowired
@@ -214,8 +218,10 @@ public class AllocationServiceImpl implements AllocationService {
         assignResponse.setFiId(verification.getFiId());
         assignResponse.setRefFiId(verification.getRefFiId());
         assignResponse.setRefFiId(verification.getRefFiId());
+        logger.info("exit fiAllocationBranch");
         return ResponseEntity.ok().body(assignResponse);
     }
+
     return ResponseEntity.ok("");
 }
     @Override
@@ -376,6 +382,7 @@ public class AllocationServiceImpl implements AllocationService {
         assignResponse.setAssignedTo(verification.getAssignedTo());
         assignResponse.setFiId(verification.getFiId());
         assignResponse.setRefFiId(verification.getRefFiId());
+        logger.info("Exit from fiAllocationAgency ");
         return ResponseEntity.ok().body(assignResponse);
 
     }

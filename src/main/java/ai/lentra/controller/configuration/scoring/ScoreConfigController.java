@@ -1,4 +1,4 @@
-/*
+
 
 package ai.lentra.controller.configuration.scoring;
 
@@ -48,4 +48,4 @@ public class ScoreConfigController {
     }
 }
 
-*/
+

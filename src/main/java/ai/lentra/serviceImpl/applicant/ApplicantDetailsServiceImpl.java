@@ -6,8 +6,11 @@ import ai.lentra.exceptions.ResourceNotFoundException;
 import ai.lentra.modal.applicant_details.ApplicantDetails;
 import ai.lentra.repository.applicant.ApplicantDetailsRepository;
 import ai.lentra.service.ApplicantDetailsService;
+import ai.lentra.serviceImpl.allocation.AllocationServiceImpl;
 import ai.lentra.serviceImpl.verification.VerificationServiceImpl;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,6 +23,7 @@ import static ai.lentra.commons.ResponseUtils.responseGen;
 @Service
 public class ApplicantDetailsServiceImpl implements ApplicantDetailsService {
 
+    private final Logger logger = LoggerFactory.getLogger(ApplicantDetailsServiceImpl.class);
     @Autowired
     ApplicantDetailsRepository applicantDetailsRepository;
     @Autowired
@@ -88,8 +92,10 @@ public class ApplicantDetailsServiceImpl implements ApplicantDetailsService {
             statusDTO.setBranchName(headers.getBranchName());
             statusDTO.setVerificationStatus(applicantDetails.getUserStatus());
             verificationServiceImpl.updateVerificationStatus(statusDTO,headers);*/
+            logger.info("exit from saveApplicantDetails");
             return  ResponseEntity.ok().body(responseGen("Applicant Details updated successfully","Success","200"));
         }else {
+            logger.info("Requested applicant information is not found in saveApplicantDetails");
             return  ResponseEntity.status(HttpStatus.NOT_FOUND).body(responseGen("Requested applicant information is not found","Resource Not Found","404"));
         }
     }

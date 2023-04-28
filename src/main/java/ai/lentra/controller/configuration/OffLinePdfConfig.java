@@ -7,6 +7,7 @@ import org.springframework.ui.freemarker.FreeMarkerConfigurationFactoryBean;
 
 @Configuration
 public class OffLinePdfConfig {
+
     @Primary
     @Bean
     public FreeMarkerConfigurationFactoryBean factoryBean() {

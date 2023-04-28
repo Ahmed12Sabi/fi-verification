@@ -1,8 +1,11 @@
 package ai.lentra.controller.notification;
 
 import ai.lentra.commons.TokenAuth;
+import ai.lentra.controller.masterConfig.VerificationConfigController;
 import ai.lentra.dto.notification.EMAIL.EmailRequest;
 import org.json.JSONObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
@@ -15,6 +18,7 @@ import java.util.Arrays;
 public class EmailController {
     @Autowired
     TokenAuth tokenAuth;
+    private static final Logger logger =  LoggerFactory.getLogger(EmailController.class);
     @PostMapping(value = "/sendEmail")
     public ResponseEntity<?> sendEmail(@RequestBody EmailRequest request,
                                        @RequestHeader(value = "Content-Type", required = true) String contentType,
@@ -25,6 +29,7 @@ public class EmailController {
                                        @RequestHeader(value = "sApplicationId", required = true) String sApplicationId,
                                        @RequestHeader(value = "sSourceSystem", required = true) String sSourceSystem,
                                        @RequestHeader(value = "sProduct", required = true) String sProduct) {
+        logger.info("Entered into sendEmail");
         RestTemplate template = new RestTemplate();
         String emailUrl = "https://ssguat.serviceurl.in/hubx/send-mail";
         String genToken= tokenAuth.getToken();

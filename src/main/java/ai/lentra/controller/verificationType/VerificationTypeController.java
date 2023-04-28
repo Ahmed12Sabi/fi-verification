@@ -1,8 +1,11 @@
 package ai.lentra.controller.verificationType;
 
+import ai.lentra.controller.verification.VerificationStatusController;
 import ai.lentra.dto.masterConfig.MasterVerificationConfigurationDto;
 import ai.lentra.service.masterconfig.ProductsConfigService;
 import ai.lentra.service.masterconfig.VerificationConfigService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,6 +15,7 @@ import java.util.List;
 //@Validated
 @RequestMapping(value = "/verification_types")
 public class VerificationTypeController {
+    private final Logger logger = LoggerFactory.getLogger(VerificationTypeController.class);
     @Autowired
     ProductsConfigService productService;
     @Autowired
@@ -45,6 +49,7 @@ public class VerificationTypeController {
                                                            @PathVariable(value="product_type") String productType) {
 
 //        String profileName = productService.getProductDetails(institutionId,productType,profile);
+        logger.info("Entered into getVerificationType ");
         return configService.getVerificationType(institutionId,productType,profile);
     }
 

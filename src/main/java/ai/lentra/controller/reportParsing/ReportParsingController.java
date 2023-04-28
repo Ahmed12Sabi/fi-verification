@@ -1,8 +1,11 @@
 package ai.lentra.controller.reportParsing;
 
+import ai.lentra.controller.offlineVerification.OfflineVerificationController;
 import ai.lentra.service.masterconfig.ReportConfigService;
 import ai.lentra.service.reportparsing.DownloadReportService;
 import ai.lentra.service.reportparsing.ReportParsingService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.HttpHeaders;
@@ -16,6 +19,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/reports")
 public class ReportParsingController {
+    private static final Logger logger =  LoggerFactory.getLogger(ReportParsingController.class);
     @Autowired
     private ReportConfigService reportConfigService;
     @Autowired
@@ -28,7 +32,7 @@ public class ReportParsingController {
     public ResponseEntity<?> uploadFilesOnline(@RequestHeader(name = "institution-id") Integer institutionId,
                                                          @RequestBody MultipartFile file) throws IOException {
 
-
+        logger.info("Entered into uploadFilesOnline ");
         return reportParsingService.uploadReport(file, institutionId);
     }
 
@@ -38,6 +42,7 @@ public class ReportParsingController {
 
             @RequestHeader(name = "Content-Type") final String mediaType,
             @RequestHeader(name = "institution-id") Integer institutionId) {
+        logger.info("Entered into getCsv ");
         List<String> fields = reportConfigService.findByInstitute(institutionId);
         final InputStreamResource resource = new InputStreamResource( downloadReportService.load(fields));
        return ResponseEntity.ok()

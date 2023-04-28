@@ -7,11 +7,14 @@ import ai.lentra.modal.application.ApplicationDetails;
 import ai.lentra.modal.application.ApplicationRawObject;
 import ai.lentra.repository.allocation.ApplicationRawDataRepository;
 import ai.lentra.repository.allocation.ApplicationRepository;
+import ai.lentra.serviceImpl.applicant.ApplicantDetailsServiceImpl;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.vladmihalcea.hibernate.type.json.JsonBinaryType;
 import org.json.JSONObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,6 +29,7 @@ import static ai.lentra.commons.ResponseUtils.responseGen;
 
 @Service
 public class ApplicationServiceImpl {
+    private final Logger logger = LoggerFactory.getLogger(ApplicationServiceImpl.class);
     @Autowired
     private ApplicationRepository applicationRepository;
     @Autowired
@@ -83,9 +87,11 @@ public class ApplicationServiceImpl {
         try {
             tempApplicantDetails = applicationRepository.save(applicationDetails);
         } catch (Exception e) {
+            logger.info("addApplication :"+e.getMessage());
             return ResponseEntity.internalServerError().body((responseGen("Error While Adding", "Failed", "500")));
 
         }
+        logger.info("Successfully Application Added");
         return ResponseEntity.status(HttpStatus.CREATED).body(tempApplicantDetails);
 
     }
@@ -93,10 +99,12 @@ public class ApplicationServiceImpl {
     ApplicationDetails setApplication(ApplicationDetailsDTO application1) {
         ObjectMapper objectMapper = new ObjectMapper();
         ApplicationDetails applicationDetails = objectMapper.convertValue(application1, ApplicationDetails.class);
+        logger.info("Exit setApplication");
         return applicationDetails;
     }
 
     public ResponseEntity<?> getApplication(HeadersDTO headers) throws ResourceNotFoundException {
-      return ResponseEntity.ok().body(applicationRepository.findByApplicationIdAndProductType(headers.getApplicationId(), headers.getProductType()).orElseThrow(()->  new  ResourceNotFoundException("Requested application does not exist for application id :" + headers.getApplicationId() +" and application type :"+ headers.getApplicantType())));
+        logger.info("Entered in ServiceImpl getApplication");
+        return ResponseEntity.ok().body(applicationRepository.findByApplicationIdAndProductType(headers.getApplicationId(), headers.getProductType()).orElseThrow(()->  new  ResourceNotFoundException("Requested application does not exist for application id :" + headers.getApplicationId() +" and application type :"+ headers.getApplicantType())));
     }
 }

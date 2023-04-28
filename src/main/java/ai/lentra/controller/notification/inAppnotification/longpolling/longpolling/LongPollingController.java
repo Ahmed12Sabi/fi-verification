@@ -1,6 +1,9 @@
 package ai.lentra.controller.notification.inAppnotification.longpolling.longpolling;
 
+import ai.lentra.controller.masterConfig.VerificationConfigController;
 import ai.lentra.service.notification.NotificationService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -11,12 +14,14 @@ import java.util.concurrent.TimeUnit;
 
 @RestController
 public class LongPollingController {
+    private static final Logger logger =  LoggerFactory.getLogger(VerificationConfigController.class);
     @Autowired
     private NotificationService service;
     @Autowired
     LongPollingEventSimulator simulator;
     @GetMapping("/test")
     DeferredResult<String> addNotificationToQueue(String username, String message){
+        logger.info("Entered into addNotificationToQueue");
         Long timeOutInMilliSec = 100000L;
         String timeOutResp = "Time Out.";
         DeferredResult<String> deferredResult = new DeferredResult<>(timeOutInMilliSec,timeOutResp);
@@ -43,7 +48,8 @@ public class LongPollingController {
     }
 // Get
     public void getNotifications(String username) {
-//        if (dbService.containsNotifications(notificationId)) {
+        logger.info("Entered into getNotifications");
+        //        if (dbService.containsNotifications(notificationId)) {
 //            simulator.simulateOutgoingNotification(dbService.getAndRemoveNotifications(notificationId));
         simulator.simulateOutgoingNotification(service.getNotifications(username));
 //        }
