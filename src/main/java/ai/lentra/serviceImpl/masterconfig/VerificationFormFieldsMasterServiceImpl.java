@@ -14,13 +14,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-@Transactional
 public class VerificationFormFieldsMasterServiceImpl implements VerificationFormFieldsMasterService {
    @Autowired
    VerificationFormFieldMasterRepository repository;
 
-    @Autowired
-    OfflinePdfDataMapping offlinePdfDataMapping;
     @Autowired
     OfflinePdfDataRepository offlinePdfDataRepository;
     @Override
@@ -45,6 +42,7 @@ return responseList;
 
     @Override
     public  VerificationFormFieldMaster save(VerificationFormFieldMaster verificationFormFieldMaster) {
+        OfflinePdfDataMapping offlinePdfDataMapping=new OfflinePdfDataMapping();
         offlinePdfDataMapping.setField_id(verificationFormFieldMaster.getFieldId());
         offlinePdfDataMapping.setField_name(verificationFormFieldMaster.getFieldName());
         offlinePdfDataMapping.setField_table(verificationFormFieldMaster.getVerificationFormMaster().getFormName());

@@ -305,7 +305,7 @@ begin
         for c  in select 1 where not exists (select 1 from pg_tables where schemaname = lower(v_schema_name) and tablename = lower('Offline_pdf_data_mapping')) loop
         execute 'create table ' ||v_schema_name||'.Offline_pdf_data_mapping
                     (
-
+                   id bigserial NOT NULL,
                    field_id int8 NOT NULL,
                    field_name varchar(255) NOT NULL,
                    field_table varchar(255) NOT null,

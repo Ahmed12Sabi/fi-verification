@@ -1,9 +1,17 @@
 package ai.lentra.modal.masterconfig;
 
-import java.time.ZonedDateTime;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import javax.persistence.Embeddable;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import java.time.ZonedDateTime;
+@Entity
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class OfflinePdfDataMapping
 {
+    @Id
+    private long id;
     private long field_id;
     private String field_name;
     private String field_table;
@@ -15,7 +23,8 @@ public class OfflinePdfDataMapping
 
     public OfflinePdfDataMapping(String fieldName, String fieldTable) {
     }
-
+    public OfflinePdfDataMapping() {
+    }
     public long getField_id() {
         return field_id;
     }
