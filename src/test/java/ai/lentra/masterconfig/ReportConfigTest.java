@@ -54,7 +54,7 @@ public class ReportConfigTest {
         ReportConfig config = new ReportConfig();
         config.setId(1);
         config.setFormName("form1");
-        config.setInstituteId(1234);
+        config.setInstituteId("1234");
         List<ReportConfigFields> fields = new ArrayList<>();
         ReportConfigFields field = new ReportConfigFields();
         field.setFields("field1");

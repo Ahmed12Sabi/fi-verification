@@ -1,5 +1,7 @@
 package ai.lentra.serviceImpl.application;
 
+import ai.lentra.config.I18nMessageKeys;
+import ai.lentra.core.i18n.api.I18nHelper;
 import ai.lentra.dto.application.ApplicationDetailsDTO;
 import ai.lentra.dto.headers.HeadersDTO;
 import ai.lentra.exceptions.ResourceNotFoundException;
@@ -88,7 +90,7 @@ public class ApplicationServiceImpl {
             tempApplicantDetails = applicationRepository.save(applicationDetails);
         } catch (Exception e) {
             logger.info("addApplication :"+e.getMessage());
-            return ResponseEntity.internalServerError().body((responseGen("Error While Adding", "Failed", "500")));
+            return ResponseEntity.internalServerError().body((responseGen(I18nHelper.msg(I18nMessageKeys.error_while_adding), "Failed", "500")));
 
         }
         logger.info("Successfully Application Added");

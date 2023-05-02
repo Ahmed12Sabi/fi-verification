@@ -1,8 +1,10 @@
 package ai.lentra.serviceImpl.verification;
 
 import ai.lentra.commons.*;
+import ai.lentra.config.I18nMessageKeys;
 import ai.lentra.controller.notification.EmailController;
 import ai.lentra.controller.notification.SMSController;
+import ai.lentra.core.i18n.api.I18nHelper;
 import ai.lentra.dto.allocation.*;
 import ai.lentra.dto.notification.SMS.Messages;
 import ai.lentra.exceptions.ResourceNotFoundException;
@@ -82,7 +84,7 @@ BranchDealeRepository branchDealeRepository;
         ApplicantDetails applicantDetails=applicantRepository.findByApplicantId(applicantId).orElseThrow(()->new ResourceNotFoundException("Requested applicant details not found"));
         Optional<List<BranchDealer>> branches=branchDealeRepository.findAllByLocationIgnoreCase(location);
         if (!branches.isPresent()){
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(responseGen("Requested branch details not found", ErrorMessage.NOT_FOUND,"404"));
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(responseGen(I18nHelper.msg(I18nMessageKeys.branch_not_found), ErrorMessage.NOT_FOUND,"404"));
         }
         BranchAgencyAllocationDTO branchAllocation=  new BranchAgencyAllocationDTO();
         branchAllocation.setBranches(Collections.singletonList(branches.get()));
@@ -99,7 +101,7 @@ BranchDealeRepository branchDealeRepository;
         ApplicantDetails applicantDetails=applicantRepository.findByApplicantId(applicantId).orElseThrow(()->new ResourceNotFoundException("Requested applicant details not found"));
         Optional<List<Agencies>> agencies=agenciesRepo.findAllByBranchNameIgnoreCase(branchName);
         if (!agencies.isPresent()){
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(responseGen("There is no Agency Details for the given location","NOT_FOUND","4000"));
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(responseGen(I18nHelper.msg(I18nMessageKeys.no_agency_location),"NOT_FOUND","4000"));
         }
         BranchAgencyAllocationDTO agencyAllocation= new BranchAgencyAllocationDTO();
         agencyAllocation.setBranches(agencies.get().stream().filter(Agencies::isActive).collect(Collectors.toList()));
@@ -114,7 +116,7 @@ BranchDealeRepository branchDealeRepository;
     public ResponseEntity<Object> getUsersFromAgency(String branchName)   {
         List<Agencies> agencies=agenciesRepo.findLabelByBranchNameIgnoreCase(branchName);
         if (agencies==null){
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(responseGen("Resource not found","NOT_FOUND","404"));
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(responseGen(I18nHelper.msg(I18nMessageKeys.resource_not_found),"NOT_FOUND","404"));
         }
         UserNamesDTO user= new UserNamesDTO();
         List<UserNamesDTO>  userNames =agencies.stream().map(u->{
@@ -316,7 +318,7 @@ BranchDealeRepository branchDealeRepository;
                 smsController.sendSms(statusUpdateSms(messageSet),"application/json",tokenAuth.getToken(),"","","SUPERSIXTY","","","HL");
 
             } else if (verification.getvQueries() != null && verification.getaReplyMessage() == null) {
-                return ResponseEntity.badRequest().body("Query is already raised and not yet reviewed");
+                return ResponseEntity.badRequest().body(I18nHelper.msg(I18nMessageKeys.query_raised));
             }else if (verification.getvQueries()==null && verification.getaReplyMessage()==null){
                 verification.setvStatus(status.toUpperCase());
                 verification.setvQueryDate(Instant.now().toString());
@@ -404,7 +406,7 @@ BranchDealeRepository branchDealeRepository;
 
               smsController.sendSms(statusUpdateSms(messageSet),"application/json",tokenAuth.getToken(),"","","SUPERSIXTY","","","HL");
           }else {
-              return ResponseEntity.badRequest().body("Verification is not yet completed");
+              return ResponseEntity.badRequest().body(I18nHelper.msg(I18nMessageKeys.query_raised));
           }
         } else if (status.toUpperCase().equals(STATUS.REJECTED.toString())) {
             if (verification.getvStatus().equals("COMPLETED")){
@@ -412,7 +414,7 @@ BranchDealeRepository branchDealeRepository;
                 verification.setRejectedDateTime(Instant.now().toString());
                 verification.setRejectedReason(statusUpdate.getRejectedReason());
             }else {
-                return ResponseEntity.badRequest().body("Verification is not yet completed");
+                return ResponseEntity.badRequest().body(I18nHelper.msg(I18nMessageKeys.verification_not_completed));
             }
         }else if (status.toUpperCase().equals(STATUS.TRANSFER.toString())){
             if (!verification.getaStatus().equals(STATUS.CANCELLED.toString())){
@@ -547,6 +549,6 @@ BranchDealeRepository branchDealeRepository;
 
         smsController.sendSms(statusUpdateSms(messageSet),"application/json",tokenAuth.getToken(),"","","SUPERSIXTY","","","HL");
 
-        return  ResponseEntity.ok("verification Cancelled for the following fiId: "+fiId);
+        return  ResponseEntity.ok(I18nHelper.msg(I18nMessageKeys.verification_cancelled_fiId) +fiId);
     }
 }

@@ -22,6 +22,15 @@ public class VerificationFormMaster {
     @Size(min = 2, max = 50, message = " Form description should have 2 to 50 characters")
 
     private String formDescription;
+    private String institute_id;
+
+    public String getInstitute_id() {
+        return institute_id;
+    }
+
+    public void setInstitute_id(String institute_id) {
+        this.institute_id = institute_id;
+    }
 
     public long getFormId() {
         return formId;

@@ -1,5 +1,7 @@
 package ai.lentra.controller.advice;
 
+import ai.lentra.config.I18nMessageKeys;
+import ai.lentra.core.i18n.api.I18nHelper;
 import ai.lentra.dto.responses.ResponseDto;
 import ai.lentra.dto.responses.ResponseDTO;
 import ai.lentra.exceptions.*;
@@ -34,7 +36,7 @@ public class ControllerAdvice  {
         ResponseDTO responseDTO = new ResponseDTO();
         responseDTO.setCode("400");
         responseDTO.setStatus("Upload Failed ");
-        responseDTO.setMessage("File size is exceed than allowed limit (100MB) ");
+        responseDTO.setMessage(I18nHelper.msg(I18nMessageKeys.file_size_exceed));
     return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(responseDTO); //
     }
     //to handle the dto validation errors
@@ -65,7 +67,7 @@ public class ControllerAdvice  {
         ResponseDTO responseDTO = new ResponseDTO();
         responseDTO.setCode("400");
         responseDTO.setStatus("Upload Failed ");
-        responseDTO.setMessage("File size is exceed than allowed limit (100MB)  ");
+        responseDTO.setMessage(I18nHelper.msg(I18nMessageKeys.file_size_exceed));
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(responseDTO); //
     }
     @ExceptionHandler(HttpMessageNotReadableException.class)
@@ -74,7 +76,7 @@ public class ControllerAdvice  {
         responseDTO.setCode("400");
         responseDTO.setStatus("Invalid Input");
         if(exc.getCause().toString().contains("Leading zeroes not allowed")){
-            responseDTO.setMessage("Invalid Input some of the Field contains leading zeros :");
+            responseDTO.setMessage(I18nHelper.msg(I18nMessageKeys.contains_leading_zero));
         }
         if(exc.getCause().toString().contains("`java.math.BigDecimal` from String")){
             responseDTO.setMessage("Field contains Special Characters or Alphabets in number fields:");

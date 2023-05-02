@@ -1,5 +1,7 @@
 package ai.lentra.serviceImpl.applicant;
 
+import ai.lentra.config.I18nMessageKeys;
+import ai.lentra.core.i18n.api.I18nHelper;
 import ai.lentra.dto.applicant.ApplicantDetailsDTO;
 import ai.lentra.dto.headers.HeadersDTO;
 import ai.lentra.exceptions.ResourceNotFoundException;
@@ -93,10 +95,10 @@ public class ApplicantDetailsServiceImpl implements ApplicantDetailsService {
             statusDTO.setVerificationStatus(applicantDetails.getUserStatus());
             verificationServiceImpl.updateVerificationStatus(statusDTO,headers);*/
             logger.info("exit from saveApplicantDetails");
-            return  ResponseEntity.ok().body(responseGen("Applicant Details updated successfully","Success","200"));
+            return  ResponseEntity.ok().body(responseGen(I18nHelper.msg(I18nMessageKeys.applicant_details_updated),"Success","200"));
         }else {
             logger.info("Requested applicant information is not found in saveApplicantDetails");
-            return  ResponseEntity.status(HttpStatus.NOT_FOUND).body(responseGen("Requested applicant information is not found","Resource Not Found","404"));
+            return  ResponseEntity.status(HttpStatus.NOT_FOUND).body(responseGen(I18nHelper.msg(I18nMessageKeys.requested_applicant_not_found),"Resource Not Found","404"));
         }
     }
 }

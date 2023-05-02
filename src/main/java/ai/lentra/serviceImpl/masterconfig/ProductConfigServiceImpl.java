@@ -1,5 +1,7 @@
 package ai.lentra.serviceImpl.masterconfig;
 
+import ai.lentra.config.I18nMessageKeys;
+import ai.lentra.core.i18n.api.I18nHelper;
 import ai.lentra.dto.masterConfig.ProductsDTO;
 import ai.lentra.dto.responses.ResponseDTO;
 import ai.lentra.exceptions.DuplicateResourceException;
@@ -31,22 +33,22 @@ public class ProductConfigServiceImpl implements ProductsConfigService {
             try{
             if(productsDTO.getProductType().trim().isEmpty() || productsDTO.getProfileName().trim().isEmpty()  ){
                
-                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(getResponse(400,"Product Type / Profile name should not be blank ","ERROR"));
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(getResponse(400, I18nHelper.msg(I18nMessageKeys.type_name_not_blank),"ERROR"));
             }}
             catch (Exception e){
-                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(getResponse(400,"Product Type / Profile name  should not be null ","ERROR"));
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(getResponse(400,I18nHelper.msg(I18nMessageKeys.type_name_not_null),"ERROR"));
             }
             Optional<ProductConfigEntity> optionalRole = Optional.ofNullable(repository.findByProductType(productsDTO.getProductType()));
             if (optionalRole.isPresent()) {
-                return ResponseEntity.status(HttpStatus.FORBIDDEN).body(getResponse(403,"This Product Already mapped with Another Profile ","ERROR"));
+                return ResponseEntity.status(HttpStatus.FORBIDDEN).body(getResponse(403,I18nHelper.msg(I18nMessageKeys.already_mapped_profile),"ERROR"));
             }
             ObjectMapper objectMapper = new ObjectMapper();
             ProductConfigEntity products = objectMapper.convertValue(productsDTO, ProductConfigEntity.class);
 
             repository.save(products);
-            return ResponseEntity.status(HttpStatus.CREATED).body(getResponse(201,"Product has been added successfully ","CREATED"));
+            return ResponseEntity.status(HttpStatus.CREATED).body(getResponse(201,I18nHelper.msg(I18nMessageKeys.product_added),"CREATED"));
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(getResponse(500,"Error in Adding Product ","ERROR"));
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(getResponse(500,I18nHelper.msg(I18nMessageKeys.error_adding_product),"ERROR"));
         }
     }
 
@@ -57,16 +59,16 @@ public class ProductConfigServiceImpl implements ProductsConfigService {
             try{
                 if(productsDTO.getProductType().trim().isEmpty() || productsDTO.getProfileName().trim().isEmpty()  ){
                    
-                    return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(getResponse(400,"Product Type / Profile name should not be blank ","ERROR"));
+                    return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(getResponse(400,I18nHelper.msg(I18nMessageKeys.type_name_not_blank),"ERROR"));
                 }}
 
             catch (Exception e){
-                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(getResponse(400,"Product Type / Profile name should not be null ","ERROR"));
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(getResponse(400,I18nHelper.msg(I18nMessageKeys.type_name_not_null),"ERROR"));
             }
 
             Optional<ProductConfigEntity> optionalProduct = Optional.ofNullable(repository.findByProductTypeAndProfileNameAndProductIdNotIn(productsDTO.getProductType(),productsDTO.getProfileName(),productsDTO.getProductId()));
             if (optionalProduct.isPresent()) {
-                return ResponseEntity.status(HttpStatus.FORBIDDEN).body(getResponse(403,"This Product Already mapped with Same Profile ","ERROR"));
+                return ResponseEntity.status(HttpStatus.FORBIDDEN).body(getResponse(403,I18nHelper.msg(I18nMessageKeys.already_mapped_profile),"ERROR"));
             }
             /*Optional<ProductConfigEntity> duplicateRole = Optional.ofNullable(repository.findByProductTypeAndProfileName(productsDTO.getProductType(),productsDTO.getProfileName()));
             if (duplicateRole.isPresent()) {
@@ -74,7 +76,7 @@ public class ProductConfigServiceImpl implements ProductsConfigService {
             }*/
             Optional<ProductConfigEntity> optionalRole = Optional.ofNullable(repository.findByProductId(productsDTO.getProductId()));
             if (!optionalRole.isPresent()) {
-                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(getResponse(404,"Product Not Found ","ERROR"));
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(getResponse(404,I18nHelper.msg(I18nMessageKeys.product_not_found),"ERROR"));
             }
             ProductConfigEntity existingProducts = optionalRole.get();
             if (productsDTO.getProductType() != null) {
@@ -94,9 +96,10 @@ public class ProductConfigServiceImpl implements ProductsConfigService {
             }
 
             repository.save(existingProducts);
-            return ResponseEntity.status(HttpStatus.OK).body(getResponse(200,"Product has been updated successfully ","CREATED"));
+            return ResponseEntity.status(HttpStatus.OK).body(getResponse(200,I18nHelper.msg(I18nMessageKeys.product_updated_successfully),"CREATED"));
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(getResponse(500,"error while updating Product config ","ERROR"));
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(getResponse(500,I18nHelper.msg(I18nMessageKeys.error_updating_config)
+                    ,"ERROR"));
         }
     }
 
@@ -108,7 +111,7 @@ public class ProductConfigServiceImpl implements ProductsConfigService {
             // return  repository.findAll() ; //ResponseEntity.status(HttpStatus.OK).body(a.getData());
            return ( productsEntity == null ? ResponseEntity.status(HttpStatus.NOT_FOUND).body(getResponse(404," no results" ,"ERROR")) : ResponseEntity.status(HttpStatus.OK).body(productsEntity));
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(getResponse(500,"error while fetching Product config data","ERROR"));
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(getResponse(500,I18nHelper.msg(I18nMessageKeys.error_fetching_data),"ERROR"));
         }
     }
 
@@ -116,7 +119,7 @@ public class ProductConfigServiceImpl implements ProductsConfigService {
     public ResponseEntity<Object> getProduct(Long productId ) throws ResourceNotFoundException, DuplicateResourceException
     {
         ProductConfigEntity productsEntity = repository.findByProductId(productId);
-        return (productsEntity == null ? ResponseEntity.status(HttpStatus.NOT_FOUND).body(getResponse(404,"Product Not Found " ,"ERROR")) : ResponseEntity.status(HttpStatus.OK).body(productsEntity));
+        return (productsEntity == null ? ResponseEntity.status(HttpStatus.NOT_FOUND).body(getResponse(404,I18nHelper.msg(I18nMessageKeys.product_not_found),"ERROR")) : ResponseEntity.status(HttpStatus.OK).body(productsEntity));
     }
 
 }

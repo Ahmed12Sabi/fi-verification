@@ -31,6 +31,24 @@ public class VerificationConfig
     @Size(min = 2, max = 50, message = "verification description should have 2 to 50 characters")
 
     private String vDescription;
+
+    public MasterVerificationConfiguration getMasterVerificationConfiguration() {
+        return masterVerificationConfiguration;
+    }
+
+    public void setMasterVerificationConfiguration(MasterVerificationConfiguration masterVerificationConfiguration) {
+        this.masterVerificationConfiguration = masterVerificationConfiguration;
+    }
+
+    public String getInstitute_id() {
+        return institute_id;
+    }
+
+    public void setInstitute_id(String institute_id) {
+        this.institute_id = institute_id;
+    }
+
+    private String institute_id;
     @OneToMany
    // @JoinColumn(name = "form_id", referencedColumnName = "form_id")
 

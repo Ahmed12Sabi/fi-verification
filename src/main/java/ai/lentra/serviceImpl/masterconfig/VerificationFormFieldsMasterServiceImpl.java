@@ -1,7 +1,9 @@
 package ai.lentra.serviceImpl.masterconfig;
 
 import ai.lentra.dto.masterConfig.VerificationFormFieldResponse;
+import ai.lentra.modal.masterconfig.OfflinePdfDataMapping;
 import ai.lentra.modal.masterconfig.VerificationFormFieldMaster;
+import ai.lentra.repository.masterconfig.OfflinePdfDataRepository;
 import ai.lentra.repository.masterconfig.VerificationFormFieldMasterRepository;
 import ai.lentra.service.masterconfig.VerificationFormFieldsMasterService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +18,11 @@ import java.util.List;
 public class VerificationFormFieldsMasterServiceImpl implements VerificationFormFieldsMasterService {
    @Autowired
    VerificationFormFieldMasterRepository repository;
+
+    @Autowired
+    OfflinePdfDataMapping offlinePdfDataMapping;
+    @Autowired
+    OfflinePdfDataRepository offlinePdfDataRepository;
     @Override
     public List<VerificationFormFieldResponse> getAllMasters() {
         List<VerificationFormFieldMaster> master = repository.findAllMasters();
@@ -37,7 +44,12 @@ return responseList;
     }
 
     @Override
-    public VerificationFormFieldMaster save(VerificationFormFieldMaster verificationFormFieldMaster) {
+    public  VerificationFormFieldMaster save(VerificationFormFieldMaster verificationFormFieldMaster) {
+        offlinePdfDataMapping.setField_id(verificationFormFieldMaster.getFieldId());
+        offlinePdfDataMapping.setField_name(verificationFormFieldMaster.getFieldName());
+        offlinePdfDataMapping.setField_table(verificationFormFieldMaster.getVerificationFormMaster().getFormName());
+        //offlinePdfDataMapping.setInstitute_name(verificationFormFieldMaster.i);
+        offlinePdfDataRepository.save(offlinePdfDataMapping);
         return repository.save(verificationFormFieldMaster);
     }
 }

@@ -18,7 +18,7 @@ public class ReportConfig {
 //    @Type(type = "character varying[]")
 
 
-    private Integer instituteId;
+    private String instituteId;
 
 //    @OneToMany(cascade = CascadeType.ALL,mappedBy="reportConfig")
     @OneToMany
@@ -41,11 +41,11 @@ public class ReportConfig {
         this.formName = formName;
     }
 
-    public Integer getInstituteId() {
+    public String getInstituteId() {
         return instituteId;
     }
 
-    public void setInstituteId(Integer instituteId) {
+    public void setInstituteId(String instituteId) {
         this.instituteId = instituteId;
     }
 

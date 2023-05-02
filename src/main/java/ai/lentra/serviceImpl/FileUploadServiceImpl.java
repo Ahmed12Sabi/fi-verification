@@ -1,5 +1,7 @@
 package ai.lentra.serviceImpl;
 
+import ai.lentra.config.I18nMessageKeys;
+import ai.lentra.core.i18n.api.I18nHelper;
 import ai.lentra.dto.responses.ResponseDTO;
 import ai.lentra.modal.file_upload.FileUpload;
 import ai.lentra.repository.froms.FileUploadRepository;
@@ -107,7 +109,7 @@ public class FileUploadServiceImpl implements FileUploadService {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errros);
         } else {
             fileUploadRepository.saveAll(fileUploads);
-            return ResponseEntity.ok("All files uploaded successfully along with the geoTag latitude: " + latitude + " longitude: " + longitude);
+            return ResponseEntity.ok(I18nHelper.msg(I18nMessageKeys.uploaded_geoTag_latitude) + latitude + " longitude: " + longitude);
         }
     }
 
@@ -142,7 +144,7 @@ public class FileUploadServiceImpl implements FileUploadService {
         headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
         headers.setContentDispositionFormData("attachment", "files.zip");
         if (files.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No file for the specified applicant \n "+"applicant Id: "+applicantId);
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(I18nHelper.msg(I18nMessageKeys.no_file_specified));
         }
 
 //returning the resource with custom content and custom headers for zip file format
@@ -165,7 +167,7 @@ public class FileUploadServiceImpl implements FileUploadService {
 
 
         if (files.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No file present with name " + filename +" for the applicant " +applicantId);
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(I18nHelper.msg(I18nMessageKeys.no_file_name) + filename +" for the applicant " +applicantId);
         }
 
         File temp= new File(filename);
@@ -251,7 +253,7 @@ public class FileUploadServiceImpl implements FileUploadService {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errors);
         } else {
             fileUploadRepository.saveAll(fileUploads);
-            return ResponseEntity.ok("All files uploaded successfully ");
+            return ResponseEntity.ok(I18nHelper.msg(I18nMessageKeys.files_uploaded));
         }
     }
 

@@ -1,9 +1,11 @@
 package ai.lentra.serviceImpl.allocation;
 import ai.lentra.commons.NotificationUtils;
 import ai.lentra.commons.TokenAuth;
+import ai.lentra.config.I18nMessageKeys;
 import ai.lentra.controller.notification.EmailController;
 import ai.lentra.controller.notification.SMSController;
 import ai.lentra.controller.verificationType.VerificationTypeController;
+import ai.lentra.core.i18n.api.I18nHelper;
 import ai.lentra.dto.allocation.AssignResponse;
 import ai.lentra.dto.notification.SMS.Messages;
 import ai.lentra.exceptions.ResourceNotFoundException;
@@ -60,7 +62,7 @@ public class AllocationServiceImpl implements AllocationService {
     boolean isExist = verificationRepository.findByAssignedToAndApplicantId(verifierDetails.getAssignedTo(), verifierDetails.getApplicantId()).isPresent();
     applicantRepository.findByApplicantId(verifierDetails.getApplicantId()).orElseThrow(() -> new ResourceNotFoundException("Requested Applicant Details not found"));
     if (isExist) {
-        return ResponseEntity.ok().body("VerificationDTO for the applicant and the verifier is already present");
+        return ResponseEntity.ok().body(I18nHelper.msg(I18nMessageKeys.verifier_already_present));
     }
     String fiId = genFiId().toUpperCase(); //this will return UUID
     Verification verification = new Verification();
@@ -231,7 +233,7 @@ public class AllocationServiceImpl implements AllocationService {
         applicantRepository.findByApplicantId(verifierDetails.getApplicantId()).orElseThrow(()-> new ResourceNotFoundException("Requested Applicant Details not found"));
         boolean isExist= verificationRepository.findByAgencyNameAndApplicantId(verifierDetails.getAgencyName(), verifierDetails.getApplicantId()).isPresent();
         if(isExist) {
-            return  ResponseEntity.ok().body("VerificationDTO for the applicant and the agency is already present");
+            return  ResponseEntity.ok().body(I18nHelper.msg(I18nMessageKeys.verifier_already_present));
         }
         String fiId= genFiId().toUpperCase();
         Verification verification = new Verification();

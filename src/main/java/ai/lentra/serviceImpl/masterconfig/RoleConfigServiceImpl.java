@@ -65,7 +65,7 @@ public class RoleConfigServiceImpl implements RolesConfigService {
                 if(( vmsRoleCount>0 && optionalDuplicate.get().getVmsRoleName().substring(3,10).equals(rolesDTO.getVmsRoleName().substring(3,10))) ){
                     repository.save(roles);
                 }else if(( vmsRoleCount>0 && !(optionalDuplicate.get().getVmsRoleName().substring(3,10).equals(rolesDTO.getVmsRoleName().substring(3,10))))){
-                    return ResponseEntity.status(HttpStatus.FORBIDDEN).body(getResponse(403,"Role is not mapping to related VMS role","ERROR"));
+                    return ResponseEntity.status(HttpStatus.FORBIDDEN).body(getResponse(403,I18nHelper.msg(I18nMessageKeys.role_not_mapping),"ERROR"));
                 }else{
                     repository.save(roles);
                 }

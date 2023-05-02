@@ -47,6 +47,24 @@ public class VerificationFormFieldsConfig {
     private boolean required;
     private boolean dataAutoPopulation;
 
+    private String institute_id;
+
+    public VerificationFormConfig getVerificationFormConfig() {
+        return verificationFormConfig;
+    }
+
+    public void setVerificationFormConfig(VerificationFormConfig verificationFormConfig) {
+        this.verificationFormConfig = verificationFormConfig;
+    }
+
+    public String getInstitute_id() {
+        return institute_id;
+    }
+
+    public void setInstitute_id(String institute_id) {
+        this.institute_id = institute_id;
+    }
+
     public long getFieldId() {
         return fieldId;
     }

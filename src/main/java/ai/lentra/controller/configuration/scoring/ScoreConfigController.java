@@ -2,6 +2,8 @@
 
 package ai.lentra.controller.configuration.scoring;
 
+import ai.lentra.config.I18nMessageKeys;
+import ai.lentra.core.i18n.api.I18nHelper;
 import ai.lentra.dto.ScoreConfig.ScoreConfigDTO;
 import ai.lentra.exceptions.ResourceNotFoundException;
 import ai.lentra.service.masterconfig.ScoreConfigService;
@@ -44,7 +46,7 @@ public class ScoreConfigController {
     public ResponseEntity<?> updateScoreFields( @RequestBody ScoreConfigDTO scoreConfigDTO)  {
         logger.info("Started API call to update scoring details  ...");
              scoreConfigService.updateScoreFields(scoreConfigDTO);
-        return  new ResponseEntity<>("updated successfully ",HttpStatus.OK);
+        return  new ResponseEntity<>(I18nHelper.msg(I18nMessageKeys.updated_successfull),HttpStatus.OK);
     }
 }
 

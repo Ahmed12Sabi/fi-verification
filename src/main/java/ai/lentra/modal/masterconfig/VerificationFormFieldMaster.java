@@ -37,6 +37,15 @@ public class VerificationFormFieldMaster {
     private boolean dataAutoPopulation;
     @OneToOne(cascade = CascadeType.ALL)
     private VerificationFormMaster verificationFormMaster;
+    private String institute_id;
+
+    public String getInstitute_id() {
+        return institute_id;
+    }
+
+    public void setInstitute_id(String institute_id) {
+        this.institute_id = institute_id;
+    }
 
     public long getFieldId() {
         return fieldId;

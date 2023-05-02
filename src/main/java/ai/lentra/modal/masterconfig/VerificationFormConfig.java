@@ -35,6 +35,17 @@ public class VerificationFormConfig {
     private String formDescription;
     private String subProfileName;
     private boolean hidden;
+
+    private String institute_id;
+
+    public String getInstitute_id() {
+        return institute_id;
+    }
+
+    public void setInstitute_id(String institute_id) {
+        this.institute_id = institute_id;
+    }
+
     @OneToMany
 
     private List<VerificationFormFieldsConfig> verificationFormFieldsConfig;
