@@ -22,7 +22,7 @@ public class FormCleanUpController implements JobInterface
     @Autowired
     FormCleanUpService formCleanUpService;
 
-     @Value("${lookup.sync.cron.expr:0 * * * * *}")
+     @Value("${lookup.sync.cron.expr:0 0 1 */2 * *}")
      private String lookupSyncCronExpr;
     public void doFormCleanUp()  {
         logger.info("Started API call to delete two months old data");

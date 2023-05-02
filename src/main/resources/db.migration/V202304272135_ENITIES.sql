@@ -242,7 +242,11 @@ begin
                        phone_number character varying(255),
                        phone_number_verified boolean NOT NULL,
                        registered_with_bank boolean NOT NULL,
-                       sim_type character varying(255)
+                       sim_type character varying(255),
+                       created_by varchar(255) null ,
+                       created_on  timestamptz,
+                       modified_by varchar(255) null,
+                       modified_on  timestamptz)
                 )';
 
 	end loop;
@@ -260,7 +264,11 @@ begin
                        office_transportation_cost numeric(19,2),
                        other_expenses character varying(255),
                        school_fees_amt numeric(19,2),
-                       water_bill_amt numeric(19,2)
+                       water_bill_amt numeric(19,2),
+                      created_by varchar(255) null ,
+                      created_on  timestamptz,
+                      modified_by varchar(255) null,
+                      modified_on  timestamptz)
                 )';
 
 	end loop;
@@ -296,7 +304,11 @@ begin
                      spouse_occupation character varying(255),
                      spouse_religion character varying(255),
                      spouse_suffix character varying(255),
-                     spouse_working boolean NOT NULL
+                     spouse_working boolean NOT NULL,
+                    created_by varchar(255) null ,
+                    created_on  timestamptz,
+                    modified_by varchar(255) null,
+                    modified_on  timestamptz)
                 )';
 
 	end loop;
@@ -312,7 +324,11 @@ begin
                         filename character varying(255),
                         latitude character varying(255),
                         longitude character varying(255),
-                        "timestamp" timestamp without time zone
+                        "timestamp" timestamp without time zone,
+                      created_by varchar(255) null ,
+                      created_on  timestamptz,
+                      modified_by varchar(255) null,
+                      modified_on  timestamptz)
                 )';
 
 	end loop;
@@ -631,7 +647,11 @@ begin
                                      office_name character varying(255),
                                      office_telephone_no bigint,
                                      office_address_state character varying(255),
-                                     out_of_geo_limit boolean NOT NULL
+                                     out_of_geo_limit boolean NOT NULL,
+                                     created_by varchar(255) null ,
+                                     created_on  timestamptz,
+                                     modified_by varchar(255) null,
+                                     modified_on  timestamptz)
                                    )';
 
                    	end loop;
@@ -662,7 +682,11 @@ begin
                     politically_exposed boolean NOT NULL,
                     prefix character varying(255),
                     religion character varying(255),
-                    suffix character varying(255)
+                    suffix character varying(255),
+                    created_by varchar(255) null ,
+                    created_on  timestamptz,
+                    modified_by varchar(255) null,
+                    modified_on  timestamptz)
 
                     )';
 
@@ -716,7 +740,11 @@ begin
                               residence_type character varying(255),
                               residency character varying(255),
                               state character varying(255),
-                              years_of_stay bigint
+                              years_of_stay bigint,
+                             created_by varchar(255) null ,
+                             created_on  timestamptz,
+                             modified_by varchar(255) null,
+                             modified_on  timestamptz)
 
                             )';
 
@@ -738,7 +766,11 @@ begin
                      remark_date_time timestamp without time zone,
                      reviewed_by character varying(255),
                      sum_ref_id integer,
-                     sum_score integer
+                     sum_score integer,
+                     created_by varchar(255) null ,
+                     created_on  timestamptz,
+                     modified_by varchar(255) null,
+                     modified_on  timestamptz)
 
                     )';
 
@@ -784,7 +816,11 @@ begin
                                number_of_vehicles_owned integer,
                                two_wheeler_model character varying(255),
                                vehicle_type character varying(255),
-                               with_parking_space boolean
+                               with_parking_space boolean,
+                                created_by varchar(255) null ,
+                                created_on  timestamptz,
+                                modified_by varchar(255) null,
+                                modified_on  timestamptz)
 
                             )';
 
@@ -830,7 +866,11 @@ begin
                        v_query_date character varying(255),
                        v_status character varying(255),
                        verification_stage character varying(255),
-                       verification_status character varying(255)
+                       verification_status character varying(255),
+                        created_by varchar(255) null ,
+                        created_on  timestamptz,
+                        modified_by varchar(255) null,
+                        modified_on  timestamptz)
                     )';
 
     	end loop;

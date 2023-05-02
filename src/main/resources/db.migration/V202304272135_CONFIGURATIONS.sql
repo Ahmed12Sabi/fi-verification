@@ -313,7 +313,7 @@ begin
                    created_by varchar(255) null ,
                    created_on  timestamptz,
                    modified_by varchar(255) null,
-                   modified_on  timestamptz);
+                   modified_on  timestamptz 
 
                     )';
 

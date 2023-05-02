@@ -30,7 +30,7 @@ public class FormCleanUpServiceImpl implements FormCleanUpService {
     @Override
     public void doFormCleanUp(){
 
-       /* contactRepository.delete2MonthsData();
+        contactRepository.delete2MonthsData();
         expensesRepository.delete2MonthsData();
         personalDetailsRepository.delete2MonthsData();
         residenceRepository.delete2MonthsData();
@@ -38,7 +38,7 @@ public class FormCleanUpServiceImpl implements FormCleanUpService {
         vehicleRepository.delete2MonthsData();
         commitmentsRepository.delete2MonthsData();
         officeSelfEmploymentRepository.delete2MonthsData();
-        familyDetailsRepository.delete2MonthsData();*/
+        familyDetailsRepository.delete2MonthsData();
 
 
     }
