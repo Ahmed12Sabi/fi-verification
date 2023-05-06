@@ -2,6 +2,7 @@
 package ai.lentra.service;
 
 
+import ai.lentra.core.test.TestContainerSupport;
 import ai.lentra.dto.masterConfig.RolesDTO;
 import ai.lentra.dto.responses.ResponseDTO;
 import ai.lentra.exceptions.DuplicateResourceException;
@@ -24,12 +25,10 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
 
-@SpringBootTest
-@Scope("ai.lentra.service.*")
-public class RoleConfigServiceImplTest {
-    @MockBean
+public class RoleConfigServiceImplTest extends TestContainerSupport {
+
     RolesRepository rolesRepository;
-    @MockBean
+
     RoleConfigServiceImpl roleConfigServiceImpl;
     RolesDTO rolesDTO = new RolesDTO();
     RolesEntity rolesEntity = new RolesEntity();

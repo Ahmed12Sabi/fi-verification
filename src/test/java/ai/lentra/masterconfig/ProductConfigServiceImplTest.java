@@ -1,6 +1,8 @@
 
 package ai.lentra.masterconfig;
 
+
+import ai.lentra.core.test.TransactionalTestContainerSupport;
 import ai.lentra.dto.masterConfig.ProductsDTO;
 import ai.lentra.dto.responses.ResponseDTO;
 import ai.lentra.exceptions.DuplicateResourceException;
@@ -26,7 +28,7 @@ import static org.mockito.Mockito.when;
 
 @SpringBootTest
 @Scope("ai.lentra.service.*")
-public class ProductConfigServiceImplTest {
+public class ProductConfigServiceImplTest extends TransactionalTestContainerSupport {
 
     @Autowired
     private ProductConfigRepository service;

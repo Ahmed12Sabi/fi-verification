@@ -3,12 +3,12 @@
 -- this program belongs to lentra ai. it is considered a trade secret and
 -- is not to be divulged or used by parties who have not received written
 -- authorization from lentra ai.
--- --------------------------------------------------------------p------------
+-- --------------------------------------------------------------------------
 -- database 	  : postgresql
--- module         : vms service
+-- module         : VMS
 -- author         : Afroze A
--- review date    : 27-04-2023
--- description    : Create data model and functions for auditing
+-- review date    : 05.05.2023
+-- description    : Create properties in vms
 -- ---------------------------------------------------------------------------
 -- usage : deploy via flyway migrate
 -- ---------------------------------------------------------------------------
@@ -32,9 +32,9 @@ declare
 	--v_tablespace_ind varchar(20) := '{ph_schema}_ind';
 
 	-- do not change the schema name ----
-	v_schema_name varchar(50) 	 := '${ph_schema}';
+	v_schema_name varchar(50) 	 := 'schema_client1_vms';
 	--- you can changes the file name ----
-	v_filename varchar(100)		 := 'V202304271958_AUDIT.sql';
+	v_filename varchar(100)		 := 'V202305051442_CREATE_PROPERTIES.sql';
 	--- you can changes the file name ----
 	c record;
 
@@ -43,63 +43,60 @@ declare
     v_detail  text;
     v_hint    text;
     v_context text;
-begin
+    v_gogtr text;
 
+begin
 
 -- **************************       your sql code starts below this line       **************************
 
+--	for c  in select 1 where not exists (select 1 from pg_tables where  schemaname = lower(v_schema_name) and  tablename  = lower('properties')) loop
+--
+--	execute 'create table ' ||v_schema_name||'.properties
+--				(
+--					id          			serial not null primary key ,
+--					key						varchar(250) not null unique,
+--					value 					JSONB,
+--					description				Text
+--				)';
+--
+--	end loop;
+--
+ for c  in select 1 where not exists (select 1 from pg_tables where schemaname = lower(v_schema_name) and tablename = lower('properties')) loop
+    execute 'create table ' ||v_schema_name||'.properties_test
 
-	for c  in select 1 where not exists (select 1 from pg_tables where
-										 schemaname = lower(v_schema_name) and  tablename  = lower('record_version')) loop
+        (
+        					id          			serial not null primary key ,
+        					key						varchar(250) not null unique,
+        					value 					JSONB,
+        					description				varchar(255)
+        				)';
 
-	execute 'create table ' ||v_schema_name||'.record_version
-	  (
-	     rv_id            BIGSERIAL PRIMARY KEY,
-	     rv_record_id     int,
-	     rv_operation     VARCHAR(8) NOT NULL,
-	     rv_timestamp     TIMESTAMPTZ NOT NULL DEFAULT Now(),
-	     rv_table_oid     OID NOT NULL,
-	     rv_table_schema  NAME NOT NULL,
-	     rv_table_name    NAME NOT NULL,
-	     rv_new_record    JSONB,
-	     rv_old_record    JSONB
-	  );
 
-	create index record_version_ts on record_version using brin(rv_timestamp);
-	create index record_version_table_oid on record_version using btree(rv_table_oid);
-	create index record_version_record_id on record_version using btree(rv_record_id);
-    ';
 	end loop;
-
 
 
 -- **************************       your sql code ends above this line       **************************
 
-	 --raise notice 'exit for loop';
 	 raise notice 'successfully deployed script % in schema %', v_filename ,v_schema_name ;
 
+
 exception
+        when others then
+                get stacked diagnostics
+                    v_state   = returned_sqlstate,
+                    v_msg     = message_text,
+                    v_detail  = pg_exception_detail,
+                    v_hint    = pg_exception_hint,
+                    v_context = pg_exception_context;
 
-		when others then
-				raise notice 'in exception, transaction will be rolled back';
-				--rollback;
-
-				get stacked diagnostics
-					v_state   = returned_sqlstate,
-					v_msg     = message_text,
-					v_detail  = pg_exception_detail,
-					v_hint    = pg_exception_hint,
-					v_context = pg_exception_context;
-
-				raise notice e'got exception:
-					state  : %
-					message: %
-					detail : %
-					hint   : %
-					context: %', v_state, v_msg, v_detail, v_hint, v_context;
-
-				raise notice ' script % failed to execute in schema %', v_filename ,v_schema_name ;
-				raise exception ' script failed';
+                raise exception e' In exception, transaction will be rolled back !!
+                script % failed to execute in schema %
+                got exception:
+                    state  : %
+                    message: %
+                    detail : %
+                    hint   : %
+                    context: %', v_filename ,v_schema_name, v_state, v_msg, v_detail, v_hint, v_context;
 
 end;
 

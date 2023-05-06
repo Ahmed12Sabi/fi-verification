@@ -1,6 +1,7 @@
 
 package ai.lentra.service;
 
+import ai.lentra.core.test.TransactionalTestContainerSupport;
 import ai.lentra.dto.masterConfig.ProductsDTO;
 import ai.lentra.dto.responses.ResponseDTO;
 import ai.lentra.exceptions.DuplicateResourceException;
@@ -10,10 +11,12 @@ import ai.lentra.repository.masterconfig.ProductConfigRepository;
 import ai.lentra.serviceImpl.masterconfig.ProductConfigServiceImpl;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.Scope;
 import org.springframework.http.ResponseEntity;
+import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.List;
 
@@ -21,23 +24,23 @@ import static org.junit.Assert.assertNotNull;
 import static org.mockito.Mockito.when;
 
 
-@SpringBootTest
-@Scope("ai.lentra.service.*")
-public class ProductConfigServiceImplTest {
-    @MockBean
-    ProductConfigRepository productsRepository;
-    @MockBean
-    ProductConfigServiceImpl productConfigServiceImpl;
 
+public class ProductConfigServiceImplTest  extends TransactionalTestContainerSupport {
     ProductsDTO productsDTO = new ProductsDTO();
     ProductConfigEntity productsEntity = new ProductConfigEntity();
+//    @Autowired
+//    private MockMvc mockMvc;
+    @Autowired
+    ProductConfigRepository productsRepository;
 
+    @Autowired
+    ProductConfigServiceImpl productConfigServiceImpl;
     @Test
     public void saveRoleTest() throws ResourceNotFoundException, DuplicateResourceException {
         ProductConfigEntity productsEntity = dummyProductConfigEntity();
         ProductsDTO productsDTO = dummyProductsDTO();
         ResponseEntity<ResponseDTO> response = productConfigServiceImpl.saveProduct(productsDTO);
-        when(productsEntity).thenReturn(productsEntity);
+
         assertNotNull(response);
 
     }

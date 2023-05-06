@@ -15,20 +15,13 @@ import ai.lentra.config.SchedularConfig;
 import static ai.lentra.config.dbConfig.ConfigKeys.DO_FORM_CLEANUP;
 
 @Component
-public class FormCleanUpController implements JobInterface
+public class FormCleanUpController // implements JobInterface
  {
+/*
 
     private final Logger logger = LoggerFactory.getLogger(FormCleanUpController.class);
     @Autowired
     FormCleanUpService formCleanUpService;
-
-     @Value("${lookup.sync.cron.expr:0 0 1 */2 * *}")
-     private String lookupSyncCronExpr;
-    public void doFormCleanUp()  {
-        logger.info("Started API call to delete two months old data");
-        formCleanUpService.doFormCleanUp();
-    }
-
     @Autowired
     private ConfigService configService;
     @Override
@@ -51,6 +44,15 @@ public class FormCleanUpController implements JobInterface
         if(!Strings.isNullOrEmpty(config.getBatchJobCronExpr())) {
             return config.getBatchJobCronExpr();
         }
-        return lookupSyncCronExpr;
+        return "-";
     }
+*/
+
+
+//     @Value("${lookup.sync.cron.expr:0 0 1 */2 * *}")
+//     private String lookupSyncCronExpr;
+    /*public void doFormCleanUp()  {
+        logger.info("Started API call to delete two months old data");
+        formCleanUpService.doFormCleanUp();
+    }*/
 }

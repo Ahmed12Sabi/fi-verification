@@ -2,7 +2,7 @@ package ai.lentra.controller.offlineVerification;
 
 import ai.lentra.controller.notification.UserRoleController;
 import ai.lentra.service.offlineVerification.OfflineVerificationService;
-import freemarker.template.Template;
+//import freemarker.template.Template;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
