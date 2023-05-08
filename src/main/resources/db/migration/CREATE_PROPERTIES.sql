@@ -4,15 +4,15 @@
 -- is not to be divulged or used by parties who have not received written
 -- authorization from lentra ai.
 -- --------------------------------------------------------------------------
--- database 	  : postgresql 
--- module         : platform-commons
--- author         : Shriniket Pimparkar
--- review date    : 19.09.2022
--- description    : Create properties in platform commons
+-- database 	  : postgresql
+-- module         : VMS
+-- author         : Afroze A
+-- review date    : 05.05.2023
+-- description    : Create properties in vms
 -- ---------------------------------------------------------------------------
 -- usage : deploy via flyway migrate
--- --------------------------------------------------------------------------- 
--- note : 
+-- ---------------------------------------------------------------------------
+-- note :
 -- 1. request to go ahead with lowercase in postgres when checking dictionary tables.
 -- 2. since flyway default schema is set to '{ph_schema} which is same as default schema', actions will be performed in same schema. so, typically v_schema_name is not required but kept as on safe side.
 -- 3. in flyway, if script fails - everything will be rollbacked. so explicitly rollback will cause error: invalid transaction termination
@@ -34,36 +34,32 @@ declare
 	-- do not change the schema name ----
 	v_schema_name varchar(50) 	 := '${ph_schema}';
 	--- you can changes the file name ----
-	v_filename varchar(100)		 := 'V202208021800__CREATE_PROPERTIES.sql';
+	v_filename varchar(100)		 := 'V202305051442_CREATE_PROPERTIES.sql';
 	--- you can changes the file name ----
 	c record;
-	
+
 	v_state   text;
     v_msg     text;
     v_detail  text;
     v_hint    text;
     v_context text;
-    v_gogtr text;
-    
+
 begin
 
--- **************************       your sql code starts below this line       **************************
 
-	for c  in select 1 where not exists (select 1 from pg_tables where  schemaname = lower(v_schema_name) and  tablename  = lower('properties_test')) loop
+ execute 'create table ' ||v_schema_name||'.properties_test
 
-	execute 'create table ' ||v_schema_name||'.properties_test
-				(
-					id          			serial not null primary key ,
-					key						varchar(250) not null unique,
-					value 					JSONB,
-					description				Text
-				)';
+        (
+        					id          			serial not null primary key ,
+        					key						varchar(250) not null unique,
+        					value 					JSONB,
+        					description				varchar(255)
+        				)';
+
 
 	end loop;
 
 
-
-	
 -- **************************       your sql code ends above this line       **************************
 
 	 raise notice 'successfully deployed script % in schema %', v_filename ,v_schema_name ;
@@ -85,8 +81,8 @@ exception
                     message: %
                     detail : %
                     hint   : %
-                    context: %', v_filename ,v_schema_name, v_state, v_msg, v_detail, v_hint, v_context;    
-                
+                    context: %', v_filename ,v_schema_name, v_state, v_msg, v_detail, v_hint, v_context;
+
 end;
 
 $$;

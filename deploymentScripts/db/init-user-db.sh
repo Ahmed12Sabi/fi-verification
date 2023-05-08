@@ -104,7 +104,7 @@ psql -v ON_ERROR_STOP=1 --username "scm_flyway_user" --dbname "scm_db" <<-EOSQL
   insert into tenants (tenant_id, name, service, db_host, db_port, db_name, schema_name, flyway_user, flyway_password, app_user, app_password)
     values (102, 'client2', 'vms', 'localhost', '5432', 'db_client2_vms', 'schema_client2_vms', 'flyway_user_client2_vms', 'adept1', 'user_client2_vms', 'adept');
 
-	insert into tenants (tenant_id, name, service, db_host, db_port, db_name, schema_name, flyway_user, flyway_password, app_user, app_password)
-    values (103, 'client3, 'vms', 'localhost', '5432', 'db_verification', 'verification', 'flyway_user_verification', 'adept1', 'user_verification, 'adept');
+	-- insert into tenants (tenant_id, name, service, db_host, db_port, db_name, schema_name, flyway_user, flyway_password, app_user, app_password)
+  --  values (103, 'client3, 'vms', 'localhost', '5432', 'db_verification', 'verification', 'flyway_user_verification', 'adept1', 'user_verification, 'adept');
 
 EOSQL
