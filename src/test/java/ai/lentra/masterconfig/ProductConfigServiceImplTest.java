@@ -9,55 +9,63 @@ import ai.lentra.exceptions.DuplicateResourceException;
 import ai.lentra.exceptions.ResourceNotFoundException;
 import ai.lentra.modal.masterconfig.ProductConfigEntity;
 import ai.lentra.repository.masterconfig.ProductConfigRepository;
-import ai.lentra.repository.masterconfig.ReportConfigRepository;
-import ai.lentra.service.masterconfig.ReportConfigService;
 import ai.lentra.serviceImpl.masterconfig.ProductConfigServiceImpl;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.context.annotation.Scope;
 import org.springframework.http.ResponseEntity;
-
-import java.util.List;
-
 import static org.junit.Assert.assertNotNull;
 import static org.mockito.Mockito.when;
 
 
-@SpringBootTest
-@Scope("ai.lentra.service.*")
+
 public class ProductConfigServiceImplTest extends TransactionalTestContainerSupport {
 
     @Autowired
-    private ProductConfigRepository service;
-
-    @MockBean
     private ProductConfigRepository repository;
 
-
-    @MockBean
+    @Autowired
     ProductConfigServiceImpl productConfigServiceImpl;
 
-    ProductsDTO productsDTO = new ProductsDTO();
     ProductConfigEntity productsEntity = new ProductConfigEntity();
 
     @Test
     public void saveRoleTest() throws ResourceNotFoundException, DuplicateResourceException {
         ProductConfigEntity productsEntity = dummyProductConfigEntity();
-        ProductsDTO productsDTO = dummyProductsDTO();
+        ProductsDTO productsDTO = new ProductsDTO();
+        productsDTO.setProductType("HL");
+        productsDTO.setProfileName("Profile1");
+        productsDTO.setInstituteId("1");
+        productsDTO.setWaiverAllowed(true);
+        productsDTO.setDataPopulated(true);
+        productsDTO.setMandatory(true);
         ResponseEntity<ResponseDTO> response = productConfigServiceImpl.saveProduct(productsDTO);
-        when(productsEntity).thenReturn(productsEntity);
+        when("Product has been added successfully").thenReturn(response.getBody().getMessage());
         assertNotNull(response);
 
     }
     @Test
     public void updateRoleTest()  throws ResourceNotFoundException, DuplicateResourceException{
         ProductConfigEntity productsEntity = dummyProductConfigEntity();
-        ProductsDTO productsDTO = updateDummyProductsDTO();
+        ProductsDTO productsDTO = new ProductsDTO();
+        productsDTO.setProductType("HL");
+        productsDTO.setProfileName("Profile2");
+        productsDTO.setInstituteId("1");
+        productsDTO.setWaiverAllowed(true);
+        productsDTO.setDataPopulated(true);
+        productsDTO.setMandatory(true);
         ResponseEntity<ResponseDTO> response = productConfigServiceImpl.saveProduct(productsDTO);
-        when(productsEntity).thenReturn(productsEntity);
+        when("Product has been updated successfully").thenReturn(response.getBody().getMessage());
+        assertNotNull(response);
+
+    }
+
+    @Test
+    public void getAllProducts()  throws ResourceNotFoundException, DuplicateResourceException{
+        ProductConfigEntity productsEntity = dummyProductConfigEntity();
+
+        ResponseEntity<Object> response = productConfigServiceImpl.getAllProducts();
+        when("OK").thenReturn(response.getStatusCode().toString());
         assertNotNull(response);
 
     }
@@ -93,7 +101,7 @@ public class ProductConfigServiceImplTest extends TransactionalTestContainerSupp
     }
 
     @Test
-    public void getProductsTest() throws ResourceNotFoundException, DuplicateResourceException {
+    public void getProductTest() throws ResourceNotFoundException, DuplicateResourceException {
         productsEntity = dummyProductConfigEntity();
         Integer id = 1;
         ResponseEntity<Object> response = productConfigServiceImpl.getProduct(id.longValue());
@@ -102,14 +110,7 @@ public class ProductConfigServiceImplTest extends TransactionalTestContainerSupp
         Assertions.assertNotNull(response);
     }
 
-    @Test
-    public void getAllProducts() {
-        ProductConfigEntity productsEntity = dummyProductConfigEntity();
-        List<ProductConfigEntity> productsEntities = repository.findAll();
-        when(repository.findAll()).thenReturn(productsEntities);
-        List<ProductConfigEntity> response = repository.findAll();
-        assertNotNull(response);
-    }
+
 
 }
 

@@ -30,7 +30,7 @@ begin
     WHERE key IN(SELECT attname FROM pk_columns);
     
     begin
-        v_client_user = current_setting('leads.ClientUser');
+        v_client_user = current_setting('schema_client1_vms.ClientUser');
     exception 
         when sqlstate '42704' 
         then 

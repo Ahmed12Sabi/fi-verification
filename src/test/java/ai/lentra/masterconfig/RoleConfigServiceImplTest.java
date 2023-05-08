@@ -39,9 +39,13 @@ public class RoleConfigServiceImplTest {
     @Test
     public void saveRoleTest() throws ResourceNotFoundException, DuplicateResourceException {
         RolesEntity rolesEntity = dummyRolesEntity();
-        RolesDTO rolesDTO = dummyRolesDTO();
+        RolesDTO rolesDTO = new RolesDTO();
+        rolesDTO.setRoleName("TMI");
+        rolesDTO.setVmsRoleName("TM");
+        rolesDTO.setStatus(true);
+        rolesDTO.setInstituteId("1");
         ResponseEntity<ResponseDTO> response = roleConfigServiceImpl.saveRole(rolesDTO);
-        when(response).thenReturn(any());
+        when("Role has been added successfully").thenReturn(response.getBody().getMessage());
         assertNotNull(response);
 
     }
@@ -50,7 +54,7 @@ public class RoleConfigServiceImplTest {
         RolesEntity rolesEntity = dummyRolesEntity();
         RolesDTO rolesDTO = updateDummyRolesDTO();
         ResponseEntity<ResponseDTO> response = roleConfigServiceImpl.saveRole(rolesDTO);
-        when(rolesEntity).thenReturn(rolesEntity);
+        when("Role has been updated successfully").thenReturn(response.getBody().getMessage());
         assertNotNull(response);
 
     }
@@ -59,6 +63,7 @@ public class RoleConfigServiceImplTest {
         rolesDTO.setRoleName("TMI");
         rolesDTO.setVmsRoleName("TM");
         rolesDTO.setStatus(true);
+        rolesDTO.setInstituteId("1");
         return rolesDTO;
     }
 
@@ -68,6 +73,7 @@ public class RoleConfigServiceImplTest {
         rolesDTO.setRoleName("TMI");
         rolesDTO.setVmsRoleName("TM");
         rolesDTO.setStatus(true);
+        rolesDTO.setInstituteId("1");
         return rolesDTO;
     }
 
@@ -76,6 +82,7 @@ public class RoleConfigServiceImplTest {
         rolesEntity.setRoleName(rolesDTO.getRoleName());
         rolesEntity.setVmsRoleName(rolesDTO.getVmsRoleName());
         rolesEntity.setStatus(rolesDTO.getStatus());
+        rolesEntity.setInstituteId("1");
         rolesRepository.save(rolesEntity);
         return rolesEntity;
 

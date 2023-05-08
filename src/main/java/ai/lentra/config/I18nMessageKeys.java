@@ -31,8 +31,12 @@ public enum I18nMessageKeys {
     query_raised,
     verification_not_completed,
     verification_cancelled_fiId,
-    no_file_specified
-
+    no_file_specified,
+    role_added_successfully,
+    status_null_empty,
+    role_vms_not_blank,
+    role_not_found,
+    role_updated
 
 
 

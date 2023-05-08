@@ -2,7 +2,7 @@ do
 $$
 declare
 
-    v_schema_name varchar(50) 	 := 'vmss';
+    v_schema_name varchar(50) 	 := 'vms';
     c record;
     v_text 			 int = 1;
 	v_multiline_text int = 2;

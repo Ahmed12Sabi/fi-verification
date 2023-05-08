@@ -55,7 +55,6 @@ public class RoleConfigServiceImpl implements RolesConfigService {
             Long role = repository.countByRoleNameAndVmsRoleName(rolesDTO.getRoleName(),rolesDTO.getVmsRoleName());
             ObjectMapper objectMapper = new ObjectMapper();
             RolesEntity roles = objectMapper.convertValue(rolesDTO, RolesEntity.class);
-        Level level = Level.LOW;
             if (role > 0) {
                 return ResponseEntity.status(HttpStatus.FORBIDDEN).body(getResponse(403, I18nHelper.msg(I18nMessageKeys.role_already_mapped),"ERROR"));
 
@@ -72,7 +71,7 @@ public class RoleConfigServiceImpl implements RolesConfigService {
             }
 
 
-            return ResponseEntity.status(HttpStatus.CREATED).body(getResponse(201,"Role has been added successfully ","CREATED"));
+            return ResponseEntity.status(HttpStatus.CREATED).body(getResponse(201,I18nHelper.msg(I18nMessageKeys.role_added_successfully),"CREATED"));
 
     }
 
@@ -83,16 +82,16 @@ public class RoleConfigServiceImpl implements RolesConfigService {
             try{
                 if(rolesDTO.getRoleName().trim().isEmpty() || rolesDTO.getVmsRoleName().trim().isEmpty() || ( rolesDTO.getStatus() == null) ){
                     if(rolesDTO.getStatus() == null ){
-                        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(getResponse(400,"Status should not be null / empty ","ERROR"));
+                        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(getResponse(400,I18nHelper.msg(I18nMessageKeys.status_null_empty),"ERROR"));
                     }
-                    return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(getResponse(400,"Role name / Vms role name should not be blank ","ERROR"));
+                    return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(getResponse(400,I18nHelper.msg(I18nMessageKeys.role_vms_not_blank),"ERROR"));
                 }}
             catch (Exception e){
-                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(getResponse(400,"Role name / Vms role name should not be null ","ERROR"));
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(getResponse(400,I18nHelper.msg(I18nMessageKeys.role_vms_not_blank),"ERROR"));
             }
             Optional<RolesEntity> optionalRole = Optional.ofNullable(repository.findByRoleId(rolesDTO.getRoleId()));
             if (!optionalRole.isPresent()) {
-                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(getResponse(404,"Role Not Found ","ERROR"));
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(getResponse(404,I18nHelper.msg(I18nMessageKeys.role_not_found),"ERROR"));
             }
 
             RolesEntity existingRoles = optionalRole.get();
@@ -113,7 +112,7 @@ public class RoleConfigServiceImpl implements RolesConfigService {
             ObjectMapper objectMapper = new ObjectMapper();
             RolesEntity roles = objectMapper.convertValue(rolesDTO, RolesEntity.class);
             if (role > 0) {
-                return ResponseEntity.status(HttpStatus.FORBIDDEN).body(getResponse(403,messageSource.getMessage("role_already_mapped",null,Locale.US),"ERROR"));
+                return ResponseEntity.status(HttpStatus.FORBIDDEN).body(getResponse(403,I18nHelper.msg(I18nMessageKeys.role_already_mapped),"ERROR"));
                 //return ResponseEntity.status(HttpStatus.FORBIDDEN).body(getResponse(403,"This Role Already mapped ","ERROR"));
             }else if(role == 0){
                 Long vmsRoleCount =repository.countByRoleName(rolesDTO.getRoleName());
@@ -121,16 +120,16 @@ public class RoleConfigServiceImpl implements RolesConfigService {
                 for(RolesEntity optionalDuplicat : optionalDuplicates) {
                     Optional<RolesEntity> optional = Optional.ofNullable(optionalDuplicat);
                     if ((vmsRoleCount > 0 && !(optional.get().getVmsRoleName().substring(3, 10).equalsIgnoreCase(rolesDTO.getVmsRoleName().substring(3, 10))))) {
-                        return ResponseEntity.status(HttpStatus.FORBIDDEN).body(getResponse(403, "Role is not mapping to related VMS role", "ERROR"));
+                        return ResponseEntity.status(HttpStatus.FORBIDDEN).body(getResponse(403,I18nHelper.msg(I18nMessageKeys.role_not_mapping), "ERROR"));
                     }
                     }
                 repository.save(existingRoles);
                 }
             }
 
-            return ResponseEntity.status(HttpStatus.OK).body(getResponse(200,"Role has been updated successfully ","CREATED"));
+            return ResponseEntity.status(HttpStatus.OK).body(getResponse(200,I18nHelper.msg(I18nMessageKeys.role_updated),"CREATED"));
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(getResponse(500,"error while updating role config ","ERROR"));
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(getResponse(500,I18nHelper.msg(I18nMessageKeys.something_went_wrong),"ERROR"));
         }
     }
 
@@ -140,9 +139,9 @@ public class RoleConfigServiceImpl implements RolesConfigService {
         try{
         List<RolesEntity> rolesEntity =repository.findAll();
             // return  repository.findAll() ; //ResponseEntity.status(HttpStatus.OK).body(a.getData());
-           return ( rolesEntity == null ? ResponseEntity.status(HttpStatus.NOT_FOUND).body(getResponse(404," no results" ,"ERROR")) : ResponseEntity.status(HttpStatus.OK).body(rolesEntity));
+           return ( rolesEntity == null ? ResponseEntity.status(HttpStatus.NOT_FOUND).body(getResponse(404,I18nHelper.msg(I18nMessageKeys.role_not_found) ,"ERROR")) : ResponseEntity.status(HttpStatus.OK).body(rolesEntity));
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(getResponse(500,"error while fetching role config data","ERROR"));
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(getResponse(500,I18nHelper.msg(I18nMessageKeys.something_went_wrong),"ERROR"));
         }
     }
 
@@ -150,7 +149,7 @@ public class RoleConfigServiceImpl implements RolesConfigService {
     public ResponseEntity<Object> getRole(Long applicantId ) throws ResourceNotFoundException, DuplicateResourceException
     {
         RolesEntity rolesEntity = repository.findByRoleId(applicantId);
-        return (rolesEntity == null ? ResponseEntity.status(HttpStatus.NOT_FOUND).body(getResponse(404,"Role Not Found " ,"ERROR")) : ResponseEntity.status(HttpStatus.OK).body(rolesEntity));
+        return (rolesEntity == null ? ResponseEntity.status(HttpStatus.NOT_FOUND).body(getResponse(404,I18nHelper.msg(I18nMessageKeys.role_not_found) ,"ERROR")) : ResponseEntity.status(HttpStatus.OK).body(rolesEntity));
     }
 
 }
