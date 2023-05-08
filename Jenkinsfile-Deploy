@@ -1,12 +1,12 @@
 pipeline {
     environment {
-       service_name = 'vms'
+       service_name = 'verifications'
        docker_registry = 'nd21.serviceurl.in'
        DOCKER_REGISTRY_CRED = credentials('jenkins-nd21-docker-secret-key-id')
     }
 
     parameters {
-        choice(choices: ['DEV','SIT','VAPT','UAT_INDUS_IND','UAT_ABFL','SUPER_60'],name: 'DEPLOY_TO')
+        choice(choices: ['SIT'],name: 'DEPLOY_TO')
         string defaultValue: 'latest', name: 'tagName'
         string defaultValue: 'master', name: 'branchName'
     }
@@ -20,22 +20,22 @@ pipeline {
                 script {
                    
                     if (params.DEPLOY_TO == 'SIT') {
-                        env.name = 'vms'
-                        env.deploy_target = '172.30.58.42'
-                        env.deploy_port = '8080'
-                        env.fluentd_target = '172.30.58.42'
+                        env.name = 'verifications'
+                        env.deploy_target = '172.30.54.102'
+                        env.deploy_port = '8089'
+                        env.fluentd_target = '172.30.54.102'
                         env.profile= 'sit'
-                        env.fluentd_tag = 'sit.app.vms'
+                        env.fluentd_tag = 'sit.app.verifications'
                         env.multi_tenant_enabled = 'true'
                         env.debugging = 'false'
-                        env.vms_db_host='172.30.61.220'
-                        env.vms_db_port='5432'
-                        env.vms_db_name='verification'
-                        env.vms_db_schema='vms'
-                        env.vms_db_username='admin'
-                        env.vms_db_password='admin'
+                        env.scm_db_host='172.30.61.220'
+                        env.scm_db_port='5432'
+                        env.scm_db_name='scm_db'
+                        env.scm_db_schema='scm_schema'
+                        env.scm_db_username='scm_user'
+                        env.scm_db_password='adept'
                         env.memory = '1024m'
-                        env.vms_url='http://172.30.61.181:8080/api/verification/v1'
+                        env.vms_url='http://172.30.61.181:8083/api/mdm/v1'
                         env.max_pool_size='10'
                         env.cpus='1.0'
                         env.kafka_producer_bootstrap_servers='172.27.55.36:29092,172.27.55.36:39092'
@@ -66,15 +66,15 @@ pipeline {
                 //pull and run the latest image detached
                 script {
                     if(env.multi_tenant_enabled == 'true'){
-                        if(env.debugging == 'true'){
-                            sh "ssh jenkins@${deploy_target} docker run --name=${name} --restart always -d -p ${deploy_port}:8080 -p ${deploy_port}:8080/udp --log-driver=fluentd --log-opt fluentd-address=${fluentd_target}:24224 --log-opt mode=non-blocking --log-opt max-buffer-size=4m --log-opt tag=${fluentd_tag} -e logging.level.ai.lentra=DEBUG -e SPRING_PROFILES_ACTIVE=${profile} -e multi_tenant_enabled=${multi_tenant_enabled} -e spring.kafka.bootstrap-servers=${kafka_producer_bootstrap_servers} -e waitTimeOutForKafkaServerInSeconds=${wait_timeout_kafka_server_seconds} -e case.management.generatecaseId.url=${case_management_generate_caseId_url} -e kafka.topic.name.prefix=${kafka_topic_name_prefix}  -e scm_db_host=${scm_db_host} -e scm_db_port=${scm_db_port} -e scm_db_name=${scm_db_name} -e scm_db_schema=${scm_db_schema} -e scm_db_username=${scm_db_username} -e scm_db_password=${scm_db_password} -e mdm.url=${mdm_url} -e spring.datasource.hikari.maximum-pool-size=${max_pool_size} --cpus=${cpus} --memory=${memory} ${docker_registry}/${service_name}:${tagName}"
-                        }
-                        else {
-                            sh "ssh jenkins@${deploy_target} docker run --name=${name} --restart always -d -p ${deploy_port}:8080 -p ${deploy_port}:8080/udp --log-driver=fluentd --log-opt fluentd-address=${fluentd_target}:24224 --log-opt mode=non-blocking --log-opt max-buffer-size=4m --log-opt tag=${fluentd_tag} -e SPRING_PROFILES_ACTIVE=${profile} -e multi_tenant_enabled=${multi_tenant_enabled} -e spring.kafka.bootstrap-servers=${kafka_producer_bootstrap_servers} -e waitTimeOutForKafkaServerInSeconds=${wait_timeout_kafka_server_seconds} -e case.management.generatecaseId.url=${case_management_generate_caseId_url} -e kafka.topic.name.prefix=${kafka_topic_name_prefix}  -e scm_db_host=${scm_db_host} -e scm_db_port=${scm_db_port} -e scm_db_name=${scm_db_name} -e scm_db_schema=${scm_db_schema} -e scm_db_username=${scm_db_username} -e scm_db_password=${scm_db_password} -e mdm.url=${mdm_url}  -e spring.datasource.hikari.maximum-pool-size=${max_pool_size} --cpus=${cpus} --memory=${memory} ${docker_registry}/${service_name}:${tagName}"
-                        }
+                       
+
+                        
+                        
+                            sh "ssh jenkins@${deploy_target} docker run --name=${name} --restart always -d -p ${deploy_port}:8089 -p ${deploy_port}:8089/udp --log-driver=fluentd --log-opt fluentd-address=${fluentd_target}:24224 --log-opt mode=non-blocking --log-opt max-buffer-size=4m --log-opt tag=${fluentd_tag} -e SPRING_PROFILES_ACTIVE=${profile} -e multi_tenant_enabled=${multi_tenant_enabled} -e spring.kafka.bootstrap-servers=${kafka_producer_bootstrap_servers} -e waitTimeOutForKafkaServerInSeconds=${wait_timeout_kafka_server_seconds} -e case.management.generatecaseId.url=${case_management_generate_caseId_url} -e kafka.topic.name.prefix=${kafka_topic_name_prefix}  -e scm_db_host=${scm_db_host} -e scm_db_port=${scm_db_port} -e scm_db_name=${scm_db_name} -e scm_db_schema=${scm_db_schema} -e scm_db_username=${scm_db_username} -e scm_db_password=${scm_db_password} -e mdm.url=${mdm_url}  -e spring.datasource.hikari.maximum-pool-size=${max_pool_size} --cpus=${cpus} --memory=${memory} ${docker_registry}/${service_name}:${tagName}"
+                        
                     }
                     else{
-                        sh "ssh jenkins@${deploy_target} docker run --name=${name} --restart always -d -p ${deploy_port}:8080 -p ${deploy_port}:8080/udp --log-driver=fluentd --log-opt fluentd-address=${fluentd_target}:24224 --log-opt mode=non-blocking --log-opt max-buffer-size=4m --log-opt tag=${fluentd_tag} -e SPRING_PROFILES_ACTIVE=${profile}  -e single.tenant.id=${tenant_id} -e single.tenant.datasource.host=${ds_host} -e single.tenant.datasource.username=${ds_username} -e single.tenant.datasource.password=${ds_pass} -e single.tenant.datasource.db=${ds_db} -e single.tenant.datasource.schema=${ds_schema} -e single.tenant.datasource.port=${ds_port} -e lentra.institution.name=${institution_name} -e auth.uam.api=${uam} -e auth.enable=${enable_auth}  -e spring.datasource.hikari.maximum-pool-size=${max_pool_size} --cpus=${cpus} --memory=${memory} ${docker_registry}/${service_name}:${tagName}"
+                        sh "ssh jenkins@${deploy_target} docker run --name=${name} --restart always -d -p ${deploy_port}:8089 -p ${deploy_port}:8089/udp --log-driver=fluentd --log-opt fluentd-address=${fluentd_target}:24224 --log-opt mode=non-blocking --log-opt max-buffer-size=4m --log-opt tag=${fluentd_tag} -e SPRING_PROFILES_ACTIVE=${profile}  -e single.tenant.id=${tenant_id} -e single.tenant.datasource.host=${ds_host} -e single.tenant.datasource.username=${ds_username} -e single.tenant.datasource.password=${ds_pass} -e single.tenant.datasource.db=${ds_db} -e single.tenant.datasource.schema=${ds_schema} -e single.tenant.datasource.port=${ds_port} -e lentra.institution.name=${institution_name} -e auth.uam.api=${uam} -e auth.enable=${enable_auth}  -e spring.datasource.hikari.maximum-pool-size=${max_pool_size} --cpus=${cpus} --memory=${memory} ${docker_registry}/${service_name}:${tagName}"
                     }
 
 }

@@ -1,6 +1,6 @@
 pipeline {
     environment {
-        service_name = "vms"
+        service_name = "verifications"
         docker_registry = 'nd21.serviceurl.in'
         DOCKER_REGISTRY_CRED = credentials('jenkins-nd21-docker-secret-key-id')
     }

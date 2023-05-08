@@ -1,16 +1,16 @@
 pipeline {
     environment {
-        service_name = "vms"
+        service_name = "verifications"
         docker_registry = 'nd21.serviceurl.in'
         DOCKER_REGISTRY_CRED = credentials('jenkins-nd21-docker-secret-key-id')
-        release_version = '1.10'
+        release_version = '1.0'
         sonar_url = 'https://gyankosh.serviceurl.in/sonar'
         sonar_auth_token = '1e46dde6fd3767a5b38783115b2653391d92bf88'
-        sonar_project_key = 'Sonar-fiverification-fi-verification-development'
+        sonar_project_key = 'Sonar-fiverification-fi-verification-master'
     }
 
     parameters {
-        string defaultValue: 'development', name: 'branchName'
+        string defaultValue: 'master', name: 'branchName'
         booleanParam defaultValue: true, name: 'SONAR'
     }
 
@@ -51,7 +51,7 @@ pipeline {
         stage('Pushing docker image') {
             steps{
                 script {
-                    if (params.branchName == 'development') {
+                    if (params.branchName == 'master') {
                        env.tagName = 'latest'
                     } 
                     sh 'docker login $docker_registry -u $DOCKER_REGISTRY_CRED_USR -p $DOCKER_REGISTRY_CRED_PSW'
@@ -74,7 +74,7 @@ pipeline {
     post {
         success {
             script {
-                if (params.branchName == 'development') {
+                if (params.branchName == 'master') {
                     build wait: false, job: 'deploy-vms', parameters: [string(name: 'branchName', value:"${branchName}"),string(name: 'DEPLOY_TO', value: 'DEV'), string(name: 'tagName', value: "${release_version}.${env.BUILD_NUMBER}")]
                 }
             }
