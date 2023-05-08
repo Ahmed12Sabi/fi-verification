@@ -37,7 +37,7 @@ declare
 	v_schema_name varchar(50) 	 := '${ph_schema}';
 
 --- you can changes the file name ----
-	v_filename varchar(100)		 := 'V202304272135_CONFIGURATIONS.sql';
+	v_filename varchar(100)		 := 'V2023042721857__CONFIGURATIONS.sql';
 	--- you can changes the file name ----
 	c record;
 

@@ -34,7 +34,7 @@ declare
 	-- do not change the schema name ----
 	v_schema_name varchar(50) 	 := '${ph_schema}';
 	--- you can changes the file name ----
-	v_filename varchar(100)		 := 'V202205261300__ENABLE_AUDITING.sql';
+	v_filename varchar(100)		 := 'V202305272006__ENABLE_AUDITING.sql';
 	--- you can changes the file name ----
 	c record;
 	
@@ -47,33 +47,32 @@ begin
 
 
 -- **************************       your sql code starts below this line       **************************
-	
---	perform enable_tracking('commitment_details');
---    perform enable_tracking('contact_details');
---    perform enable_tracking('expenses');
---    perform enable_tracking('family_details');
---    perform enable_tracking('file_upload');
---    perform enable_tracking('master_verification_configuration');
---    perform enable_tracking('office_self_employment');
---    perform enable_tracking('personal_details');
---    perform enable_tracking('product');
---    perform enable_tracking('product_config');
---    perform enable_tracking('report_config');
---    perform enable_tracking('report_config_fields');
---    perform enable_tracking('residence_details');
---    perform enable_tracking('role_config');
---    perform enable_tracking('score_master');
---    perform enable_tracking('summary');
---    perform enable_tracking('vehicle_details');
---    perform enable_tracking('verification_config');
---    perform enable_tracking('verification_form_config');
---    perform enable_tracking('verification_form_fields_config');
---    perform enable_tracking('verification_form_fields_master');
---    perform enable_tracking('verification_form_master');
---    perform enable_tracking('application_details');
---    perform enable_tracking('applicant_details');
---    perform enable_tracking('verification');
-	
+        perform enable_tracking('commitment_details');
+        perform enable_tracking('contact_details');
+        perform enable_tracking('expenses');
+        perform enable_tracking('family_details');
+     --   perform enable_tracking('file_upload');
+        perform enable_tracking('master_verification_configuration');
+        perform enable_tracking('office_self_employment');
+        perform enable_tracking('personal_details');
+     --   perform enable_tracking('product');
+        perform enable_tracking('product_config');
+        perform enable_tracking('report_config');
+        perform enable_tracking('report_config_fields');
+        perform enable_tracking('residence_details');
+        perform enable_tracking('role_config');
+        perform enable_tracking('score_master');
+        perform enable_tracking('summary');
+        perform enable_tracking('vehicle_details');
+     --   perform enable_tracking('verification_config');
+        perform enable_tracking('verification_form_config');
+        perform enable_tracking('verification_form_fields_config');
+        perform enable_tracking('verification_form_fields_master');
+        perform enable_tracking('verification_form_master');
+        perform enable_tracking('application_details');
+        perform enable_tracking('applicant_details');
+        perform enable_tracking('verification');
+
 
 
 -- **************************       your sql code ends above this line       **************************

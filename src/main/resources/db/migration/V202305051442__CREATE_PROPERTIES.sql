@@ -34,7 +34,7 @@ declare
 	-- do not change the schema name ----
 	v_schema_name varchar(50) 	 := '${ph_schema}';
 	--- you can changes the file name ----
-	v_filename varchar(100)		 := 'V202305051442_CREATE_PROPERTIES.sql';
+	v_filename varchar(100)		 := 'V202305051442__CREATE_PROPERTIES.sql';
 	--- you can changes the file name ----
 	c record;
 
@@ -46,8 +46,9 @@ declare
 
 begin
 
-
- execute 'create table ' ||v_schema_name||'.properties_test
+-- ****** Actually this is properties table ,for checking purpose creating table as properties_test*****
+ for c  in select 1 where not exists (select 1 from pg_tables where schemaname = lower(v_schema_name) and tablename = lower('properties_test')) loop
+     execute 'create table ' ||v_schema_name||'.properties_test
 
         (
         					id          			serial not null primary key ,

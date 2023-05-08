@@ -32,9 +32,9 @@ declare
 	--v_tablespace_ind varchar(20) := '{ph_schema}_ind';
 
 	-- do not change the schema name ----
-	v_schema_name varchar(50) 	 := 'schema_client1_vms';
+	v_schema_name varchar(50) 	 := '${ph_schema}';
 	--- you can changes the file name ----
-	v_filename varchar(100)		 := 'V202304271958_AUDIT.sql';
+	v_filename varchar(100)		 := 'V202305271958__AUDIT.sql';
 	--- you can changes the file name ----
 	c record;
 
@@ -65,9 +65,9 @@ begin
 	     rv_old_record    JSONB
 	  );
 
-	create index record_version_ts on record_version using brin(rv_timestamp);
-	create index record_version_table_oid on record_version using btree(rv_table_oid);
-	create index record_version_record_id on record_version using btree(rv_record_id);
+	 create index record_version_ts on record_version using brin(rv_timestamp);
+	 create index record_version_table_oid on record_version using btree(rv_table_oid);
+	 create index record_version_record_id on record_version using btree(rv_record_id);
     ';
 	end loop;
 

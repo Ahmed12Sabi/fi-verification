@@ -36,7 +36,7 @@ declare
 	v_schema_name varchar(50) 	 := '${ph_schema}';
 
 --- you can changes the file name ----
-	v_filename varchar(100)		 := 'V202211012100__CREATE_VMS_LOOKUP.sql';
+	v_filename varchar(100)		 := 'V202304272125__CREATE_VMS_LOOKUP.sql';
 	--- you can changes the file name ----
 	c record;
 
@@ -514,240 +514,244 @@ begin
 
     --start - inserting business entities attribute data for table - m_m_appliances
     insert into lookup_table_columns (ltc_lt_id, ltc_column_type, ltc_data_type, ltc_name)
-    values ((select lt_id from lookup_tables where lt_lookup_id = 'm_appliances'), v_id, v_number, 'id');
+    values ((select lt_id from lookup_tables where lt_lookup_id ='m_appliances'), v_id, v_number, 'id');
 
     insert into lookup_table_columns (ltc_lt_id, ltc_column_type, ltc_data_type, ltc_name)
-    values ((select lt_id from lookup_tables where lt_lookup_id = 'm_appliances'), v_label, v_text, 'label');
+    values ((select lt_id from lookup_tables where lt_lookup_id ='m_appliances'), v_label, v_text, 'label');
 
     insert into lookup_table_columns (ltc_lt_id, ltc_column_type, ltc_data_type, ltc_name)
-    values ((select lt_id from lookup_tables where lt_lookup_id = 'm_appliances'), v_key, v_text, 'key');
+    values ((select lt_id from lookup_tables where lt_lookup_id ='m_appliances'), v_key, v_text, 'key');
 
     insert into lookup_table_columns (ltc_lt_id, ltc_column_type, ltc_data_type, ltc_name)
-    values ((select lt_id from lookup_tables where lt_lookup_id = 'm_appliances'), v_col_boolean, v_boolean, 'is_active');
+    values ((select lt_id from lookup_tables where lt_lookup_id ='m_appliances'), v_col_boolean, v_boolean, 'is_active');
 
     --inserting lookup_tables data for table - m_address_proof_id
     insert into lookup_tables (lt_is_standard, lt_lookup_id, lt_version, lt_created, lt_created_by, lt_last_updated_structure, lt_last_updated_data) values (TRUE, 'address_proof_id', 0, NOW(), 'System', NOW(), NOW());
 
     --start - inserting business entities attribute data for table - m_address_proof_id
     insert into lookup_table_columns (ltc_lt_id, ltc_column_type, ltc_data_type, ltc_name)
-    values ((select lt_id from lookup_tables where lt_lookup_id = 'address_proof_id'), v_id, v_number, 'id');
+    values ((select lt_id from lookup_tables where lt_lookup_id ='address_proof_id'), v_id, v_number, 'id');
 
     insert into lookup_table_columns (ltc_lt_id, ltc_column_type, ltc_data_type, ltc_name)
-    values ((select lt_id from lookup_tables where lt_lookup_id = 'address_proof_id'), v_label, v_text, 'label');
+    values ((select lt_id from lookup_tables where lt_lookup_id ='address_proof_id'), v_label, v_text, 'label');
 
     insert into lookup_table_columns (ltc_lt_id, ltc_column_type, ltc_data_type, ltc_name)
-    values ((select lt_id from lookup_tables where lt_lookup_id = 'address_proof_id'), v_key, v_text, 'key');
+    values ((select lt_id from lookup_tables where lt_lookup_id ='address_proof_id'), v_key, v_text, 'key');
 
     insert into lookup_table_columns (ltc_lt_id, ltc_column_type, ltc_data_type, ltc_name)
-    values ((select lt_id from lookup_tables where lt_lookup_id = 'address_proof_id'), v_col_boolean, v_boolean, 'is_active');
+    values ((select lt_id from lookup_tables where lt_lookup_id ='address_proof_id'), v_col_boolean, v_boolean, 'is_active');
 
     --inserting lookup_tables data for table - m_bike_ownership_type
     insert into lookup_tables (lt_is_standard, lt_lookup_id, lt_version, lt_created, lt_created_by, lt_last_updated_structure, lt_last_updated_data) values (TRUE, 'bike_ownership_type', 0, NOW(), 'System', NOW(), NOW());
 
     --start - inserting business entities attribute data for table - m_bike_ownership_type
     insert into lookup_table_columns (ltc_lt_id, ltc_column_type, ltc_data_type, ltc_name)
-    values ((select lt_id from lookup_tables where lt_lookup_id = 'bike_ownership_type'), v_id, v_number, 'id');
+    values ((select lt_id from lookup_tables where lt_lookup_id ='bike_ownership_type'), v_id, v_number, 'id');
 
     insert into lookup_table_columns (ltc_lt_id, ltc_column_type, ltc_data_type, ltc_name)
-    values ((select lt_id from lookup_tables where lt_lookup_id = 'bike_ownership_type'), v_label, v_text, 'label');
+    values ((select lt_id from lookup_tables where lt_lookup_id ='bike_ownership_type'), v_label, v_text, 'label');
 
     insert into lookup_table_columns (ltc_lt_id, ltc_column_type, ltc_data_type, ltc_name)
-    values ((select lt_id from lookup_tables where lt_lookup_id = 'bike_ownership_type'), v_key, v_text, 'key');
+    values ((select lt_id from lookup_tables where lt_lookup_id ='bike_ownership_type'), v_key, v_text, 'key');
 
     insert into lookup_table_columns (ltc_lt_id, ltc_column_type, ltc_data_type, ltc_name)
-    values ((select lt_id from lookup_tables where lt_lookup_id = 'bike_ownership_type'), v_col_boolean, v_boolean, 'is_active');
+    values ((select lt_id from lookup_tables where lt_lookup_id ='bike_ownership_type'), v_col_boolean, v_boolean, 'is_active');
 
     --inserting lookup_tables data for table - m_car_fuel_type
-    insert into lookup_tables (lt_is_standard, lt_lookup_id, lt_version, lt_created, lt_created_by, lt_last_updated_structure, lt_last_updated_data) values (TRUE, car_fuel_type 0, NOW(), 'System', NOW(), NOW());
+    insert into lookup_tables (lt_is_standard, lt_lookup_id, lt_version, lt_created, lt_created_by, lt_last_updated_structure, lt_last_updated_data) values (TRUE, 'car_fuel_type',0, NOW(), 'System', NOW(), NOW());
 
     --start - inserting business entities attribute data for table - m_car_fuel_type
     insert into lookup_table_columns (ltc_lt_id, ltc_column_type, ltc_data_type, ltc_name)
-    values ((select lt_id from lookup_tables where lt_lookup_id = car_fuel_type), v_id, v_number, 'id');
+    values ((select lt_id from lookup_tables where lt_lookup_id ='car_fuel_type'), v_id, v_number, 'id');
 
     insert into lookup_table_columns (ltc_lt_id, ltc_column_type, ltc_data_type, ltc_name)
-    values ((select lt_id from lookup_tables where lt_lookup_id = car_fuel_type), v_label, v_text, 'label');
+    values ((select lt_id from lookup_tables where lt_lookup_id ='car_fuel_type'), v_label, v_text, 'label');
 
     insert into lookup_table_columns (ltc_lt_id, ltc_column_type, ltc_data_type, ltc_name)
-    values ((select lt_id from lookup_tables where lt_lookup_id = car_fuel_type), v_key, v_text, 'key');
+    values ((select lt_id from lookup_tables where lt_lookup_id ='car_fuel_type'), v_key, v_text, 'key');
 
     insert into lookup_table_columns (ltc_lt_id, ltc_column_type, ltc_data_type, ltc_name)
-    values ((select lt_id from lookup_tables where lt_lookup_id = car_fuel_type), v_col_boolean, v_boolean, 'is_active');
+    values ((select lt_id from lookup_tables where lt_lookup_id ='car_fuel_type'), v_col_boolean, v_boolean, 'is_active');
 
     --inserting lookup_tables data for table - m_car_ownership_type
-    insert into lookup_tables (lt_is_standard, lt_lookup_id, lt_version, lt_created, lt_created_by, lt_last_updated_structure, lt_last_updated_data) values (TRUE, car_ownership_type 0, NOW(), 'System', NOW(), NOW());
+    insert into lookup_tables (lt_is_standard, lt_lookup_id, lt_version, lt_created, lt_created_by, lt_last_updated_structure, lt_last_updated_data) values (TRUE, 'car_ownership_type' , 0, NOW(), 'System', NOW(), NOW());
 
     --start - inserting business entities attribute data for table - m_car_ownership_type
     insert into lookup_table_columns (ltc_lt_id, ltc_column_type, ltc_data_type, ltc_name)
-    values ((select lt_id from lookup_tables where lt_lookup_id = car_ownership_type), v_id, v_number, 'id');
+    values ((select lt_id from lookup_tables where lt_lookup_id ='car_ownership_type'), v_id, v_number, 'id');
 
     insert into lookup_table_columns (ltc_lt_id, ltc_column_type, ltc_data_type, ltc_name)
-    values ((select lt_id from lookup_tables where lt_lookup_id = car_ownership_type), v_label, v_text, 'label');
+    values ((select lt_id from lookup_tables where lt_lookup_id ='car_ownership_type'), v_label, v_text, 'label');
 
     insert into lookup_table_columns (ltc_lt_id, ltc_column_type, ltc_data_type, ltc_name)
-    values ((select lt_id from lookup_tables where lt_lookup_id = car_ownership_type), v_key, v_text, 'key');
+    values ((select lt_id from lookup_tables where lt_lookup_id ='car_ownership_type'), v_key, v_text, 'key');
 
     insert into lookup_table_columns (ltc_lt_id, ltc_column_type, ltc_data_type, ltc_name)
-    values ((select lt_id from lookup_tables where lt_lookup_id = car_ownership_type), v_col_boolean, v_boolean, 'is_active');
+    values ((select lt_id from lookup_tables where lt_lookup_id ='car_ownership_type'), v_col_boolean, v_boolean, 'is_active');
 
     --inserting lookup_tables data for table - m_child_educational_level
-    insert into lookup_tables (lt_is_standard, lt_lookup_id, lt_version, lt_created, lt_created_by, lt_last_updated_structure, lt_last_updated_data) values (TRUE, child_educational_level, 0, NOW(), 'System', NOW(), NOW());
+    insert into lookup_tables (lt_is_standard, lt_lookup_id, lt_version, lt_created, lt_created_by, lt_last_updated_structure, lt_last_updated_data) values (TRUE, 'child_educational_level', 0, NOW(), 'System', NOW(), NOW());
 
     --start - inserting business entities attribute data for table - m_child_educational_level
     insert into lookup_table_columns (ltc_lt_id, ltc_column_type, ltc_data_type, ltc_name)
-    values ((select lt_id from lookup_tables where lt_lookup_id = child_educational_level), v_id, v_number, 'id');
+    values ((select lt_id from lookup_tables where lt_lookup_id ='child_educational_level'), v_id, v_number, 'id');
 
     insert into lookup_table_columns (ltc_lt_id, ltc_column_type, ltc_data_type, ltc_name)
-    values ((select lt_id from lookup_tables where lt_lookup_id = child_educational_level), v_label, v_text, 'label');
+    values ((select lt_id from lookup_tables where lt_lookup_id ='child_educational_level'), v_label, v_text, 'label');
+ insert into lookup_table_columns (ltc_lt_id, ltc_column_type, ltc_data_type, ltc_name)
+    values ((select lt_id from lookup_tables where lt_lookup_id ='child_educational_level'), v_key, v_text, 'key');
 
     insert into lookup_table_columns (ltc_lt_id, ltc_column_type, ltc_data_type, ltc_name)
-    values ((select lt_id from lookup_tables where lt_lookup_id = child_educational_level), v_key, v_text, 'key');
-
-    insert into lookup_table_columns (ltc_lt_id, ltc_column_type, ltc_data_type, ltc_name)
-    values ((select lt_id from lookup_tables where lt_lookup_id = child_educational_level), v_col_boolean, v_boolean, 'is_active');
+    values ((select lt_id from lookup_tables where lt_lookup_id ='child_educational_level'), v_col_boolean, v_boolean, 'is_active');
 
     --inserting lookup_tables data for table - m_citizenship
-    insert into lookup_tables (lt_is_standard, lt_lookup_id, lt_version, lt_created, lt_created_by, lt_last_updated_structure, lt_last_updated_data) values (TRUE, 'citizenship, 0, NOW(), 'System', NOW(), NOW());
+    insert into lookup_tables (lt_is_standard, lt_lookup_id, lt_version, lt_created, lt_created_by, lt_last_updated_structure, lt_last_updated_data) values (TRUE, 'citizenship', 0, NOW(), 'System', NOW(), NOW());
 
     --start - inserting business entities attribute data for table - m_citizenship
     insert into lookup_table_columns (ltc_lt_id, ltc_column_type, ltc_data_type, ltc_name)
-    values ((select lt_id from lookup_tables where lt_lookup_id = 'citizenship), v_id, v_number, 'id');
+    values ((select lt_id from lookup_tables where lt_lookup_id ='citizenship'), v_id, v_number, 'id');
 
     insert into lookup_table_columns (ltc_lt_id, ltc_column_type, ltc_data_type, ltc_name)
-    values ((select lt_id from lookup_tables where lt_lookup_id = 'citizenship), v_label, v_text, 'label');
+    values ((select lt_id from lookup_tables where lt_lookup_id ='citizenship'), v_label, v_text, 'label');
 
     insert into lookup_table_columns (ltc_lt_id, ltc_column_type, ltc_data_type, ltc_name)
-    values ((select lt_id from lookup_tables where lt_lookup_id = 'citizenship), v_key, v_text, 'key');
+    values ((select lt_id from lookup_tables where lt_lookup_id ='citizenship'), v_key, v_text, 'key');
 
     insert into lookup_table_columns (ltc_lt_id, ltc_column_type, ltc_data_type, ltc_name)
-    values ((select lt_id from lookup_tables where lt_lookup_id = 'citizenship), v_col_boolean, v_boolean, 'is_active');
+    values ((select lt_id from lookup_tables where lt_lookup_id ='citizenship'), v_col_boolean, v_boolean, 'is_active');
 
-    --inserting lookup_tables data for table - m_civil_status
-    insert into lookup_tables (lt_is_standard, lt_lookup_id, lt_version, lt_created, lt_created_by, lt_last_updated_structure, lt_last_updated_data) values (TRUE, civil_status, 0, NOW(), 'System', NOW(), NOW());
+ --inserting lookup_tables data for table - m_civil_status
+    insert into lookup_tables (lt_is_standard, lt_lookup_id, lt_version, lt_created, lt_created_by, lt_last_updated_structure, lt_last_updated_data) values (TRUE, 'civil_status', 0, NOW(), 'System', NOW(), NOW());
 
     --start - inserting business entities attribute data for table - m_civil_status
     insert into lookup_table_columns (ltc_lt_id, ltc_column_type, ltc_data_type, ltc_name)
-    values ((select lt_id from lookup_tables where lt_lookup_id = civil_status), v_id, v_number, 'id');
+    values ((select lt_id from lookup_tables where lt_lookup_id ='civil_status'), v_id, v_number, 'id');
 
     insert into lookup_table_columns (ltc_lt_id, ltc_column_type, ltc_data_type, ltc_name)
-    values ((select lt_id from lookup_tables where lt_lookup_id = civil_status), v_label, v_text, 'label');
+    values ((select lt_id from lookup_tables where lt_lookup_id ='civil_status'), v_label, v_text, 'label');
 
     insert into lookup_table_columns (ltc_lt_id, ltc_column_type, ltc_data_type, ltc_name)
-    values ((select lt_id from lookup_tables where lt_lookup_id = civil_status), v_key, v_text, 'key');
+    values ((select lt_id from lookup_tables where lt_lookup_id ='civil_status'), v_key, v_text, 'key');
 
     insert into lookup_table_columns (ltc_lt_id, ltc_column_type, ltc_data_type, ltc_name)
-    values ((select lt_id from lookup_tables where lt_lookup_id = civil_status), v_col_boolean, v_boolean, 'is_active');
+    values ((select lt_id from lookup_tables where lt_lookup_id ='civil_status'), v_col_boolean, v_boolean, 'is_active');
 
     --inserting lookup_tables data for table - m_classification
-    insert into lookup_tables (lt_is_standard, lt_lookup_id, lt_version, lt_created, lt_created_by, lt_last_updated_structure, lt_last_updated_data) values (TRUE, 'classification, 0, NOW(), 'System', NOW(), NOW());
+    insert into lookup_tables (lt_is_standard, lt_lookup_id, lt_version, lt_created, lt_created_by, lt_last_updated_structure, lt_last_updated_data) values (TRUE, 'classification', 0, NOW(), 'System', NOW(), NOW());
 
     --start - inserting business entities attribute data for table - m_classification
     insert into lookup_table_columns (ltc_lt_id, ltc_column_type, ltc_data_type, ltc_name)
-    values ((select lt_id from lookup_tables where lt_lookup_id = 'classification), v_id, v_number, 'id');
+    values ((select lt_id from lookup_tables where lt_lookup_id ='classification'), v_id, v_number, 'id');
 
     insert into lookup_table_columns (ltc_lt_id, ltc_column_type, ltc_data_type, ltc_name)
-    values ((select lt_id from lookup_tables where lt_lookup_id = 'classification), v_label, v_text, 'label');
+    values ((select lt_id from lookup_tables where lt_lookup_id ='classification'), v_label, v_text, 'label');
 
     insert into lookup_table_columns (ltc_lt_id, ltc_column_type, ltc_data_type, ltc_name)
-    values ((select lt_id from lookup_tables where lt_lookup_id = 'classification), v_key, v_text, 'key');
+    values ((select lt_id from lookup_tables where lt_lookup_id ='classification'), v_key, v_text, 'key');
 
-    insert into lookup_table_columns (ltc_lt_id, ltc_column_type, ltc_data_type, ltc_name)
-    values ((select lt_id from lookup_tables where lt_lookup_id = 'classification), v_col_boolean, v_boolean, 'is_active');
+   insert into lookup_table_columns (ltc_lt_id, ltc_column_type, ltc_data_type, ltc_name)
+    values ((select lt_id from lookup_tables where lt_lookup_id ='classification'), v_col_boolean, v_boolean, 'is_active');
 
     --inserting lookup_tables data for table - m_commute_options
-    insert into lookup_tables (lt_is_standard, lt_lookup_id, lt_version, lt_created, lt_created_by, lt_last_updated_structure, lt_last_updated_data) values (TRUE, commute_options, 0, NOW(), 'System', NOW(), NOW());
+    insert into lookup_tables (lt_is_standard, lt_lookup_id, lt_version, lt_created, lt_created_by, lt_last_updated_structure, lt_last_updated_data) values (TRUE, 'commute_options', 0, NOW(), 'System', NOW(), NOW());
 
     --start - inserting business entities attribute data for table - m_commute_options
     insert into lookup_table_columns (ltc_lt_id, ltc_column_type, ltc_data_type, ltc_name)
-    values ((select lt_id from lookup_tables where lt_lookup_id = commute_options), v_id, v_number, 'id');
+    values ((select lt_id from lookup_tables where lt_lookup_id ='commute_options'), v_id, v_number, 'id');
 
     insert into lookup_table_columns (ltc_lt_id, ltc_column_type, ltc_data_type, ltc_name)
-    values ((select lt_id from lookup_tables where lt_lookup_id = commute_options), v_label, v_text, 'label');
+    values ((select lt_id from lookup_tables where lt_lookup_id ='commute_options'), v_label, v_text, 'label');
 
     insert into lookup_table_columns (ltc_lt_id, ltc_column_type, ltc_data_type, ltc_name)
-    values ((select lt_id from lookup_tables where lt_lookup_id = commute_options), v_key, v_text, 'key');
+    values ((select lt_id from lookup_tables where lt_lookup_id ='commute_options'), v_key, v_text, 'key');
 
     insert into lookup_table_columns (ltc_lt_id, ltc_column_type, ltc_data_type, ltc_name)
-    values ((select lt_id from lookup_tables where lt_lookup_id = commute_options), v_col_boolean, v_boolean, 'is_active');
+    values ((select lt_id from lookup_tables where lt_lookup_id ='commute_options'), v_col_boolean, v_boolean, 'is_active');
 
     --inserting lookup_tables data for table - m_company_type
-    insert into lookup_tables (lt_is_standard, lt_lookup_id, lt_version, lt_created, lt_created_by, lt_last_updated_structure, lt_last_updated_data) values (TRUE, company_type, 0, NOW(), 'System', NOW(), NOW());
+    insert into lookup_tables (lt_is_standard, lt_lookup_id, lt_version, lt_created, lt_created_by, lt_last_updated_structure, lt_last_updated_data) values (TRUE, 'company_type', 0, NOW(), 'System', NOW(), NOW());
 
     --start - inserting business entities attribute data for table - m_company_type
     insert into lookup_table_columns (ltc_lt_id, ltc_column_type, ltc_data_type, ltc_name)
-    values ((select lt_id from lookup_tables where lt_lookup_id = company_type), v_id, v_number, 'id');
+    values ((select lt_id from lookup_tables where lt_lookup_id ='company_type'), v_id, v_number, 'id');
 
     insert into lookup_table_columns (ltc_lt_id, ltc_column_type, ltc_data_type, ltc_name)
-    values ((select lt_id from lookup_tables where lt_lookup_id = company_type), v_label, v_text, 'label');
+    values ((select lt_id from lookup_tables where lt_lookup_id ='company_type'), v_label, v_text, 'label');
 
     insert into lookup_table_columns (ltc_lt_id, ltc_column_type, ltc_data_type, ltc_name)
-    values ((select lt_id from lookup_tables where lt_lookup_id = company_type), v_key, v_text, 'key');
+    values ((select lt_id from lookup_tables where lt_lookup_id ='company_type'), v_key, v_text, 'key');
 
     insert into lookup_table_columns (ltc_lt_id, ltc_column_type, ltc_data_type, ltc_name)
-    values ((select lt_id from lookup_tables where lt_lookup_id = company_type), v_col_boolean, v_boolean, 'is_active');
+    values ((select lt_id from lookup_tables where lt_lookup_id ='company_type'), v_col_boolean, v_boolean, 'is_active');
 
     --inserting lookup_tables data for table - m_ease_of_officelocation
-    insert into lookup_tables (lt_is_standard, lt_lookup_id, lt_version, lt_created, lt_created_by, lt_last_updated_structure, lt_last_updated_data) values (TRUE, ease_of_officelocation, 0, NOW(), 'System', NOW(), NOW());
+    insert into lookup_tables (lt_is_standard, lt_lookup_id, lt_version, lt_created, lt_created_by, lt_last_updated_structure, lt_last_updated_data) values (TRUE, 'ease_of_officelocation', 0, NOW(), 'System', NOW(), NOW());
 
     --start - inserting business entities attribute data for table - m_ease_of_officelocation
     insert into lookup_table_columns (ltc_lt_id, ltc_column_type, ltc_data_type, ltc_name)
-    values ((select lt_id from lookup_tables where lt_lookup_id = ease_of_officelocation), v_id, v_number, 'id');
+    values ((select lt_id from lookup_tables where lt_lookup_id ='ease_of_officelocation'), v_id, v_number, 'id');
 
     insert into lookup_table_columns (ltc_lt_id, ltc_column_type, ltc_data_type, ltc_name)
-    values ((select lt_id from lookup_tables where lt_lookup_id = ease_of_officelocation), v_label, v_text, 'label');
+    values ((select lt_id from lookup_tables where lt_lookup_id ='ease_of_officelocation'), v_label, v_text, 'label');
 
     insert into lookup_table_columns (ltc_lt_id, ltc_column_type, ltc_data_type, ltc_name)
-    values ((select lt_id from lookup_tables where lt_lookup_id = ease_of_officelocation), v_key, v_text, 'key');
+    values ((select lt_id from lookup_tables where lt_lookup_id ='ease_of_officelocation'), v_key, v_text, 'key');
 
     insert into lookup_table_columns (ltc_lt_id, ltc_column_type, ltc_data_type, ltc_name)
-    values ((select lt_id from lookup_tables where lt_lookup_id = ease_of_officelocation), v_col_boolean, v_boolean, 'is_active');
+    values ((select lt_id from lookup_tables where lt_lookup_id ='ease_of_officelocation'), v_col_boolean, v_boolean, 'is_active');
+
+
+	-- lookup data insert scripts starts..
+
+	--m_education_level
 
     --inserting lookup_tables data for table - m_education_level
-    insert into lookup_tables (lt_is_standard, lt_lookup_id, lt_version, lt_created, lt_created_by, lt_last_updated_structure, lt_last_updated_data) values (TRUE, education_level, 0, NOW(), 'System', NOW(), NOW());
+    insert into lookup_tables (lt_is_standard, lt_lookup_id, lt_version, lt_created, lt_created_by, lt_last_updated_structure, lt_last_updated_data) values (TRUE, 'education_level', 0, NOW(), 'System', NOW(), NOW());
 
     --start - inserting business entities attribute data for table - m_education_level
     insert into lookup_table_columns (ltc_lt_id, ltc_column_type, ltc_data_type, ltc_name)
-    values ((select lt_id from lookup_tables where lt_lookup_id = education_level), v_id, v_number, 'id');
+    values ((select lt_id from lookup_tables where lt_lookup_id ='education_level'), v_id, v_number, 'id');
 
     insert into lookup_table_columns (ltc_lt_id, ltc_column_type, ltc_data_type, ltc_name)
-    values ((select lt_id from lookup_tables where lt_lookup_id = education_level), v_label, v_text, 'label');
+    values ((select lt_id from lookup_tables where lt_lookup_id ='education_level'), v_label, v_text, 'label');
 
     insert into lookup_table_columns (ltc_lt_id, ltc_column_type, ltc_data_type, ltc_name)
-    values ((select lt_id from lookup_tables where lt_lookup_id = education_level), v_key, v_text, 'key');
+    values ((select lt_id from lookup_tables where lt_lookup_id ='education_level'), v_key, v_text, 'key');
 
     insert into lookup_table_columns (ltc_lt_id, ltc_column_type, ltc_data_type, ltc_name)
-    values ((select lt_id from lookup_tables where lt_lookup_id = education_level), v_col_boolean, v_boolean, 'is_active');
+    values ((select lt_id from lookup_tables where lt_lookup_id ='education_level'), v_col_boolean, v_boolean, 'is_active');
 
     --inserting lookup_tables data for table - m_house_condition
-    insert into lookup_tables (lt_is_standard, lt_lookup_id, lt_version, lt_created, lt_created_by, lt_last_updated_structure, lt_last_updated_data) values (TRUE, house_condition 0, NOW(), 'System', NOW(), NOW());
+    insert into lookup_tables (lt_is_standard, lt_lookup_id, lt_version, lt_created, lt_created_by, lt_last_updated_structure, lt_last_updated_data) values (TRUE, 'house_condition', 0, NOW(), 'System', NOW(), NOW());
 
     --start - inserting business entities attribute data for table - m_house_condition
     insert into lookup_table_columns (ltc_lt_id, ltc_column_type, ltc_data_type, ltc_name)
-    values ((select lt_id from lookup_tables where lt_lookup_id = house_condition), v_id, v_number, 'id');
+    values ((select lt_id from lookup_tables where lt_lookup_id ='house_condition'), v_id, v_number, 'id');
 
     insert into lookup_table_columns (ltc_lt_id, ltc_column_type, ltc_data_type, ltc_name)
-    values ((select lt_id from lookup_tables where lt_lookup_id = house_condition), v_label, v_text, 'label');
+    values ((select lt_id from lookup_tables where lt_lookup_id ='house_condition'), v_label, v_text, 'label');
 
     insert into lookup_table_columns (ltc_lt_id, ltc_column_type, ltc_data_type, ltc_name)
-    values ((select lt_id from lookup_tables where lt_lookup_id = house_condition), v_key, v_text, 'key');
+    values ((select lt_id from lookup_tables where lt_lookup_id ='house_condition'), v_key, v_text, 'key');
 
     insert into lookup_table_columns (ltc_lt_id, ltc_column_type, ltc_data_type, ltc_name)
-    values ((select lt_id from lookup_tables where lt_lookup_id = house_condition), v_col_boolean, v_boolean, 'is_active');
+    values ((select lt_id from lookup_tables where lt_lookup_id ='house_condition'), v_col_boolean, v_boolean, 'is_active');
 
     --inserting lookup_tables data for table - m_income_source
-    insert into lookup_tables (lt_is_standard, lt_lookup_id, lt_version, lt_created, lt_created_by, lt_last_updated_structure, lt_last_updated_data) values (TRUE, income_source, 0, NOW(), 'System', NOW(), NOW());
+    insert into lookup_tables (lt_is_standard, lt_lookup_id, lt_version, lt_created, lt_created_by, lt_last_updated_structure, lt_last_updated_data) values (TRUE, 'income_source', 0, NOW(), 'System', NOW(), NOW());
 
     --start - inserting business entities attribute data for table - m_income_source
     insert into lookup_table_columns (ltc_lt_id, ltc_column_type, ltc_data_type, ltc_name)
-    values ((select lt_id from lookup_tables where lt_lookup_id = income_source), v_id, v_number, 'id');
+    values ((select lt_id from lookup_tables where lt_lookup_id ='income_source'), v_id, v_number, 'id');
 
     insert into lookup_table_columns (ltc_lt_id, ltc_column_type, ltc_data_type, ltc_name)
-    values ((select lt_id from lookup_tables where lt_lookup_id = income_source), v_label, v_text, 'label');
+    values ((select lt_id from lookup_tables where lt_lookup_id ='income_source'), v_label, v_text, 'label');
 
     insert into lookup_table_columns (ltc_lt_id, ltc_column_type, ltc_data_type, ltc_name)
-    values ((select lt_id from lookup_tables where lt_lookup_id = income_source), v_key, v_text, 'key');
+    values ((select lt_id from lookup_tables where lt_lookup_id ='income_source'), v_key, v_text, 'key');
 
     insert into lookup_table_columns (ltc_lt_id, ltc_column_type, ltc_data_type, ltc_name)
-    values ((select lt_id from lookup_tables where lt_lookup_id = income_source), v_col_boolean, v_boolean, 'is_active');
+    values ((select lt_id from lookup_tables where lt_lookup_id ='income_source'), v_col_boolean, v_boolean, 'is_active');
 
     --inserting lookup_tables data for table - m_insurance_type
     insert into lookup_tables (lt_is_standard, lt_lookup_id, lt_version, lt_created, lt_created_by, lt_last_updated_structure, lt_last_updated_data) values (TRUE,'insurance_type', 0, NOW(), 'System', NOW(), NOW());
@@ -770,294 +774,164 @@ begin
 
     --start - inserting business entities attribute data for table - m_tems_sighted_in_office
     insert into lookup_table_columns (ltc_lt_id, ltc_column_type, ltc_data_type, ltc_name)
-    values ((select lt_id from lookup_tables where lt_lookup_id = 'tems_sighted_in_office'), v_id, v_number, 'id');
+    values ((select lt_id from lookup_tables where lt_lookup_id ='tems_sighted_in_office'), v_id, v_number, 'id');
 
     insert into lookup_table_columns (ltc_lt_id, ltc_column_type, ltc_data_type, ltc_name)
-    values ((select lt_id from lookup_tables where lt_lookup_id = 'tems_sighted_in_office'), v_label, v_text, 'label');
+    values ((select lt_id from lookup_tables where lt_lookup_id ='tems_sighted_in_office'), v_label, v_text, 'label');
 
     insert into lookup_table_columns (ltc_lt_id, ltc_column_type, ltc_data_type, ltc_name)
-    values ((select lt_id from lookup_tables where lt_lookup_id = 'tems_sighted_in_office'), v_key, v_text, 'key');
+    values ((select lt_id from lookup_tables where lt_lookup_id ='tems_sighted_in_office'), v_key, v_text, 'key');
 
     insert into lookup_table_columns (ltc_lt_id, ltc_column_type, ltc_data_type, ltc_name)
-    values ((select lt_id from lookup_tables where lt_lookup_id = 'tems_sighted_in_office'), v_col_boolean, v_boolean, 'is_active');
+    values ((select lt_id from lookup_tables where lt_lookup_id ='tems_sighted_in_office'), v_col_boolean, v_boolean, 'is_active');
 
     --inserting lookup_tables data for table - m_job_domain
     insert into lookup_tables (lt_is_standard, lt_lookup_id, lt_version, lt_created, lt_created_by, lt_last_updated_structure, lt_last_updated_data) values (TRUE, 'job_domain', 0, NOW(), 'System', NOW(), NOW());
 
     --start - inserting business entities attribute data for table - m_job_domain
     insert into lookup_table_columns (ltc_lt_id, ltc_column_type, ltc_data_type, ltc_name)
-    values ((select lt_id from lookup_tables where lt_lookup_id = 'job_domain'), v_id, v_number, 'id');
+    values ((select lt_id from lookup_tables where lt_lookup_id ='job_domain'), v_id, v_number, 'id');
 
     insert into lookup_table_columns (ltc_lt_id, ltc_column_type, ltc_data_type, ltc_name)
-    values ((select lt_id from lookup_tables where lt_lookup_id = 'job_domain'), v_label, v_text, 'label');
+    values ((select lt_id from lookup_tables where lt_lookup_id ='job_domain'), v_label, v_text, 'label');
 
     insert into lookup_table_columns (ltc_lt_id, ltc_column_type, ltc_data_type, ltc_name)
-    values ((select lt_id from lookup_tables where lt_lookup_id = 'job_domain'), v_key, v_text, 'key');
+    values ((select lt_id from lookup_tables where lt_lookup_id ='job_domain'), v_key, v_text, 'key');
 
     insert into lookup_table_columns (ltc_lt_id, ltc_column_type, ltc_data_type, ltc_name)
-    values ((select lt_id from lookup_tables where lt_lookup_id = 'job_domain'), v_col_boolean, v_boolean, 'is_active');
+    values ((select lt_id from lookup_tables where lt_lookup_id ='job_domain'), v_col_boolean, v_boolean, 'is_active');
 
     --inserting lookup_tables data for table - m_nature_of_business
     insert into lookup_tables (lt_is_standard, lt_lookup_id, lt_version, lt_created, lt_created_by, lt_last_updated_structure, lt_last_updated_data) values (TRUE, 'nature_of_business', 0, NOW(), 'System', NOW(), NOW());
 
     --start - inserting business entities attribute data for table - m_nature_of_business
     insert into lookup_table_columns (ltc_lt_id, ltc_column_type, ltc_data_type, ltc_name)
-    values ((select lt_id from lookup_tables where lt_lookup_id = 'nature_of_business'), v_id, v_number, 'id');
+    values ((select lt_id from lookup_tables where lt_lookup_id ='nature_of_business'), v_id, v_number, 'id');
 
     insert into lookup_table_columns (ltc_lt_id, ltc_column_type, ltc_data_type, ltc_name)
-    values ((select lt_id from lookup_tables where lt_lookup_id = 'nature_of_business'), v_label, v_text, 'label');
+    values ((select lt_id from lookup_tables where lt_lookup_id ='nature_of_business'), v_label, v_text, 'label');
 
     insert into lookup_table_columns (ltc_lt_id, ltc_column_type, ltc_data_type, ltc_name)
-    values ((select lt_id from lookup_tables where lt_lookup_id = 'nature_of_business'), v_key, v_text, 'key');
+    values ((select lt_id from lookup_tables where lt_lookup_id ='nature_of_business'), v_key, v_text, 'key');
 
     insert into lookup_table_columns (ltc_lt_id, ltc_column_type, ltc_data_type, ltc_name)
-    values ((select lt_id from lookup_tables where lt_lookup_id = 'nature_of_business'), v_col_boolean, v_boolean, 'is_active');
+    values ((select lt_id from lookup_tables where lt_lookup_id ='nature_of_business'), v_col_boolean, v_boolean, 'is_active');
 
     --inserting lookup_tables data for table - m_neighbourhood_type
     insert into lookup_tables (lt_is_standard, lt_lookup_id, lt_version, lt_created, lt_created_by, lt_last_updated_structure, lt_last_updated_data) values (TRUE, 'neighbourhood_type', 0, NOW(), 'System', NOW(), NOW());
 
     --start - inserting business entities attribute data for table - m_neighbourhood_type
     insert into lookup_table_columns (ltc_lt_id, ltc_column_type, ltc_data_type, ltc_name)
-    values ((select lt_id from lookup_tables where lt_lookup_id = 'neighbourhood_type'), v_id, v_number, 'id');
+    values ((select lt_id from lookup_tables where lt_lookup_id ='neighbourhood_type'), v_id, v_number, 'id');
 
     insert into lookup_table_columns (ltc_lt_id, ltc_column_type, ltc_data_type, ltc_name)
-    values ((select lt_id from lookup_tables where lt_lookup_id = 'neighbourhood_type'), v_label, v_text, 'label');
+    values ((select lt_id from lookup_tables where lt_lookup_id ='neighbourhood_type'), v_label, v_text, 'label');
 
     insert into lookup_table_columns (ltc_lt_id, ltc_column_type, ltc_data_type, ltc_name)
-    values ((select lt_id from lookup_tables where lt_lookup_id = 'neighbourhood_type'), v_key, v_text, 'key');
+    values ((select lt_id from lookup_tables where lt_lookup_id ='neighbourhood_type'), v_key, v_text, 'key');
 
     insert into lookup_table_columns (ltc_lt_id, ltc_column_type, ltc_data_type, ltc_name)
-    values ((select lt_id from lookup_tables where lt_lookup_id = 'neighbourhood_type'), v_col_boolean, v_boolean, 'is_active');
+    values ((select lt_id from lookup_tables where lt_lookup_id ='neighbourhood_type'), v_col_boolean, v_boolean, 'is_active');
 
     --inserting lookup_tables data for table - m_no_of_storey
     insert into lookup_tables (lt_is_standard, lt_lookup_id, lt_version, lt_created, lt_created_by, lt_last_updated_structure, lt_last_updated_data) values (TRUE, 'no_of_storey', 0, NOW(), 'System', NOW(), NOW());
 
     --start - inserting business entities attribute data for table - m_no_of_storey
     insert into lookup_table_columns (ltc_lt_id, ltc_column_type, ltc_data_type, ltc_name)
-    values ((select lt_id from lookup_tables where lt_lookup_id = 'no_of_storey'), v_id, v_number, 'id');
+    values ((select lt_id from lookup_tables where lt_lookup_id ='no_of_storey'), v_id, v_number, 'id');
 
     insert into lookup_table_columns (ltc_lt_id, ltc_column_type, ltc_data_type, ltc_name)
-    values ((select lt_id from lookup_tables where lt_lookup_id = 'no_of_storey'), v_label, v_text, 'label');
+    values ((select lt_id from lookup_tables where lt_lookup_id ='no_of_storey'), v_label, v_text, 'label');
 
     insert into lookup_table_columns (ltc_lt_id, ltc_column_type, ltc_data_type, ltc_name)
-    values ((select lt_id from lookup_tables where lt_lookup_id = 'no_of_storey'), v_key, v_text, 'key');
+    values ((select lt_id from lookup_tables where lt_lookup_id ='no_of_storey'), v_key, v_text, 'key');
 
     insert into lookup_table_columns (ltc_lt_id, ltc_column_type, ltc_data_type, ltc_name)
-    values ((select lt_id from lookup_tables where lt_lookup_id = 'no_of_storey'), v_col_boolean, v_boolean, 'is_active');
+    values ((select lt_id from lookup_tables where lt_lookup_id ='no_of_storey'), v_col_boolean, v_boolean, 'is_active');
 
     --inserting lookup_tables data for table - m_office_address_country
     insert into lookup_tables (lt_is_standard, lt_lookup_id, lt_version, lt_created, lt_created_by, lt_last_updated_structure, lt_last_updated_data) values (TRUE, 'address_type', 0, NOW(), 'System', NOW(), NOW());
 
     --start - inserting business entities attribute data for table - m_office_address_country
     insert into lookup_table_columns (ltc_lt_id, ltc_column_type, ltc_data_type, ltc_name)
-    values ((select lt_id from lookup_tables where lt_lookup_id = 'address_type'), v_id, v_number, 'id');
+    values ((select lt_id from lookup_tables where lt_lookup_id ='address_type'), v_id, v_number, 'id');
 
     insert into lookup_table_columns (ltc_lt_id, ltc_column_type, ltc_data_type, ltc_name)
-    values ((select lt_id from lookup_tables where lt_lookup_id = 'address_type'), v_label, v_text, 'label');
+    values ((select lt_id from lookup_tables where lt_lookup_id ='address_type'), v_label, v_text, 'label');
 
     insert into lookup_table_columns (ltc_lt_id, ltc_column_type, ltc_data_type, ltc_name)
-    values ((select lt_id from lookup_tables where lt_lookup_id = 'address_type'), v_key, v_text, 'key');
+    values ((select lt_id from lookup_tables where lt_lookup_id ='address_type'), v_key, v_text, 'key');
 
     insert into lookup_table_columns (ltc_lt_id, ltc_column_type, ltc_data_type, ltc_name)
-    values ((select lt_id from lookup_tables where lt_lookup_id = 'address_type'), v_col_boolean, v_boolean, 'is_active');
+    values ((select lt_id from lookup_tables where lt_lookup_id ='address_type'), v_col_boolean, v_boolean, 'is_active');
 
     --inserting lookup_tables data for table - m_office_construction
     insert into lookup_tables (lt_is_standard, lt_lookup_id, lt_version, lt_created, lt_created_by, lt_last_updated_structure, lt_last_updated_data) values (TRUE, 'office_construction', 0, NOW(), 'System', NOW(), NOW());
 
     --start - inserting business entities attribute data for table - m_office_construction
     insert into lookup_table_columns (ltc_lt_id, ltc_column_type, ltc_data_type, ltc_name)
-    values ((select lt_id from lookup_tables where lt_lookup_id = 'office_construction'), v_id, v_number, 'id');
+    values ((select lt_id from lookup_tables where lt_lookup_id ='office_construction'), v_id, v_number, 'id');
 
     insert into lookup_table_columns (ltc_lt_id, ltc_column_type, ltc_data_type, ltc_name)
-    values ((select lt_id from lookup_tables where lt_lookup_id = 'office_construction'), v_label, v_text, 'label');
+    values ((select lt_id from lookup_tables where lt_lookup_id ='office_construction'), v_label, v_text, 'label');
 
     insert into lookup_table_columns (ltc_lt_id, ltc_column_type, ltc_data_type, ltc_name)
-    values ((select lt_id from lookup_tables where lt_lookup_id = 'office_construction'), v_key, v_text, 'key');
+    values ((select lt_id from lookup_tables where lt_lookup_id ='office_construction'), v_key, v_text, 'key');
 
     insert into lookup_table_columns (ltc_lt_id, ltc_column_type, ltc_data_type, ltc_name)
-    values ((select lt_id from lookup_tables where lt_lookup_id = 'office_construction'), v_col_boolean, v_boolean, 'is_active');
+    values ((select lt_id from lookup_tables where lt_lookup_id ='office_construction'), v_col_boolean, v_boolean, 'is_active');
 
     --inserting lookup_tables data for table - m_office_exterior
     insert into lookup_tables (lt_is_standard, lt_lookup_id, lt_version, lt_created, lt_created_by, lt_last_updated_structure, lt_last_updated_data) values (TRUE, 'leads_external_id_type', 0, NOW(), 'System', NOW(), NOW());
 
     --start - inserting business entities attribute data for table - m_office_exterior
     insert into lookup_table_columns (ltc_lt_id, ltc_column_type, ltc_data_type, ltc_name)
-    values ((select lt_id from lookup_tables where lt_lookup_id = 'leads_external_id_type'), v_id, v_number, 'id');
+    values ((select lt_id from lookup_tables where lt_lookup_id ='leads_external_id_type'), v_id, v_number, 'id');
 
     insert into lookup_table_columns (ltc_lt_id, ltc_column_type, ltc_data_type, ltc_name)
-    values ((select lt_id from lookup_tables where lt_lookup_id = 'leads_external_id_type'), v_label, v_text, 'label');
+    values ((select lt_id from lookup_tables where lt_lookup_id ='leads_external_id_type'), v_label, v_text, 'label');
 
     insert into lookup_table_columns (ltc_lt_id, ltc_column_type, ltc_data_type, ltc_name)
-    values ((select lt_id from lookup_tables where lt_lookup_id = 'leads_external_id_type'), v_key, v_text, 'key');
+    values ((select lt_id from lookup_tables where lt_lookup_id ='leads_external_id_type'), v_key, v_text, 'key');
 
     insert into lookup_table_columns (ltc_lt_id, ltc_column_type, ltc_data_type, ltc_name)
-    values ((select lt_id from lookup_tables where lt_lookup_id = 'leads_external_id_type'), v_col_boolean, v_boolean, 'is_active');
+    values ((select lt_id from lookup_tables where lt_lookup_id ='leads_external_id_type'), v_col_boolean, v_boolean, 'is_active');
 
     --inserting lookup_tables data for table - m_office_interior
     insert into lookup_tables (lt_is_standard, lt_lookup_id, lt_version, lt_created, lt_created_by, lt_last_updated_structure, lt_last_updated_data) values (TRUE, 'office_interior', 0, NOW(), 'System', NOW(), NOW());
 
     --start - inserting business entities attribute data for table - m_office_interior
     insert into lookup_table_columns (ltc_lt_id, ltc_column_type, ltc_data_type, ltc_name)
-    values ((select lt_id from lookup_tables where lt_lookup_id = 'office_interior'), v_id, v_number, 'id');
+    values ((select lt_id from lookup_tables where lt_lookup_id ='office_interior'), v_id, v_number, 'id');
 
     insert into lookup_table_columns (ltc_lt_id, ltc_column_type, ltc_data_type, ltc_name)
-    values ((select lt_id from lookup_tables where lt_lookup_id = 'office_interior'), v_label, v_text, 'label');
+    values ((select lt_id from lookup_tables where lt_lookup_id ='office_interior'), v_label, v_text, 'label');
 
     insert into lookup_table_columns (ltc_lt_id, ltc_column_type, ltc_data_type, ltc_name)
-    values ((select lt_id from lookup_tables where lt_lookup_id = 'office_interior'), v_key, v_text, 'key');
+    values ((select lt_id from lookup_tables where lt_lookup_id ='office_interior'), v_key, v_text, 'key');
 
     insert into lookup_table_columns (ltc_lt_id, ltc_column_type, ltc_data_type, ltc_name)
-    values ((select lt_id from lookup_tables where lt_lookup_id = 'office_interior'), v_col_boolean, v_boolean, 'is_active');
+    values ((select lt_id from lookup_tables where lt_lookup_id ='office_interior'), v_col_boolean, v_boolean, 'is_active');
 
     --inserting lookup_tables data for table - m_office_locality
     insert into lookup_tables (lt_is_standard, lt_lookup_id, lt_version, lt_created, lt_created_by, lt_last_updated_structure, lt_last_updated_data) values (TRUE, 'office_locality', 0, NOW(), 'System', NOW(), NOW());
 
     --start - inserting business entities attribute data for table - m_office_locality
     insert into lookup_table_columns (ltc_lt_id, ltc_column_type, ltc_data_type, ltc_name)
-    values ((select lt_id from lookup_tables where lt_lookup_id = 'office_locality'), v_id, v_number, 'id');
+    values ((select lt_id from lookup_tables where lt_lookup_id ='office_locality'), v_id, v_number, 'id');
 
     insert into lookup_table_columns (ltc_lt_id, ltc_column_type, ltc_data_type, ltc_name)
-    values ((select lt_id from lookup_tables where lt_lookup_id = 'office_locality'), v_label, v_text, 'label');
+    values ((select lt_id from lookup_tables where lt_lookup_id ='office_locality'), v_label, v_text, 'label');
 
     insert into lookup_table_columns (ltc_lt_id, ltc_column_type, ltc_data_type, ltc_name)
-    values ((select lt_id from lookup_tables where lt_lookup_id = 'office_locality'), v_key, v_text, 'key');
+    values ((select lt_id from lookup_tables where lt_lookup_id ='office_locality'), v_key, v_text, 'key');
 
     insert into lookup_table_columns (ltc_lt_id, ltc_column_type, ltc_data_type, ltc_name)
-    values ((select lt_id from lookup_tables where lt_lookup_id = 'office_locality'), v_col_boolean, v_boolean, 'is_active');
+    values ((select lt_id from lookup_tables where lt_lookup_id ='office_locality'), v_col_boolean, v_boolean, 'is_active');
 
-    --inserting lookup_tables data for table - m_other_exp
-    insert into lookup_tables (lt_is_standard, lt_lookup_id, lt_version, lt_created, lt_created_by, lt_last_updated_structure, lt_last_updated_data) values (TRUE, 'other_exp', 0, NOW(), 'System', NOW(), NOW());
 
-    --start - inserting business entities attribute data for table - m_other_exp
-    insert into lookup_table_columns (ltc_lt_id, ltc_column_type, ltc_data_type, ltc_name)
-    values ((select lt_id from lookup_tables where lt_lookup_id = 'other_exp'), v_id, v_number, 'id');
 
-    insert into lookup_table_columns (ltc_lt_id, ltc_column_type, ltc_data_type, ltc_name)
-    values ((select lt_id from lookup_tables where lt_lookup_id = 'other_exp'), v_label, v_text, 'label');
-
-    insert into lookup_table_columns (ltc_lt_id, ltc_column_type, ltc_data_type, ltc_name)
-    values ((select lt_id from lookup_tables where lt_lookup_id = 'other_exp'), v_key, v_text, 'key');
-
-    insert into lookup_table_columns (ltc_lt_id, ltc_column_type, ltc_data_type, ltc_name)
-    values ((select lt_id from lookup_tables where lt_lookup_id = 'other_exp'), v_col_boolean, v_boolean, 'is_active');
-
-    --inserting lookup_tables data for table - m_other_findings
-    insert into lookup_tables (lt_is_standard, lt_lookup_id, lt_version, lt_created, lt_created_by, lt_last_updated_structure, lt_last_updated_data) values (TRUE, 'other_findings', 0, NOW(), 'System', NOW(), NOW());
-
-    --start - inserting business entities attribute data for table - m_other_findings
-    insert into lookup_table_columns (ltc_lt_id, ltc_column_type, ltc_data_type, ltc_name)
-    values ((select lt_id from lookup_tables where lt_lookup_id = 'other_findings'), v_id, v_number, 'id');
-
-    insert into lookup_table_columns (ltc_lt_id, ltc_column_type, ltc_data_type, ltc_name)
-    values ((select lt_id from lookup_tables where lt_lookup_id = 'other_findings'), v_label, v_text, 'label');
-
-    insert into lookup_table_columns (ltc_lt_id, ltc_column_type, ltc_data_type, ltc_name)
-    values ((select lt_id from lookup_tables where lt_lookup_id = 'other_findings'), v_key, v_text, 'key');
-
-    insert into lookup_table_columns (ltc_lt_id, ltc_column_type, ltc_data_type, ltc_name)
-    values ((select lt_id from lookup_tables where lt_lookup_id = 'other_findings'), v_col_boolean, v_boolean, 'is_active');
-
-    --inserting lookup_tables data for table - m_property_age
-    insert into lookup_tables (lt_is_standard, lt_lookup_id, lt_version, lt_created, lt_created_by, lt_last_updated_structure, lt_last_updated_data) values (TRUE, 'property_age', 0, NOW(), 'System', NOW(), NOW());
-
-    --start - inserting business entities attribute data for table - m_property_age
-    insert into lookup_table_columns (ltc_lt_id, ltc_column_type, ltc_data_type, ltc_name)
-    values ((select lt_id from lookup_tables where lt_lookup_id = 'property_age'), v_id, v_number, 'id');
-
-    insert into lookup_table_columns (ltc_lt_id, ltc_column_type, ltc_data_type, ltc_name)
-    values ((select lt_id from lookup_tables where lt_lookup_id = 'property_age'), v_label, v_text, 'label');
-
-    insert into lookup_table_columns (ltc_lt_id, ltc_column_type, ltc_data_type, ltc_name)
-    values ((select lt_id from lookup_tables where lt_lookup_id = 'property_age'), v_key, v_text, 'key');
-
-    insert into lookup_table_columns (ltc_lt_id, ltc_column_type, ltc_data_type, ltc_name)
-    values ((select lt_id from lookup_tables where lt_lookup_id = 'property_age'), v_col_boolean, v_boolean, 'is_active');
-
-    --inserting lookup_tables data for table - m_campaign
-    insert into lookup_tables (lt_is_standard, lt_lookup_id, lt_version, lt_created, lt_created_by, lt_last_updated_structure, lt_last_updated_data) values (TRUE, 'campaign', 0, NOW(), 'System', NOW(), NOW());
-
-    --start - inserting business entities attribute data for table - m_campaign
-    insert into lookup_table_columns (ltc_lt_id, ltc_column_type, ltc_data_type, ltc_name)
-    values ((select lt_id from lookup_tables where lt_lookup_id = 'campaign'), v_id, v_number, 'id');
-
-    insert into lookup_table_columns (ltc_lt_id, ltc_column_type, ltc_data_type, ltc_name)
-    values ((select lt_id from lookup_tables where lt_lookup_id = 'campaign'), v_label, v_text, 'label');
-
-    insert into lookup_table_columns (ltc_lt_id, ltc_column_type, ltc_data_type, ltc_name)
-    values ((select lt_id from lookup_tables where lt_lookup_id = 'campaign'), v_key, v_text, 'key');
-
-    insert into lookup_table_columns (ltc_lt_id, ltc_column_type, ltc_data_type, ltc_name)
-    values ((select lt_id from lookup_tables where lt_lookup_id = 'campaign'), v_col_boolean, v_boolean, 'is_active');
-
-    --inserting lookup_tables data for table - m_property_make_type
-    insert into lookup_tables (lt_is_standard, lt_lookup_id, lt_version, lt_created, lt_created_by, lt_last_updated_structure, lt_last_updated_data) values (TRUE, 'property_make_type', 0, NOW(), 'System', NOW(), NOW());
-
-    --start - inserting business entities attribute data for table - m_property_make_type
-    insert into lookup_table_columns (ltc_lt_id, ltc_column_type, ltc_data_type, ltc_name)
-    values ((select lt_id from lookup_tables where lt_lookup_id = 'property_make_type'), v_id, v_number, 'id');
-
-    insert into lookup_table_columns (ltc_lt_id, ltc_column_type, ltc_data_type, ltc_name)
-    values ((select lt_id from lookup_tables where lt_lookup_id = 'property_make_type'), v_label, v_text, 'label');
-
-    insert into lookup_table_columns (ltc_lt_id, ltc_column_type, ltc_data_type, ltc_name)
-    values ((select lt_id from lookup_tables where lt_lookup_id = 'property_make_type'), v_key, v_text, 'key');
-
-    insert into lookup_table_columns (ltc_lt_id, ltc_column_type, ltc_data_type, ltc_name)
-    values ((select lt_id from lookup_tables where lt_lookup_id = 'property_make_type'), v_col_boolean, v_boolean, 'is_active');
-
-    --inserting lookup_tables data for table - m_residence_type
-    insert into lookup_tables (lt_is_standard, lt_lookup_id, lt_version, lt_created, lt_created_by, lt_last_updated_structure, lt_last_updated_data) values (TRUE, 'residence_type', 0, NOW(), 'System', NOW(), NOW());
-
-    --start - inserting business entities attribute data for table - m_residence_type
-    insert into lookup_table_columns (ltc_lt_id, ltc_column_type, ltc_data_type, ltc_name)
-    values ((select lt_id from lookup_tables where lt_lookup_id = 'residence_type'), v_id, v_number, 'id');
-
-    insert into lookup_table_columns (ltc_lt_id, ltc_column_type, ltc_data_type, ltc_name)
-    values ((select lt_id from lookup_tables where lt_lookup_id = 'residence_type'), v_label, v_text, 'label');
-
-    insert into lookup_table_columns (ltc_lt_id, ltc_column_type, ltc_data_type, ltc_name)
-    values ((select lt_id from lookup_tables where lt_lookup_id = 'residence_type'), v_key, v_text, 'key');
-
-    insert into lookup_table_columns (ltc_lt_id, ltc_column_type, ltc_data_type, ltc_name)
-    values ((select lt_id from lookup_tables where lt_lookup_id = 'residence_type'), v_col_boolean, v_boolean, 'is_active');
-
-    --inserting lookup_tables data for table - m_residency
-    insert into lookup_tables (lt_is_standard, lt_lookup_id, lt_version, lt_created, lt_created_by, lt_last_updated_structure, lt_last_updated_data) values (TRUE, 'residency', 0, NOW(), 'System', NOW(), NOW());
-
-    --start - inserting business entities attribute data for table - m_residency
-    insert into lookup_table_columns (ltc_lt_id, ltc_column_type, ltc_data_type, ltc_name)
-    values ((select lt_id from lookup_tables where lt_lookup_id = 'residency'), v_id, v_number, 'id');
-
-    insert into lookup_table_columns (ltc_lt_id, ltc_column_type, ltc_data_type, ltc_name)
-    values ((select lt_id from lookup_tables where lt_lookup_id = 'residency'), v_label, v_text, 'label');
-
-    insert into lookup_table_columns (ltc_lt_id, ltc_column_type, ltc_data_type, ltc_name)
-    values ((select lt_id from lookup_tables where lt_lookup_id = 'residency'), v_key, v_text, 'key');
-
-    insert into lookup_table_columns (ltc_lt_id, ltc_column_type, ltc_data_type, ltc_name)
-    values ((select lt_id from lookup_tables where lt_lookup_id = 'residency'), v_col_boolean, v_boolean, 'is_active');
-
-    --inserting lookup_tables data for table - m_spouse_occupation
-    insert into lookup_tables (lt_is_standard, lt_lookup_id, lt_version, lt_created, lt_created_by, lt_last_updated_structure, lt_last_updated_data) values (TRUE, 'spouse_occupation', 0, NOW(), 'System', NOW(), NOW());
-
-    --start - inserting business entities attribute data for table - m_spouse_occupation
-    insert into lookup_table_columns (ltc_lt_id, ltc_column_type, ltc_data_type, ltc_name)
-    values ((select lt_id from lookup_tables where lt_lookup_id = 'spouse_occupation'), v_id, v_number, 'id');
-
-    insert into lookup_table_columns (ltc_lt_id, ltc_column_type, ltc_data_type, ltc_name)
-    values ((select lt_id from lookup_tables where lt_lookup_id = 'spouse_occupation'), v_label, v_text, 'label');
-
-    insert into lookup_table_columns (ltc_lt_id, ltc_column_type, ltc_data_type, ltc_name)
-    values ((select lt_id from lookup_tables where lt_lookup_id = 'spouse_occupation'), v_key, v_text, 'key');
-
-    insert into lookup_table_columns (ltc_lt_id, ltc_column_type, ltc_data_type, ltc_name)
-    values ((select lt_id from lookup_tables where lt_lookup_id = 'spouse_occupation'), v_col_boolean, v_boolean, 'is_active');
-
-	-- lookup data insert scripts starts..
-
-	--m_education_level
-
-	insert into  m_education_level (key, label, is_active) values  ('HIGH SCHOOL','HIGH SCHOOL','TRUE');
+    insert into  m_education_level (key, label, is_active) values  ('HIGH SCHOOL','HIGH SCHOOL','TRUE');
 	insert into  m_education_level (key, label, is_active) values  ('COLLEGE','COLLEGE','TRUE');
 	insert into  m_education_level (key, label, is_active) values  ('POST GRADUATE','POST GRADUATE','TRUE');
 	insert into  m_education_level (key, label, is_active) values  ('OTHERS','OTHERS','TRUE');
@@ -1118,29 +992,8 @@ begin
 	insert into  m_ease_of_officelocation (key, label, is_active) values  ('DIFFICULT','DIFFICULT','TRUE');
 	insert into  m_ease_of_officelocation (key, label, is_active) values  ('UNTRACEABLE','UNTRACEABLE','TRUE');
 
-	--m_items_sighted_in_office
-	insert into  m_items_sighted_in_office (key, label, is_active) values  ('SOFA','SOFA','TRUE');
-	insert into  m_items_sighted_in_office (key, label, is_active) values  ('TV','TV','TRUE');
-	insert into  m_items_sighted_in_office (key, label, is_active) values  ('PRINTING MACHINE','PRINTING MACHINE','TRUE');
-	insert into  m_items_sighted_in_office (key, label, is_active) values  ('AC','AC','TRUE');
-	insert into  m_items_sighted_in_office (key, label, is_active) values  ('LAPTOPS','LAPTOPS','TRUE');
-	insert into  m_items_sighted_in_office (key, label, is_active) values  ('LED PROJECTOR','LED PROJECTOR','TRUE');
 
-	--m_employment_type
-	insert into  m_employment_type (key, label, is_active) values  ('PERMANENT','PERMANENT','TRUE');
-	insert into  m_employment_type (key, label, is_active) values  ('CONTRACT','CONTRACT','TRUE');
-	insert into  m_employment_type (key, label, is_active) values  ('FREELANCE','FREELANCE','TRUE');
-	insert into  m_employment_type (key, label, is_active) values  ('PART TIME','PART TIME','TRUE');
 
-	--m_designation
-	insert into  m_designation (key, label, is_active) values  ('ASSISTANT','ASSISTANT','TRUE');
-	insert into  m_designation (key, label, is_active) values  ('CLERK','CLERK','TRUE');
-	insert into  m_designation (key, label, is_active) values  ('SUPERVISOR','SUPERVISOR','TRUE');
-	insert into  m_designation (key, label, is_active) values  ('SKILLED LABOUR','SKILLED LABOUR','TRUE');
-	insert into  m_designation (key, label, is_active) values  ('TYPIST','TYPIST','TRUE');
-	insert into  m_designation (key, label, is_active) values  ('SR/MID MANAGEMENT','SR/MID MANAGEMENT','TRUE');
-	insert into  m_designation (key, label, is_active) values  ('JR MANAGEMENT','JR MANAGEMENT','TRUE');
-	insert into  m_designation (key, label, is_active) values  ('OTHERS','OTHERS','TRUE');
 
 	--m_company_type
 	insert into  m_company_type (key, label, is_active) values  ('PRIVATE','PRIVATE','TRUE');
@@ -1184,9 +1037,7 @@ begin
 	insert into  m_residence_category (key, label, is_active) values  ('RENTED','RENTED','TRUE');
 	insert into  m_residence_category (key, label, is_active) values  ('OWNED','OWNED','TRUE');
 
-	--m_ownership_type
-	insert into  m_ownership_type (key, label, is_active) values  ('OWNERSHIP','OWNERSHIP','TRUE');
-	insert into  m_ownership_type (key, label, is_active) values  ('TENANCY','TENANCY','TRUE');
+
 
 	--m_residence_type
 	insert into  m_residence_type (key, label, is_active) values  ('BUNGALOW','BUNGALOW','TRUE');
@@ -1195,10 +1046,6 @@ begin
 	insert into  m_residence_type (key, label, is_active) values  ('RAW-HOUSE','RAW-HOUSE','TRUE');
 	insert into  m_residence_type (key, label, is_active) values  ('MANSION','MANSION','TRUE');
 
-	--m_no_of_storey
-	insert into  m_no_of_storey (key, label, is_active) values  ('SINGLE STOREY','SINGLE STOREY','TRUE');
-	insert into  m_no_of_storey (key, label, is_active) values  ('TWO STOREY','TWO STOREY','TRUE');
-	insert into  m_no_of_storey (key, label, is_active) values  ('MULTI-STOREY','MULTI-STOREY','TRUE');
 
 	--m_classification
 	insert into  m_classification (key, label, is_active) values  ('LOW COST','LOW COST','TRUE');
@@ -1276,10 +1123,6 @@ begin
 	insert into  m_address_proof_id (key, label, is_active) values  ('AADHAR CARD','AADHAR CARD','TRUE');
 	insert into  m_address_proof_id (key, label, is_active) values  ('VOTER ID CARD','VOTER ID CARD','TRUE');
 
-	--m_vehicle_type
-	insert into  m_vehicle_type (key, label, is_active) values  ('TWO-WHEELER','TWO-WHEELER','TRUE');
-	insert into  m_vehicle_type (key, label, is_active) values  ('THREE-WHEELER','THREE-WHEELER','TRUE');
-	insert into  m_vehicle_type (key, label, is_active) values  ('FOUR-WHEELER','FOUR-WHEELER','TRUE');
 
 	--m_car_ownership_type
 	insert into  m_car_ownership_type (key, label, is_active) values  ('PERSONAL-OWNED','PERSONAL-OWNED','TRUE');

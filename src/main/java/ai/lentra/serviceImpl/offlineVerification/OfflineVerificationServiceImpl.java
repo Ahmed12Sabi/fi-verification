@@ -65,13 +65,46 @@ public class OfflineVerificationServiceImpl implements OfflineVerificationServic
                 List<VerificationFormConfig> forms = verificationFormConfigRepository.getBySubProfileName(subProfile.getSubProfileName());
                 for (VerificationFormConfig form : forms) {
                     if (!form.isHidden()) {
+//                        String tableName="";
+//                        switch (form.getFormName()){
+//                            case "" :
+//                                tableName="contact_details";
+//                                break;
+//                            case "" :
+//                                tableName="expenses";
+//                                break;
+//                            case "" :
+//                                tableName="family_details";
+//                                break;
+//                            case "" :
+//                                tableName="personal_details";
+//                                break;
+//                            case "" :
+//                                tableName="residence_details";
+//                                break;
+//                            case "" :
+//                                tableName="summary";
+//                                break;
+//                            case "" :
+//                                tableName="commitment_details";
+//                                break;
+//                            case "" :
+//                                tableName="office_self_employment";
+//                                break;
+//                            case "" :
+//                                tableName="vehicle_details";
+//                                break;
+//                            default :
+//                                tableName="application_details";
+//                                break;
+//                        }
 
                         html.append("<h2><center> "+form.getFormName() +" </center></h2>");
                         List<VerificationFormFieldsConfig> fields = verificationFormFieldsConfigRepository.getByFormFields(form.getFormId());
                         for (VerificationFormFieldsConfig field : fields) {
                             if (!field.isHidden()) {
                                // dataFields.setDataFields(Arrays.asList(new DataFields(field.getFieldName(), findValue(findById(field.getFieldId())) )));
-                                html.append(FreeMarkerTemplateUtils.processTemplateIntoString(template, new OffileInputDataDTO(Arrays.asList(new DataFields(field.getFieldName(), findValue(findById(field.getFieldId(),applicant_id ,applicantDetails)) )))));
+                       //         html.append(FreeMarkerTemplateUtils.processTemplateIntoString(template, new OffileInputDataDTO(Arrays.asList(new DataFields(field.getFieldName(), findValue(findById(field.getFieldId(),applicant_id ,applicantDetails)) )))));
                             }
                         }
                     }
@@ -88,8 +121,8 @@ public class OfflineVerificationServiceImpl implements OfflineVerificationServic
     }
 
    // @Override
-    public String findById(Long id, Long applicant_id,ResponseEntity applicantDetails) {
-        String tableName="test";
+    public String findById(Long id, Long applicant_id,ResponseEntity applicantDetails,String tableName) {
+
         for (Field field : applicantDetails.getBody().getClass().getDeclaredFields()) {
             Column column = field.getAnnotation(Column.class);
             if (column != null) {

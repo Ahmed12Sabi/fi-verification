@@ -56,12 +56,12 @@ begin
 				description
 				)
 				values
-				{''DO_FORM_CLEANUP'',
+				(''DO_FORM_CLEANUP'',
 				''{"DO_FORM_CLEANUP": "true",
 				"do_form_cleanup_duration": "1d",
 				"batch_job_execution_frequency": "0 0 0 */2 * *"}'',
-				''do form clean, duration after which lead will be auto closed and frequency of do form cleanup functionality execution''
-			    )'
+				''do form clean, duration after which vms will be auto deleted two months old records and frequency of do form cleanup functionality execution''
+			    )';
 
 	-- execute v_text;
 
@@ -74,7 +74,7 @@ exception
 
 		when others then
 				raise notice 'in exception, transaction will be rolled back';
-				--rollback; 
+				--rollback;
 
 				get stacked diagnostics
 					v_state   = returned_sqlstate,
@@ -88,8 +88,8 @@ exception
 					message: %
 					detail : %
 					hint   : %
-					context: %', v_state, v_msg, v_detail, v_hint, v_context;	
-				
+					context: %', v_state, v_msg, v_detail, v_hint, v_context;
+
 				raise notice ' script % failed to execute in schema %', v_filename ,v_schema_name ;
 				raise exception ' script failed';
 

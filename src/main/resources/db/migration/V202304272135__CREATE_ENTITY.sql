@@ -37,7 +37,7 @@ declare
 	v_schema_name varchar(50) 	 := '${ph_schema}';
 
 --- you can changes the file name ----
-	v_filename varchar(100)		 := 'V202304272135_ENITIES.sql';
+	v_filename varchar(100)		 := 'V202304272135__ENITIES.sql';
 	--- you can changes the file name ----
 	c record;
 
@@ -47,27 +47,10 @@ declare
     v_hint    text;
     v_context text;
 
---data type enum - Text: 1, Multi-line Text : 2, Number: 3, Date: 4,Date Time: 5, Currency: 6, Lookup: 7, Boolean:8
-	v_text           int = 1;
-	v_multiline_text int = 2;
-	v_number         int = 3;
-	v_date           int = 4;
-	v_datetime       int = 5;
-	v_currency       int = 6;
-	v_lookup         int = 7;
-	v_boolean        int = 8;
-
---Column type enum - id: 5, label: 2, key: 1, boolean:4
-	v_id          int = 5;
-	v_label       int = 2;
-	v_key         int = 1;
-	v_col_boolean int = 4;
-	v_col_text    int = 3;
-
 begin
 
 -- **************************       your sql code starts below this line       **************************
-     --DDL Statement for table - agencies
+     -- DDL Statement for table - agencies
 
     for c  in select 1 where not exists (select 1 from pg_tables where schemaname = lower(v_schema_name) and tablename = lower('agencies')) loop
     execute 'create table ' ||v_schema_name||'.agencies
@@ -246,7 +229,7 @@ begin
                        created_by varchar(255) null ,
                        created_on  timestamptz,
                        modified_by varchar(255) null,
-                       modified_on  timestamptz)
+                       modified_on  timestamptz
                 )';
 
 	end loop;
@@ -268,7 +251,7 @@ begin
                       created_by varchar(255) null ,
                       created_on  timestamptz,
                       modified_by varchar(255) null,
-                      modified_on  timestamptz)
+                      modified_on  timestamptz
                 )';
 
 	end loop;
@@ -308,7 +291,7 @@ begin
                     created_by varchar(255) null ,
                     created_on  timestamptz,
                     modified_by varchar(255) null,
-                    modified_on  timestamptz)
+                    modified_on  timestamptz
                 )';
 
 	end loop;
@@ -328,7 +311,7 @@ begin
                       created_by varchar(255) null ,
                       created_on  timestamptz,
                       modified_by varchar(255) null,
-                      modified_on  timestamptz)
+                      modified_on  timestamptz
                 )';
 
 	end loop;
@@ -651,7 +634,7 @@ begin
                                      created_by varchar(255) null ,
                                      created_on  timestamptz,
                                      modified_by varchar(255) null,
-                                     modified_on  timestamptz)
+                                     modified_on  timestamptz
                                    )';
 
                    	end loop;
@@ -686,7 +669,7 @@ begin
                     created_by varchar(255) null ,
                     created_on  timestamptz,
                     modified_by varchar(255) null,
-                    modified_on  timestamptz)
+                    modified_on  timestamptz
 
                     )';
 
@@ -744,7 +727,7 @@ begin
                              created_by varchar(255) null ,
                              created_on  timestamptz,
                              modified_by varchar(255) null,
-                             modified_on  timestamptz)
+                             modified_on  timestamptz
 
                             )';
 
@@ -770,7 +753,7 @@ begin
                      created_by varchar(255) null ,
                      created_on  timestamptz,
                      modified_by varchar(255) null,
-                     modified_on  timestamptz)
+                     modified_on  timestamptz
 
                     )';
 
@@ -820,7 +803,7 @@ begin
                                 created_by varchar(255) null ,
                                 created_on  timestamptz,
                                 modified_by varchar(255) null,
-                                modified_on  timestamptz)
+                                modified_on  timestamptz
 
                             )';
 
@@ -870,7 +853,7 @@ begin
                         created_by varchar(255) null ,
                         created_on  timestamptz,
                         modified_by varchar(255) null,
-                        modified_on  timestamptz)
+                        modified_on  timestamptz
                     )';
 
     	end loop;
