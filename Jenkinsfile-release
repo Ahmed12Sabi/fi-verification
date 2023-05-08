@@ -1,0 +1,35 @@
+pipeline {
+    environment {
+        service_name = "vms"
+        docker_registry = 'nd21.serviceurl.in'
+        DOCKER_REGISTRY_CRED = credentials('jenkins-nd21-docker-secret-key-id')
+    }
+
+    parameters {
+        string defaultValue: '', name: 'releaseTag'
+        string defaultValue: 'latest', name: 'tagName'
+    }
+
+    agent any
+
+    stages {
+        stage('Pull and Re-tag docker image') {
+            steps{
+                script {
+                    sh 'docker login $docker_registry -u $DOCKER_REGISTRY_CRED_USR -p $DOCKER_REGISTRY_CRED_PSW'
+                    sh "docker pull ${docker_registry}/${service_name}:${tagName}"
+                    env.image_id=sh(script:'''docker images $docker_registry/$service_name:$tagName --format \'{{.ID}}\'''',returnStdout: true).trim()
+                    sh "docker tag ${image_id} ${docker_registry}/${service_name}:${releaseTag}"
+                    sh "docker push ${docker_registry}/${service_name}:${releaseTag}"
+                    sh "docker logout ${docker_registry}"
+                }
+            }
+        }
+
+        stage('Clean') {
+            steps{
+                 sh "docker rmi -f ${image_id}"
+            }
+        }
+    }
+}
