@@ -11,8 +11,8 @@ pipeline {
         stage('Build') {
             agent {
                 docker {
-                    image 'maven:3.9.1-eclipse-temurin-17-focal'
-                    args '-u root -v /root/.m2:/root/.m2 -v /var/run/docker.sock:/var/run/docker.sock -v :/usr/src/app -w /usr/src/app'
+					sh 'sudo docker build -t ahmedsabiullah/fi-verifications/:0.0.1.RELEASE .'     
+                    
                 }
             }
             
