@@ -5,11 +5,6 @@ pipeline {
        
     }
 
-    parameters {
-        string defaultValue: 'master', name: 'branchName'
-        booleanParam defaultValue: true, name: 'SONAR'
-    }
-
     agent any
 
     stages {
