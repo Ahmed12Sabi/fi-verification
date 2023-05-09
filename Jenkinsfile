@@ -1,12 +1,8 @@
 pipeline {
     environment {
         service_name = "verifications"
-        #docker_registry = 'nd21.serviceurl.in'
-        #DOCKER_REGISTRY_CRED = credentials('jenkins-nd21-docker-secret-key-id')
         release_version = '1.0'
-        #sonar_url = 'https://gyankosh.serviceurl.in/sonar'
-        #sonar_auth_token = '1e46dde6fd3767a5b38783115b2653391d92bf88'
-        #sonar_project_key = 'Sonar-fiverification-fi-verification-master'
+       
     }
 
     parameters {
