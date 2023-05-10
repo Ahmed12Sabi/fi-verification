@@ -9,12 +9,15 @@ pipeline {
 
     stages {
         stage('Build') {
-            steps{  
+            
                 agent {
                		sh 'sudo docker build -t fi-verifications .'     
                     
             }
-                 }
+            steps{
+                                stash includes: 'target/*.jar', name: 'APP_JAR'
+
+            }
             
         }
 
