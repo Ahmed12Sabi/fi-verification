@@ -9,10 +9,12 @@ pipeline {
 
     stages {
         stage('Build') {
-            agent {
-               		sh 'sudo docker build -t ahmedsabiullah/fi-verifications/:0.0.1.RELEASE .'     
+            steps{  
+                agent {
+               		sh 'sudo docker build -t fi-verifications .'     
                     
             }
+                 }
             
         }
 
