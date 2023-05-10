@@ -11,7 +11,7 @@ pipeline {
         stage('Build') {
             
                 agent {
-               		sh 'sudo docker build -t fi-verifications .'     
+               		docker 'sudo docker build -t fi-verifications .'     
                     
             }
             steps{
