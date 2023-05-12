@@ -7,7 +7,7 @@ import javax.persistence.*;
 @Table(name = "m_branches")
 public class BranchDealer {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
   private long key;
     private String label;
     private String location;

@@ -70,7 +70,7 @@ begin
     for c  in select 1 where not exists (select 1 from pg_tables where schemaname = lower(v_schema_name) and tablename = lower('applicant_details')) loop
     execute 'create table ' ||v_schema_name||'.applicant_details
                 (
-                    applicant_id bigint NOT NULL,
+                    applicant_id serial   NOT NULL,
                     agency_name character varying(255),
                     app_role character varying(255),
                     applicant_name character varying(255),
@@ -112,7 +112,7 @@ begin
     for c  in select 1 where not exists (select 1 from pg_tables where schemaname = lower(v_schema_name) and tablename = lower('applicants_address')) loop
     execute 'create table ' ||v_schema_name||'.applicants_address
                 (
-                    address_id bigint NOT NULL,
+                    address_id serial   NOT NULL,
                         address character varying(255),
                         address_type character varying(255),
                         applicant_id bigint NOT NULL,
@@ -125,7 +125,7 @@ begin
     for c  in select 1 where not exists (select 1 from pg_tables where schemaname = lower(v_schema_name) and tablename = lower('application_details')) loop
     execute 'create table ' ||v_schema_name||'.application_details
                 (
-                 application_id bigint NOT NULL,
+                 application_id serial   NOT NULL,
                     branch_code character varying(255),
                     branch_name character varying(255),
                     case_id bigint NOT NULL,
@@ -136,7 +136,8 @@ begin
                     modified_on timestamp without time zone,
                     product_type character varying(255),
                     verification_stage character varying(255),
-                    verification_status character varying(255)
+                    verification_status character varying(255),
+                    agency_id character varying(255)
                 )';
 
 	end loop;
@@ -145,7 +146,7 @@ begin
     for c  in select 1 where not exists (select 1 from pg_tables where schemaname = lower(v_schema_name) and tablename = lower('application_raw_object')) loop
     execute 'create table ' ||v_schema_name||'.application_raw_object
                 (
-                id bigint NOT NULL,
+                id serial NOT NULL,
                     application_id bigint,
                     case_id character varying(255),
                     created_on timestamp without time zone,
@@ -159,7 +160,7 @@ begin
     for c  in select 1 where not exists (select 1 from pg_tables where schemaname = lower(v_schema_name) and tablename = lower('assignor')) loop
     execute 'create table ' ||v_schema_name||'.assignor
                 (
-                assigned_id bigint NOT NULL,
+                assigned_id serial   NOT NULL,
                     a_status character varying(255),
                     address character varying(255),
                     address_type character varying(255),
@@ -187,7 +188,7 @@ begin
     for c  in select 1 where not exists (select 1 from pg_tables where schemaname = lower(v_schema_name) and tablename = lower('commitment_details')) loop
     execute 'create table ' ||v_schema_name||'.commitment_details
                 (
-                    applicant_id bigint NOT NULL,
+                    applicant_id serial   NOT NULL,
                     bank_name_loc character varying(255),
                     car_insurance_amt integer NOT NULL,
                     car_insurance_duration integer NOT NULL,
@@ -216,7 +217,7 @@ begin
     for c  in select 1 where not exists (select 1 from pg_tables where schemaname = lower(v_schema_name) and tablename = lower('contact_details')) loop
     execute 'create table ' ||v_schema_name||'.contact_details
                 (
-                    applicant_id bigint NOT NULL,
+                    applicant_id serial   NOT NULL,
                        cont_domain_check boolean NOT NULL,
                        mobile_number character varying(255),
                        mobile_number_verified boolean NOT NULL,
@@ -238,7 +239,7 @@ begin
     for c  in select 1 where not exists (select 1 from pg_tables where schemaname = lower(v_schema_name) and tablename = lower('expenses')) loop
     execute 'create table ' ||v_schema_name||'.expenses
                 (
-                    applicant_id bigint NOT NULL,
+                    applicant_id serial   NOT NULL,
                        avg_fuel_cost numeric(19,2),
                        broadband_bill_amt numeric(19,2),
                        cable_net_bill_amt numeric(19,2),
@@ -260,7 +261,7 @@ begin
     for c  in select 1 where not exists (select 1 from pg_tables where schemaname = lower(v_schema_name) and tablename = lower('family_details')) loop
     execute 'create table ' ||v_schema_name||'.family_details
                 (
-                 applicant_id bigint NOT NULL,
+                 applicant_id serial   NOT NULL,
                      child_education_level character varying(255),
                      entity_confirmation_father boolean NOT NULL,
                      entity_confirmation_mother boolean NOT NULL,
@@ -300,7 +301,7 @@ begin
     for c  in select 1 where not exists (select 1 from pg_tables where schemaname = lower(v_schema_name) and tablename = lower('fi_files')) loop
     execute 'create table ' ||v_schema_name||'.fi_files
                 (
-                    id bigint NOT NULL,
+                    id serial   NOT NULL,
                         applicant_id bigint NOT NULL,
                         content_type character varying(255),
                         data bytea,
@@ -359,7 +360,7 @@ begin
             for c  in select 1 where not exists (select 1 from pg_tables where schemaname = lower(v_schema_name) and tablename = lower('h_verifiers')) loop
             execute 'create table ' ||v_schema_name||'.h_verifiers
                         (
-                            verifier_history_id bigint NOT NULL,
+                            verifier_history_id serial   NOT NULL,
                                 res_negative_location boolean NOT NULL,
                                 res_score numeric(19,2),
                                 address_line1 character varying(255),
@@ -560,7 +561,7 @@ begin
         execute 'create table ' ||v_schema_name||'.m_branches
                     (
 
-                 key bigint NOT NULL,
+                 key serial   NOT NULL,
                      country character varying(255),
                      is_active boolean,
                      label character varying(255),
@@ -579,7 +580,7 @@ begin
                 execute 'create table ' ||v_schema_name||'.notification
                             (
 
-                             notification_id bigint NOT NULL,
+                             notification_id serial   NOT NULL,
                                notification_payload character varying(255),
                                "timestamp" timestamp without time zone,
                                username character varying(255)
@@ -592,7 +593,7 @@ begin
                        execute 'create table ' ||v_schema_name||'.office_self_employment
                                    (
 
-                                   applicant_id bigint NOT NULL,
+                                   applicant_id serial   NOT NULL,
                                      avg_monthly_turn_over integer,
                                      business_activity_sighted character varying(255),
                                      business_board_sighted boolean NOT NULL,
@@ -644,7 +645,7 @@ begin
         execute 'create table ' ||v_schema_name||'.personal_details
                     (
 
-                applicant_id bigint NOT NULL,
+                applicant_id serial   NOT NULL,
                     age integer NOT NULL,
                     alias character varying(255),
                     birth_date character varying(255),
@@ -680,7 +681,7 @@ begin
                 execute 'create table ' ||v_schema_name||'.residence_details
                             (
 
-                            applicant_id bigint NOT NULL,
+                            applicant_id serial   NOT NULL,
                               res_negative_location boolean NOT NULL,
                               res_score numeric(19,2),
                               address_line1 character varying(255),
@@ -738,7 +739,7 @@ begin
         execute 'create table ' ||v_schema_name||'.summary
                     (
 
-                     applicant_id bigint NOT NULL,
+                     applicant_id serial   NOT NULL,
                      agency_name character varying(255),
                      date_and_time_performed timestamp without time zone,
                      final_review_status character varying(255),
@@ -763,7 +764,7 @@ begin
         execute 'create table ' ||v_schema_name||'.user_role_details
                     (
 
-                   id bigint NOT NULL,
+                   id serial   NOT NULL,
                       institute_id bigint NOT NULL,
                       mail_id character varying(255),
                       mobile bigint NOT NULL,
@@ -778,7 +779,7 @@ begin
                 execute 'create table ' ||v_schema_name||'.vehicle_details
                             (
 
-                           applicant_id bigint NOT NULL,
+                           applicant_id serial   NOT NULL,
                                bike_hypothecated_to character varying(255),
                                bike_issuing_authority character varying(255),
                                bike_manufacture_name character varying(255),
@@ -1063,7 +1064,7 @@ fi_id character varying(255) NOT NULL,
         execute 'create table ' ||v_schema_name||'.vms_data_config
                     (
 
-                  vms_config_data_id bigint NOT NULL,
+                  vms_config_data_id serial   NOT NULL,
                       branch_code character varying(255),
                       branch_name character varying(150),
                       res_negative_location boolean NOT NULL,

@@ -1,123 +1,96 @@
-/*
-package ai.lentra.masterconfig;
-
-import ai.lentra.dto.masterconfig.MasterVerificationConfigurationDto;
-import ai.lentra.dto.masterconfig.VerificationFormConfigDto;
-import ai.lentra.dto.masterconfig.VerificationFormFieldsConfigDto;
-import ai.lentra.exceptions.ResourceNotFoundException;
-import ai.lentra.modal.masterconfig.MasterVerificationConfiguration;
-import ai.lentra.modal.masterconfig.VerificationFormConfig;
-import ai.lentra.modal.masterconfig.VerificationFormFieldsConfig;
-import ai.lentra.repository.masterconfig.VerificationFormFieldsConfigRepository;
-import ai.lentra.service.masterconfig.VerificationConfigService;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.test.context.junit4.SpringRunner;
-
-import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.when;
-
-@RunWith(SpringRunner.class)
-@SpringBootTest
-public class VerificationConfigTests {
-@Autowired
-    VerificationConfigService service;
-@MockBean
-VerificationFormFieldsConfigRepository repository;
-
-    @Test
-    public void findAll()  {
-        VerificationFormFieldsConfig formConfig = getDemoDetails();
-
-        when(repository.findAll()).thenReturn(
-                (List<VerificationFormFieldsConfig>) Stream.of(formConfig, formConfig).collect(Collectors.toList())
-        );
-        assertEquals(2,repository.findAll().size());
-
-    }
-
-
-    @Test
-    public void findSummaryByAppIdTest() {
-        Integer applicantId = 23;
-        VerificationFormFieldsConfig formFieldsConfig = getDemoDetails();
-        VerificationFormFieldsConfigDto formFieldsConfigDto = getDemoDtoDetails();
-        when(repository.findById(formFieldsConfig.getFieldId())).thenReturn(Optional.of(formFieldsConfig));
-        assertEquals(formFieldsConfig, service.updateFields(formFieldsConfigDto));
-    }
-
-    private VerificationFormFieldsConfigDto getDemoDtoDetails() {
-        VerificationFormFieldsConfigDto verificationFormFieldsConfigDto = new VerificationFormFieldsConfigDto();
-        verificationFormFieldsConfigDto.setFieldType("qwq1");
-        verificationFormFieldsConfigDto.setFieldName("abvcd");
-        verificationFormFieldsConfigDto.setFieldId(1111);
-        verificationFormFieldsConfigDto.setHidden(false);
-        verificationFormFieldsConfigDto.setScoring(true);
-        verificationFormFieldsConfigDto.setDataAutoPopulation(true);
-        verificationFormFieldsConfigDto.setLookTable("loohup");
-        verificationFormFieldsConfigDto.setLookUp(true);
-        verificationFormFieldsConfigDto.setRequired(false);
-        verificationFormFieldsConfigDto.setMaxLength(13233);
-        verificationFormFieldsConfigDto.setMaxLength(34567890);
-        verificationFormFieldsConfigDto.setMaxRange(345);
-        verificationFormFieldsConfigDto.setMaxRange(234567890);
-        MasterVerificationConfigurationDto master = new MasterVerificationConfigurationDto();
-        master.setId(123);
-        master.setRetrigerVerification(false);
-        master.setMultiVerificationAllowed("sdgvcuds");
-        master.setProfileId(2443);
-        master.setVType("fi");
-        master.setUserType("new");
-        verificationFormFieldsConfigDto.setMasterVerificationConfiguration(master);
-                VerificationFormConfigDto v1= new VerificationFormConfigDto();
-                v1.setFormId(1);
-                v1.setFormName("dguwe");
-                v1.setFormDescription("shdcu");
-                verificationFormFieldsConfigDto.setVerificationFormConfig(v1);
-                return verificationFormFieldsConfigDto;
-
-    }
-
-
-
-    private VerificationFormFieldsConfig getDemoDetails() {
-
-        VerificationFormFieldsConfig verificationFormFieldsConfigDto = new VerificationFormFieldsConfig();
-        verificationFormFieldsConfigDto.setFieldType("qwq1");
-        verificationFormFieldsConfigDto.setFieldName("abvcd");
-        verificationFormFieldsConfigDto.setFieldId(1111);
-        verificationFormFieldsConfigDto.setHidden(false);
-        verificationFormFieldsConfigDto.setScoring(true);
-        verificationFormFieldsConfigDto.setDataAutoPopulation(true);
-        verificationFormFieldsConfigDto.setLookTable("loohup");
-        verificationFormFieldsConfigDto.setLookUp(true);
-        verificationFormFieldsConfigDto.setRequired(false);
-        verificationFormFieldsConfigDto.setMaxLength(13233);
-        verificationFormFieldsConfigDto.setMaxLength(34567890);
-        verificationFormFieldsConfigDto.setMaxRange(345);
-        verificationFormFieldsConfigDto.setMaxRange(234567890);
-        MasterVerificationConfiguration master = new MasterVerificationConfiguration();
-        master.setId(123);
-        master.setRetrigerVerification(false);
-        master.setMultiVerificationAllowed("sdgvcuds");
-        master.setProfileId(2443);
-        master.setVType("fi");
-        master.setUserType("new");
-        verificationFormFieldsConfigDto.setMasterVerificationConfiguration(master);
-        VerificationFormConfig v1= new VerificationFormConfig();
-        v1.setFormId(1);
-        v1.setFormName("dguwe");
-        v1.setFormDescription("shdcu");
-        verificationFormFieldsConfigDto.setVerificationFormConfig(v1);
-        return verificationFormFieldsConfigDto;
-    }
-}
-*/
+//
+//package ai.lentra.masterconfig;
+//
+//
+//import ai.lentra.core.test.TransactionalTestContainerSupport;
+//import ai.lentra.dto.masterConfig.ProductsDTO;
+//import ai.lentra.dto.responses.ResponseDTO;
+//import ai.lentra.exceptions.DuplicateResourceException;
+//import ai.lentra.exceptions.ResourceNotFoundException;
+//import ai.lentra.modal.masterconfig.*;
+//import ai.lentra.repository.masterconfig.VerificationFormFieldsConfigRepository;
+//import ai.lentra.service.masterconfig.VerificationConfigService;
+//import org.junit.jupiter.api.Test;
+//import org.junit.runner.RunWith;
+//import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.boot.test.context.SpringBootTest;
+//import org.springframework.boot.test.mock.mockito.MockBean;
+//import org.springframework.context.annotation.Scope;
+//import org.springframework.http.ResponseEntity;
+//import org.springframework.test.context.junit4.SpringRunner;
+//
+//import java.util.ArrayList;
+//import java.util.List;
+//import java.util.Optional;
+//import java.util.stream.Collectors;
+//import java.util.stream.Stream;
+//
+//import static org.junit.Assert.assertNotNull;
+//import static org.junit.jupiter.api.Assertions.assertEquals;
+//import static org.mockito.Mockito.when;
+//
+//@SpringBootTest
+//@Scope("ai.lentra.service.*")
+//public class VerificationConfigTests extends TransactionalTestContainerSupport {
+//    @Autowired
+//    VerificationConfigService service;
+//
+//    @Autowired
+//    VerificationFormFieldsConfigRepository repository;
+//
+//    @Test
+//    public void saveVerificationConfigTest() throws ResourceNotFoundException, DuplicateResourceException {
+//
+//        List<MasterVerificationConfiguration> masterConfigList = new ArrayList<>();
+//
+//        masterConfigList.add(dummyConfiguration());
+//        ResponseEntity<ResponseDTO> response = service.addFields(masterConfigList);
+//        when("Configuration has been added successfully").thenReturn(response.getBody().getMessage());
+//        assertNotNull(response);
+//
+//    }
+//
+//    public MasterVerificationConfiguration dummyConfiguration(){
+//        MasterVerificationConfiguration masterConfig = new MasterVerificationConfiguration();
+////        masterConfig.setVerificationConfig();
+//        masterConfig.seteSign(true);
+//        masterConfig.setvType("V-TYpe");
+//        masterConfig.setProfileId(1);
+//        masterConfig.setCreated_by("createdby Agent");
+//        masterConfig.setInstitutionId(1234);
+//        masterConfig.setModified_by("ModifiedBy");
+//        masterConfig.setMultiVerificationAllowed("yes");
+//        masterConfig.setProfileName("profile1");
+//        masterConfig.setUserType("user1");
+//        masterConfig.setSubProfileName("subProfile1");
+//        masterConfig.setRetrigerVerification(false);
+//        masterConfig.setProductLevelLogic("abc");
+//        masterConfig.setRetrigerVerification(false);
+//        VerificationConfig config = new VerificationConfig();
+//        config.setvType("v-Type1");
+//        config.setvDescription("desc1");
+//        config.setInstitute_id("1234");
+//        List<VerificationFormConfig> formConfigList = new ArrayList<>();
+//        VerificationFormConfig formConfig = new VerificationFormConfig();
+//        formConfig.setFormId(23);
+//        formConfig.setFormDescription("form1");
+//        formConfig.setFormName("Form1");
+//        formConfig.setInstitute_id("1234");
+//        formConfigList.add(formConfig);
+//        List<VerificationConfig> configList = new ArrayList<>();
+//        configList.add(config);
+//        masterConfig.setVerificationConfig(configList);
+//        config.setVerificationFormConfig(formConfigList);
+//        VerificationFormFieldsConfig fieldsConfig = new VerificationFormFieldsConfig();
+//
+//        return masterConfig;
+//    }
+//    @Test
+//    public void getAllConfig()  throws ResourceNotFoundException, DuplicateResourceException{
+//        ResponseEntity<ResponseDTO> response = service.getAll(1234);
+//        when("OK").thenReturn(response.getStatusCode().toString());
+//        assertNotNull(response);
+//
+//    }
+//}
+//

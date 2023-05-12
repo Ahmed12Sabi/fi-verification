@@ -1,4 +1,4 @@
-package ai.lentra.dto.vehicle_info;
+package ai.lentra.dto.vehicleinfo;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;

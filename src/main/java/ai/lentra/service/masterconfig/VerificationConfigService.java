@@ -13,7 +13,7 @@ import java.util.List;
 public interface VerificationConfigService {
     ResponseEntity<ResponseDTO> addFields(List<MasterVerificationConfiguration> verificationFormFieldsConfig) throws ConstraintViolationException;
 
-    List<MasterVerificationConfiguration> getAll(Integer institutionId);
+    ResponseEntity<ResponseDTO> getAll(Integer institutionId);
 
     ResponseEntity<ResponseDTO>  updateFields(VerificationFormFieldsConfigDto verificationFormFieldsConfigDto);
 

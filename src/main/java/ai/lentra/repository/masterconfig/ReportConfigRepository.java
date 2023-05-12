@@ -8,9 +8,9 @@ import java.util.List;
 
 public interface ReportConfigRepository extends JpaRepository<ReportConfig, Long> {
 
-    @Query(value = "select r.form_name, r.id, r.institute_id from report_config r where r.institute_id=?1", nativeQuery = true)
-    List<ReportConfig> findByInstitute(Integer instituteId);
-@Query(value = "insert into report_config (id, form_name,fields,institute_id) values (?, ?,?:::jsonb,?)", nativeQuery = true)
+    @Query(value = "select r.form_name, r.id, r.institute_id from schema_client1_vms.report_config r where r.institute_id=?1", nativeQuery = true)
+    List<ReportConfig> findByInstitute(String instituteId);
+    @Query(value = "insert into schema_client1_vms.report_config (id, form_name,fields,institute_id) values (?, ?,?:::jsonb,?)", nativeQuery = true)
 
     ReportConfig saveToDb(long id, String formName, String fields, Integer instituteId);
 }

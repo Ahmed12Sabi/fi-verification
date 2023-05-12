@@ -1,13 +1,17 @@
 package ai.lentra.service.masterconfig;
 
+import ai.lentra.dto.responses.ResponseDTO;
 import ai.lentra.modal.masterconfig.ReportConfig;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 public interface ReportConfigService {
-    List<String> findByInstitute(Integer instituteId);
+    List<String> findByInstitute(String instituteId);
 
-    List<ReportConfig> save(List<ReportConfig> reportConfig);
+    ResponseEntity<ResponseDTO> save(List<ReportConfig> reportConfig);
 
-    List<ReportConfig> findByInstituteAll(Integer instituteId);
+    ResponseEntity<ResponseDTO> findByInstituteAll(String instituteId);
 }

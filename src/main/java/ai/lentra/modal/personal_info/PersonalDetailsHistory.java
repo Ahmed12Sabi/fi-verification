@@ -11,7 +11,7 @@ import java.time.Instant;
 @Embeddable
 public class PersonalDetailsHistory {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	@Column(name = "applicant_id")
 	private long applicantId;

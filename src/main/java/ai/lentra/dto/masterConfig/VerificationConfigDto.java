@@ -1,7 +1,11 @@
 package ai.lentra.dto.masterConfig;
 
+import ai.lentra.modal.masterconfig.MasterVerificationConfiguration;
+import ai.lentra.modal.masterconfig.VerificationFormConfig;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.List;
@@ -10,19 +14,46 @@ import java.util.List;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class VerificationConfigDto
 {
-    @NotNull(message = "v_id should not be null")
-    private long vId;
 
-//    private MasterVerificationConfigurationDto masterVerificationConfiguration;
-    @NotNull(message = "verification type should not be null")
-    @Size(min = 2, max = 50, message = "verification type should have 2 to 50 characters")
+    private long vId;
+    //    @OneToOne(cascade = CascadeType.ALL)
+
+    private MasterVerificationConfigurationDto masterVerificationConfiguration;
+    private boolean esign;
+    private boolean retrigerVerification;
+    private String multiVerificationAllowed;
+
+    public boolean isEsign() {
+        return esign;
+    }
+
+    public void setEsign(boolean esign) {
+        this.esign = esign;
+    }
+
+    public boolean isRetrigerVerification() {
+        return retrigerVerification;
+    }
+
+    public void setRetrigerVerification(boolean retrigerVerification) {
+        this.retrigerVerification = retrigerVerification;
+    }
+
+    public String getMultiVerificationAllowed() {
+        return multiVerificationAllowed;
+    }
+
+    public void setMultiVerificationAllowed(String multiVerificationAllowed) {
+        this.multiVerificationAllowed = multiVerificationAllowed;
+    }
 
     private String vType;
-    @NotNull(message = "verification description should not be null")
-    @Size(min = 2, max = 50, message = "verification description should have 2 to 50 characters")
 
-    private String vDescription;
-    private List<VerificationFormFieldsConfigDto> verificationFormFieldsConfigDto;
+    private String userType;
+
+    // @JoinColumn(name = "form_id", referencedColumnName = "form_id")
+
+    private List<VerificationFormConfigDto> verificationFormConfig;
 
     public long getvId() {
         return vId;
@@ -30,6 +61,14 @@ public class VerificationConfigDto
 
     public void setvId(long vId) {
         this.vId = vId;
+    }
+
+    public MasterVerificationConfigurationDto getMasterVerificationConfiguration() {
+        return masterVerificationConfiguration;
+    }
+
+    public void setMasterVerificationConfiguration(MasterVerificationConfigurationDto masterVerificationConfiguration) {
+        this.masterVerificationConfiguration = masterVerificationConfiguration;
     }
 
     public String getvType() {
@@ -40,19 +79,19 @@ public class VerificationConfigDto
         this.vType = vType;
     }
 
-    public String getvDescription() {
-        return vDescription;
+    public String getUserType() {
+        return userType;
     }
 
-    public void setvDescription(String vDescription) {
-        this.vDescription = vDescription;
+    public void setUserType(String userType) {
+        this.userType = userType;
     }
 
-    public List<VerificationFormFieldsConfigDto> getVerificationFormFieldsConfigDto() {
-        return verificationFormFieldsConfigDto;
+    public List<VerificationFormConfigDto> getVerificationFormConfig() {
+        return verificationFormConfig;
     }
 
-    public void setVerificationFormFieldsConfigDto(List<VerificationFormFieldsConfigDto> verificationFormFieldsConfigDto) {
-        this.verificationFormFieldsConfigDto = verificationFormFieldsConfigDto;
+    public void setVerificationFormConfig(List<VerificationFormConfigDto> verificationFormConfig) {
+        this.verificationFormConfig = verificationFormConfig;
     }
 }

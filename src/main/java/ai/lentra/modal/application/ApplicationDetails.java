@@ -10,6 +10,31 @@ import java.util.List;
 @Entity
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ApplicationDetails {
+
+
+    @Id
+    private Long applicationId;
+    private long caseId;
+    private String insId;
+    private String branchName;
+    private String branchCode;
+    private String productType;
+    private String verificationStatus;
+    private String verificationStage;
+    private  String createdBy;
+    private Timestamp createdOn;
+    private String modifiedBy;
+    private Timestamp modifiedOn;
+    private String agencyId;
+
+    public String getAgencyId() {
+        return agencyId;
+    }
+
+    public void setAgencyId(String agencyId) {
+        this.agencyId = agencyId;
+    }
+
     public Long getApplicationId() {
         return applicationId;
     }
@@ -114,19 +139,6 @@ public class ApplicationDetails {
         this.applicantDetails = applicantDetails;
     }
 
-    @Id
-    private Long applicationId;
-    private long caseId;
-    private String insId;
-    private String branchName;
-    private String branchCode;
-    private String productType;
-    private String verificationStatus;
-    private String verificationStage;
-    private  String createdBy;
-    private Timestamp createdOn;
-    private String modifiedBy;
-    private Timestamp modifiedOn;
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "application_details")
     private List<ApplicantDetails> applicantDetails = new ArrayList<>();

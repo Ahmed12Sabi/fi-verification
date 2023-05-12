@@ -13,7 +13,7 @@ import java.util.Date;
 @Embeddable
 public class SummaryHistory {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	@Column(name = "applicant_id")
 	private long applicantId;

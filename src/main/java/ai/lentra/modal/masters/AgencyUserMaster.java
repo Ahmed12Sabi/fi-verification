@@ -64,7 +64,7 @@ public class AgencyUserMaster {
         isActive = active;
     }
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long key;
     private String label;
     private String branchId;

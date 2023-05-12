@@ -4,14 +4,8 @@ import ai.lentra.commons.JsonUtils1;
 import ai.lentra.dto.masterConfig.MasterVerificationConfigurationDto;
 import ai.lentra.dto.masterConfig.VerificationFormFieldsConfigDto;
 import ai.lentra.dto.responses.ResponseDTO;
-import ai.lentra.modal.masterconfig.MasterVerificationConfiguration;
-import ai.lentra.modal.masterconfig.VerificationConfig;
-import ai.lentra.modal.masterconfig.VerificationFormConfig;
-import ai.lentra.modal.masterconfig.VerificationFormFieldsConfig;
-import ai.lentra.repository.masterconfig.MasterVerificationConfigurationRepository;
-import ai.lentra.repository.masterconfig.VerificaionConfigRepository;
-import ai.lentra.repository.masterconfig.VerificationFormConfigRepository;
-import ai.lentra.repository.masterconfig.VerificationFormFieldsConfigRepository;
+import ai.lentra.modal.masterconfig.*;
+import ai.lentra.repository.masterconfig.*;
 import ai.lentra.service.masterconfig.VerificationConfigService;
 import ai.lentra.service.verification_type.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,6 +37,9 @@ public class VerificationConfigServiceImpl implements VerificationConfigService 
     VerificationFormFieldsConfigRepository verificationFormFieldsConfigRepository;
     @Autowired
     MasterVerificationConfigurationRepository masterRepository;
+
+    @Autowired
+    ProductConfigRepository productConfigRepository;
 
     //    @Autowired
 //    ConfigurationRepository configurationRepository;
@@ -157,67 +154,82 @@ public class VerificationConfigServiceImpl implements VerificationConfigService 
     @Override
     public ResponseEntity<ResponseDTO> addFields(List<MasterVerificationConfiguration> masterVerificationConfigurationList) throws ConstraintViolationException {
 
-     List<VerificationConfig> verifictionConfigList =  new ArrayList<>();
-        List<VerificationFormConfig> VerificationFormConfigList =  new ArrayList<>();
-        List<VerificationFormFieldsConfig> fieldsConfigList =  new ArrayList<>();
+        List<MasterVerificationConfiguration>masterVerificationConfigurationList1 = masterRepository.saveAll(masterVerificationConfigurationList);
 
-        masterVerificationConfigurationList.stream().forEach(report->
+      /*  masterVerificationConfigurationList.stream().forEach(report ->
         {
-            verifictionConfigList.addAll(report.getVerificationConfig()) ;
-            verifictionConfigList.stream().forEach(config->
-                    VerificationFormConfigList.addAll(config.getVerificationFormConfig()));
-            VerificationFormConfigList.stream().forEach(field->
-                    fieldsConfigList.addAll(field.getVerificationFormFieldsConfig()));
-            verificationFormFieldsConfigRepository.saveAll(fieldsConfigList);
+            report.getVerificationConfig().stream().forEach(config -> {
+                config.setMasterVerificationConfiguration(report);
 
-            verificationFormConfigRepository.saveAll(VerificationFormConfigList);
-            verificaionConfigRepository.saveAll(verifictionConfigList);
+                config.getVerificationFormConfig().stream().forEach(form->{
+                    form.setVerificationConfig(config);
+                    form.getVerificationFormFieldsConfig().stream().forEach(field->{
+                        field.setVerificationFormConfig(form);
+                    });
+                    verificationFormFieldsConfigRepository.saveAll(form.getVerificationFormFieldsConfig());
+
+                });
+                verificationFormConfigRepository.saveAll(config.getVerificationFormConfig());
+
+            });
 
 
-        } );
-       /* verifictionConfigList.stream().forEach(config->
+            verificaionConfigRepository.saveAll(report.getVerificationConfig());
+            ProductConfigEntity product = productConfigRepository.getByInstituteIdAndProfileName(report.getInstituteId(), report.getProfileName());
+           if(product!=null) {
+               report.setProductType(product.getProductType());
+           }
+        });*/
 
-                VerificationFormConfigList.addAll( verificationFormConfigRepository.saveAll(config.getVerificationFormConfig()))
-        );
-        VerificationFormConfigList.stream().forEach(config->
-
-                fieldsConfigList.addAll( verificationFormFieldsConfigRepository.saveAll(config.getVerificationFormFieldsConfig()))
-        );
-*/
         masterVerificationConfigurationList = masterRepository.saveAll(masterVerificationConfigurationList);
 
 
-
         ResponseDTO responseDTO = new ResponseDTO();
-         responseDTO.setMessage("Data added successfully");
-         responseDTO.setCode("201");
-         responseDTO.setStatus("Created");
-         responseDTO.setData(masterVerificationConfigurationList);
+        responseDTO.setMessage("Data added successfully");
+        responseDTO.setCode("201");
+        responseDTO.setStatus("Created");
+        responseDTO.setData(masterVerificationConfigurationList);
         return ResponseEntity.status(HttpStatus.CREATED).body(responseDTO);
     }
 
     @Override
-    public List<MasterVerificationConfiguration> getAll(Integer institutionId) {
-        List<MasterVerificationConfiguration> masterVerificationConfigurationList = masterRepository.finByInstitutionId(institutionId);
-
-        masterVerificationConfigurationList.stream().forEach(c->
-                c.setVerificationConfig(verificaionConfigRepository.findByMasterId(c.getId()))
-        );
-        List<VerificationConfig> verificationConfigList =  new ArrayList<>();
+    public ResponseEntity<ResponseDTO> getAll(Integer institutionId) {
+        List<MasterVerificationConfiguration> masterVerificationConfigurationList = masterRepository.findByInstituteId(String.valueOf(institutionId));
+        List<VerificationConfig> verificationConfigList = new ArrayList<>();
         masterVerificationConfigurationList.stream().forEach(
-                m->
-                        verificationConfigList.addAll( m.getVerificationConfig().stream().collect(Collectors.toList()))
-        );
+                m -> {
+                    ProductConfigEntity product = productConfigRepository.getByInstituteIdAndProfileName(m.getInstituteId(), m.getProfileName());
+                 if(product!=null) {
+                     m.setProductType(product.getProductType());
+                 }
+                 verificationConfigList.addAll(verificaionConfigRepository.findByMasterVerificationConfiguration_Id(m.getId()));
+                    m.setVerificationConfig(verificationConfigList);
 
-        verificationConfigList.stream().forEach(v->
-                v.setVerificationFormConfig(verificationFormConfigRepository.getByVId(v.getvId()))
-        );
-        verificationConfigList.stream().forEach(v->v.getVerificationFormConfig().stream().forEach(f->
-                f.setVerificationFormFieldsConfig(verificationFormFieldsConfigRepository.findByFormId(f.getFormId()))
+                });
+        List<VerificationFormConfig> verificationFormConfigList = new ArrayList<>();
+
+        verificationConfigList.stream().forEach(v -> {
+            verificationFormConfigList.addAll(verificationFormConfigRepository.findByVerificationConfig_vId(v.getvId()));
+            v.setVerificationFormConfig(verificationFormConfigList);
+
+        });
+        List<VerificationFormFieldsConfig> verificationFormFieldsConfigList = new ArrayList<>();
+
+        verificationConfigList.stream().forEach(v ->
+                v.getVerificationFormConfig().stream().forEach(f ->
+                        {
+                            verificationFormFieldsConfigList.addAll(verificationFormFieldsConfigRepository.findByVerificationFormConfig_FormId(f.getFormId()));
+                            f.setVerificationFormFieldsConfig(verificationFormFieldsConfigList);
+                        }
                 ));
 
-
-        return masterVerificationConfigurationList;
+        ResponseDTO responseDTO = new ResponseDTO();
+        responseDTO.setMessage("Success");
+        responseDTO.setCode("200");
+        responseDTO.setStatus("OK");
+        responseDTO.setData(masterVerificationConfigurationList);
+        return ResponseEntity.status(HttpStatus.OK).body(responseDTO);
+//        return masterVerificationConfigurationList;
     }
 
     @Override
@@ -230,64 +242,10 @@ public class VerificationConfigServiceImpl implements VerificationConfigService 
         return null;
     }
 
-   /* public ResponseEntity<ResponseDTO> updateFields(VerificationFormFieldsConfigDto verificationFormFieldsConfigDto) {
-        VerificationFormFieldsConfig verificationFormFieldsConfigNew = jsonUtils.mapper().convertValue(verificationFormFieldsConfigDto, VerificationFormFieldsConfig.class);
-//        VerificationFormFieldsConfig verificationFormFieldsConfig1 = repository.getById(verificationFormFieldsConfigNew.getFieldId());
-
-        Optional<VerificationFormFieldsConfig> optionalApplicant = repository.findById(verificationFormFieldsConfigNew.getFieldId());
-        if (!optionalApplicant.isPresent()) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(getResponse(404, "Details not found for field " + verificationFormFieldsConfigNew.getFieldId(), "ERROR"));
-        }
-        VerificationFormFieldsConfig verificationFormFieldsConfig1 = optionalApplicant.get();
-
-        verificationFormFieldsConfig1.setFieldId(verificationFormFieldsConfigNew.getFieldId());
-        verificationFormFieldsConfig1.setFieldName(verificationFormFieldsConfigNew.getFieldName());
-        verificationFormFieldsConfig1.setFieldType(verificationFormFieldsConfigNew.getFieldType());
-        verificationFormFieldsConfig1.setHidden(verificationFormFieldsConfigNew.isHidden());
-        verificationFormFieldsConfig1.setScoringName(verificationFormFieldsConfigNew.getScoringName());
-        verificationFormFieldsConfig1.setScoring(verificationFormFieldsConfigNew.isScoring());
-        verificationFormFieldsConfig1.setStatus(verificationFormFieldsConfigNew.isStatus());
-        verificationFormFieldsConfig1.setRequired(verificationFormFieldsConfigNew.isRequired());
-        verificationFormFieldsConfig1.setLookUp(verificationFormFieldsConfigNew.isLookUp());
-        verificationFormFieldsConfig1.setHidden(verificationFormFieldsConfigNew.isHidden());
-        verificationFormFieldsConfig1.setLookTable(verificationFormFieldsConfigNew.getLookTable());
-        verificationFormFieldsConfig1.setDataAutoPopulation(verificationFormFieldsConfigNew.isDataAutoPopulation());
-        verificationFormFieldsConfig1.setMasterVerificationConfiguration(verificationFormFieldsConfigNew.getMasterVerificationConfiguration());
-        verificationFormFieldsConfig1.setVerificationFormConfig(verificationFormFieldsConfigNew.getVerificationFormConfig());
-        MasterVerificationConfiguration masterVerificationConfiguration = jsonUtils.mapper().convertValue(verificationFormFieldsConfigDto.getMasterVerificationConfiguration(), MasterVerificationConfiguration.class);
-        VerificationFormConfig verificationFormConfig = jsonUtils.mapper().convertValue(verificationFormFieldsConfigDto.getVerificationFormConfig(), VerificationFormConfig.class);
-        VerificationConfig verificationConfig = jsonUtils.mapper().convertValue(verificationFormFieldsConfigDto.getVerificationFormConfig().getVerificationConfig(), VerificationConfig.class);
-        verificationFormFieldsConfig1.setMasterVerificationConfiguration(masterVerificationConfiguration);
-        verificationFormFieldsConfig1.setVerificationFormConfig(verificationFormConfig);
-        //  verificationFormFieldsConfig1.getVerificationFormConfig().setVerificationConfig(verificationConfig);
-        try {
-            repository.save(verificationFormFieldsConfig1);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(getResponse(400, "Error while updating a field config details ", "ERROR"));
-        }
-        return ResponseEntity.status(HttpStatus.OK).body(getSuccessResponse(200, "Field Config Details updated successfully", "SUCCESS", verificationFormFieldsConfig1));
-
-
-    }
-*/
-    /*@Override
-    public List<MasterVerificationConfigurationDto> getVerificationType(Integer institutionId, String productType, String profile) {
-        String profileName = productService.getProductDetails(institutionId, productType, profile);
-        List<MasterVerificationConfiguration> master = masterRepository.findByProfile(profileName);
-
-        List<MasterVerificationConfigurationDto> masterDto =
-
-                master.stream()
-                        .map(add -> jsonUtils.mapper().convertValue(add, MasterVerificationConfigurationDto.class)).collect(Collectors.toList());
-
-        return masterDto;
-//        return ResponseEntity.status(HttpStatus.OK).body(getSuccessResponse(200,"Master Verification Config Details loaded successfully","SUCCESS",masterDto ));
-    }*/
-
     @Override
     public List<VerificationFormFieldsConfig> getAllConfig() {
-        List<VerificationFormFieldsConfig> list = repository.findCrossJoin();
+        List<VerificationFormFieldsConfig> list = new ArrayList<>();
+                //repository.findCrossJoin();
 //        Configuration config = new Configuration()
         return list;
     }

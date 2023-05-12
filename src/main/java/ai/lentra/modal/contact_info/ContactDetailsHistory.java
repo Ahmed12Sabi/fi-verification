@@ -14,7 +14,7 @@ import java.time.Instant;
 public class ContactDetailsHistory {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     @Column(name = "applicant_id", nullable = false)
     private long applicantId;

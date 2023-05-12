@@ -1,4 +1,6 @@
 package ai.lentra.masterconfig;
+import ai.lentra.core.test.TransactionalTestContainerSupport;
+import ai.lentra.dto.responses.ResponseDTO;
 import ai.lentra.modal.masterconfig.ReportConfig;
 import ai.lentra.modal.masterconfig.ReportConfigFields;
 import ai.lentra.modal.masterconfig.VerificationFormFieldsConfig;
@@ -11,6 +13,8 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.context.annotation.Scope;
+import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.ArrayList;
@@ -19,34 +23,34 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 import static org.mockito.Mockito.when;
-
-@RunWith(SpringRunner.class)
 @SpringBootTest
-public class ReportConfigTest {
+@Scope("ai.lentra.service.*")
+public class ReportConfigTest extends TransactionalTestContainerSupport {
 
     @Autowired
     private ReportConfigService service;
 
-    @MockBean
+    @Autowired
     private ReportConfigRepository repository;
 
     @Test
     public void findAll()  {
         ReportConfig config = getDemoDetails();
-        when(repository.findByInstitute(1234)).thenReturn(
-                (List<ReportConfig>) Stream.of(config,
-                        config).collect(Collectors.toList()));
-        assertEquals(2,repository.findByInstitute(1234).size());
+        ResponseEntity<ResponseDTO> response = service.findByInstituteAll("1234");
+        when("OK").thenReturn(response.getStatusCode().toString());
+        assertNotNull(response);
 
     }
 
     @Test
     public void saveDetails()  {
-        ReportConfig config = getDemoDetails();
-        when(repository.save(config)).thenReturn(
-                config);
-        assertEquals(1,repository.save(config));
+        List<ReportConfig> config =  new ArrayList<>();
+        config.add( getDemoDetails());
+        ResponseEntity<ResponseDTO> response = service.save(config);
+        when("Report has been added successfully").thenReturn(response.getBody().getMessage());
+        assertNotNull(response);
 
     }
 

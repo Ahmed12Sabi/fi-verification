@@ -59,59 +59,63 @@ public class OfflineVerificationServiceImpl implements OfflineVerificationServic
         ProductConfigEntity pce = productConfigRepository.getByInstituteIdAndProductType(instituteId, product);
         List<MasterVerificationConfiguration> mvc = masterVerificationConfigurationRepository.findByProfileName(pce.getProfileName());
         ResponseEntity applicantDetails = applicantDetailsService.getApplicantDetails(applicant_id);
-        for (MasterVerificationConfiguration singleMvc : mvc) {
+        String tableName="";
+        /*for (MasterVerificationConfiguration singleMvc : mvc) {
             List<MasterVerificationConfiguration> subProfiles = masterVerificationConfigurationRepository.findBySubProfileName(singleMvc.getSubProfileName());
             for (MasterVerificationConfiguration subProfile : subProfiles) {
                 List<VerificationFormConfig> forms = verificationFormConfigRepository.getBySubProfileName(subProfile.getSubProfileName());
                 for (VerificationFormConfig form : forms) {
                     if (!form.isHidden()) {
-//                        String tableName="";
-//                        switch (form.getFormName()){
-//                            case "" :
-//                                tableName="contact_details";
-//                                break;
-//                            case "" :
-//                                tableName="expenses";
-//                                break;
-//                            case "" :
-//                                tableName="family_details";
-//                                break;
-//                            case "" :
-//                                tableName="personal_details";
-//                                break;
-//                            case "" :
-//                                tableName="residence_details";
-//                                break;
-//                            case "" :
-//                                tableName="summary";
-//                                break;
-//                            case "" :
-//                                tableName="commitment_details";
-//                                break;
-//                            case "" :
-//                                tableName="office_self_employment";
-//                                break;
-//                            case "" :
-//                                tableName="vehicle_details";
-//                                break;
-//                            default :
-//                                tableName="application_details";
-//                                break;
-//                        }
+
+                        if(form.getFormName().equalsIgnoreCase("Contact details")){
+                            tableName="contact_details";
+                            }
+                        if(form.getFormName().equalsIgnoreCase("Personal Details")){
+                            tableName="personal_details";
+                            }
+                        if(form.getFormName().equalsIgnoreCase("Office self employed details")){
+                            
+                            tableName="office_self_employment";
+                            }
+                        if(form.getFormName().equalsIgnoreCase("Commitment")){
+                            
+                            tableName="commitment_details";
+                            }
+                        if(form.getFormName().equalsIgnoreCase("Expenses")){
+                            
+                            tableName="expenses";
+                            }
+                        if(form.getFormName().equalsIgnoreCase("Family details")){
+                            tableName="family_details";
+                            }
+                        if(form.getFormName().equalsIgnoreCase("Residence")){
+                            
+                            tableName="residence_details";
+                            }
+                        if(form.getFormName().equalsIgnoreCase("Vehicle Information")){
+                            
+                            tableName="vehicle_details";
+                            }
+                        if(form.getFormName().equalsIgnoreCase("Summary")){
+                            
+                            tableName="summary";
+                            }
+                      
+                        }
 
                         html.append("<h2><center> "+form.getFormName() +" </center></h2>");
                         List<VerificationFormFieldsConfig> fields = verificationFormFieldsConfigRepository.getByFormFields(form.getFormId());
                         for (VerificationFormFieldsConfig field : fields) {
                             if (!field.isHidden()) {
                                // dataFields.setDataFields(Arrays.asList(new DataFields(field.getFieldName(), findValue(findById(field.getFieldId())) )));
-                       //         html.append(FreeMarkerTemplateUtils.processTemplateIntoString(template, new OffileInputDataDTO(Arrays.asList(new DataFields(field.getFieldName(), findValue(findById(field.getFieldId(),applicant_id ,applicantDetails)) )))));
+                                html.append(FreeMarkerTemplateUtils.processTemplateIntoString(template, new OffileInputDataDTO(Arrays.asList(new DataFields(field.getFieldName(), findValue(findById(field.getFieldId(),applicant_id ,applicantDetails,tableName)) )))));
                             }
                         }
                     }
                 }
-            }
+            }*/
 
-        }
+
        // html.append(" Hello ");
         html.append("</html> </body>");
         OutputStream os =new FileOutputStream("/home/afroze/Downloads/offlineVerification.pdf");

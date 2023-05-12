@@ -170,7 +170,7 @@ public class Assignor {
     }
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long assignedId;
     private String fiId;
     private String caseId;

@@ -12,7 +12,6 @@ import ai.lentra.exceptions.ResourceNotFoundException;
 import ai.lentra.modal.masterconfig.RolesEntity;
 import ai.lentra.repository.masterconfig.RolesRepository;
 import ai.lentra.service.masterconfig.RolesConfigService;
-import ai.lentra.utils.Level;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

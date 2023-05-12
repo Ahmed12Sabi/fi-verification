@@ -5,10 +5,10 @@ import ai.lentra.config.I18nMessageKeys;
 import ai.lentra.controller.notification.EmailController;
 import ai.lentra.controller.notification.SMSController;
 import ai.lentra.controller.verificationType.VerificationTypeController;
+import ai.lentra.core.exception.ValidationException;
 import ai.lentra.core.i18n.api.I18nHelper;
 import ai.lentra.dto.allocation.AssignResponse;
 import ai.lentra.dto.notification.SMS.Messages;
-import ai.lentra.exceptions.ResourceNotFoundException;
 import ai.lentra.modal.applicant_details.ApplicantDetails;
 import ai.lentra.modal.allocation.Assignor;
 import ai.lentra.dto.allocation.VerifierDetails;
@@ -58,9 +58,9 @@ public class AllocationServiceImpl implements AllocationService {
 
 @Override
  /*For Internal Allocations lis  Branch TL -> Branch Team Member or Agency TL to Agency Team Member*/
-    public ResponseEntity<Object> fiAllocationBranch(VerifierDetails verifierDetails, boolean isSelf) throws ResourceNotFoundException {
+    public ResponseEntity<Object> fiAllocationBranch(VerifierDetails verifierDetails, boolean isSelf) throws ValidationException {
     boolean isExist = verificationRepository.findByAssignedToAndApplicantId(verifierDetails.getAssignedTo(), verifierDetails.getApplicantId()).isPresent();
-    applicantRepository.findByApplicantId(verifierDetails.getApplicantId()).orElseThrow(() -> new ResourceNotFoundException("Requested Applicant Details not found"));
+    applicantRepository.findByApplicantId(verifierDetails.getApplicantId()).orElseThrow(() -> new ValidationException("Requested Applicant Details not found"));
     if (isExist) {
         return ResponseEntity.ok().body(I18nHelper.msg(I18nMessageKeys.verifier_already_present));
     }
@@ -138,8 +138,7 @@ public class AllocationServiceImpl implements AllocationService {
     verificationRepository.save(verification);
 
     if (isSelf) {
-        //todo: to update applicant details to verifier table with verification details
-        ApplicantDetails applicantDetails = applicantRepository.findByApplicantId(verifierDetails.getApplicantId()).orElseThrow(() -> new ResourceNotFoundException("Applicant details not found for the specified applciant id" + verifierDetails.getApplicantId()));
+        ApplicantDetails applicantDetails = applicantRepository.findByApplicantId(verifierDetails.getApplicantId()).orElseThrow(() -> new ValidationException("Applicant details not found for the specified applciant id" + verifierDetails.getApplicantId()));
         Verifiers verifiers = new Verifiers();
         verifiers.setAge(applicantDetails.getPersonalDetails().getAge());
         verifiers.setCaseId(String.valueOf(applicantDetails.getCaseId()));
@@ -228,9 +227,9 @@ public class AllocationServiceImpl implements AllocationService {
 }
     @Override
 /*External Allocations lis  Agency TL -> Agency Team Member*/
-    public ResponseEntity<Object> fiAllocationAgency(VerifierDetails verifierDetails, boolean isSelf) throws ResourceNotFoundException {
+    public ResponseEntity<Object> fiAllocationAgency(VerifierDetails verifierDetails, boolean isSelf) throws ValidationException {
 
-        applicantRepository.findByApplicantId(verifierDetails.getApplicantId()).orElseThrow(()-> new ResourceNotFoundException("Requested Applicant Details not found"));
+        applicantRepository.findByApplicantId(verifierDetails.getApplicantId()).orElseThrow(()-> new ValidationException("Requested Applicant Details not found"));
         boolean isExist= verificationRepository.findByAgencyNameAndApplicantId(verifierDetails.getAgencyName(), verifierDetails.getApplicantId()).isPresent();
         if(isExist) {
             return  ResponseEntity.ok().body(I18nHelper.msg(I18nMessageKeys.verifier_already_present));
@@ -306,8 +305,7 @@ public class AllocationServiceImpl implements AllocationService {
         assignerRepository.save(assignor);
         verificationRepository.save(verification);
         if (isSelf){
-            //todo: to update applicant details to verifier table with verification details
-            ApplicantDetails applicantDetails= applicantRepository.findByApplicantId(verifierDetails.getApplicantId()).orElseThrow(()->new ResourceNotFoundException("Applicant details not found for the specified applciant id"+verifierDetails.getApplicantId()));
+            ApplicantDetails applicantDetails= applicantRepository.findByApplicantId(verifierDetails.getApplicantId()).orElseThrow(()->new ValidationException("Applicant details not found for the specified applciant id"+verifierDetails.getApplicantId()));
             Verifiers verifiers=new Verifiers();
             verifiers.setAge(applicantDetails.getPersonalDetails().getAge());
             verifiers.setCaseId(String.valueOf(applicantDetails.getCaseId()));

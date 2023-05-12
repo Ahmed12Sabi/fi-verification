@@ -62,7 +62,8 @@ begin
 	     rv_table_schema  NAME NOT NULL,
 	     rv_table_name    NAME NOT NULL,
 	     rv_new_record    JSONB,
-	     rv_old_record    JSONB
+	     rv_old_record    JSONB,
+	     rv_loginid       VARCHAR(255)
 	  );
 
 	 create index record_version_ts on record_version using brin(rv_timestamp);

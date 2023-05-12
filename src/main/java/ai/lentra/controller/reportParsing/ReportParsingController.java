@@ -1,6 +1,5 @@
 package ai.lentra.controller.reportParsing;
 
-import ai.lentra.controller.offlineVerification.OfflineVerificationController;
 import ai.lentra.service.masterconfig.ReportConfigService;
 import ai.lentra.service.reportparsing.DownloadReportService;
 import ai.lentra.service.reportparsing.ReportParsingService;
@@ -29,8 +28,8 @@ public class ReportParsingController {
     private ReportParsingService reportParsingService;
 
     @PostMapping(value="" , consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public ResponseEntity<?> uploadFilesOnline(@RequestHeader(name = "institution-id") Integer institutionId,
-                                                         @RequestBody MultipartFile file) throws IOException {
+    public ResponseEntity<?> uploadFilesOnline(@RequestHeader(name = "institution-id") String institutionId,
+                                               @RequestBody MultipartFile file) throws IOException {
 
         logger.info("Entered into uploadFilesOnline ");
         return reportParsingService.uploadReport(file, institutionId);
@@ -41,11 +40,11 @@ public class ReportParsingController {
             @RequestHeader(name = "Content-Disposition") final String fileName,
 
             @RequestHeader(name = "Content-Type") final String mediaType,
-            @RequestHeader(name = "institution-id") Integer institutionId) {
+            @RequestHeader(name = "institution-id") String institutionId) throws IOException {
         logger.info("Entered into getCsv ");
         List<String> fields = reportConfigService.findByInstitute(institutionId);
-        final InputStreamResource resource = new InputStreamResource( downloadReportService.load(fields));
-       return ResponseEntity.ok()
+        final InputStreamResource resource = new InputStreamResource( downloadReportService.load(fields, fileName));
+        return ResponseEntity.ok()
                 .header(HttpHeaders.CONTENT_DISPOSITION, fileName)
                 .contentType(MediaType.parseMediaType(mediaType))
                 .body(resource);

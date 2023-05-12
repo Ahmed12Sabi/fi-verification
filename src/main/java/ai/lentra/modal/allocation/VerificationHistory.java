@@ -7,7 +7,7 @@ import javax.persistence.*;
 @Table(name = "h_verification")
 public class VerificationHistory {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String vhId;
 
     public String getVhId() {
@@ -298,8 +298,5 @@ public class VerificationHistory {
     private String vReplyMessageDate;
     private String updateDateTime;
 
-    /* todo:
-        cron job for queries and replies
-        */
 
 }

@@ -4,6 +4,7 @@ import ai.lentra.commons.*;
 import ai.lentra.config.I18nMessageKeys;
 import ai.lentra.controller.notification.EmailController;
 import ai.lentra.controller.notification.SMSController;
+import ai.lentra.core.exception.ValidationException;
 import ai.lentra.core.i18n.api.I18nHelper;
 import ai.lentra.dto.allocation.*;
 import ai.lentra.dto.notification.SMS.Messages;
@@ -27,7 +28,6 @@ import java.util.stream.Collectors;
 
 import static ai.lentra.commons.EmailAndSMSTemplate.*;
 import static ai.lentra.commons.ResponseUtils.responseGen;
-//todo implement Email and SMS notification
 @Service
 public class VerificationServiceImpl    implements VerificationService {
 @Autowired
@@ -80,8 +80,8 @@ BranchDealeRepository branchDealeRepository;
     }
     @Override
 
-    public ResponseEntity<Object> getNearByBranches(String location, Long applicantId, String addressType, long applicationId, String productType) throws ResourceNotFoundException {
-        ApplicantDetails applicantDetails=applicantRepository.findByApplicantId(applicantId).orElseThrow(()->new ResourceNotFoundException("Requested applicant details not found"));
+    public ResponseEntity<Object> getNearByBranches(String location, Long applicantId, String addressType, long applicationId, String productType) throws ValidationException {
+        ApplicantDetails applicantDetails=applicantRepository.findByApplicantId(applicantId).orElseThrow(()->new ValidationException("Requested applicant details not found"));
         Optional<List<BranchDealer>> branches=branchDealeRepository.findAllByLocationIgnoreCase(location);
         if (!branches.isPresent()){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(responseGen(I18nHelper.msg(I18nMessageKeys.branch_not_found), ErrorMessage.NOT_FOUND,"404"));
@@ -97,8 +97,8 @@ BranchDealeRepository branchDealeRepository;
     }
     @Override
 
-    public ResponseEntity<Object> getNearByAgencies(String branchName, long applicantId, String addressType, long applicationId, String productType) throws ResourceNotFoundException {
-        ApplicantDetails applicantDetails=applicantRepository.findByApplicantId(applicantId).orElseThrow(()->new ResourceNotFoundException("Requested applicant details not found"));
+    public ResponseEntity<Object> getNearByAgencies(String branchName, long applicantId, String addressType, long applicationId, String productType) throws ValidationException {
+        ApplicantDetails applicantDetails=applicantRepository.findByApplicantId(applicantId).orElseThrow(()->new ValidationException("Requested applicant details not found"));
         Optional<List<Agencies>> agencies=agenciesRepo.findAllByBranchNameIgnoreCase(branchName);
         if (!agencies.isPresent()){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(responseGen(I18nHelper.msg(I18nMessageKeys.no_agency_location),"NOT_FOUND","4000"));
@@ -128,8 +128,8 @@ BranchDealeRepository branchDealeRepository;
     }
     @Override
 
-    public ResponseEntity<Object> getUsersAllocationNameAndStatus(String userName, String status) throws ResourceNotFoundException {
-        List<Verification> verifications=verificationRepo.findAllByAssignedToAndVerificationStatusIgnoreCase(userName,status).orElseThrow(()->new ResourceNotFoundException("There is no verification allocations for the specified username and status"));
+    public ResponseEntity<Object> getUsersAllocationNameAndStatus(String userName, String status) throws ValidationException {
+        List<Verification> verifications=verificationRepo.findAllByAssignedToAndVerificationStatusIgnoreCase(userName,status).orElseThrow(()->new ValidationException("There is no verification allocations for the specified username and status"));
         StatusCardDTO statusCard = new StatusCardDTO();
         List<StatusCardDTO> allocations=verifications.stream().map(ver->{
             statusCard.setStatus(ver.getaStatus());
@@ -148,8 +148,8 @@ BranchDealeRepository branchDealeRepository;
     }
     @Override
 
-    public ResponseEntity<Object> getUsersAllocationName(String userName) throws ResourceNotFoundException {
-        List<Verification> verifications=verificationRepo.findAllByAssignedToIgnoreCase(userName).orElseThrow(()->new ResourceNotFoundException("There is no verification allocations for the specified username and status"));
+    public ResponseEntity<Object> getUsersAllocationName(String userName) throws ValidationException {
+        List<Verification> verifications=verificationRepo.findAllByAssignedToIgnoreCase(userName).orElseThrow(()->new ValidationException("There is no verification allocations for the specified username and status"));
         StatusCardDTO statusCard = new StatusCardDTO();
         List<StatusCardDTO> allocations=verifications.stream().map(ver->{
             statusCard.setStatus(ver.getaStatus());
@@ -168,23 +168,22 @@ BranchDealeRepository branchDealeRepository;
     }
     @Override
 
-    public ResponseEntity<VerificationDTO> getVerificationBasedOnFiId(String fiId) throws ResourceNotFoundException {
-        Verification verification = verificationRepo.findByFiId(fiId).orElseThrow(()->new ResourceNotFoundException("There is no verification for the specified fiId : "+fiId));
+    public ResponseEntity<VerificationDTO> getVerificationBasedOnFiId(String fiId) throws ValidationException {
+        Verification verification = verificationRepo.findByFiId(fiId).orElseThrow(()->new ValidationException("There is no verification for the specified fiId : "+fiId));
        VerificationDTO verificationDTO=jsonUtils1.mapper().convertValue(verification,VerificationDTO.class);
        return  ResponseEntity.ok(verificationDTO);
     }
     @Override
 
-    public ResponseEntity<Object> statusUpdate(String status, StatusUpdateDTO statusUpdate) throws ResourceNotFoundException {
-        Assignor assignor=assignerRepo.findByFiId(statusUpdate.getFiId()).orElseThrow(()->new ResourceNotFoundException("There is no assignor for the specified fi id"+statusUpdate.getFiId()) );
-        Verification verification=  verificationRepo.findByFiId(statusUpdate.getFiId()).orElseThrow(()->new ResourceNotFoundException("There is no verification for the specified fi id"+statusUpdate.getFiId()) );
+    public ResponseEntity<Object> statusUpdate(String status, StatusUpdateDTO statusUpdate) throws ValidationException {
+        Assignor assignor=assignerRepo.findByFiId(statusUpdate.getFiId()).orElseThrow(()->new ValidationException("There is no assignor for the specified fi id"+statusUpdate.getFiId()) );
+        Verification verification=  verificationRepo.findByFiId(statusUpdate.getFiId()).orElseThrow(()->new ValidationException("There is no verification for the specified fi id"+statusUpdate.getFiId()) );
         if (status.toUpperCase().equals(STATUS.ACCEPTED.toString())){
             if (!verification.getaStatus().equals(STATUS.CANCELLED.toString())){
                 verification.setvStatus(status.toUpperCase());
                 verification.setAcceptedDateTime(Instant.now().toString());
                 verification.setvMode(statusUpdate.getvMode());
                 assignor.setvStatus(status.toUpperCase());
-                /*todo: internal logic for update verifier table with applicant details */
                 notification.invoke(verification.getAssignedBy(), "Filed investigation Status has been changed to ACCEPTED \n" +
                         "Applicant Details \n" +
                         "\n Name  : " +verification.getApplicantName()+
@@ -225,7 +224,6 @@ BranchDealeRepository branchDealeRepository;
             }else {
                 return  ResponseEntity.noContent().build();
             }
-        //todo: update history tables as well
     }else if (status.toUpperCase().equals(STATUS.DECLINED.toString())){ // Declined by the User
         verification.setvStatus(status.toUpperCase());
         verification.setDeclinedDate(Instant.now().toString());
@@ -422,7 +420,6 @@ BranchDealeRepository branchDealeRepository;
                 verification.setAcceptedDateTime(Instant.now().toString());
                 verification.setvMode(statusUpdate.getvMode());
                 assignor.setvStatus(status.toUpperCase());
-                /*todo: internal logic for update verifier table with applicant details */
                 notification.invoke(verification.getAssignedBy(), "Filed investigation Status has been changed to ACCEPTED \n" +
                         "Applicant Details \n" +
                         "\n Name  : " +verification.getApplicantName()+
@@ -463,7 +460,6 @@ BranchDealeRepository branchDealeRepository;
             }else {
                 return  ResponseEntity.noContent().build();
             }
-            //todo: update history tables as well
 
             throw new RuntimeException("Illegal status update");
         }
@@ -475,29 +471,27 @@ BranchDealeRepository branchDealeRepository;
     }
     @Override
 
-    public ResponseEntity<Object> cancelVerificationBy(String fiId) throws ResourceNotFoundException {
+    public ResponseEntity<Object> cancelVerificationBy(String fiId) throws ValidationException {
        //BTL --> BTM
-        Verification verification=  verificationRepo.findByFiId(fiId).orElseThrow(()->new ResourceNotFoundException("There is no verification for the specified fi id"+fiId) );
-        Assignor assignor= assignerRepo.findByFiId(fiId).orElseThrow(()-> new ResourceNotFoundException("There is no assignment for the specified fi id"+fiId));
+        Verification verification=  verificationRepo.findByFiId(fiId).orElseThrow(()->new ValidationException("There is no verification for the specified fi id"+fiId) );
+        Assignor assignor= assignerRepo.findByFiId(fiId).orElseThrow(()-> new ValidationException("There is no assignment for the specified fi id"+fiId));
         if (verification.getRefFiId()==null) {
             //if RefFiId is null then the verifier should be a Team Member Internal or may be self allocation
             if ((verification.getvStatus().equals(STATUS.ACCEPTED.toString()))){//ACCEPTED the verification
-                Verifiers verifier= verifierRepo.findByFiId(fiId).orElseThrow(()->new ResourceNotFoundException("There is no assignment for the specified fi id"+fiId));
+                Verifiers verifier= verifierRepo.findByFiId(fiId).orElseThrow(()->new ValidationException("There is no assignment for the specified fi id"+fiId));
                 verifier.setActive(false);
                 verifier.setaStatus(STATUS.CANCELLED.toString());
                 verification.setaStatus(STATUS.CANCELLED.toString());
                 verification.setVerificationStatus(STATUS.CANCELLED.toString());
-                //todo : notification services
             }else{ // Not yet Accepted
                 assignor.setaStatus(String.valueOf(STATUS.CANCELLED));
                 verification.setaStatus(String.valueOf(STATUS.CANCELLED));
                 verification.setVerificationStatus(String.valueOf(STATUS.CANCELLED));
-                //todo :notification services
             }
             //BTL--> ATL
         }else{
             if ((verification.getvStatus().equals(STATUS.ACCEPTED.toString()))){// ACCEPTED VERIFICATION
-                Verifiers verifier= verifierRepo.findByFiId(fiId).orElseThrow(()->new ResourceNotFoundException("There is no assignment for the specified fi id"+fiId));
+                Verifiers verifier= verifierRepo.findByFiId(fiId).orElseThrow(()->new ValidationException("There is no assignment for the specified fi id"+fiId));
                 verifier.setActive(false);
                 verifier.setaStatus(STATUS.CANCELLED.toString());
                 verifierRepo.save(verifier);

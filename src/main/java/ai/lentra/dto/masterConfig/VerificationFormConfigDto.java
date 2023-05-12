@@ -1,32 +1,34 @@
 package ai.lentra.dto.masterConfig;
 
+import ai.lentra.modal.masterconfig.VerificationConfig;
+import ai.lentra.modal.masterconfig.VerificationFormFieldsConfig;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-
+import java.util.List;
 
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 
 public class VerificationFormConfigDto {
 
-    @NotNull(message = "Form id should not be null")
+
 
     private long formId;
-    private MasterVerificationConfigurationDto masterVerificationConfiguration;
-    @JsonProperty("verificationConfig")
 
     private VerificationConfigDto verificationConfig;
-    @NotNull(message = "Form name should not be null")
-    @Size(min = 2, max = 50, message = "Form name should have 2 to 50 characters")
+
+
 
     private String formName;
-    @NotNull(message = "Form Description should not be null")
-    @Size(min = 2, max = 50, message = "Form Description should have 2 to 50 characters")
 
-    private String formDescription;
+
+    private List<VerificationFormFieldsConfigDto> verificationFormFieldsConfig;
 
     public long getFormId() {
         return formId;
@@ -34,14 +36,6 @@ public class VerificationFormConfigDto {
 
     public void setFormId(long formId) {
         this.formId = formId;
-    }
-
-    public MasterVerificationConfigurationDto getMasterVerificationConfiguration() {
-        return masterVerificationConfiguration;
-    }
-
-    public void setMasterVerificationConfiguration(MasterVerificationConfigurationDto masterVerificationConfiguration) {
-        this.masterVerificationConfiguration = masterVerificationConfiguration;
     }
 
     public VerificationConfigDto getVerificationConfig() {
@@ -60,12 +54,12 @@ public class VerificationFormConfigDto {
         this.formName = formName;
     }
 
-    public String getFormDescription() {
-        return formDescription;
+    public List<VerificationFormFieldsConfigDto> getVerificationFormFieldsConfig() {
+        return verificationFormFieldsConfig;
     }
 
-    public void setFormDescription(String formDescription) {
-        this.formDescription = formDescription;
+    public void setVerificationFormFieldsConfig(List<VerificationFormFieldsConfigDto> verificationFormFieldsConfig) {
+        this.verificationFormFieldsConfig = verificationFormFieldsConfig;
     }
 }
 

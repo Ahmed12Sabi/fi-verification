@@ -17,9 +17,7 @@ public class HeaderUtils {
         headers.set("PRODUCT-TYPE",productType);
         headers.set("APPLICATION-ID", String.valueOf(applicationId));
         headers.set("INSTITUTION-ID",institutionId);
-/*
-        todo :
-         need to change http headers with headerDTO */
+
         HeadersDTO headersDTO = new HeadersDTO();
         headersDTO.setToken(token);
         headersDTO.setApplicationId(applicationId);

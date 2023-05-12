@@ -1,13 +1,13 @@
 package ai.lentra.dto.applicant;
 
 import ai.lentra.dto.commitment.CommitmentDTO;
-import ai.lentra.dto.contact_info.ContactDetailsDTO;
-import ai.lentra.dto.employment_info.EmploymentDetailsDTO;
+import ai.lentra.dto.contactinfo.ContactDetailsDTO;
+import ai.lentra.dto.employmentinfo.EmploymentDetailsDTO;
 import ai.lentra.dto.expenses.ExpensesDTO;
-import ai.lentra.dto.famil_info.FamilyDetailsDTO;
+import ai.lentra.dto.familyinfo.FamilyDetailsDTO;
 import ai.lentra.dto.personal_info.PersonalDetailsDTO;
 import ai.lentra.dto.residence.ResidenceDetailsDTO;
-import ai.lentra.dto.vehicle_info.VehicleDetailsDTO;
+import ai.lentra.dto.vehicleinfo.VehicleDetailsDTO;
 import ai.lentra.modal.applicant_details.ApplicantsAddress;
 import ai.lentra.modal.commitment.CommitmentDetails;
 import ai.lentra.modal.summary.Summary;

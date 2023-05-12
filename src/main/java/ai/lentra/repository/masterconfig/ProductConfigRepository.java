@@ -3,7 +3,9 @@ package ai.lentra.repository.masterconfig;
 import ai.lentra.modal.masterconfig.ProductConfigEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface ProductConfigRepository extends JpaRepository<ProductConfigEntity, Integer> {
 
     ProductConfigEntity findByProductId(Long productId);
@@ -14,4 +16,6 @@ public interface ProductConfigRepository extends JpaRepository<ProductConfigEnti
 
     ProductConfigEntity findByProductTypeAndProfileName(String productType, String profile);
     ProductConfigEntity  getByInstituteIdAndProductType(String instituteId,String product);
+    ProductConfigEntity  getByInstituteIdAndProfileName(String instituteId,String profileName);
+
 }

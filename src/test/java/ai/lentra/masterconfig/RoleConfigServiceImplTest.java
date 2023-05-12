@@ -2,6 +2,9 @@
 package ai.lentra.masterconfig;
 
 
+import ai.lentra.config.I18nMessageKeys;
+import ai.lentra.core.i18n.api.I18nHelper;
+import ai.lentra.core.test.TransactionalTestContainerSupport;
 import ai.lentra.dto.masterConfig.RolesDTO;
 import ai.lentra.dto.responses.ResponseDTO;
 import ai.lentra.exceptions.DuplicateResourceException;
@@ -15,67 +18,64 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.Scope;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 import java.util.List;
 
+import static ai.lentra.commons.ResponeGen.getResponse;
 import static org.junit.Assert.assertNotNull;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
 
-@SpringBootTest
-@Scope("ai.lentra.service.*")
-public class RoleConfigServiceImplTest {
+
+public class RoleConfigServiceImplTest extends TransactionalTestContainerSupport {
     @Autowired
     RolesRepository service;
-    @MockBean
+    @Autowired
     RolesRepository rolesRepository;
-    @MockBean
+    @Autowired
     RoleConfigServiceImpl roleConfigServiceImpl;
     RolesDTO rolesDTO = new RolesDTO();
     RolesEntity rolesEntity = new RolesEntity();
 
     @Test
     public void saveRoleTest() throws ResourceNotFoundException, DuplicateResourceException {
-        RolesEntity rolesEntity = dummyRolesEntity();
-        RolesDTO rolesDTO = new RolesDTO();
-        rolesDTO.setRoleName("TMI");
-        rolesDTO.setVmsRoleName("TM");
-        rolesDTO.setStatus(true);
-        rolesDTO.setInstituteId("1");
-        ResponseEntity<ResponseDTO> response = roleConfigServiceImpl.saveRole(rolesDTO);
-        when("Role has been added successfully").thenReturn(response.getBody().getMessage());
-        assertNotNull(response);
-
-    }
-    @Test
-    public void updateRoleTest()  throws ResourceNotFoundException, DuplicateResourceException{
-        RolesEntity rolesEntity = dummyRolesEntity();
-        RolesDTO rolesDTO = updateDummyRolesDTO();
-        ResponseEntity<ResponseDTO> response = roleConfigServiceImpl.saveRole(rolesDTO);
-        when("Role has been updated successfully").thenReturn(response.getBody().getMessage());
-        assertNotNull(response);
-
-    }
-    public RolesDTO dummyRolesDTO() {
-        RolesDTO rolesDTO = new RolesDTO();
-        rolesDTO.setRoleName("TMI");
-        rolesDTO.setVmsRoleName("TM");
-        rolesDTO.setStatus(true);
-        rolesDTO.setInstituteId("1");
-        return rolesDTO;
-    }
-
-    public RolesDTO updateDummyRolesDTO() {
-        RolesDTO rolesDTO = new RolesDTO();
+        RolesEntity rolesDTO = new RolesEntity();
         rolesDTO.setRoleId(1);
         rolesDTO.setRoleName("TMI");
         rolesDTO.setVmsRoleName("TM");
         rolesDTO.setStatus(true);
         rolesDTO.setInstituteId("1");
-        return rolesDTO;
+
+        RolesEntity rolesEntity =rolesRepository.save(rolesDTO);
+      //  ResponseEntity<ResponseDTO> response = roleConfigServiceImpl.saveRole(rolesDTO);
+        RolesEntity res =rolesRepository.getById(1);
+        Assertions.assertEquals("TMI", res.getRoleName());
+        Assertions.assertEquals("TM", res.getVmsRoleName());
+        Assertions.assertEquals(true, res.getStatus());
+        Assertions.assertEquals("1", res.getInstituteId());
+     }
+
+
+    @Test
+    public void updateRoleTest()  throws ResourceNotFoundException, DuplicateResourceException{
+        RolesDTO rolesDTO = new RolesDTO();
+        rolesDTO.setRoleName("TME");
+        rolesDTO.setVmsRoleName("TE");
+        rolesDTO.setStatus(false);
+        rolesDTO.setInstituteId("1");
+        ResponseEntity<ResponseDTO> response = roleConfigServiceImpl.updateRole(rolesDTO);
+        RolesEntity res =rolesRepository.getById(1);
+        Assertions.assertEquals("TME", res.getRoleName());
+        Assertions.assertEquals("TE", res.getVmsRoleName());
+        Assertions.assertEquals(false, res.getStatus());
+        Assertions.assertEquals("1", res.getInstituteId());
+
     }
+
+
 
     public RolesEntity dummyRolesEntity() {
         RolesDTO rolesDTO = new RolesDTO();
@@ -93,16 +93,12 @@ public class RoleConfigServiceImplTest {
         rolesEntity = dummyRolesEntity();
         Integer id = 1;
         ResponseEntity<Object> response = roleConfigServiceImpl.getRole(id.longValue());
-        when(rolesRepository.getById(1)).thenReturn(any());
-        Assertions.assertNotNull(rolesEntity);
         Assertions.assertNotNull(response);
     }
 
     @Test
     public void getAllRoles() {
         RolesEntity rolesEntity = dummyRolesEntity();
-        List<RolesEntity> rolesEntities = rolesRepository.findAll();
-        when(rolesRepository.findAll()).thenReturn(rolesEntities);
         List<RolesEntity> response = rolesRepository.findAll();
         assertNotNull(response);
     }

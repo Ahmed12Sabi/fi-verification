@@ -10,7 +10,6 @@ import ai.lentra.modal.residence.ResidenceDetails;
 import ai.lentra.modal.summary.Summary;
 import ai.lentra.modal.vehicle_info.VehicleDetails;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Date;

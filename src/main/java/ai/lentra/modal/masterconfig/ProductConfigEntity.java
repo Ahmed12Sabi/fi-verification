@@ -28,17 +28,17 @@ public class ProductConfigEntity {
     private Boolean dataPopulated;
     @Column(columnDefinition = "boolean default false")
     private Boolean waiverAllowed;
-    private ZonedDateTime create_on;
+    private ZonedDateTime created_on;
     private String created_by;
     private ZonedDateTime modified_on;
     private String modified_by;
 
-    public ZonedDateTime getCreate_on() {
-        return create_on;
+    public ZonedDateTime getCreated_on() {
+        return created_on;
     }
 
-    public void setCreate_on(ZonedDateTime create_on) {
-        this.create_on = create_on;
+    public void setCreated_on(ZonedDateTime created_on) {
+        this.created_on = created_on;
     }
 
     public String getCreated_by() {

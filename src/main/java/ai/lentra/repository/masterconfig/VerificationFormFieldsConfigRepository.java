@@ -8,7 +8,7 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 public interface VerificationFormFieldsConfigRepository extends JpaRepository<VerificationFormFieldsConfig, Long> {
-    @Query(value = "SELECT v.field_name AS fieldName , v.field_id AS fieldId,  m.profile_name AS profileName , m.v_type AS vType, m.user_type AS userType, m.sub_profile_name AS subProfileName, c.form_name AS formName"
+    /*@Query(value = "SELECT v.field_name AS fieldName , v.field_id AS fieldId,  m.profile_name AS profileName , m.v_type AS vType, m.user_type AS userType, m.sub_profile_name AS subProfileName, c.form_name AS formName"
             + " FROM verification_form_fields_config v CROSS JOIN master_verification_configuration m CROSS JOIN verification_form_config c",
             nativeQuery = true)
     List<VerificationFormFieldsConfig> findCrossJoin();
@@ -19,13 +19,14 @@ public interface VerificationFormFieldsConfigRepository extends JpaRepository<Ve
             " CROSS JOIN verification_form_config c WHERE m.institution_id=?1",
             nativeQuery = true)
     List<VerificationFormFieldsConfig> findByInstistuteId(Integer institutionId);
+*/
+//    @Query(value = "select v.field_id, v.field_name from schema_client1_vms.verification_form_fields_config v where v.form_id=?1", nativeQuery = true)
+//    List<VerificationFormFieldsConfig> findByFormId(long formId);
+    List<VerificationFormFieldsConfig> findByVerificationFormConfig_FormId(long formId);
+//    List<VerificationFormFieldsConfig> findByVerificationFormConfig(long formId);
 
-    @Query(value = "select v.field_id, v.form_id, v.field_name, v.field_type, v.is_look_up, v.look_table, v.is_scoring," +
-            "v.look_table,v.scoring_name, v.status,v.hidden,v.min_length, v.max_length, v.min_range, v.max_range ," +
-            "v.required, v.data_auto_population from verification_form_fields_config v where v.form_id=?1", nativeQuery = true)
-    List<VerificationFormFieldsConfig> findByFormId(long formId);
 
-    @Query(value = "SELECT v.* FROM verification_form_fields_config v,verification_form_config cv where v.form_id  = cv.form_id  and v.form_id = :formId ", nativeQuery = true)
-    List<VerificationFormFieldsConfig> getByFormFields(@Param("formId") Long formId);
+//    @Query(value = "SELECT v.* FROM schema_client1_vms.verification_form_fields_config v,verification_form_config cv where v.form_id  = cv.form_id  and v.form_id = :formId ", nativeQuery = true)
+//    List<VerificationFormFieldsConfig> getByFormFields(@Param("formId") Long formId);
 
 }

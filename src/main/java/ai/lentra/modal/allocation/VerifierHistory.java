@@ -12,7 +12,7 @@ import java.util.Date;
 @Table(name = "h_verifiers")
 public class VerifierHistory {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long verifierHistoryId;
     private String fiId;
     private String comKey;

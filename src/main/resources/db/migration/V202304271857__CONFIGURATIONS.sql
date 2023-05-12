@@ -67,37 +67,69 @@ declare
 begin
 
 -- **************************       your sql code starts below this line       **************************
-     --DDL Statement for table - master_verification_configuration
+      --DDL Statement for table - master_verification_configuration
 
-    for c  in select 1 where not exists (select 1 from pg_tables where schemaname = lower(v_schema_name) and tablename = lower('master_verification_configuration')) loop
-    execute 'create table ' ||v_schema_name||'.master_verification_configuration
+        for c  in select 1 where not exists (select 1 from pg_tables where schemaname = lower(v_schema_name) and tablename = lower('master_verification_configuration')) loop
+        execute 'create table ' ||v_schema_name||'.master_verification_configuration
+                    (
+                     id bigserial NOT NULL,
+         			profile_name varchar(255) NULL,
+    				institute_id varchar(255) NOT NULL,
+    				product_type varchar(255),
+    				created_by varchar(255) null ,
+                    created_on  timestamptz,
+                    modified_by varchar(255) null,
+                    modified_on  timestamptz,
+    				CONSTRAINT master_verification_configuration_pkey PRIMARY KEY (id)
+
+                    )';
+
+    	end loop;
+
+
+
+ --DDL Statement for table - verification_config
+    for c  in select 1 where not exists (select 1 from pg_tables where schemaname = lower(v_schema_name) and tablename = lower('verification_config')) loop
+    execute 'create table ' ||v_schema_name||'.verification_config
                 (
-                 id bigserial NOT NULL,
-				e_sign bool NOT NULL,
-				institution_id int8 NOT NULL,
-				multi_verification_allowed varchar(50) NOT NULL,
-				product_level_logic varchar(255) NULL,
-				profile_id int8 NOT NULL,
-				profile_name varchar(255) NULL,
-				retriger_verification bool NOT NULL,
-				sub_profile_name varchar(255) NULL,
-				user_type varchar(50) NOT NULL,
+                v_id bigserial NOT NULL,
 				v_type varchar(255) NULL,
+				user_type varchar(255) NULL,
+				sub_profile_name varchar(255) NULL,
+				esign bool NULL,
+				multi_verification_allowed varchar(255) NULL,
+				retriger_verification bool NULL,
+				m_id int8 NULL,
 				created_by varchar(255) null ,
                 created_on  timestamptz,
                 modified_by varchar(255) null,
                 modified_on  timestamptz,
-				CONSTRAINT master_verification_configuration_pkey PRIMARY KEY (id)
-
+				CONSTRAINT verification_config_pkey PRIMARY KEY (v_id),
+				CONSTRAINT m_id FOREIGN KEY (m_id)
+                        REFERENCES '||v_schema_name||'.master_verification_configuration (id) MATCH SIMPLE
+                        ON UPDATE NO ACTION
+                        ON DELETE NO ACTION
+                        NOT VALID
                 )';
 
 	end loop;
 
+	--DDL Statement for table - master_verification_configuration_verification_config
+
+                    for c  in select 1 where not exists (select 1 from pg_tables where schemaname = lower(v_schema_name) and tablename = lower('master_verification_configuration_verification_config')) loop
+                    execute 'create table ' ||v_schema_name||'.master_verification_configuration_verification_config
+                                (
+                                 master_verification_configuration_id int8,
+                                 verification_config_v_id int8
+
+                                )';
+
+                	end loop;
     --DDL Statement for table - product_config
     for c  in select 1 where not exists (select 1 from pg_tables where schemaname = lower(v_schema_name) and tablename = lower('product_config')) loop
     execute 'create table ' ||v_schema_name||'.product_config
                 (
-                product_id bigserial NOT NULL,
+                product_id   serial NOT NULL,
 				data_populated bool NULL DEFAULT false,
 				institute_id varchar(255) NULL,
 				mandatory bool NULL DEFAULT false,
@@ -118,7 +150,7 @@ begin
     for c  in select 1 where not exists (select 1 from pg_tables where schemaname = lower(v_schema_name) and tablename = lower('report_config')) loop
     execute 'create table ' ||v_schema_name||'.report_config
                 (
-                    id bigserial NOT NULL,
+                    id   serial NOT NULL,
 					form_name varchar(255) NULL,
 					institute_id int4 NULL,
                     created_by varchar(255) null ,
@@ -134,7 +166,7 @@ begin
     for c  in select 1 where not exists (select 1 from pg_tables where schemaname = lower(v_schema_name) and tablename = lower('report_config_fields')) loop
     execute 'create table ' ||v_schema_name||'.report_config_fields
                 (
-                id bigserial NOT NULL,
+                id   serial NOT NULL,
 				fields varchar(255) NULL,
 				f_id int8 NULL,
 				created_by varchar(255) null ,
@@ -151,7 +183,7 @@ begin
     for c  in select 1 where not exists (select 1 from pg_tables where schemaname = lower(v_schema_name) and tablename = lower('role_config')) loop
     execute 'create table ' ||v_schema_name||'.role_config
                 (
-                 role_id bigserial NOT NULL,
+                 role_id   serial NOT NULL,
 				institute_id varchar(255) NULL,
 				role_name varchar(255) NULL,
 				status bool NULL,
@@ -186,54 +218,71 @@ begin
 
 	end loop;
 
-    --DDL Statement for table - verification_form_config
-    for c  in select 1 where not exists (select 1 from pg_tables where schemaname = lower(v_schema_name) and tablename = lower('verification_form_config')) loop
-    execute 'create table ' ||v_schema_name||'.verification_form_config
-                (
-                form_id bigserial NOT NULL,
-				form_description varchar(50) NOT NULL,
-				form_name varchar(50) NULL,
-				hidden bool NOT NULL,
-				sub_profile_name varchar(255) NULL,
-				v_id int8 NULL,
-				created_by varchar(255) null ,
-                created_on  timestamptz,
-                modified_by varchar(255) null,
-                modified_on  timestamptz,
-				CONSTRAINT verification_form_config_pkey PRIMARY KEY (form_id)
-                )';
-
-	end loop;
-
-    --DDL Statement for table - verification_form_fields_config
-    for c  in select 1 where not exists (select 1 from pg_tables where schemaname = lower(v_schema_name) and tablename = lower('verification_form_fields_config')) loop
-    execute 'create table ' ||v_schema_name||'.verification_form_fields_config
-                (
-                    field_id bigserial NOT NULL,
-					data_auto_population bool NOT NULL,
-					field_name varchar(50) NOT NULL,
-					field_type varchar(50) NOT NULL,
-					hidden bool NOT NULL,
-					is_look_up bool NOT NULL,
-					is_scoring bool NOT NULL,
-					look_table varchar(255) NULL,
-					max_length int4 NULL,
-					max_range int4 NULL,
-					min_length int4 NULL,
-					min_range int4 NULL,
-					required bool NOT NULL,
-					scoring_name varchar(255) NULL,
-					status bool NOT NULL,
-					form_id int8 NULL,
-                    created_by varchar(255) null ,
+     --DDL Statement for table - verification_form_config
+        for c  in select 1 where not exists (select 1 from pg_tables where schemaname = lower(v_schema_name) and tablename = lower('verification_form_config')) loop
+        execute 'create table ' ||v_schema_name||'.verification_form_config
+                    (
+                    form_id bigserial NOT NULL,
+    				form_name varchar(50) NULL,
+    				v_id int8 NULL,
+    				created_by varchar(255) null ,
                     created_on  timestamptz,
                     modified_by varchar(255) null,
                     modified_on  timestamptz,
-					CONSTRAINT verification_form_fields_config_pkey PRIMARY KEY (field_id)
+    				CONSTRAINT verification_form_config_pkey PRIMARY KEY (form_id),
+    				CONSTRAINT v_id FOREIGN KEY (v_id)
+                                            REFERENCES '||v_schema_name||'.verification_config (v_id) MATCH SIMPLE
+                                            ON UPDATE NO ACTION
+                                            ON DELETE NO ACTION
+                                            NOT VALID
+                    )';
 
-                )';
+    	end loop;
 
-	end loop;
+    	  --DDL Statement for table - verification_config_verification_form_config
+
+                        for c  in select 1 where not exists (select 1 from pg_tables where schemaname = lower(v_schema_name) and tablename = lower('verification_config_verification_form_config')) loop
+                        execute 'create table ' ||v_schema_name||'.verification_config_verification_form_config
+                                    (
+                                     verification_config_v_id int8,
+                                         verification_form_config_form_id int8
+
+                                    )';
+
+                    	end loop;
+
+  --DDL Statement for table - verification_form_fields_config
+      for c  in select 1 where not exists (select 1 from pg_tables where schemaname = lower(v_schema_name) and tablename = lower('verification_form_fields_config')) loop
+      execute 'create table ' ||v_schema_name||'.verification_form_fields_config
+                  (
+                      field_id bigserial NOT NULL,
+  					field_name varchar(50) NOT NULL,
+  					form_id int8 NULL,
+                      created_by varchar(255) null ,
+                      created_on  timestamptz,
+                      modified_by varchar(255) null,
+                      modified_on  timestamptz,
+  					CONSTRAINT verification_form_fields_config_pkey PRIMARY KEY (field_id),
+  						CONSTRAINT form_id FOREIGN KEY (form_id)
+                                                                REFERENCES '||v_schema_name||'.verification_form_config (form_id) MATCH SIMPLE
+                                                                ON UPDATE NO ACTION
+                                                                ON DELETE NO ACTION
+                                                                NOT VALID
+
+                  )';
+
+  	end loop;
+    	  --DDL Statement for table - verification_form_config_verification_form_fields_config
+
+                        for c  in select 1 where not exists (select 1 from pg_tables where schemaname = lower(v_schema_name) and tablename = lower('verification_form_config_verification_form_fields_config')) loop
+                        execute 'create table ' ||v_schema_name||'.verification_form_config_verification_form_fields_config
+                                    (
+                                     verification_form_config_form_id int8,
+                                         verification_form_fields_config_field_id int8
+
+                                    )';
+
+                    	end loop;
 
     --DDL Statement for table - verification_form_fields_master
     for c  in select 1 where not exists (select 1 from pg_tables where schemaname = lower(v_schema_name) and tablename = lower('verification_form_fields_master')) loop
@@ -264,7 +313,7 @@ begin
     for c  in select 1 where not exists (select 1 from pg_tables where schemaname = lower(v_schema_name) and tablename = lower('verification_form_master')) loop
     execute 'create table ' ||v_schema_name||'.verification_form_master
                 (
-                 form_id bigserial NOT NULL,
+                 form_id   serial NOT NULL,
 				form_description varchar(50) NULL,
 				form_name varchar(50) NULL,
 				created_by varchar(255) null ,
@@ -305,7 +354,7 @@ begin
         for c  in select 1 where not exists (select 1 from pg_tables where schemaname = lower(v_schema_name) and tablename = lower('Offline_pdf_data_mapping')) loop
         execute 'create table ' ||v_schema_name||'.Offline_pdf_data_mapping
                     (
-                   id bigserial NOT NULL,
+                   id   serial NOT NULL,
                    field_id int8 NOT NULL,
                    field_name varchar(255) NOT NULL,
                    field_table varchar(255) NOT null,

@@ -1,4 +1,4 @@
-//package ai.lentra;
+package ai.lentra;//package ai.lentra;
 //
 //import ai.lentra.dto.responses.ResponseDTO;
 //import ai.lentra.repository.allocation.ApplicationRepository;

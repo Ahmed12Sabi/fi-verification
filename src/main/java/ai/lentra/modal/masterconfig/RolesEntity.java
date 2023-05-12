@@ -1,6 +1,8 @@
 package ai.lentra.modal.masterconfig;
 
+import ai.lentra.core.entity.api.BusinessEntity;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
 
 import javax.persistence.*;
 import java.time.ZonedDateTime;
@@ -8,8 +10,7 @@ import java.time.ZonedDateTime;
 
 @Entity
 @Table(name = "role_config")
-@JsonIgnoreProperties(ignoreUnknown = true)
-@Embeddable
+@JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class RolesEntity {
 
     @Id

@@ -9,7 +9,7 @@ import java.util.Date;
 @Entity
 public class VmsDataConfig {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long vmsConfigDataId;
     //Branch and institution details
     @Column(length =150)

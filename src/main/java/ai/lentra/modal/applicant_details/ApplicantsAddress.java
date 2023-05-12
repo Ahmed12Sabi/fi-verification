@@ -48,7 +48,7 @@ public class ApplicantsAddress {
     }
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "address_id")
     private long id;
     private String addressType;

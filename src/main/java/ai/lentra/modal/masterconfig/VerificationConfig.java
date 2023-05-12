@@ -17,9 +17,9 @@ public class VerificationConfig
     @Column(name = "v_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long vId;
-//    @OneToOne(cascade = CascadeType.ALL)
-@JsonIgnore
-    @ManyToOne
+    //    @OneToOne(cascade = CascadeType.ALL)
+    @JsonIgnore
+    @ManyToOne(cascade=CascadeType.ALL)
     @JoinColumn(name = "m_id", referencedColumnName = "id")
     private MasterVerificationConfiguration masterVerificationConfiguration;
 
@@ -27,10 +27,60 @@ public class VerificationConfig
     @Size(min = 2, max = 50, message = "verification type should have 2 to 50 characters")
 
     private String vType;
-    @NotNull(message = "verification description should not be null")
-    @Size(min = 2, max = 50, message = "verification description should have 2 to 50 characters")
+    @NotNull(message = "user type should not be null")
+    @Size(min = 2, max = 50, message = "user type should have 2 to 50 characters")
 
-    private String vDescription;
+    private String userType;
+    private String subProfileName;
+
+    private boolean esign;
+    private boolean retrigerVerification;
+    private String multiVerificationAllowed;
+
+    @OneToMany(cascade=CascadeType.ALL)
+    // @JoinColumn(name = "form_id", referencedColumnName = "form_id")
+
+    private List<VerificationFormConfig> verificationFormConfig;
+
+    public boolean isEsign() {
+        return esign;
+    }
+
+    public void setEsign(boolean esign) {
+        this.esign = esign;
+    }
+
+    public boolean isRetrigerVerification() {
+        return retrigerVerification;
+    }
+
+    public void setRetrigerVerification(boolean retrigerVerification) {
+        this.retrigerVerification = retrigerVerification;
+    }
+
+    public String getMultiVerificationAllowed() {
+        return multiVerificationAllowed;
+    }
+
+    public void setMultiVerificationAllowed(String multiVerificationAllowed) {
+        this.multiVerificationAllowed = multiVerificationAllowed;
+    }
+
+    public long getvId() {
+        return vId;
+    }
+
+    public String getSubProfileName() {
+        return subProfileName;
+    }
+
+    public void setSubProfileName(String subProfileName) {
+        this.subProfileName = subProfileName;
+    }
+
+    public void setvId(long vId) {
+        this.vId = vId;
+    }
 
     public MasterVerificationConfiguration getMasterVerificationConfiguration() {
         return masterVerificationConfiguration;
@@ -38,28 +88,6 @@ public class VerificationConfig
 
     public void setMasterVerificationConfiguration(MasterVerificationConfiguration masterVerificationConfiguration) {
         this.masterVerificationConfiguration = masterVerificationConfiguration;
-    }
-
-    public String getInstitute_id() {
-        return institute_id;
-    }
-
-    public void setInstitute_id(String institute_id) {
-        this.institute_id = institute_id;
-    }
-
-    private String institute_id;
-    @OneToMany
-   // @JoinColumn(name = "form_id", referencedColumnName = "form_id")
-
-    private List<VerificationFormConfig> verificationFormConfig;
-
-    public long getvId() {
-        return vId;
-    }
-
-    public void setvId(long vId) {
-        this.vId = vId;
     }
 
     public String getvType() {
@@ -70,12 +98,12 @@ public class VerificationConfig
         this.vType = vType;
     }
 
-    public String getvDescription() {
-        return vDescription;
+    public String getUserType() {
+        return userType;
     }
 
-    public void setvDescription(String vDescription) {
-        this.vDescription = vDescription;
+    public void setUserType(String userType) {
+        this.userType = userType;
     }
 
     public List<VerificationFormConfig> getVerificationFormConfig() {

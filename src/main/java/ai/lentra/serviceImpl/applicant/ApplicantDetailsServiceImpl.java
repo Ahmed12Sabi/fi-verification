@@ -1,10 +1,10 @@
 package ai.lentra.serviceImpl.applicant;
 
 import ai.lentra.config.I18nMessageKeys;
+import ai.lentra.core.exception.ValidationException;
 import ai.lentra.core.i18n.api.I18nHelper;
 import ai.lentra.dto.applicant.ApplicantDetailsDTO;
 import ai.lentra.dto.headers.HeadersDTO;
-import ai.lentra.exceptions.ResourceNotFoundException;
 import ai.lentra.modal.applicant_details.ApplicantDetails;
 import ai.lentra.repository.applicant.ApplicantDetailsRepository;
 import ai.lentra.service.ApplicantDetailsService;
@@ -32,8 +32,8 @@ public class ApplicantDetailsServiceImpl implements ApplicantDetailsService {
     VerificationServiceImpl verificationServiceImpl;
 
     @Override
-    public ResponseEntity<?> getApplicantDetails(Long applicantId) throws ResourceNotFoundException {
-        ApplicantDetails applicantDetails= applicantDetailsRepository.findByApplicantId(applicantId).orElseThrow(()->new ResourceNotFoundException("Requested Applicant Details Not Found"));
+    public ResponseEntity<?> getApplicantDetails(Long applicantId) throws ValidationException {
+        ApplicantDetails applicantDetails= applicantDetailsRepository.findByApplicantId(applicantId).orElseThrow(()->new ValidationException("Requested Applicant Details Not Found"));
 
             return new ResponseEntity<>(applicantDetails, HttpStatus.OK);
 

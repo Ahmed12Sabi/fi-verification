@@ -1,34 +1,27 @@
 package ai.lentra.dto.masterConfig;
-
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import java.time.ZonedDateTime;
 import java.util.List;
-
-
-
-
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class MasterVerificationConfigurationDto {
-@NotNull(message = "m_id should not be null")
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String profileName;
-    private String vType;
-    @NotNull(message = "User type should not be null")
-    @Size(min = 2, max = 50, message = " User type should have 2 to 50 characters")
-    private String userType;
-    @NotNull(message = "Multiverification should not be null")
-    @Size(min = 2, max = 50, message = "Multiverification should have 2 to 50 characters")
-    private String multiVerificationAllowed;
-    @NotNull(message = "Retriger Verification should not be null")
+    private String productType;
+    private String instituteId;
+    private ZonedDateTime created_on;
+    private String created_by;
+    private ZonedDateTime modified_on;
+    private String modified_by;
 
-    private boolean retrigerVerification;
-    private String productLevelLogic;
-    private long profileId;
-    private String subProfileName;
-    private long institutionId;
-    private boolean eSign;
-    private List<VerificationConfigDto> verificationConfigDto;
+    @OneToMany
+    private List<VerificationConfigDto> verificationConfig ;
 
     public long getId() {
         return id;
@@ -46,83 +39,51 @@ public class MasterVerificationConfigurationDto {
         this.profileName = profileName;
     }
 
-    public String getvType() {
-        return vType;
+    public String getInstituteId() {
+        return instituteId;
     }
 
-    public void setvType(String vType) {
-        this.vType = vType;
+    public void setInstituteId(String instituteId) {
+        this.instituteId = instituteId;
     }
 
-    public String getUserType() {
-        return userType;
+    public ZonedDateTime getCreated_on() {
+        return created_on;
     }
 
-    public void setUserType(String userType) {
-        this.userType = userType;
+    public void setCreated_on(ZonedDateTime created_on) {
+        this.created_on = created_on;
     }
 
-    public String getMultiVerificationAllowed() {
-        return multiVerificationAllowed;
+    public String getCreated_by() {
+        return created_by;
     }
 
-    public void setMultiVerificationAllowed(String multiVerificationAllowed) {
-        this.multiVerificationAllowed = multiVerificationAllowed;
+    public void setCreated_by(String created_by) {
+        this.created_by = created_by;
     }
 
-    public boolean isRetrigerVerification() {
-        return retrigerVerification;
+    public ZonedDateTime getModified_on() {
+        return modified_on;
     }
 
-    public void setRetrigerVerification(boolean retrigerVerification) {
-        this.retrigerVerification = retrigerVerification;
+    public void setModified_on(ZonedDateTime modified_on) {
+        this.modified_on = modified_on;
     }
 
-    public String getProductLevelLogic() {
-        return productLevelLogic;
+    public String getModified_by() {
+        return modified_by;
     }
 
-    public void setProductLevelLogic(String productLevelLogic) {
-        this.productLevelLogic = productLevelLogic;
+    public void setModified_by(String modified_by) {
+        this.modified_by = modified_by;
     }
 
-    public long getProfileId() {
-        return profileId;
+    public List<VerificationConfigDto> getVerificationConfig() {
+        return verificationConfig;
     }
 
-    public void setProfileId(long profileId) {
-        this.profileId = profileId;
-    }
-
-    public String getSubProfileName() {
-        return subProfileName;
-    }
-
-    public void setSubProfileName(String subProfileName) {
-        this.subProfileName = subProfileName;
-    }
-
-    public long getInstitutionId() {
-        return institutionId;
-    }
-
-    public void setInstitutionId(long institutionId) {
-        this.institutionId = institutionId;
-    }
-
-    public boolean iseSign() {
-        return eSign;
-    }
-
-    public void seteSign(boolean eSign) {
-        this.eSign = eSign;
-    }
-
-    public List<VerificationConfigDto> getVerificationConfigDto() {
-        return verificationConfigDto;
-    }
-
-    public void setVerificationConfigDto(List<VerificationConfigDto> verificationConfigDto) {
-        this.verificationConfigDto = verificationConfigDto;
+    public void setVerificationConfig(List<VerificationConfigDto> verificationConfig) {
+        this.verificationConfig = verificationConfig;
     }
 }

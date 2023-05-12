@@ -63,7 +63,7 @@ begin
 				''do form clean, duration after which vms will be auto deleted two months old records and frequency of do form cleanup functionality execution''
 			    )';
 
-	-- execute v_text;
+	 execute v_text;
 
 -- **************************       your sql code ends above this line       **************************
 

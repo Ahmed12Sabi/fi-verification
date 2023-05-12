@@ -114,6 +114,14 @@ public class ApplicationDetailsDTO {
         this.applicantDetails = applicantDetails;
     }
 
+    public String getAgencyId() {
+        return agencyId;
+    }
+
+    public void setAgencyId(String agencyId) {
+        this.agencyId = agencyId;
+    }
+
     @NotNull(message = "Please enter a valid  id")
     private Long id;
     private long caseId;
@@ -128,4 +136,6 @@ public class ApplicationDetailsDTO {
     private String modifiedBy;
     private Timestamp modifiedOn;
     private List<ApplicantDetails> applicantDetails = new ArrayList<>();
+    private String agencyId;
+
 }

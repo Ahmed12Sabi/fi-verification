@@ -332,7 +332,6 @@ public class Verification {
     private String approvedDate;
     private String declinedReason;
     private String declinedDate;
-    /* todo:
-        cron job for queries and replies */
+
 
 }
