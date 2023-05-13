@@ -12,43 +12,43 @@ import javax.validation.constraints.Size;
 public class CommitmentDetailsDTO {
 	private long applicantId;
 	@Size(min=4, max=50, message=" bank_name_loc should have 4-50characters and not allow numbers")
-	@Pattern(regexp = "^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$")
+	//@Pattern(regexp = "^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$")
 	private String bankNameLoc;
-	@Pattern(regexp = "^\\d{3,13}(\\.\\d{0,2})?$",message = "This field should be accept only 3 to 13 digits not accepted characters")
+	//@Pattern(regexp = "^\\d{3,13}(\\.\\d{0,2})?$",message = "This field should be accept only 3 to 13 digits not accepted characters")
 	private int termInsuranceAmt;
-	@Pattern(regexp = "^\\d{1,3}(\\.\\d{0,1})?$",message = "This field should be accept only 1 to 3 digits not accepted characters")
+	//@Pattern(regexp = "^\\d{1,3}(\\.\\d{0,1})?$",message = "This field should be accept only 1 to 3 digits not accepted characters")
 	private int lifeInsuranceDuration;
-	@Pattern(regexp = "^\\d{1,3}(\\.\\d{0,1})?$",message = "This field should be accept only 1 to 3 digits not accepted characters")
+	//@Pattern(regexp = "^\\d{1,3}(\\.\\d{0,1})?$",message = "This field should be accept only 1 to 3 digits not accepted characters")
 	private int termInsuranceDuration;
-	@Pattern(regexp = "^\\d{3,13}(\\.\\d{0,2})?$",message = "This field should be accept only 3 to 13 digits not accepted characters")
+	//@Pattern(regexp = "^\\d{3,13}(\\.\\d{0,2})?$",message = "This field should be accept only 3 to 13 digits not accepted characters")
 	private int locAmt;
-	@Pattern(regexp = "^\\d{3,13}(\\.\\d{0,2})?$",message = "This field should be accept only 3 to 13 digits not accepted characters")
+	//@Pattern(regexp = "^\\d{3,13}(\\.\\d{0,2})?$",message = "This field should be accept only 3 to 13 digits not accepted characters")
 	private int carInsuranceAmt;
-	@Pattern(regexp = "^\\d{1,3}(\\.\\d{0,1})?$",message = "This field should be accept only 1 to 3 digits not accepted characters")
+	//@Pattern(regexp = "^\\d{1,3}(\\.\\d{0,1})?$",message = "This field should be accept only 1 to 3 digits not accepted characters")
 	private int twoWheelerInsuranceDuration;
-	@Pattern(regexp = "^\\d{1,3}(\\.\\d{0,1})?$",message = "This field should be accept only 1 to 3 digits not accepted characters")
+	//@Pattern(regexp = "^\\d{1,3}(\\.\\d{0,1})?$",message = "This field should be accept only 1 to 3 digits not accepted characters")
 	private int npsDuration;
-	@Pattern(regexp = "^\\d{3,13}(\\.\\d{0,2})?$",message = "This field should be accept only 3 to 13 digits not accepted characters")
+	//@Pattern(regexp = "^\\d{3,13}(\\.\\d{0,2})?$",message = "This field should be accept only 3 to 13 digits not accepted characters")
 	private int homeInsuranceAmt;
-	@Pattern(regexp = "^([0-2][0-9]|(3)[0-1])(\\/)(((0)[0-9])|((1)[0-2]))(\\/)\\d{4}$",message = "date must be in the format of 'DD/MM/YYYY'")
+	//@Pattern(regexp = "^([0-2][0-9]|(3)[0-1])(\\/)(((0)[0-9])|((1)[0-2]))(\\/)\\d{4}$",message = "date must be in the format of 'DD/MM/YYYY'")
 	private String locExpiryDate;
-	@Pattern(regexp = "^\\d{1,3}(\\.\\d{0,1})?$",message = "This field should be accept only 1 to 3 digits not accepted characters")
+	//@Pattern(regexp = "^\\d{1,3}(\\.\\d{0,1})?$",message = "This field should be accept only 1 to 3 digits not accepted characters")
 	private int carInsuranceDuration;
 	private String insuranceType;
-	@Pattern(regexp = "^\\d{1,3}(\\.\\d{0,1})?$",message = "This field should be accept only 1 to 3 digits not accepted characters")
+	//@Pattern(regexp = "^\\d{1,3}(\\.\\d{0,1})?$",message = "This field should be accept only 1 to 3 digits not accepted characters")
 	private int healthInsuranceDuration;
-	@Pattern(regexp = "^\\d{1,3}(\\.\\d{0,1})?$",message = "This field should be accept only 1 to 3 digits not accepted characters")
+	//@Pattern(regexp = "^\\d{1,3}(\\.\\d{0,1})?$",message = "This field should be accept only 1 to 3 digits not accepted characters")
 	private int homeInsuranceDuration;
 	@Size(min=6, max=50, message=" nps_applicant_name should have 6-50characters and not allow numbers ")
-	@Pattern(regexp = "^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$")
+	//@Pattern(regexp = "^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$")
 	private String npsApplicantName;
-	@Pattern(regexp = "^\\d{3,13}(\\.\\d{0,2})?$",message = "This field should be accept only 3 to 13 digits not accepted characters")
+	//@Pattern(regexp = "^\\d{3,13}(\\.\\d{0,2})?$",message = "This field should be accept only 3 to 13 digits not accepted characters")
 	private int healthInsuranceAmt;
-	@Pattern(regexp = "^\\d{3,13}(\\.\\d{0,2})?$",message = "This field should be accept only 3 to 13 digits only not accepted characters")
+	//@Pattern(regexp = "^\\d{3,13}(\\.\\d{0,2})?$",message = "This field should be accept only 3 to 13 digits only not accepted characters")
 	private int npsAmt;
-	@Pattern(regexp = "^\\d{3,13}(\\.\\d{0,2})?$",message = "This field should be accept only 3 to 13 digits not accepted characters")
+	//@Pattern(regexp = "^\\d{3,13}(\\.\\d{0,2})?$",message = "This field should be accept only 3 to 13 digits not accepted characters")
 	private int lifeInsuranceAmt;
-	@Pattern(regexp = "^\\d{3,13}(\\.\\d{0,2})?$",message = "This field should be accept only 3 to 13 digits not accepted characters")
+	//@Pattern(regexp = "^\\d{3,13}(\\.\\d{0,2})?$",message = "This field should be accept only 3 to 13 digits not accepted characters")
 	private int twoWheelerInsuranceAmt;
 	private int customerId;
 
