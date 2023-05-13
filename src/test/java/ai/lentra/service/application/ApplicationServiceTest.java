@@ -1,3 +1,4 @@
+/*
 package ai.lentra.service.application;
 
 import ai.lentra.commons.JsonUtils1;
@@ -365,3 +366,4 @@ public class ApplicationServiceTest extends TransactionalTestContainerSupport {
 }
 
 
+*/

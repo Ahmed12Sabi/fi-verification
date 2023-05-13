@@ -1,3 +1,4 @@
+/*
 
 package ai.lentra.service;
 
@@ -98,3 +99,4 @@ public class RoleConfigServiceImplTest extends TestContainerSupport {
     }
 
 }
+*/

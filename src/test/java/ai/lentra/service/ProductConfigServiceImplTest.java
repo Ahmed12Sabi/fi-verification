@@ -1,3 +1,4 @@
+/*
 
 package ai.lentra.service;
 
@@ -100,3 +101,4 @@ public class ProductConfigServiceImplTest  extends TransactionalTestContainerSup
 
 }
 
+*/

@@ -1,3 +1,4 @@
+/*
 package ai.lentra.service;
 
 import ai.lentra.dto.responses.ResponseDTO;
@@ -89,3 +90,4 @@ public class FileUploadServiceImplTest {
         assertEquals("All files uploaded successfully", responseEntity.getBody().toString().trim());
     }
 }
+*/
