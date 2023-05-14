@@ -1,6 +1,6 @@
 pipeline {
     environment {
-        service_name = "verifications"
+        service_name = 'verifications'
         release_version = '1.0'
        
     }
@@ -15,7 +15,7 @@ pipeline {
                     
             }
             steps{
-                 sh "mvn clean install -DskipTests"
+                 sh 'mvn clean install -DskipTests'
                 
                                stash includes: 'target/*.jar', name: 'APP_JAR'
 
