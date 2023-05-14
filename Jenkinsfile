@@ -15,9 +15,12 @@ pipeline {
                     
             }
             steps{
+                script{
                  sh 'mvn clean install -DskipTests'
-                
-                               stash includes: 'target/*.jar', name: 'APP_JAR'
+                 sh 'ls -l target'
+                       
+                }
+                stash includes: 'target/*.jar', name: 'APP_JAR'
 
             
             
