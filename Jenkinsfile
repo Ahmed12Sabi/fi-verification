@@ -15,6 +15,7 @@ pipeline {
                     
             }
             steps{
+                 sh "mvn clean install -DskipTests"
                 
                                stash includes: 'target/*.jar', name: 'APP_JAR'
 
