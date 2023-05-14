@@ -28,7 +28,7 @@ pipeline {
                 script {
                     unstash 'APP_JAR'
                     sh 'ls -l'
-                    sh "docker build -f Dockerfile -t ${service_name} ."
+                    sh 'docker build -f Dockerfile -t ${service_name} .'
                 }
             }
         }
@@ -36,7 +36,7 @@ pipeline {
         
         stage('Clean') {
             steps{
-                 sh "docker rmi -f ${service_name}"
+                 sh 'docker rmi -f ${service_name}'
             }
         }
     }
