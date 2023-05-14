@@ -15,11 +15,11 @@ pipeline {
                     
             }
             steps{
-                             
+                script{             
             sh "mvn -Dmaven.test.failure.ignore=true clean package"
 
                                sh 'ls -l target'
-                              
+                }       
                               }  stash includes: 'target/*.jar', name: 'APP_JAR'
 
             
