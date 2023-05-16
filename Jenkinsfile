@@ -10,12 +10,9 @@ pipeline {
     stages {
         stage('Build') {
             
-              
-               		docker 'sudo docker build -t fi-verifications:1.0.0 .'     
-                    
-            
             steps{
                 script{
+                    sh  'docker build -t fi-verifications:1.0.0 .' 
                  sh 'mvn clean install -DskipTests'
                  sh 'ls -l target'
                        
