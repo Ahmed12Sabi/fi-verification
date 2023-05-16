@@ -10,10 +10,10 @@ pipeline {
     stages {
         stage('Build') {
             
-                agent {
+              
                		docker 'sudo docker build -t fi-verifications:1.0.0 .'     
                     
-            }
+            
             steps{
                 script{
                  sh 'mvn clean install -DskipTests'
